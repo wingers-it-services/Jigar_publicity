@@ -35,6 +35,9 @@ Route::get('/books-list', [BookController::class, 'bookList'])->name('admin-book
 Route::get('/book-details/{uuid}', [BookController::class, 'bookDetails'])->name('book-details');
 
 Route::get('/add-book', [BookController::class, 'showAddBook'])->name('showAddBook');
+Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
+Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
+Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
 
 Route::get('/viewAddAdminSubscription', [AdminSubscriptionController::class, 'viewAddAdminSubscription'])->name('viewAddAdminSubscription');
 Route::post('/addAdminSubscription', [AdminSubscriptionController::class, 'addAdminSubscription'])->name('addAdminSubscription');
