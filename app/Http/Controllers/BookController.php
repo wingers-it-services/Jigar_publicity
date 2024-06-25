@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\GymNotification;
+use App\Models\IndustriesCategorie;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -13,18 +14,19 @@ class BookController extends Controller
 {
     protected $notification;
     protected $book;
+    private $industriesCategorie;
 
-    public function __construct(GymNotification $notification, Book $book)
+    public function __construct(GymNotification $notification, Book $book, IndustriesCategorie $industriesCategorie)
     {
         $this->notification = $notification;
         $this->book = $book;
+        $this->industriesCategorie = $industriesCategorie;
     }
 
     public function bookList(Request $request)
     {
         $status = null;
         $message = null;
-        // $notifications = $this->notification->all();
         $books = $this->book->all();
 
         return view('admin.books-list', compact('status', 'message','books'));
@@ -38,8 +40,9 @@ class BookController extends Controller
     public function bookDetails($uuid)
     {
         $bookDetails = $this->book->where('uuid',$uuid)->first();
+        $industriesCategorie = $this->industriesCategorie->all();
 
-        return view('admin.book-details', compact('bookDetails'));
+        return view('admin.book-details', compact('bookDetails','industriesCategorie'));
     }
 
     public function addBook(Request $request)
@@ -49,16 +52,16 @@ class BookController extends Controller
                 "image" => 'required',
                 "book_name" => 'required',
                 "book_price" => 'required',
-                // "association_name" => 'required',
-                // "association_web_link" => 'required',
-                // "association_email" => 'required',
-                // "association_ph_no" => 'required',
-                // "association_address" => 'required',
-                // "publication_name" => 'required',
-                // "publication_web_link" => 'required',
-                // "publication_email" => 'required',
-                // "publication_ph_no" => 'required',
-                // "publication_address" => 'required'
+                "association_name" => 'required',
+                "association_web_link" => 'required',
+                "association_email" => 'required',
+                "association_ph_no" => 'required',
+                "association_address" => 'required',
+                "publication_name" => 'required',
+                "publication_web_link" => 'required',
+                "publication_email" => 'required',
+                "publication_ph_no" => 'required',
+                "publication_address" => 'required'
             ]);
 
             $validateData = $request->all();
