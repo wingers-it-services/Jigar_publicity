@@ -144,9 +144,8 @@
                  document.getElementById('editBookId').value = book.uuid;
                  document.getElementById('editBookName').value = book.book_name;
                  document.getElementById('editBookPrice').value = book.book_price;
-                 document.getElementById('selected_image').src = '{{ asset('
-                 ') }}' + book.image;
-                 document.getElementById('editBookImage').value = '' + book.image; // Reset the file input
+                 document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
+                 document.getElementById('editBookImage').value = '{{asset($book->image)}}' + book.image; // Reset the file input
                  // Populate more fields as necessary
              });
          });

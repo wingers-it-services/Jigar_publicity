@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\GymNotification;
 use App\Models\IndustriesCategorie;
+use App\Models\Industry_Detail;
+use App\Models\IndustryDetail;
+use App\Models\UnitDetail;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -15,12 +18,16 @@ class BookController extends Controller
     protected $notification;
     protected $book;
     private $industriesCategorie;
+    private $industryDetail;
+    private $unitDetail;
 
-    public function __construct(GymNotification $notification, Book $book, IndustriesCategorie $industriesCategorie)
+    public function __construct(GymNotification $notification, Book $book, IndustriesCategorie $industriesCategorie, IndustryDetail $industryDetail, UnitDetail $unitDetail)
     {
         $this->notification = $notification;
         $this->book = $book;
         $this->industriesCategorie = $industriesCategorie;
+        $this->industryDetail = $industryDetail;
+        $this->unitDetail = $unitDetail;
     }
 
     public function bookList(Request $request)
@@ -29,7 +36,7 @@ class BookController extends Controller
         $message = null;
         $books = $this->book->all();
 
-        return view('admin.books-list', compact('status', 'message','books'));
+        return view('admin.books-list', compact('status', 'message', 'books'));
     }
 
     public function showAddBook(Request $request)
@@ -39,10 +46,24 @@ class BookController extends Controller
 
     public function bookDetails($uuid)
     {
-        $bookDetails = $this->book->where('uuid',$uuid)->first();
-        $industriesCategorie = $this->industriesCategorie->all();
+        $bookDetails = $this->book->where('uuid', $uuid)->first();
+        $industryDetails = $this->industryDetail->where('book_id', $uuid)->get();
+        // Get the category IDs from the industry details
+        $categoryIds = $industryDetails->pluck('category_id')->unique();
+        // Filter the categories based on the category IDs from the industry details
+        $industriesCategorie = $this->industriesCategorie->whereIn('id', $categoryIds)->get();
 
-        return view('admin.book-details', compact('bookDetails','industriesCategorie'));
+        // Count the number of units for each category
+        $industriesCategorie = $industriesCategorie->map(function ($category) use ($industryDetails) {
+            $categoryIndustryIds = $industryDetails->where('category_id', $category->id)->pluck('id');
+            $category->unit_count = $this->unitDetail->whereIn('industry_detail_id', $categoryIndustryIds)->count();
+            return $category;
+        });
+
+        $categorys = $this->industriesCategorie->all();
+
+
+        return view('admin.book-details', compact('bookDetails', 'industriesCategorie', 'industryDetails', 'categorys'));
     }
 
     public function addBook(Request $request)
@@ -80,7 +101,6 @@ class BookController extends Controller
             Log::error("[BookController][addBook] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }
-
     }
 
     public function updateBook(Request $request)
@@ -103,7 +123,7 @@ class BookController extends Controller
                 // "publication_address" => 'required'
             ]);
 
-            $uuid=$request->uuid;
+            $uuid = $request->uuid;
             $imagePath = null;
             if ($request->hasFile('image')) {
                 $bookPhoto = $request->file('image');
@@ -128,5 +148,55 @@ class BookController extends Controller
         $books = $this->book->where('uuid', $uuid)->firstOrFail();
         $books->delete();
         return redirect()->back()->with('success', 'Book deleted successfully!');
+    }
+
+
+    public function addIndustryInBook(Request $request)
+    {
+        // dd($request->all());
+        try {
+
+            $validatedData = $request->validate([
+                'image' => 'required',
+                'book_id' => 'required',
+                'category_id' => 'required',
+                'industry_name' => 'required',
+                'contact_no' => 'required',
+                'address' => 'required',
+                // 'size.*' => 'required',
+                // 'quantity.*' => 'required',
+                // 'status.*' => 'required',
+            ]);
+
+            $imagePath = null;
+            if ($request->hasFile('image')) {
+                $industryImage = $request->file('image');
+                $filename = time() . '_' . $industryImage->getClientOriginalName();
+                $imagePath = 'industry_images/' . $filename;
+                $industryImage->move(public_path('industry_images/'), $filename);
+            }
+
+            // Call addProductDetail to create the product and get the product instance
+            $industry = $this->industryDetail->addIndustryDetail($validatedData, $imagePath);
+
+            // Prepare product specification data
+            $unitDetails = [
+                'industry_detail_id' => $industry->id,
+                'unit_name' => $request->input('unit_name'),
+                'unit_contact_no' => $request->input('unit_contact_no'),
+                'unit_address' => $request->input('unit_address'),
+
+            ];
+
+            // Process product specification data
+            $this->unitDetail->addUnitData($unitDetails);
+
+
+            // Optionally, redirect or return a response
+            return redirect()->back()->with('success', 'Industries added successfully');
+        } catch (\Exception $th) {
+            Log::error("[BookController][addIndustryInBook] error " . $th->getMessage());
+            return redirect()->back()->with('error', $th->getMessage());
+        }
     }
 }
