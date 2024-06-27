@@ -46,6 +46,84 @@
                                              <input type="number" class="form-control" id="editBookPrice" name="book_price" required>
                                          </div>
                                          <!-- Add more fields as necessary -->
+                                         <div class="row">
+                                             <div class="card-footer mt-0">
+                                                 <button class="btn btn-primary btn-lg btn-block">Association Details</button>
+                                             </div>
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Association Name<span class="required">*</span></label>
+                                                     <input type="text" name="association_name" id="editAssName" class="form-control" placeholder="Montana">
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Website Link<span class="required">*</span></label>
+                                                     <input type="text" name="association_web_link"  id="editAssLink"  class="form-control" placeholder="https://wingersitservices.co.in/">
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Email Address<span class="required">*</span></label>
+                                                     <input type="email" class="form-control" id="email" id="editAssEmail"  name="association_email" placeholder="example@example.com.com">
+                                                 </div>
+                                             </div>
+
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Phone Number<span class="required">*</span></label>
+                                                     <input type="text" name="association_ph_no" id="editAssPhone" class="form-control" placeholder="(+1)408-657-9007">
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-12 mb-3">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Address<span class="required">*</span></label>
+                                                     <textarea type="text" name="association_address" id="editAssAddress" rows="4" class="form-control"></textarea>
+
+                                                 </div>
+                                             </div>
+                                         </div>
+
+                                         <div class="row">
+                                             <div class="card-footer mt-0">
+                                                 <button class="btn btn-primary btn-lg btn-block">Publication Details</button>
+                                             </div>
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Publication Name<span class="required">*</span></label>
+                                                     <input type="text" name="publication_name" id="editPubName" class="form-control" placeholder="Montana">
+                                                 </div>
+                                             </div>
+
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Website Link<span class="required">*</span></label>
+                                                     <input type="text" name="publication_web_link" id="editPubLink" class="form-control" placeholder="https://wingersitservices.co.in/">
+                                                 </div>
+                                             </div>
+
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Email Address<span class="required">*</span></label>
+                                                     <input type="email" class="form-control" id="editPubEmail" name="publication_email" placeholder="example@example.com.com">
+                                                 </div>
+                                             </div>
+
+                                             <div class="col-lg-6 mb-2">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Phone Number<span class="required">*</span></label>
+                                                     <input type="text" name="publication_ph_no" id="editPubPhone" class="form-control" placeholder="(+1)408-657-9007">
+                                                 </div>
+                                             </div>
+                                             <div class="col-lg-12 mb-3">
+                                                 <div class="form-group">
+                                                     <label class="text-label">Address<span class="required">*</span></label>
+                                                     <textarea type="text" name="publication_address" id="editPubAddress" rows="4" class="form-control"></textarea>
+
+                                                 </div>
+                                             </div>
+                                         </div>
+
                                      </div>
                                      <div class="modal-footer">
                                          <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
@@ -145,8 +223,19 @@
                  document.getElementById('editBookName').value = book.book_name;
                  document.getElementById('editBookPrice').value = book.book_price;
                  document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
-                 document.getElementById('editBookImage').value = '{{asset($book->image)}}' + book.image; // Reset the file input
-                 // Populate more fields as necessary
+                 document.getElementById('editBookImage').value = '{{asset($book->image)}}' + book.image; 
+
+                 document.getElementById('editAssName').value = book.association_name;
+                 document.getElementById('editAssLink').value = book.association_web_link;
+                 document.getElementById('editAssEmail').value = book.association_email; 
+                 document.getElementById('editAssPhone').value = book.association_ph_no;
+                 document.getElementById('editAssAddress').value = book.association_address;
+
+                 document.getElementById('editPubName').value = book.publication_name;
+                 document.getElementById('editPubLink').value = book.publication_web_link;
+                 document.getElementById('editPubEmail').value = book.publication_email; 
+                 document.getElementById('editPubPhone').value = book.publication_ph_no;
+                 document.getElementById('editPubAddress').value = book.publication_address;
              });
          });
      });
