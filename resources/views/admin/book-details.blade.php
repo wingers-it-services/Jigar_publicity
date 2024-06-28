@@ -5,6 +5,10 @@
 <!--**********************************
                                     Content body start
                         ***********************************-->
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <div class="content-body ">
     <!-- row -->
     <div class="container-fluid">
@@ -125,6 +129,8 @@
                                                     <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                                     @endforeach
                                                 </select>
+                                                <div id="category-exists-message" style="display: none; color: red;">This category already exists.</div>
+
                                                 <div class="form-group">
                                                     <br>
                                                     <label>Industry Name</label>
@@ -452,6 +458,27 @@
             }
 
         };
+
+    $(document).ready(function(){
+        $('#category_id').change(function(){
+            var selectedCategoryId = $(this).val();
+
+            if (selectedCategoryId) {
+                $.ajax({
+                    url: '/admin/check-category-id', // Your route to check category ID
+                    type: 'GET',
+                    data: { category_id: selectedCategoryId },
+                    success: function(response) {
+                        if(response.exists) {
+                            $('#category-exists-message').show();
+                        } else {
+                            $('#category-exists-message').hide();
+                        }
+                    }
+                });
+            }
+        });
+    });
     </script>
 
     @endsection
