@@ -106,7 +106,7 @@ class AdminUserController extends Controller
             ]);
 
             $uuid = $request->uuid;
-            $updateUser = $this->book->updateUser($validatedData,$uuid);
+            $updateUser = $this->user->updateUser($validatedData,$uuid);
             if ($updateUser) {
                 return redirect()->back()->with("status", "success")->with("message", "Subscription Upated Succesfully");
             } else {
@@ -117,6 +117,14 @@ class AdminUserController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+
+    public function deleteUser($uuid)
+    {
+        $user = $this->user->where('uuid', $uuid)->firstOrFail();
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully!');
+    }
+
 
     /**
      * The function userPaymentList retrieves all users and passes them to the 'admin.user-payment' view.

@@ -38,7 +38,8 @@ Route::get('/add-book', [BookController::class, 'showAddBook'])->name('showAddBo
 Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
 Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
 Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
-Route::post('/update-user', [BookController::class, 'updateUser'])->name('updateUser');
+Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
+Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');
 
 Route::post('/addIndustryInBook', [BookController::class, 'addIndustryInBook'])->name('addIndustryInBook');
 

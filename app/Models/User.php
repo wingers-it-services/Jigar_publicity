@@ -55,59 +55,27 @@ class User extends Authenticatable
         }
     }
 
-    // public function updateUser(array $updateUser, $imagePath)
-    // {
+    public function updateUser(array $validatedData,$uuid)
+    {
+        $userDetail = User::where('uuid', $uuid)->first();
+        if (!$userDetail) {
+            return redirect()->back()->with('error', 'user not found');
+        }
+        try {
+            $userDetail->update([
+                "name"           => $validatedData['name'],
+                "email"          => $validatedData['email'],
+                "phone"          => $validatedData['phone'],
+                "website"        => $validatedData['website'],
+                "company_name"   => $validatedData['company_name'],
+                "company_address"=> $validatedData['company_address'],
+                "no_of_device"   => $validatedData['no_of_device']
+            ]);
 
-    //     // dd($updateUser);
-    //     $uuid = $updateUser['uuid'];
-    //     $userProfile = User::where('uuid', $uuid)->first();
+            return $userDetail->save();
 
-    //     // Check if the user exists
-    //     if (!$userProfile) {
-    //         return redirect()->back()->with('error', 'User not found');
-    //     }
-    //     try {
-    //         $userProfile->update([
-    //             'first_name' => $updateUser['first_name'],
-    //             'last_name' => $updateUser['last_name'],
-    //             'email' => $updateUser['email'],
-    //             'gender' => $updateUser['gender'],
-    //             'phone_no' => $updateUser['phone_no'],
-    //             'username' => $updateUser['username'],
-    //             'password' => $updateUser['password'],
-    //         ]);
-    //         if (isset($imagePath)) {
-    //             $userProfile->update([
-    //                 'image' => $imagePath
-    //             ]);
-    //         }
-
-    //         return $userProfile->save();
-    //     } catch (Throwable $e) {
-    //         Log::error('[Gym][updateUser] Error while updating user detail: ' . $e->getMessage());
-    //     }
-    // }
-    // public function addTrainer(array $gymTrainer)
-    // {
-    //     $userId = $gymTrainer['user_id'];
-    //     $trainerId = $gymTrainer['trainer_id'];
-    //     $userProfile = User::find($userId);
-
-    //     // Check if the user exists
-    //     if (!$userProfile) {
-    //         return redirect()->back()->with('error', 'User not found');
-    //     }
-    //     try {
-    //         if ($trainerId == "0") {
-    //             $trainerId = null;
-    //         }
-
-    //         $userProfile->update([
-    //             'trainer_id' => $trainerId
-    //         ]);
-    //         return $userProfile->save();
-    //     } catch (Throwable $e) {
-    //         Log::error('[Gym][addTrainer] Error while alloting Trainer detail: ' . $e->getMessage());
-    //     }
-    // }
+        } catch (Throwable $e) {
+            Log::error('[User][updateUser] Error while updating user detail: ' . $e->getMessage());
+        }
+    }
 }
