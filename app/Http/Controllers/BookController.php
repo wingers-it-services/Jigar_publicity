@@ -35,7 +35,6 @@ class BookController extends Controller
         $status = null;
         $message = null;
         $books = $this->book->all();
-
         return view('admin.books-list', compact('status', 'message', 'books'));
     }
 
@@ -148,6 +147,14 @@ class BookController extends Controller
         $books = $this->book->where('uuid', $uuid)->firstOrFail();
         $books->delete();
         return redirect()->back()->with('success', 'Book deleted successfully!');
+    }
+
+    public function checkCategoryId(Request $request)
+    {
+        $categoryId = $request->input('category_id');
+        $exists = $this->industryDetail->where('category_id', $categoryId)->exists();
+
+        return response()->json(['exists' => $exists]);
     }
 
 

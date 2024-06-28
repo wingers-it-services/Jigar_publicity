@@ -60,6 +60,9 @@ Route::post('/updateAdminUser', [AdminUserController::class, 'updateAdminUser'])
 
 Route::get('/user-login-history', [AdminUserController::class, 'userLoginHistory'])->name('userLoginHistory');
 
+
+Route::get('/check-category-id', [BookController::class, 'checkCategoryId']);
+
 // Route::get('/listEnquiry', [AdminEnquiryController::class, 'listEnquiry'])->name('listEnquiry');
 // Route::get('/viewAdminEnquiry/{uuid}', [AdminEnquiryController::class, 'viewAdminEnquiry'])->name('viewAdminEnquiry');
 // Route::post('/updateStatus', [AdminEnquiryController::class, 'updateStatus'])->name('updateStatus');
