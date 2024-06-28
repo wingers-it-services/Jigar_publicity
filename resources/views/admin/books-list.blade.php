@@ -18,43 +18,43 @@
 
                      <!-- Modal -->
                      <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog modal-lg">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Update Book</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                </div>
-                                <form id="editBookForm" action="{{route('updateBook')}}" method="POST" enctype="multipart/form-data">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <input type="hidden" name="uuid" id="editBookId">
-                                        <div class="row">
-                                            <div class="col-12 d-flex justify-content-center">
-                                                <img id="selected_image" src="https://p7.hiclipart.com/preview/831/479/764/ibooks-computer-icons-ios-apple-app-store-sparito-lo-scaffale-sono-rimaste-le-pagine-aperte-i-colori-cambiano.jpg" style="width: 200px;height:200px">
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editBookImage" class="form-label">Book Image</label>
-                                            <input type="file" class="form-control" id="editBookImage" name="image" accept="image/*" onchange="loadFile(event)">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editBookName" class="form-label">Book Name</label>
-                                            <input type="text" class="form-control" id="editBookName" name="book_name" required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="editBookPrice" class="form-label">Book Price</label>
-                                            <input type="number" class="form-control" id="editBookPrice" name="book_price" required>
-                                        </div>
-                                        <!-- Add more fields as necessary -->
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                         <div class="modal-dialog modal-lg">
+                             <div class="modal-content">
+                                 <div class="modal-header">
+                                     <h5 class="modal-title">Update Book</h5>
+                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                 </div>
+                                 <form id="editBookForm" action="{{route('updateBook')}}" method="POST" enctype="multipart/form-data">
+                                     @csrf
+                                     <div class="modal-body">
+                                         <input type="hidden" name="uuid" id="editBookId">
+                                         <div class="row">
+                                             <div class="col-12 d-flex justify-content-center">
+                                                 <img id="selected_image" src="https://p7.hiclipart.com/preview/831/479/764/ibooks-computer-icons-ios-apple-app-store-sparito-lo-scaffale-sono-rimaste-le-pagine-aperte-i-colori-cambiano.jpg" style="width: 200px;height:200px">
+                                             </div>
+                                         </div>
+                                         <div class="mb-3">
+                                             <label for="editBookImage" class="form-label">Book Image</label>
+                                             <input type="file" class="form-control" id="editBookImage" name="image" accept="image/*" onchange="loadFile(event)">
+                                         </div>
+                                         <div class="mb-3">
+                                             <label for="editBookName" class="form-label">Book Name</label>
+                                             <input type="text" class="form-control" id="editBookName" name="book_name" required>
+                                         </div>
+                                         <div class="mb-3">
+                                             <label for="editBookPrice" class="form-label">Book Price</label>
+                                             <input type="number" class="form-control" id="editBookPrice" name="book_price" required>
+                                         </div>
+                                         <!-- Add more fields as necessary -->
+                                     </div>
+                                     <div class="modal-footer">
+                                         <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
+                                         <button type="submit" class="btn btn-primary">Save changes</button>
+                                     </div>
+                                 </form>
+                             </div>
+                         </div>
+                     </div>
 
 
 
@@ -77,7 +77,7 @@
                                  <tbody>
                                      @foreach($books as $book)
                                      <tr>
-                                         <td><img width="35" src="{{ asset($book->image) }}" alt=""></td>
+                                         <td><img width="80" src="{{ asset($book->image) }}" alt=""></td>
                                          <td>{{$book->book_name}}</td>
                                          <td><a href="javascript:void(0);"><strong>123 </strong></a></td>
                                          <td><a href="javascript:void(0);"><strong>456 </strong></a></td>
@@ -135,22 +135,22 @@
 
      };
  </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var editButtons = document.querySelectorAll('.edit-book-button');
-        editButtons.forEach(function(button) {
-            button.addEventListener('click', function() {
-                var book = JSON.parse(this.dataset.book);
-                document.getElementById('editBookId').value = book.uuid;
-                document.getElementById('editBookName').value = book.book_name;
-                document.getElementById('editBookPrice').value = book.book_price;
-                document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
-                document.getElementById('editBookImage').value = '' + book.image;  // Reset the file input
-                // Populate more fields as necessary
-            });
-        });
-    });
-</script>
+ <script>
+     document.addEventListener('DOMContentLoaded', function() {
+         var editButtons = document.querySelectorAll('.edit-book-button');
+         editButtons.forEach(function(button) {
+             button.addEventListener('click', function() {
+                 var book = JSON.parse(this.dataset.book);
+                 document.getElementById('editBookId').value = book.uuid;
+                 document.getElementById('editBookName').value = book.book_name;
+                 document.getElementById('editBookPrice').value = book.book_price;
+                 document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
+                 document.getElementById('editBookImage').value = '{{asset($book->image)}}' + book.image; // Reset the file input
+                 // Populate more fields as necessary
+             });
+         });
+     });
+ </script>
 
 
  @endsection

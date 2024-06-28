@@ -1024,46 +1024,11 @@
                         </a>
 
                         <ul aria-expanded="false">
-                            <li><a href="/admin/user-list">Users List</a></li>
                             <li><a href="/admin/add-admin-users">Add New User</a></li>
+                            <li><a href="/admin/user-list">Users List</a></li>
                             <li><a href="/admin/user-payment">Payment Details</a></li>
                         </ul>
                     </li>
-                    {{-- <li>
-						<a href="/calendar">
-							<i class="fa fa-calendar" aria-hidden="true"></i>
-							<span class="nav-text">GYM Schedule</span>
-						</a>
-					</li>
-					<li>
-						<a class="has-arrow" href="javascript:void(0)" aria-expanded="false">
-							<i class="fa fa-cart-plus" aria-hidden="true"></i>
-							<span class="nav-text">Shop</span>
-						</a>
-						<ul aria-expanded="false">
-							<li><a href="ecom-product-grid.html">Product Grid</a></li>
-							<li><a href="ecom-product-list.html">Product List</a></li>
-							<li><a href="ecom-product-detail.html">Product Details</a></li>
-							<li><a href="ecom-product-order.html">Order</a></li>
-							<li><a href="ecom-checkout.html">Checkout</a></li>
-							<li><a href="ecom-invoice.html">Invoice</a></li>
-							<li><a href="ecom-customers.html">Customers</a></li>
-						</ul>
-					</li>
-
-					<li>
-						<a href="chart-flot.html">
-							<i class="fa fa-ticket" aria-hidden="true"></i>
-							<span class="nav-text">Coupon</span>
-						</a>
-					</li>
-
-					<li>
-						<a href="/gallery">
-							<i class="fa fa-picture-o" aria-hidden="true"></i>
-							<span class="nav-text">Gallery</span>
-						</a>
-					</li> --}}
 
                     <li>
                         <a href="/admin/listEnquiry">
@@ -1071,18 +1036,18 @@
                             <span class="nav-text">Enquiry</span>
                         </a>
                     </li>
-                    
-					<li>
-						<a href="#">
-							<i class="fa fa-bell" aria-hidden="true"></i>
-							<span class="nav-text">Notification</span></a>
-					</li>
 
                     <li>
-						<a href="/admin/user-login-history">
-							<i class="fa fa-bell" aria-hidden="true"></i>
-							<span class="nav-text">User Login History</span></a>
-					</li>
+                        <a href="#">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span class="nav-text">Notification</span></a>
+                    </li>
+
+                    <li>
+                        <a href="/admin/user-login-history">
+                            <i class="fa fa-bell" aria-hidden="true"></i>
+                            <span class="nav-text">User Login History</span></a>
+                    </li>
 
                     <li>
                         <a href="#">

@@ -39,12 +39,15 @@ Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
 Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
 Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
 
+Route::post('/addIndustryInBook', [BookController::class, 'addIndustryInBook'])->name('addIndustryInBook');
+
 Route::get('/viewAddAdminSubscription', [AdminSubscriptionController::class, 'viewAddAdminSubscription'])->name('viewAddAdminSubscription');
 Route::post('/addAdminSubscription', [AdminSubscriptionController::class, 'addAdminSubscription'])->name('addAdminSubscription');
 Route::get('/viewEditSubscription/{uuid}', [AdminSubscriptionController::class, 'viewEditAdminSubscription'])->name('viewEditSubscription');
 Route::post('/updateSubscription', [AdminSubscriptionController::class, 'updateAdminSubscription'])->name('updateSubscription');
 
 Route::get('/add-admin-users', [AdminUserController::class, 'showAddUsers']);
+
 Route::post('/add-user-by-admin', [AdminUserController::class, 'addUserByadmin'])->name('addUserByadmin');
 
 Route::get('/user-list', [AdminUserController::class, 'userList'])->name('userList');

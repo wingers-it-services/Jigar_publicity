@@ -6,6 +6,8 @@ use App\Models\AdminUser;
 use App\Models\Gym;
 use App\Models\UserWorkout;
 use App\Models\UserDiet;
+use App\Models\User;
+
 use App\Models\UserBodyMeasurement;
 use App\Models\userBmi;
 use App\Models\GymStaff;
@@ -30,7 +32,7 @@ class AdminUserController extends Controller
     protected $gymStaff;
 
     public function __construct(
-        AdminUser $user,
+        User $user,
         Gym $gym,
         UserService $userService,
         UserWorkout $workout,
@@ -54,40 +56,30 @@ class AdminUserController extends Controller
         return view('admin.add-user');
     }
 
-    // public function addUserByadmin(Request $request)
-    // {
-    //     try {
-    //         $validatedData = $request->validate([
-    //             'gym_id' => 'nullable',
-    //             'user_type' => 'required',
-    //             'first_name' => 'required',
-    //             'last_name' => 'required',
-    //             'email' => 'required',
-    //             'gender' => 'required',
-    //             'phone_no' => 'required',
-    //             'username' => 'required',
-    //             'password' => 'required',
-    //             'image' => 'required'
-    //         ]);
+    public function addUserByadmin(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'username' => 'required',
+                'name' => 'required',
+                'email' => 'required',
+                'password' => 'required',
+                'phone' => 'required',
+                'website' => 'required',
+                'company_name' => 'required',
+                'company_address' => 'required',
+                'no_of_device' => 'required'
+            ]);
 
-    //         $imagePath = null;
-    //         $data = $request->all();
-    //         if ($request->hasFile('image')) {
-    //             $imagePath = $this->userService->uploadUserProfileImage($request->file('image'));
-    //         }
+            $data = $request->all();
+            $this->user->addUser($validatedData);
 
-    //         if ($validatedData['user_type'] == \App\Enums\UserTypeEnum::HOMEUSER) {
-    //             $validatedData['gym_id'] = 0;
-    //         }
-
-    //         $this->user->addUser($validatedData, $imagePath);
-
-    //         return back()->with('status', 'success')->with('message', 'User Added Successfully');
-    //     } catch (\Exception $e) {
-    //         Log::error('[AdminUserController][addUserByadmin] Error adding user: ' . $e->getMessage());
-    //         return back()->with('status', 'error')->with('message', 'User Not Added');
-    //     }
-    // }
+            return back()->with('status', 'success')->with('message', 'User Added Successfully');
+        } catch (\Exception $e) {
+            Log::error('[AdminUserController][addUserByadmin] Error adding user: ' . $e->getMessage());
+            return back()->with('status', 'error')->with('message', 'User Not Added');
+        }
+    }
 
     /**
      * The userList function retrieves all users and passes them to the admin user-list view.
@@ -99,7 +91,7 @@ class AdminUserController extends Controller
     }
 
     /**
-     * The function `userPaymentList` retrieves all users and passes them to the 'admin.user-payment' view.
+     * The function userPaymentList retrieves all users and passes them to the 'admin.user-payment' view.
      */
     public function userPaymentList()
     {
@@ -124,7 +116,7 @@ class AdminUserController extends Controller
     // }
 
     // /**
-    //  * The function `updateAdminUser` in PHP updates an admin user's profile with validation, image
+    //  * The function updateAdminUser in PHP updates an admin user's profile with validation, image
     //  * upload, and error handling.
     //  */
     // public function updateAdminUser(Request $request)

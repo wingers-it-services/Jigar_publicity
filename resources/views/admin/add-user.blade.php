@@ -3,27 +3,21 @@
 @section('content')
 
 
-    <!--**********************************
-                Content body start
-            ***********************************-->
+    <!--************
+                                            Content body start
+                                        *************-->
     <div class="content-body ">
         <div class="container-fluid">
-            <div class="page-titles">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="javascript:void(0)">Form</a></li>
-                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Form Validation</a></li>
-                </ol>
-            </div>
-            <!-- row -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Form Validation</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-validation">
-                                <form class="needs-validation" novalidate>
+                    <form class="needs-validation" action="{{ route('addUserByadmin') }}" method="POST" enctype="multipart/form-data" novalidate>
+                        @csrf
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">User Registration Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-validation">
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <div class="mb-3 row">
@@ -31,10 +25,22 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom01"
+                                                    <input type="text" class="form-control" id="validationCustom01" name="username"
                                                         placeholder="Enter a username.." required>
                                                     <div class="invalid-feedback">
                                                         Please enter a username.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom01">Name
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom01" name="name"
+                                                        placeholder="Enter a name.." required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a name.
                                                     </div>
                                                 </div>
                                             </div>
@@ -43,7 +49,7 @@
                                                         class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom02"
+                                                    <input type="text" class="form-control" id="validationCustom02" name="email"
                                                         placeholder="Your valid email.." required>
                                                     <div class="invalid-feedback">
                                                         Please enter a Email.
@@ -55,7 +61,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <div class="col-lg-6">
-                                                    <input type="password" class="form-control" id="validationCustom03"
+                                                    <input type="password" class="form-control" id="validationCustom03" name="password"
                                                         placeholder="Choose a safe one.." required>
                                                     <div class="invalid-feedback">
                                                         Please enter a password.
@@ -63,6 +69,30 @@
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom08">Phone
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom08" name="phone"
+                                                        placeholder="212-999-0000" required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a phone no.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom07">Website
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <input type="text" class="form-control" id="validationCustom07" name="website"
+                                                        placeholder="http://example.com" required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a url.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {{-- <div class="mb-3 row">
                                                 <label class="col-lg-4 col-form-label" for="validationCustom04">Suggestions
                                                     <span class="text-danger">*</span>
                                                 </label>
@@ -73,107 +103,77 @@
                                                         Please enter a Suggestions.
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-xl-6">
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom05">Best Skill
-                                                    <span class="text-danger">*</span>
-                                                </label>
+                                            {{-- <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom05">Payment Status</label>
                                                 <div class="col-lg-6">
                                                     <select class="default-select wide form-control"
                                                         id="validationCustom05">
                                                         <option data-display="Select">Please select</option>
-                                                        <option value="html">HTML</option>
-                                                        <option value="css">CSS</option>
-                                                        <option value="javascript">JavaScript</option>
-                                                        <option value="angular">Angular</option>
-                                                        <option value="angular">React</option>
-                                                        <option value="vuejs">Vue.js</option>
-                                                        <option value="ruby">Ruby</option>
-                                                        <option value="php">PHP</option>
-                                                        <option value="asp">ASP.NET</option>
-                                                        <option value="python">Python</option>
-                                                        <option value="mysql">MySQL</option>
+                                                        <option value="pending">Pending</option>
+                                                        <option value="paid">Paid</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a one.
+                                                    </div>
+                                                </div>
+                                            </div> --}}
+                                            <div class="mb-3 row">
+
+                                                <div class="mb-3 row">
+                                                    <label class="col-lg-4 col-form-label" for="validationCustom01">Company Name
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" id="validationCustom01" name="company_name"
+                                                            placeholder="Enter a Company Name.." required>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a username.
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="mb-3 row">
+                                                    <label class="col-lg-4 col-form-label" for="validationCustom01">Company Address
+                                                        <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="col-lg-6">
+                                                        <input type="text" class="form-control" id="validationCustom01" name="company_address"
+                                                            placeholder="Enter a Company Address.." required>
+                                                        <div class="invalid-feedback">
+                                                            Please enter a username.
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device
+                                                    Allowed </label>
+                                                <div class="col-lg-6">
+                                                    <select class="default-select wide form-control"
+                                                        id="validationCustom05" name="no_of_device">
+                                                        <option data-display="Select">Please select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Please select a one.
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom06">Currency
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom06"
-                                                        placeholder="$21.60" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter a Currency.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom07">Website
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom07"
-                                                        placeholder="http://example.com" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter a url.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom08">Phone (US)
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom08"
-                                                        placeholder="212-999-0000" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter a phone no.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom09">Digits
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom09"
-                                                        placeholder="5" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter a digits.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom10">Number
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom10"
-                                                        placeholder="5.0" required>
-                                                    <div class="invalid-feedback">
-                                                        Please enter a num.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom11">Range [1,
-                                                    5]
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <input type="text" class="form-control" id="validationCustom11"
-                                                        placeholder="4" required>
-                                                    <div class="invalid-feedback">
-                                                        Please select a range.
-                                                    </div>
-                                                </div>
-                                            </div>
+
+
+
+
                                             <div class="mb-3 row">
                                                 <label class="col-lg-4 col-form-label"><a href="javascript:void(0);">Terms
                                                         &amp; Conditions</a> <span class="text-danger">*</span>
@@ -188,26 +188,28 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="mb-3 row">
-                                                <div class="col-lg-8 ms-auto">
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
+
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="col-lg-12 ms-auto">
+                                                <button type="submit" style=" width: -webkit-fill-available; "
+                                                    class=" btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-    <!--**********************************
-                Content body end
-            ***********************************-->
+    <!--************
+                                            Content body end
+                                        *************-->
 
-    <script>
+    {{-- <script>
         (function() {
             'use strict'
 
@@ -227,6 +229,6 @@
                     }, false)
                 })
         })()
-    </script>
+    </script> --}}
 
 @endsection
