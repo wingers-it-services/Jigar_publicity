@@ -38,6 +38,8 @@ Route::get('/add-book', [BookController::class, 'showAddBook'])->name('showAddBo
 Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
 Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
 Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
+Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
+Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');
 
 Route::post('/addIndustryInBook', [BookController::class, 'addIndustryInBook'])->name('addIndustryInBook');
 
@@ -57,6 +59,9 @@ Route::get('/viewEditUser/{uuid}', [AdminUserController::class, 'viewEditUser'])
 Route::post('/updateAdminUser', [AdminUserController::class, 'updateAdminUser'])->name('updateAdminUser');
 
 Route::get('/user-login-history', [AdminUserController::class, 'userLoginHistory'])->name('userLoginHistory');
+
+
+Route::get('/check-category-id', [BookController::class, 'checkCategoryId']);
 
 // Route::get('/listEnquiry', [AdminEnquiryController::class, 'listEnquiry'])->name('listEnquiry');
 // Route::get('/viewAdminEnquiry/{uuid}', [AdminEnquiryController::class, 'viewAdminEnquiry'])->name('viewAdminEnquiry');
