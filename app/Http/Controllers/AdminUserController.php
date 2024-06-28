@@ -90,6 +90,42 @@ class AdminUserController extends Controller
         return view('admin.user-list', compact('users'));
     }
 
+    public function updateUser(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                "uuid" => 'required',
+                "name" => 'required',
+                "email" => 'required',
+                "phone" => 'required',
+                "website" =>'required',
+                "company_name"=>'required',
+                "company_address"=>'required',
+                "no_of_device"=>'required'
+
+            ]);
+
+            $uuid = $request->uuid;
+            $updateUser = $this->user->updateUser($validatedData,$uuid);
+            if ($updateUser) {
+                return redirect()->back()->with("status", "success")->with("message", "Subscription Upated Succesfully");
+            } else {
+                return redirect()->back()->with('error', 'error while updating profile');
+            }
+        } catch (\Exception $th) {
+            Log::error("[AdminUserController][updateUser] error " . $th->getMessage());
+            return redirect()->back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function deleteUser($uuid)
+    {
+        $user = $this->user->where('uuid', $uuid)->firstOrFail();
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully!');
+    }
+
+
     /**
      * The function userPaymentList retrieves all users and passes them to the 'admin.user-payment' view.
      */
