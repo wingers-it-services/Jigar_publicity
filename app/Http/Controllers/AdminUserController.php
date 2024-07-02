@@ -7,7 +7,7 @@ use App\Models\Gym;
 use App\Models\UserWorkout;
 use App\Models\UserDiet;
 use App\Models\User;
-
+use App\Models\Book;
 use App\Models\UserBodyMeasurement;
 use App\Models\userBmi;
 use App\Models\GymStaff;
@@ -23,6 +23,7 @@ class AdminUserController extends Controller
 {
     use SessionTrait;
     protected $user;
+    protected $book;
     protected $gym;
     protected $userService;
     protected $workout;
@@ -33,6 +34,7 @@ class AdminUserController extends Controller
 
     public function __construct(
         User $user,
+        Book $book,
         Gym $gym,
         UserService $userService,
         UserWorkout $workout,
@@ -42,6 +44,7 @@ class AdminUserController extends Controller
         GymStaff $gymStaff
     ) {
         $this->user = $user;
+        $this->book = $book;
         $this->gym = $gym;
         $this->userService = $userService;
         $this->workout = $workout;
@@ -151,7 +154,7 @@ class AdminUserController extends Controller
             if ($updateUser) {
                 return redirect()->back()->with("status", "success")->with("message", "Subscription Upated Succesfully");
             } else {
-                dd($updateUser);
+
                 return redirect()->back()->with('error', 'error while updating profile');
             }
         } catch (\Exception $th) {
@@ -275,7 +278,7 @@ class AdminUserController extends Controller
 
         $users = $this->user->where('uuid',$uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
-
-        return view('admin.user-details', compact('users','userDetails'));
+        $books = $this->book->all();
+        return view('admin.user-details', compact('users','userDetails','books'));
     }
 }

@@ -2,9 +2,9 @@
 @section('title', 'Dashboard')
 @section('content')
 
-<!--**********************************
+<!--************
                                     Content body start
-                        ***********************************-->
+                        *************-->
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -27,7 +27,7 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                            <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                            <img class="img-fluid rounded " src="{{asset($bookDetails->image)}}" alt="">
                                         </div>
 
                                     </div>
@@ -90,9 +90,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#contact"><i class="la la-phone me-2"></i> Purchased User List</a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#assets"><i class="la la-envelope me-2"></i> Assets</a>
-                                </li>
+                                </li> -->
                             </ul>
 
                             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
@@ -175,8 +175,8 @@
                                         <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                                             <div class="card">
                                                 <div class="card-body">
-                                                    <div class="table-responsive recentOrderTable">
-                                                        <table class="table verticle-middle table-responsive-md">
+                                                    <div class="table-responsive">
+                                                        <table id="example3" class="table verticle-middle table-responsive-md">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">Categories</th>
@@ -222,12 +222,12 @@
 
                                                 <div class="card-body">
                                                     <div class="table-responsive recentOrderTable">
-                                                        <table class="table verticle-middle table-responsive-md">
+                                                        <table id="example3" class="table verticle-middle table-responsive-md">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">Industry Name</th>
                                                                     <th scope="col">Category</th>
-                                                                    <th scope="col">Action</th>
+                                                                    <th scope="col" class="text-end">Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -235,23 +235,15 @@
                                                                 <tr>
                                                                     <td>{{$industry->industry_name}}</td>
                                                                     <td>{{$industry->category->category_name}}</td>
-                                                                    <td>
-                                                                        <div class="dropdown custom-dropdown mb-0">
-                                                                            <div class="btn sharp btn-primary tp-btn" data-bs-toggle="dropdown">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-                                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                                        <rect x="0" y="0" width="24" height="24" />
-                                                                                        <circle fill="#000000" cx="12" cy="5" r="2" />
-                                                                                        <circle fill="#000000" cx="12" cy="12" r="2" />
-                                                                                        <circle fill="#000000" cx="12" cy="19" r="2" />
-                                                                                    </g>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                                <a class="dropdown-item" href="javascript:void(0);">Details</a>
-                                                                                <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
-                                                                            </div>
-                                                                        </div>
+                                                                    <td class="text-end">
+                                                                        <span>
+                                                                            <a href="javascript:void()" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="Edit">
+                                                                                <i class="fa fa-pencil color-muted"></i>
+                                                                            </a>
+
+                                                                            <a href="/admin/delete-category/{{ $category->uuid }}" data-bs-toggle="tooltip" data-placement="top" title="Close"><i class="fas fa-times color-danger"></i>
+                                                                            </a>
+                                                                        </span>
                                                                     </td>
                                                                 </tr>
                                                                 @endforeach
@@ -269,7 +261,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="table-responsive recentOrderTable">
-                                                        <table class="table verticle-middle table-responsive-md">
+                                                        <table id="example3" class="table verticle-middle table-responsive-md">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">Asset No.</th>
@@ -325,7 +317,7 @@
                                             <div class="card">
                                                 <div class="card-body">
                                                     <div class="table-responsive recentOrderTable">
-                                                        <table class="table verticle-middle table-responsive-md">
+                                                        <table id="example3" class="table verticle-middle table-responsive-md">
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col">Asset No.</th>
@@ -385,9 +377,9 @@
     </div>
 
 
-    <!--**********************************
+    <!--************
                                     Content body end
-                        ***********************************-->
+                        *************-->
     <script src="{{ asset('js/plugins-init/staff-attendance-overview-chart.js') }}" type="text/javascript"></script>
     <script>
         function addIndustryField() {

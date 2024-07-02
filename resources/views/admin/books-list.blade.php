@@ -1,6 +1,6 @@
- @extends('admin.master')
- @section('title', 'Dashboard')
- @section('content')
+@extends('admin.master')
+@section('title', 'Dashboard')
+@section('content')
 
  <!--**********************************
              Content body start
@@ -137,110 +137,109 @@
 
 
 
-                     <div class="card-body">
-                         <div class="table-responsive">
-                             <table id="example3" class="display min-w850">
-                                 <thead>
-                                     <tr>
-                                         <th></th>
-                                         <th>Book Name</th>
-                                         <th>Total Categories</th>
-                                         <th>Total Industry</th>
-                                         <th>Total Users</th>
-                                         <th>Amount</th>
-                                         <th>Published Date</th>
-                                         <th>Action</th>
-                                     </tr>
-                                 </thead>
-                                 <tbody>
-                                     @foreach($books as $book)
-                                     <tr>
-                                         <td><img width="80" src="{{ asset($book->image) }}" alt=""></td>
-                                         <td>{{$book->book_name}}</td>
-                                         <td><a href="javascript:void(0);"><strong>123 </strong></a></td>
-                                         <td><a href="javascript:void(0);"><strong>456 </strong></a></td>
-                                         <td><a href="javascript:void(0);"><strong>7890</strong></a></td>
-                                         <td>&#8377; <a href="javascript:void(0);"><strong>{{$book->book_price}}</strong></a></td>
-                                         <td>2011/04/25</td>
-                                         <td>
-                                             <div class="d-flex">
-                                                 <a href="/admin/book-details/{{$book->uuid}}" class="btn btn-primary shadow btn-xs sharp me-1">
-                                                     <i class="fa fa-eye"></i>
-                                                 </a>
-                                                 <a href="/admin/update-book" class="btn btn-primary shadow btn-xs sharp me-1 edit-book-button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-book='@json($book)'>
-                                                     <i class="fa fa-pencil"></i>
-                                                 </a>
-                                                 <a href="/admin/delete-book/{{$book->uuid}}" class="btn btn-danger shadow btn-xs sharp">
-                                                     <i class="fa fa-trash"></i>
-                                                 </a>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     @endforeach
-                                 </tbody>
-                             </table>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-     </div>
- </div>
- <!--**********************************
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example3" class="display min-w850">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Book Name</th>
+                                        <th>Total Categories</th>
+                                        <th>Total Industry</th>
+                                        <th>Total Users</th>
+                                        <th>Amount</th>
+                                        <th>Published Date</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($books as $book)
+                                    <tr>
+                                        <td><img width="80" src="{{ asset($book->image) }}" alt=""></td>
+                                        <td>{{$book->book_name}}</td>
+                                        <td><a href="javascript:void(0);"><strong>123 </strong></a></td>
+                                        <td><a href="javascript:void(0);"><strong>{{$book->industries}} </strong></a></td>
+                                        <td><a href="javascript:void(0);"><strong>7890</strong></a></td>
+                                        <td>&#8377; <a href="javascript:void(0);"><strong>{{$book->book_price}}</strong></a></td>
+                                        <td>2011/04/25</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <a href="/admin/book-details/{{$book->uuid}}" class="btn btn-primary shadow btn-xs sharp me-1">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
+                                                <a href="/admin/update-book" class="btn btn-primary shadow btn-xs sharp me-1 edit-book-button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-book='@json($book)'>
+                                                    <i class="fa fa-pencil"></i>
+                                                </a>
+                                                <a href="/admin/delete-book/{{$book->uuid}}" class="btn btn-danger shadow btn-xs sharp">
+                                                    <i class="fa fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--************
         Content body end
-    ***********************************-->
- <script>
-     var loadFile = function(event) {
-         // var selected_image = document.getElementById('selected_image');
+    *************-->
+<script>
+    var loadFile = function(event) {
+        // var selected_image = document.getElementById('selected_image');
 
-         var input = event.target;
-         var image = document.getElementById('selected_image');
-         if (input.files && input.files[0]) {
-             var reader = new FileReader();
-             reader.onload = function(e) {
-                 image.src = e.target.result;
-             }
-             reader.readAsDataURL(input.files[0]);
-         }
+        var input = event.target;
+        var image = document.getElementById('selected_image');
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                image.src = e.target.result;
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
 
-         function validateForm() {
-             let x = document.forms["myForm"]["staff_id"].value;
-             if (x == "") {
-                 alert("Name must be filled out");
-                 return false;
-             }
-         }
+        function validateForm() {
+            let x = document.forms["myForm"]["staff_id"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+        }
 
-     };
- </script>
- <script>
-     document.addEventListener('DOMContentLoaded', function() {
-         var editButtons = document.querySelectorAll('.edit-book-button');
-         editButtons.forEach(function(button) {
-             button.addEventListener('click', function() {
-                 var book = JSON.parse(this.dataset.book);
-                 document.getElementById('editBookId').value = book.uuid;
-                 document.getElementById('editBookName').value = book.book_name;
-                 document.getElementById('editBookPrice').value = book.book_price;
-                 document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
-                 document.getElementById('editBookImage').value = '{{asset($book->image)}}' + book.image;
+    };
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var editButtons = document.querySelectorAll('.edit-book-button');
+        editButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var book = JSON.parse(this.dataset.book);
+                document.getElementById('editBookId').value = book.uuid;
+                document.getElementById('editBookName').value = book.book_name;
+                document.getElementById('editBookPrice').value = book.book_price;
+                document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
+                document.getElementById('editBookImage').value = '{{asset($book->image)}}' + book.image;
 
-                 document.getElementById('editAssName').value = book.association_name;
-                 document.getElementById('editAssLink').value = book.association_web_link;
-                 document.getElementById('editAssEmail').value = book.association_email;
-                 document.getElementById('editAssPhone').value = book.association_ph_no;
-                 document.getElementById('editAssAddress').value = book.association_address;
+                document.getElementById('editAssName').value = book.association_name;
+                document.getElementById('editAssLink').value = book.association_web_link;
+                document.getElementById('editAssEmail').value = book.association_email;
+                document.getElementById('editAssPhone').value = book.association_ph_no;
+                document.getElementById('editAssAddress').value = book.association_address;
 
-                 document.getElementById('editPubName').value = book.publication_name;
-                 document.getElementById('editPubLink').value = book.publication_web_link;
-                 document.getElementById('editPubEmail').value = book.publication_email;
-                 document.getElementById('editPubPhone').value = book.publication_ph_no;
-                 document.getElementById('editPubAddress').value = book.publication_address;
-             });
-         });
-     });
- </script>
+                document.getElementById('editPubName').value = book.publication_name;
+                document.getElementById('editPubLink').value = book.publication_web_link;
+                document.getElementById('editPubEmail').value = book.publication_email;
+                document.getElementById('editPubPhone').value = book.publication_ph_no;
+                document.getElementById('editPubAddress').value = book.publication_address;
+            });
+        });
+    });
+</script>
 
 
- @endsection
-
+@endsection

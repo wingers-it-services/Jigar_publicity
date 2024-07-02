@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                        Content body start
-                            ***********************************-->
+                                                        Content body start
+                                            ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -28,9 +28,8 @@
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                                 aria-labelledby="home-tab" tabindex="0">
-                                                <img class="img-fluid rounded "
-                                                    src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
-                                                    alt="">
+                                                <img class="img-fluid rounded " loading="lazy" alt="image"
+                                                    src="{{ asset($users->image) }}" alt="">
                                             </div>
 
                                         </div>
@@ -50,7 +49,7 @@
                                             </div>
                                         </div>
                                         <hr>
-                                        <div class="product-detail-content">
+                                        {{-- <div class="product-detail-content">
                                             <!--Product details-->
                                             <div class="new-arrival-content mt-md-0 mt-3 pr">
                                                 <h4>{{ $users->publication_name }}</h4>
@@ -64,7 +63,7 @@
                                                         class="item">{{ $users->publication_address }}</span></p>
 
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
 
                                 </div>
@@ -102,7 +101,7 @@
                                     </li>
                                 </ul>
 
-                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
                                     aria-hidden="true">
                                     <form method="POST" action="/admin/addIndustryInBook" enctype="multipart/form-data">
                                         @csrf
@@ -110,7 +109,7 @@
                                             <div class="modal-content">
 
                                                 <div class="modal-header">
-                                                    <h5 class="modal-title"> Add New Industry</h5>
+                                                    <h5 class="modal-title"> Add New Book</h5>
                                                     <input type="hidden" value="{{ $users->uuid }}" name="book_id">
                                                     <button type="button" class="btn-close"
                                                         data-bs-dismiss="modal"></button>
@@ -184,6 +183,163 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div> --}}
+                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Add Book</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <form id="editBookForm" action="{{ route('updateBook') }}" method="POST"
+                                                enctype="multipart/form-data">
+                                                @csrf
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="uuid" id="editBookId">
+                                                    {{-- <div class="row">
+                                                        <div class="col-12 d-flex justify-content-center">
+                                                            <img id="selected_image"
+                                                                src="https://p7.hiclipart.com/preview/831/479/764/ibooks-computer-icons-ios-apple-app-store-sparito-lo-scaffale-sono-rimaste-le-pagine-aperte-i-colori-cambiano.jpg"
+                                                                style="width: 200px;height:200px">
+                                                        </div>
+                                                    </div> --}}
+                                                    {{-- <div class="mb-3">
+                                                        <label for="editBookImage" class="form-label">Book Image</label>
+                                                        <input type="file" class="form-control" id="editBookImage"
+                                                            name="image" accept="image/*" onchange="loadFile(event)">
+                                                    </div> --}}
+                                                    <div class="mb-3">
+                                                        <label for="editBookName" class="form-label">Book Name</label>
+                                                        <select id="member_designation" name="member_designation" class="form-control" required>
+                                                            <option value="" disabled selected>--Select Book--</option>
+                                                            @foreach($books as $book)
+                                                            <option value="{{ $book->id }}">{{ $book->book_name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <select id="member_designation" name="payment_status" class="form-control" required>
+                                                        <option value="">--Select Payment Status--</option>
+                                                        <option value="{{\App\Enums\PaymentStatus::PAID}}">PAID</option>
+                                                        <option value="{{\App\Enums\PaymentStatus::PENDING}}">PENDING</option>
+
+                                                    </select>
+                                                    <!-- Add more fields as necessary -->
+                                                    {{-- <div class="row">
+                                                        <div class="card-footer mt-0">
+                                                            <button class="btn btn-primary btn-lg btn-block">Association
+                                                                Details</button>
+                                                        </div>
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Association Name<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" name="association_name"
+                                                                    id="editAssName" class="form-control"
+                                                                    placeholder="Montana">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Website Link<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" name="association_web_link"
+                                                                    id="editAssLink" class="form-control"
+                                                                    placeholder="https://wingersitservices.co.in/">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Email Address<span
+                                                                        class="required">*</span></label>
+                                                                <input type="email" class="form-control" id="email"
+                                                                    id="editAssEmail" name="association_email"
+                                                                    placeholder="example@example.com.com">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Phone Number<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" name="association_ph_no"
+                                                                    id="editAssPhone" class="form-control"
+                                                                    placeholder="(+1)408-657-9007">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Address<span
+                                                                        class="required">*</span></label>
+                                                                <textarea type="text" name="association_address" id="editAssAddress" rows="4" class="form-control"></textarea>
+
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+
+                                                    {{-- <div class="row">
+                                                        <div class="card-footer mt-0">
+                                                            <button class="btn btn-primary btn-lg btn-block">Publication
+                                                                Details</button>
+                                                        </div>
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Publication Name<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" name="publication_name"
+                                                                    id="editPubName" class="form-control"
+                                                                    placeholder="Montana">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Website Link<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" name="publication_web_link"
+                                                                    id="editPubLink" class="form-control"
+                                                                    placeholder="https://wingersitservices.co.in/">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Email Address<span
+                                                                        class="required">*</span></label>
+                                                                <input type="email" class="form-control"
+                                                                    id="editPubEmail" name="publication_email"
+                                                                    placeholder="example@example.com.com">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-6 mb-2">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Phone Number<span
+                                                                        class="required">*</span></label>
+                                                                <input type="text" name="publication_ph_no"
+                                                                    id="editPubPhone" class="form-control"
+                                                                    placeholder="(+1)408-657-9007">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-12 mb-3">
+                                                            <div class="form-group">
+                                                                <label class="text-label">Address<span
+                                                                        class="required">*</span></label>
+                                                                <textarea type="text" name="publication_address" id="editPubAddress" rows="4" class="form-control"></textarea>
+
+                                                            </div>
+                                                        </div>
+                                                    </div> --}}
+
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-danger light"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -226,37 +382,39 @@
                                                                 @endforeach
                                                                 </tbody>
                                                             </table> --}}
-                                                            <table id="example3" class="display min-w850">
+                                                            <table id="example3"
+                                                                class="table verticle-middle table-responsive-md">
                                                                 <thead>
                                                                     <tr>
 
-                                                                        <th colspan="2">Name</th>
-                                                                        <th>Email</th>
-                                                                        <th>Purchase Book</th>
-                                                                        <th>Payment</th>
-                                                                        <th>Status</th>
-                                                                        <th>Published Date</th>
-                                                                        <th>Action</th>
+                                                                        <th>Name</th>
+                                                                        <th>Log in</th>
+                                                                        <th>Log out</th>
+                                                                        <th>Total hour</th>
+                                                                        <th>User Status</th>
+                                                                        {{-- <th>Action</th> --}}
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
                                                                     {{-- @foreach ($books as $book) --}}
-                                                                        <tr>
-                                                                            <td>
-                                                                                <img width="80" src=""
-                                                                                    style="border-radius: 45px;width: 40px;height: 40px;"
-                                                                                    loading="lazy" alt="image">
-                                                                            </td>
-                                                                            <td></td>
-                                                                            <td><a href="javascript:void(0);"><strong>abc@gmail.com</strong></a></td>
-                                                                            <td><a href="javascript:void(0);"><strong>Name</strong></a></td>
-                                                                            <td><a href="javascript:void(0);"><strong>7890</strong></a></td>
-                                                                            <td>&#8377; <a
-                                                                                    href="javascript:void(0);"><strong></strong></a>
-                                                                            </td>
-                                                                            <td>2011/04/25</td>
-                                                                            <td>
-                                                                                <div class="d-flex">
+                                                                    <tr>
+                                                                        <td>
+                                                                            <img width="80"
+                                                                                src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png"
+                                                                                style="border-radius: 45px;width: 60px;height: 60px;"
+                                                                                loading="lazy" alt="image">Jigar
+                                                                        </td>
+                                                                        <td><a href="javascript:void(0);"><strong>15
+                                                                                    july,2023</strong></a></td>
+                                                                        <td><a href="javascript:void(0);"><strong>16
+                                                                                    July,2023</strong></a></td>
+                                                                        <td><a href="javascript:void(0);"><strong>24
+                                                                                    hour</strong></a></td>
+                                                                        <td><span
+                                                                                class="badge badge-rounded badge-primary">Active</span>
+                                                                        </td>
+                                                                        <td>
+                                                                            {{-- <div class="d-flex">
                                                                                     <a href=""
                                                                                         class="btn btn-primary shadow btn-xs sharp me-1">
                                                                                         <i class="fa fa-eye"></i>
@@ -272,8 +430,8 @@
                                                                                         <i class="fa fa-trash"></i>
                                                                                     </a>
                                                                                 </div>
-                                                                            </td>
-                                                                        </tr>
+                                                                            </td> --}}
+                                                                    </tr>
                                                                     {{-- @endforeach --}}
                                                                 </tbody>
                                                             </table>
@@ -294,54 +452,15 @@
                                                     </div>
 
                                                     <div class="card-body">
-                                                        <div class="table-responsive recentOrderTable">
-                                                            {{-- <table class="table verticle-middle table-responsive-md">
-                                                            <thead>
-                                                                <tr>
-
-                                                                    <th scope="col">Name</th>
-                                                                    <th scope="col">Email</th>
-                                                                    <th scope="col">Phone</th>
-                                                                    <th scope="col">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                @foreach ($userDetails as $user)
-                                                                <tr>
-
-                                                                    <td>{{$user->name}}</td>
-                                                                    <td>{{$user->email}}</td>
-                                                                    <td>{{$user->phone}}</td>
-                                                                    <td>
-                                                                        <div class="dropdown custom-dropdown mb-0">
-                                                                            <div class="btn sharp btn-primary tp-btn" data-bs-toggle="dropdown">
-                                                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
-                                                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                                        <rect x="0" y="0" width="24" height="24" />
-                                                                                        <circle fill="#000000" cx="12" cy="5" r="2" />
-                                                                                        <circle fill="#000000" cx="12" cy="12" r="2" />
-                                                                                        <circle fill="#000000" cx="12" cy="19" r="2" />
-                                                                                    </g>
-                                                                                </svg>
-                                                                            </div>
-                                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                                <a class="dropdown-item" href="javascript:void(0);">Details</a>
-                                                                                <a class="dropdown-item text-danger" href="javascript:void(0);">Cancel</a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                @endforeach
-                                                            </tbody>
-                                                        </table> --}}
-                                                            <table id="example3" class="display min-w850">
+                                                        <div class="table-responsive">
+                                                            <table id="example3"
+                                                                class="table verticle-middle table-responsive-md">
                                                                 <thead>
                                                                     <tr>
 
                                                                         <th colspan="2">Book Name</th>
                                                                         <th>Total Categories</th>
                                                                         <th>Total Industry</th>
-                                                                        {{-- <th>Total Users</th> --}}
                                                                         <th>Amount</th>
                                                                         <th>Published Date</th>
                                                                         <th>Action</th>
@@ -352,24 +471,26 @@
                                                                     <tr>
                                                                         <td>
                                                                             <img width="80"
-                                                                                src="https://miro.medium.com/v2/resize:fit:5120/1*42ebJizcUtZBNIZPmmMZ5Q.jpeg"
+                                                                                src="https://th.bing.com/th/id/OIP._zXfuEA95QhKw8_3pk3INgHaFG?rs=1&pid=ImgDetMain"
                                                                                 style="border-radius: 45px;width: 60px;height: 60px;"
-                                                                                loading="lazy" alt="image">BookName
+                                                                                loading="lazy" alt="image">Book
                                                                         </td>
-                                                                        <td></td>
-                                                                        <td><a href="javascript:void(0);"><strong>123
-                                                                                </strong></a></td>
+
+                                                                        <td><a
+                                                                                href="javascript:void(0);"><strong></strong></a>
+                                                                        </td>
                                                                         <td><a href="javascript:void(0);"><strong>456
                                                                                 </strong></a></td>
-                                                                        {{-- <td><a href="javascript:void(0);"><strong>7890</strong></a></td> --}}
-                                                                        <td>&#8377;
-                                                                            <a
+                                                                        <td><a
+                                                                                href="javascript:void(0);"><strong>7890</strong></a>
+                                                                        </td>
+                                                                        <td>&#8377; <a
                                                                                 href="javascript:void(0);"><strong>500</strong></a>
                                                                         </td>
                                                                         <td>2011/04/25</td>
                                                                         <td>
                                                                             <div class="d-flex">
-                                                                                <a href=""
+                                                                                <a href="/admin/book-details/"
                                                                                     class="btn btn-primary shadow btn-xs sharp me-1">
                                                                                     <i class="fa fa-eye"></i>
                                                                                 </a>
@@ -380,7 +501,7 @@
                                                                                     data-book=''>
                                                                                     <i class="fa fa-pencil"></i>
                                                                                 </a>
-                                                                                <a href=""
+                                                                                <a href="/admin/delete-book/"
                                                                                     class="btn btn-danger shadow btn-xs sharp">
                                                                                     <i class="fa fa-trash"></i>
                                                                                 </a>
@@ -557,8 +678,8 @@
 
 
         <!--**********************************
-                                        Content body end
-                            ***********************************-->
+                                                        Content body end
+                                            ***********************************-->
         <script src="{{ asset('js/plugins-init/staff-attendance-overview-chart.js') }}" type="text/javascript"></script>
         <script>
             function addIndustryField() {

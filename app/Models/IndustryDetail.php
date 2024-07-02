@@ -11,7 +11,7 @@ class IndustryDetail extends Model
 {
     protected $fillable = [
         'image',
-        'book_id'|'unique:industry_details,category_id',
+        'book_id',
         'category_id',
         'industry_name',
         'contact_no',
