@@ -206,4 +206,18 @@ class BookController extends Controller
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
+
+    public function userbookList(Request $request)
+{
+    $status = null;
+    $message = null;
+    $books = $this->book->all();
+    return view('user.books-list', compact('status', 'message', 'books'));
 }
+
+
+
+}
+
+
+

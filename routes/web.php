@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\GymCouponController;
 use App\Http\Controllers\GymCustomerPaymentController;
 use App\Http\Controllers\GymStaffController;
@@ -24,6 +25,41 @@ Route::get('/', function () {
 })->name('login');
 
 
+Route::get('/books-list', [BookController::class, 'userbookList'])->name('books-list');
+
+
+Route::get('/user-book-details', function () {
+    return view('user.user-book-details');
+});
+
+Route::get('/user-profile', function () {
+    return view('user.user-profile');
+});
+
+
+Route::get('/user-list', function () {
+    return view('user.user-list');
+});
+
+Route::get('/user-faq', function () {
+    return view('user.user-faq');
+});
+Route::get('/inbox', function () {
+    return view('user.inbox');
+});
+
+Route::get('/user-enquiry-read', function () {
+    return view('user.user-enquiry-read');
+});
+Route::get('/user-enquiry', function () {
+    return view('user.user-enquiry');
+});
+
+
+Route::get('/user-dashboard', function () {
+    return view('user.user-dashboard');
+});
+// Route::get('/book-details/{uuid}', [BookController::class, 'userbookDetails'])->name('user-book-details');
 
 // Route::middleware([EnsureGymTokenIsValid::class])->group(function () {
 
