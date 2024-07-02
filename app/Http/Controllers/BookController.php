@@ -34,7 +34,7 @@ class BookController extends Controller
     {
         $status = null;
         $message = null;
-        $books = $this->book->withCount('industries')->get();
+        $books = $this->book->get();
         return view('admin.books-list', compact('status', 'message', 'books'));
     }
 
