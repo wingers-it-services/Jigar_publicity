@@ -2,9 +2,9 @@
 @section('title', 'Dashboard')
 @section('content')
 
-<!--************
+<!--**********************************
                                     Content body start
-                        *************-->
+                        ***********************************-->
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -377,9 +377,9 @@
     </div>
 
 
-    <!--************
+    <!--**********************************
                                     Content body end
-                        *************-->
+                        ***********************************-->
     <script src="{{ asset('js/plugins-init/staff-attendance-overview-chart.js') }}" type="text/javascript"></script>
     <script>
         function addIndustryField() {

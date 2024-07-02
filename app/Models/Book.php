@@ -26,6 +26,19 @@ class Book extends Model
         'publication_address'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = Uuid::uuid4()->toString();
+        });
+    }
+
+    public function industries()
+    {
+        return $this->belongsToMany(IndustryDetail::class);
+    }
+
     public function addBook(array $addBook, $imagePath)
     {
         try {
@@ -59,18 +72,18 @@ class Book extends Model
             $bookDetail->update([
                 'book_name'  => $validatedData['book_name'],
                 'book_price'             => $validatedData['book_price'],
-                // 'association_name'           => $validatedData['association_name'],
-                // 'association_web_link'        => $validatedData['association_web_link'],
-                // 'association_ph_no'            => $validatedData['association_ph_no'],
-                // 'association_email'            => $validatedData['association_email'],
-                // 'association_address'         => $validatedData['association_address'],
-                // 'publication_name'         => $validatedData['publication_name'],
-                // 'publication_web_link'         => $validatedData['publication_web_link'],
-                // 'publication_email'         => $validatedData['publication_email'],
-                // 'publication_ph_no'         => $validatedData['publication_ph_no'],
-                // 'publication_address'         => $validatedData['publication_address'],
+                'association_name'           => $validatedData['association_name'],
+                'association_web_link'        => $validatedData['association_web_link'],
+                'association_ph_no'            => $validatedData['association_ph_no'],
+                'association_email'            => $validatedData['association_email'],
+                'association_address'         => $validatedData['association_address'],
+                'publication_name'         => $validatedData['publication_name'],
+                'publication_web_link'         => $validatedData['publication_web_link'],
+                'publication_email'         => $validatedData['publication_email'],
+                'publication_ph_no'         => $validatedData['publication_ph_no'],
+                'publication_address'         => $validatedData['publication_address'],
             ]);
-         
+
 
             if (isset($imagePath)) {
                 $bookDetail->update([
@@ -78,18 +91,8 @@ class Book extends Model
                 ]);
             }
             return $bookDetail->save();
-
         } catch (Throwable $e) {
             Log::error('[Book][updateBook] Error while updating book detail: ' . $e->getMessage());
         }
     }
-
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->uuid = Uuid::uuid4()->toString();
-        });
-    }
-
 }
