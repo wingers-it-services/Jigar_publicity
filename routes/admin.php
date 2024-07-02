@@ -26,18 +26,19 @@ Route::post('/login', [AdminController::class, 'adminLogin']);
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
 
+/** Industries Categorie related routes */
 Route::get('/industries-categories', [IndustriesCategorieController::class, 'industriesCategorieList'])->name('industriesCategorieList');
 Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesCategorie'])->name('deleteIndustriesCategorie');
 Route::post('/industries-categories', [IndustriesCategorieController::class, 'createIndustriesCategories'])->name('createIndustriesCategories');
 
+/** Book related routes like create,show,list update */
 Route::get('/books-list', [BookController::class, 'bookList'])->name('admin-book-list');
-
 Route::get('/book-details/{uuid}', [BookController::class, 'bookDetails'])->name('book-details');
-
 Route::get('/add-book', [BookController::class, 'showAddBook'])->name('showAddBook');
 Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
 Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
 Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
+
 Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
 Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');
 
@@ -49,9 +50,8 @@ Route::get('/viewEditSubscription/{uuid}', [AdminSubscriptionController::class, 
 Route::post('/updateSubscription', [AdminSubscriptionController::class, 'updateAdminSubscription'])->name('updateSubscription');
 
 Route::get('/add-admin-users', [AdminUserController::class, 'showAddUsers']);
-
 Route::post('/add-user-by-admin', [AdminUserController::class, 'addUserByadmin'])->name('addUserByadmin');
-
+Route::get('/user-details/{uuid}', [AdminUserController::class, 'userDetails'])->name('user-details');
 Route::get('/user-list', [AdminUserController::class, 'userList'])->name('userList');
 Route::get('/user-payment', [AdminUserController::class, 'userPaymentList'])->name('userPaymentList');
 

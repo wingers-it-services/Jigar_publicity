@@ -12,11 +12,12 @@ class User extends Authenticatable
 {
 
     protected $fillable = [
-        'username',
+        'image',
         'name',
         'email',
         'password',
         'phone',
+        'gender',
         'website',
         'company_name',
         'company_address',
@@ -36,19 +37,20 @@ class User extends Authenticatable
         // $trainer = GymStaff::
     }
 
-    public function addUser(array $validatedData)
+    public function addUser(array $validatedData,$imagePath)
     {
         try {
             return $this->create([
-                'username' => $validatedData['username'],
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => $validatedData['password'],
-                'phone' => $validatedData['phone'],
-                'website' => $validatedData['website'],
-                'company_name' => $validatedData['company_name'],
-                'company_address' => $validatedData['company_address'],
-                'no_of_device' => $validatedData['no_of_device']
+                'name'           => $validatedData['name'],
+                'email'          => $validatedData['email'],
+                'password'       => $validatedData['password'],
+                'gender'         => $validatedData['gender'],
+                'phone'          => $validatedData['phone'],
+                'website'        => $validatedData['website'],
+                'company_name'   => $validatedData['company_name'],
+                'company_address'=> $validatedData['company_address'],
+                'no_of_device'   => $validatedData['no_of_device'],
+                'image'          => $imagePath
             ]);
         } catch (Throwable $e) {
             Log::error('[User][addUser] Error adding user detail: ' . $e->getMessage());
@@ -66,6 +68,7 @@ class User extends Authenticatable
                 "name"           => $validatedData['name'],
                 "email"          => $validatedData['email'],
                 "phone"          => $validatedData['phone'],
+                "gender"         => $validatedData['gender'],
                 "website"        => $validatedData['website'],
                 "company_name"   => $validatedData['company_name'],
                 "company_address"=> $validatedData['company_address'],
