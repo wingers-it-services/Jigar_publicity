@@ -133,10 +133,10 @@
                                     <thead>
                                         <tr>
                                             <th colspan="2">Name</th>
-                                            <th>Gender</th>
                                             <th>Company Name</th>
                                             <th>Contact Number</th>
                                             <th>Company Address</th>
+                                            <th>No Of Device</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -149,11 +149,11 @@
                                                         loading="lazy" alt="image">
                                                 </td>
                                                 <td> {{ $user->name }} </td>
-                                                <td>{{ $user->gender }}</td>
                                                 <td>{{ $user->company_name }}</td>
                                                 <td><a href="javascript:void(0);"><strong>{{ $user->phone }}</strong></a>
                                                 </td>
                                                 <td>{{ $user->company_address }}</td>
+                                                <td>{{ $user->no_of_device }}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="/admin/user-details/{{ $user->uuid }}"

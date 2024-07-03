@@ -40,7 +40,10 @@
                                             <h4>{{ $users->name }}</h4>
                                             <p class="text-black">Email: <span class="item"> {{ $users->email }}</p>
                                             <p class="text-black">Phone number: <span class="item">{{ $users->phone }}</span> </p>
-                                            <p class="text-black">Address: <span class="item">{{ $users->company_address }}</span></p>
+                                            <p class="text-black">Gender: <span class="item">{{ $users->gender }}</span></p>
+                                            <p class="text-black">Company Name: <span class="item">{{ $users->company_name }}</span></p>
+                                            <p class="text-black">Company Address: <span class="item">{{ $users->company_address }}</span></p>
+                                            <p class="text-black">Device: <span class="item">{{ $users->no_of_device }}</span></p>
 
                                         </div>
                                     </div>
@@ -87,9 +90,9 @@
                         {{-- <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#contact"><i class="la la-phone me-2"></i> Purchased User List</a>
                                 </li> --}}
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#assets"><i class="la la-envelope me-2"></i> Assets</a>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
@@ -477,7 +480,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="contact">
+        {{-- <div class="tab-pane fade" id="contact">
             <div class="pt-4">
                 <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                     <div class="card">
@@ -532,8 +535,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane fade" id="assets">
+        </div> --}}
+        {{-- <div class="tab-pane fade" id="assets">
             <div class="pt-4">
                 <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                     <div class="card">
@@ -588,7 +591,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 </div>
