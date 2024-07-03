@@ -1031,14 +1031,14 @@
                     </li>
 
                     <li>
-                        <a href="/admin/listEnquiry">
+                        <a href="/admin/admin-enquiry">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             <span class="nav-text">Enquiry</span>
                         </a>
                     </li>
 
                     <li>
-                        <a href="#">
+                        <a href="/admin/admin-notification">
                             <i class="fa fa-bell" aria-hidden="true"></i>
                             <span class="nav-text">Notification</span></a>
                     </li>
@@ -1049,26 +1049,17 @@
                             <span class="nav-text">User Login History</span></a>
                     </li>
 
-                    <li>
+                    {{-- <li>
                         <a href="#">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span class="nav-text">GYM Profile</span></a>
-                    </li>
+                    </li> --}}
 
                     <li>
-                        <a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
+                        <a class="" href="/admin/admin-faq" aria-expanded="false">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
                             <span class="nav-text">FAQ</span>
                         </a>
-                        <ul aria-expanded="false">
-                            <li><a href="uc-select2.html">Select 2</a></li>
-                            <li><a href="uc-nestable.html">Nestedable</a></li>
-                            <li><a href="uc-noui-slider.html">Noui Slider</a></li>
-                            <li><a href="uc-sweetalert.html">Sweet Alert</a></li>
-                            <li><a href="uc-toastr.html">Toastr</a></li>
-                            <li><a href="map-jqvmap.html">Jqv Map</a></li>
-                            <li><a href="uc-lightgallery.html">Lightgallery</a></li>
-                        </ul>
                     </li>
 
                     <li><a href="page-lock-screen.html">
@@ -1078,8 +1069,8 @@
                     </li>
                 </ul>
                 <div class="drum-box">
-                    <img src="https://wingersitservices.co.in/assets/images/logo.png"
-                        style="  width: -webkit-fill-available; " alt="">
+                    {{-- <img src="https://wingersitservices.co.in/assets/images/logo.png"
+                        style="  width: -webkit-fill-available; " alt=""> --}}
                     <p class="fs-18 font-w500 mb-4">WINGERS IT SERVICES Pvt. Ltd</p>
                     <a class="" href="https://wingersitservices.co.in/">Check schedule
                         <svg class="ms-3" width="6" height="12" viewBox="0 0 6 12" fill="none"
@@ -1089,7 +1080,7 @@
                     </a>
                 </div>
                 <div class="copyright">
-                    <p><strong>Fito Fitness Admin Dashboard</strong> © 2023 All Rights Reserved</p>
+                    <p><strong>Wingers It Services </strong> © 2023 All Rights Reserved</p>
                     <p>Made with <span class="heart"></span> by Wingers IT Services Pvt. Ltd</p>
                 </div>
             </div>

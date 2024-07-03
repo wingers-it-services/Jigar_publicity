@@ -21,7 +21,7 @@ Additionally, the route is given the name 'login', which can be used to referenc
 other parts of the application. */
 
 Route::get('/', function () {
-    return view('user.login');
+    return view('user.user-login');
 })->name('login');
 
 

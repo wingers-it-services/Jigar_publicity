@@ -15,13 +15,14 @@
                                 <table id="example3" class="display min-w850">
                                     <thead>
                                         <tr>
-                                            <th></th>
+                                            <th>Image</th>
                                             <th>Name</th>
                                             <th>Device</th>
                                             <th>Browser</th>
                                             <th>IP Address</th>
                                             <th>Status</th>
                                             <th>Date</th>
+                                            <th>Gender</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -32,14 +33,13 @@
                                                         src="https://wingersitservices.co.in/assets/images/logo.png"
                                                         alt=""></td>
                                                 <td>{{ $user->first_name . ' ' . $user->last_name }}</td>
-                                                <td>127.0.0.1:8001</td><td>127.0.0.1:8001</td>
-                                                <td>
-                                                    <a href="javascript:void(0);"><strong>
-                                                    <td>127.0.0.1:8001</td> </strong></a></td>
-                                                <td> {{ $user->gender }} </td>
+                                                <td>HP</td><td>Google</td>
+                                                <td>111111</td>
+
                                                 <td><span class="badge light badge-warning">Logout</span></td>
-                                               
-                                                <td>2011/04/25</td>
+                                                    <td>2011/04/25</td>
+                                                <td> {{ $user->gender }} </td>
+
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="#"

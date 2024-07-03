@@ -52,8 +52,8 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">User account</h4>
-                                    <form class="form" id="log_in" method="POST" action="">
+                                    <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">Admin account</h4>
+                                    <form class="form" id="log_in" method="POST" action="/admin/login">
                                         @csrf
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
