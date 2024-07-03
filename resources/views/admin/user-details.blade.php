@@ -40,7 +40,10 @@
                                             <h4>{{ $users->name }}</h4>
                                             <p class="text-black">Email: <span class="item"> {{ $users->email }}</p>
                                             <p class="text-black">Phone number: <span class="item">{{ $users->phone }}</span> </p>
-                                            <p class="text-black">Address: <span class="item">{{ $users->company_address }}</span></p>
+                                            <p class="text-black">Gender: <span class="item">{{ $users->gender }}</span></p>
+                                            <p class="text-black">Company Name: <span class="item">{{ $users->company_name }}</span></p>
+                                            <p class="text-black">Company Address: <span class="item">{{ $users->company_address }}</span></p>
+                                            <p class="text-black">Device: <span class="item">{{ $users->no_of_device }}</span></p>
 
                                         </div>
                                     </div>
@@ -87,9 +90,9 @@
                         {{-- <li class="nav-item">
                                     <a class="nav-link" data-bs-toggle="tab" href="#contact"><i class="la la-phone me-2"></i> Purchased User List</a>
                                 </li> --}}
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" href="#assets"><i class="la la-envelope me-2"></i> Assets</a>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     {{-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
@@ -365,7 +368,7 @@
                                 <table id="example3" class="table verticle-middle table-responsive-md">
                                     <thead>
                                         <tr>
-
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Log in</th>
                                             <th>Log out</th>
@@ -378,8 +381,9 @@
                                         {{-- @foreach ($books as $book) --}}
                                         <tr>
                                             <td>
-                                                <img width="80" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">Jigar
+                                                <img width="80" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
                                             </td>
+                                            <td>Jigar</td>
                                             <td><a href="javascript:void(0);"><strong>15
                                                         july,2023</strong></a></td>
                                             <td><a href="javascript:void(0);"><strong>16
@@ -424,15 +428,16 @@
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Book</button>
                         </div>
 
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example3" class="table verticle-middle table-responsive-md">
                                     <thead>
                                         <tr>
-
-                                            <th colspan="2">Book Name</th>
-                                            <th>Total Categories</th>
-                                            <th>Total Industry</th>
+                                            <th></th>
+                                            <th>Book Name</th>
+                                            <th>Categories</th>
+                                            <th>Industry</th>
                                             <th>Amount</th>
                                             <th>Published Date</th>
                                             <th>Action</th>
@@ -442,10 +447,10 @@
                                         {{-- @foreach ($books as $book) --}}
                                         <tr>
                                             <td>
-                                                <img width="80" src="https://th.bing.com/th/id/OIP._zXfuEA95QhKw8_3pk3INgHaFG?rs=1&pid=ImgDetMain" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">Book
+                                                <img width="80" src="https://th.bing.com/th/id/OIP._zXfuEA95QhKw8_3pk3INgHaFG?rs=1&pid=ImgDetMain" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
                                             </td>
 
-                                            <td><a href="javascript:void(0);"><strong></strong></a>
+                                            <td><a href="javascript:void(0);"><strong>Book</strong></a>
                                             </td>
                                             <td><a href="javascript:void(0);"><strong>456
                                                     </strong></a></td>
@@ -473,11 +478,12 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="contact">
+        {{-- <div class="tab-pane fade" id="contact">
             <div class="pt-4">
                 <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                     <div class="card">
@@ -532,8 +538,8 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="tab-pane fade" id="assets">
+        </div> --}}
+        {{-- <div class="tab-pane fade" id="assets">
             <div class="pt-4">
                 <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                     <div class="card">
@@ -588,7 +594,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 </div>
@@ -696,5 +702,6 @@
         });
     });
 </script>
+
 
 @endsection
