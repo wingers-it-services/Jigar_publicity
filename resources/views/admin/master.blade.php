@@ -1036,7 +1036,12 @@
                             <span class="nav-text">Enquiry</span>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="/admin/add-advertisment">
+                            <i class="fa-solid fa-rectangle-ad"></i>
+                            <span class="nav-text">Advertisement</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="/admin/admin-notification">
                             <i class="fa fa-bell" aria-hidden="true"></i>
