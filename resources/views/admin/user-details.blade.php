@@ -368,7 +368,7 @@
                                 <table id="example3" class="table verticle-middle table-responsive-md">
                                     <thead>
                                         <tr>
-
+                                            <th></th>
                                             <th>Name</th>
                                             <th>Log in</th>
                                             <th>Log out</th>
@@ -381,8 +381,9 @@
                                         {{-- @foreach ($books as $book) --}}
                                         <tr>
                                             <td>
-                                                <img width="80" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">Jigar
+                                                <img width="80" src="https://static-00.iconduck.com/assets.00/user-icon-2048x2048-ihoxz4vq.png" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
                                             </td>
+                                            <td>Jigar</td>
                                             <td><a href="javascript:void(0);"><strong>15
                                                         july,2023</strong></a></td>
                                             <td><a href="javascript:void(0);"><strong>16
@@ -427,15 +428,16 @@
                             <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Book</button>
                         </div>
 
+
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table id="example3" class="table verticle-middle table-responsive-md">
                                     <thead>
                                         <tr>
-
-                                            <th colspan="2">Book Name</th>
-                                            <th>Total Categories</th>
-                                            <th>Total Industry</th>
+                                            <th></th>
+                                            <th>Book Name</th>
+                                            <th>Categories</th>
+                                            <th>Industry</th>
                                             <th>Amount</th>
                                             <th>Published Date</th>
                                             <th>Action</th>
@@ -445,10 +447,10 @@
                                         {{-- @foreach ($books as $book) --}}
                                         <tr>
                                             <td>
-                                                <img width="80" src="https://th.bing.com/th/id/OIP._zXfuEA95QhKw8_3pk3INgHaFG?rs=1&pid=ImgDetMain" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">Book
+                                                <img width="80" src="https://th.bing.com/th/id/OIP._zXfuEA95QhKw8_3pk3INgHaFG?rs=1&pid=ImgDetMain" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
                                             </td>
 
-                                            <td><a href="javascript:void(0);"><strong></strong></a>
+                                            <td><a href="javascript:void(0);"><strong>Book</strong></a>
                                             </td>
                                             <td><a href="javascript:void(0);"><strong>456
                                                     </strong></a></td>
@@ -476,6 +478,7 @@
                                 </table>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -699,5 +702,6 @@
         });
     });
 </script>
+
 
 @endsection
