@@ -74,6 +74,7 @@ Route::post('/add-user-by-admin', [AdminUserController::class, 'addUserByadmin']
 Route::get('/user-details/{uuid}', [AdminUserController::class, 'userDetails'])->name('user-details');
 Route::get('/user-list', [AdminUserController::class, 'userList'])->name('userList');
 Route::get('/user-payment', [AdminUserController::class, 'userPaymentList'])->name('userPaymentList');
+Route::post('/user-purchase', [AdminUserController::class, 'addUserPurchase'])->name('addUserPurchase');
 
 Route::get('/viewEditUser/{uuid}', [AdminUserController::class, 'viewEditUser'])->name('viewEditUser');
 Route::post('/updateAdminUser', [AdminUserController::class, 'updateAdminUser'])->name('updateAdminUser');

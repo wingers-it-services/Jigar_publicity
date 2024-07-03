@@ -7,6 +7,7 @@ use App\Models\Gym;
 use App\Models\UserWorkout;
 use App\Models\UserDiet;
 use App\Models\User;
+use App\Models\UserPurchase;
 use App\Models\Book;
 use App\Models\UserBodyMeasurement;
 use App\Models\userBmi;
@@ -23,6 +24,7 @@ class AdminUserController extends Controller
 {
     use SessionTrait;
     protected $user;
+    protected $userPurchase;
     protected $book;
     protected $gym;
     protected $userService;
@@ -34,6 +36,7 @@ class AdminUserController extends Controller
 
     public function __construct(
         User $user,
+        UserPurchase $userPurchase,
         Book $book,
         Gym $gym,
         UserService $userService,
@@ -44,6 +47,7 @@ class AdminUserController extends Controller
         GymStaff $gymStaff
     ) {
         $this->user = $user;
+        $this->userPurchase = $userPurchase;
         $this->book = $book;
         $this->gym = $gym;
         $this->userService = $userService;
@@ -79,8 +83,8 @@ class AdminUserController extends Controller
     public function addUserByadmin(Request $request)
     {
         try {
-             $request->validate([
-                'image'=> 'required',
+            $request->validate([
+                'image' => 'required',
                 'name' => 'required',
                 'email' => 'required',
                 'password' => 'required',
@@ -101,7 +105,7 @@ class AdminUserController extends Controller
                 $userPhoto->move(public_path('user_images/'), $filename);
             }
             // dd($imagePath);
-            $this->user->addUser($validateData,$imagePath);
+            $this->user->addUser($validateData, $imagePath);
 
             return back()->with('status', 'success')->with('message', 'User Added Successfully');
         } catch (\Exception $e) {
@@ -193,63 +197,6 @@ class AdminUserController extends Controller
     }
 
 
-    // public function viewEditUser($uuid)
-    // {
-    //     $user = $this->user->where('uuid', $uuid)->first();
-    //     $gyms = $this->gym->get();
-    //     $workouts = $this->workout->all();
-    //     $diets = $this->diet->all();
-
-    //     $gymId = $this->gym->where('uuid', $this->getGymSession()['uuid'])->first()->id;
-    //     $userId = $user->id;
-    //     $bmis = $this->bmi->where('user_id', $userId)->get();
-    //     $trainers = $this->gymStaff->where('designation_id', "1")->get();
-    //     $trainers = $this->gymStaff->where('gym_id', $gymId)->where('designation_id', "1")->get();
-    //     return view('admin.adminUser.editAdminUser', compact('user', 'gyms', 'workouts', 'diets', 'bmis', 'trainers'));
-    // }
-
-    // /**
-    //  * The function updateAdminUser in PHP updates an admin user's profile with validation, image
-    //  * upload, and error handling.
-    //  */
-    // public function updateAdminUser(Request $request)
-    // {
-    //     try {
-
-    //         $validatedData = $request->validate([
-    //             'uuid' => 'required',
-    //             'user_type' => 'required',
-    //             'gym_id' => 'required',
-    //             'first_name' => 'required',
-    //             'last_name' => 'required',
-    //             'email' => 'required',
-    //             'gender' => 'required',
-    //             'phone_no' => 'required',
-    //             'username' => 'required',
-    //             'password' => 'required',
-    //             'image' => 'nullable'
-    //         ]);
-
-
-    //         $imagePath = null;
-    //         if ($request->hasFile('image')) {
-    //             $imagePath = $this->userService->uploadUserProfileImage($request->file('image'));
-    //         }
-
-    //         $isProfileUpdated = $this->user->updateUser($validatedData, $imagePath);
-
-
-
-    //         if ($isProfileUpdated) {
-    //             return redirect()->route('gymUserList')->with('status', 'success')->with('message', 'User updated successfully.');
-    //         }
-    //         return redirect()->back()->with('status', 'error')->with('message', 'error while updating user.');
-    //     } catch (\Exception $e) {
-    //         Log::error('[AdminUserController][updateAdminUser] Error updating user ' . 'Request=' . $request . ', Exception=' . $e->getMessage());
-    //         return redirect()->back()->with('status', 'error')->with('message', 'error while updating user.');
-    //     }
-    // }
-
 
     public function userLoginHistory(Request $request)
     {
@@ -276,9 +223,31 @@ class AdminUserController extends Controller
     public function userDetails(string $uuid)
     {
 
-        $users = $this->user->where('uuid',$uuid)->first();
+        $users = $this->user->where('uuid', $uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
         $books = $this->book->all();
-        return view('admin.user-details', compact('users','userDetails','books'));
+        $userPurchases = $this->userPurchase->where('user_id', $uuid)->get();
+
+        return view('admin.user-details', compact('users', 'userDetails', 'books','userPurchases'));
+    }
+
+
+    public function addUserPurchase(Request $request)
+    {
+        try {
+            $request->validate([
+                'user_id' => 'required',
+                'book_id' => 'required',
+                'status' => 'required'
+            ]);
+
+            $validateData = $request->all();
+            $this->userPurchase->userPurchase($validateData);
+
+            return back()->with('status', 'success')->with('message', 'User Added Successfully');
+        } catch (\Exception $e) {
+            Log::error('[AdminUserController][addUserPurchase] Error adding userPurchase: ' . $e->getMessage());
+            return back()->with('status', 'error')->with('message', 'UserPurchase Not Added');
+        }
     }
 }
