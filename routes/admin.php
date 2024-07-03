@@ -1,24 +1,44 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\AdminCouponController;
-use App\Http\Controllers\AdminEnquiryController;
-use App\Http\Controllers\AdminGymController;
-use App\Http\Controllers\AdminNotificationController;
 use App\Http\Controllers\AdminSubscriptionController;
 use App\Http\Controllers\AdminUserController;
-use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\BookController;
-use App\Http\Controllers\DesignationController;
-use App\Http\Controllers\GymNotificationController;
 use App\Http\Controllers\IndustriesCategorieController;
-use App\Http\Controllers\UserNotificationController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
+
+Route::get('/login', function () {
     return view('admin.login');
-})->name('adminLogin');
+});
+Route::get('/admin-enquiry', function () {
+    return view('admin.admin-enquiry');
+});
+
+// Route::get('/admin-inbox', function () {
+//     return view('admin.admin-inbox');
+// });
+Route::get('/admin-read', function () {
+    return view('admin.admin-read');
+});
+
+Route::get('/admin-faq', function () {
+    return view('admin.admin-faq');
+});
+
+Route::get('/admin-notification', function () {
+    return view('admin.admin-notification');
+});
+
+Route::get('/admin-notification-inbox', function () {
+    return view('admin.admin-notification-inbox');
+});
+
+Route::get('/admin-notification-read', function () {
+    return view('admin.admin-notification-read');
+});
+
 
 
 /*where user credentials are submitted via a form and processed by the 'adminLogin' method to authenticate the user. */

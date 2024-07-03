@@ -52,9 +52,9 @@
                                         </div>
                                     </div>
 
-                                    <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">Admin account</h4>
-                                    <form class="form" id="log_in" method="POST" action="/admin/login">
-                                        @csrf
+                                    <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">User account</h4>
+                                    {{-- <form class="form" id="log_in" method="POST" action=""> --}}
+                                        {{-- @csrf --}}
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
                                             <input type="email" class="form-control" name="email" placeholder="Email" required>
@@ -81,11 +81,11 @@
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
+                                            <a href='/user-dashboard'><button type="submit" class="btn btn-primary btn-block">Sign Me In</button></a>
                                         </div>
-                                    </form>
+                                    {{-- </form> --}}
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href='/register'>Sign up</a></p>
+                                        <a class="text-primary" href="/admin/login"><p>Admin Login</a></p>
                                     </div>
                                 </div>
                             </div>
