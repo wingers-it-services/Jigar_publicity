@@ -177,32 +177,21 @@
                     <h5 class="modal-title">Add Book</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-                <form id="editBookForm" action="{{ route('updateBook') }}" method="POST" enctype="multipart/form-data">
+                <form id="editBookForm" action="{{ route('addUserPurchase') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
-                        <input type="hidden" name="uuid" id="editBookId">
-                        {{-- <div class="row">
-                                                        <div class="col-12 d-flex justify-content-center">
-                                                            <img id="selected_image"
-                                                                src="https://p7.hiclipart.com/preview/831/479/764/ibooks-computer-icons-ios-apple-app-store-sparito-lo-scaffale-sono-rimaste-le-pagine-aperte-i-colori-cambiano.jpg"
-                                                                style="width: 200px;height:200px">
-                                                        </div>
-                                                    </div> --}}
-                        {{-- <div class="mb-3">
-                                                        <label for="editBookImage" class="form-label">Book Image</label>
-                                                        <input type="file" class="form-control" id="editBookImage"
-                                                            name="image" accept="image/*" onchange="loadFile(event)">
-                                                    </div> --}}
+                        <input type="hidden" name="user_id" value="{{$users->uuid}}">
+
                         <div class="mb-3">
                             <label for="editBookName" class="form-label">Book Name</label>
-                            <select id="member_designation" name="member_designation" class="form-control" required>
-                                <option value="" disabled selected>--Select Book--</option>
+                            <select id="book_id" name="book_id" class="form-control" required>
+                                <option name="book_id" value="" disabled selected>--Select Book--</option>
                                 @foreach($books as $book)
                                 <option value="{{ $book->id }}">{{ $book->book_name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <select id="member_designation" name="payment_status" class="form-control" required>
+                        <select id="member_designation" name="status" class="form-control" required>
                             <option value="">--Select Payment Status--</option>
                             <option value="{{\App\Enums\PaymentStatus::PAID}}">PAID</option>
                             <option value="{{\App\Enums\PaymentStatus::PENDING}}">PENDING</option>
@@ -436,48 +425,47 @@
                                         <tr>
                                             <th></th>
                                             <th>Book Name</th>
-                                            <th>Categories</th>
-                                            <th>Industry</th>
                                             <th>Amount</th>
-                                            <th>Published Date</th>
+                                            <th>Status</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @foreach ($books as $book) --}}
-                                        <tr>
-                                            <td>
-                                                <img width="80" src="https://th.bing.com/th/id/OIP._zXfuEA95QhKw8_3pk3INgHaFG?rs=1&pid=ImgDetMain" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
-                                            </td>
-
-                                            <td><a href="javascript:void(0);"><strong>Book</strong></a>
-                                            </td>
-                                            <td><a href="javascript:void(0);"><strong>456
-                                                    </strong></a></td>
-                                            <td><a href="javascript:void(0);"><strong>7890</strong></a>
-                                            </td>
-                                            <td>&#8377; <a href="javascript:void(0);"><strong>500</strong></a>
-                                            </td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <div class="d-flex">
-                                                    <a href="/admin/book-details/" class="btn btn-primary shadow btn-xs sharp me-1">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                    <a href="/admin/update-book" class="btn btn-primary shadow btn-xs sharp me-1 edit-book-button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-book=''>
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-                                                    <a href="/admin/delete-book/" class="btn btn-danger shadow btn-xs sharp">
-                                                        <i class="fa fa-trash"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        {{-- @endforeach --}}
+                                        @foreach ($userPurchases as $userPurchase)
+                                            <tr>
+                                                <td>
+                                                    <img width="80" src="{{ asset($userPurchase->book->image) }}" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
+                                                </td>
+                                                <td><a href="javascript:void(0);"><strong>{{ $userPurchase->book->book_name }}</strong></a></td>
+                                                <td>&#8377; <a href="javascript:void(0);"><strong>{{ $userPurchase->book->book_price }}</strong></a></td>
+                                                <td> <strong>@if($userPurchase->status == \App\Enums\PaymentStatus::PAID)
+                                                    Paid
+                                                @elseif($userPurchase->status == \App\Enums\PaymentStatus::PENDING)
+                                                    Pending
+                                                @else
+                                                    Unknown
+                                                @endif</strong></td>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        {{-- <a href="" class="btn btn-primary shadow btn-xs sharp me-1">
+                                                            <i class="fa fa-eye"></i>
+                                                        </a>
+                                                        <a href="" class="btn btn-primary shadow btn-xs sharp me-1 edit-book-button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-book=''>
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a> --}}
+                                                        <a href="" class="btn btn-danger shadow btn-xs sharp">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+
+
 
                     </div>
                 </div>
