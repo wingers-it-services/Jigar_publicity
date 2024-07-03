@@ -18,6 +18,29 @@ class IndustryDetail extends Model
         'address'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = Uuid::uuid4()->toString();
+        });
+    }
+
+    public function units()
+    {
+        return $this->hasMany(UnitDetail::class);
+    }
+
+    public function book()
+    {
+        return $this->belongsTo(Book::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(IndustriesCategorie::class, 'category_id');
+    }
+
     public function addIndustryDetail(array $addindustry, $imagePath)
     {
         try {
@@ -36,22 +59,5 @@ class IndustryDetail extends Model
         }
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-        static::creating(function ($model) {
-            $model->uuid = Uuid::uuid4()->toString();
-        });
-    }
-
-    public function units()
-    {
-        return $this->hasMany(UnitDetail::class);
-    }
-
-
-    public function category()
-    {
-        return $this->belongsTo(IndustriesCategorie::class, 'category_id');
-    }
+   
 }

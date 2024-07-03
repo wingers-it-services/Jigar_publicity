@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('publication_email');
             $table->string('publication_ph_no');
             $table->longText('publication_address');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -136,9 +136,9 @@
                                     <tr>
                                         <th></th>
                                         <th>Book Name</th>
-                                        <th>Total Categories</th>
-                                        <th>Total Industry</th>
-                                        <th>Total Users</th>
+                                        <th>Categories</th>
+                                        <th>Industry</th>
+                                        <th>Users</th>
                                         <th>Amount</th>
                                         <th>Published Date</th>
                                         <th>Action</th>
@@ -150,7 +150,7 @@
                                         <td><img width="80" src="{{ asset($book->image) }}" alt=""></td>
                                         <td>{{$book->book_name}}</td>
                                         <td><a href="javascript:void(0);"><strong>123 </strong></a></td>
-                                        <td><a href="javascript:void(0);"><strong>{{ $book->industries_count }}</strong></a></td>
+                                        <td><a href="javascript:void(0);"><strong>123</strong></a></td>
                                         <td><a href="javascript:void(0);"><strong>7890</strong></a></td>
                                         <td>&#8377; <a href="javascript:void(0);"><strong>{{$book->book_price}}</strong></a></td>
                                         <td>2011/04/25</td>
@@ -203,8 +203,7 @@
                 document.getElementById('editBookId').value = book.uuid;
                 document.getElementById('editBookName').value = book.book_name;
                 document.getElementById('editBookPrice').value = book.book_price;
-                document.getElementById('selected_image').src = '{{ asset('
-                ') }}' + book.image;
+                document.getElementById('selected_image').src = '{{ asset('') }}' + book.image;
 
                 document.getElementById('editAssName').value = book.association_name || '';
                 document.getElementById('editAssLink').value = book.association_web_link || '';
