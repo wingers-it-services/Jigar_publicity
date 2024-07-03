@@ -16,12 +16,12 @@ use App\Http\Middleware\EnsureGymTokenIsValid;
 use Illuminate\Support\Facades\Route;
 
 /* This code snippet defines a GET route in Laravel that maps to the root URL ("/"). When a user
-accesses the root URL of the application, it will return a view named 'GymOwner.login'.
+accesses the root URL of the application, it will return a view named 'user.login'.
 Additionally, the route is given the name 'login', which can be used to reference this route in
 other parts of the application. */
 
 Route::get('/', function () {
-    return view('GymOwner.login');
+    return view('user.login');
 })->name('login');
 
 

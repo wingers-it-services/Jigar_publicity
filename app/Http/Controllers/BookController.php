@@ -34,7 +34,8 @@ class BookController extends Controller
     {
         $status = null;
         $message = null;
-        $books = $this->book->get();
+        $books = $this->book->all();
+
         return view('admin.books-list', compact('status', 'message', 'books'));
     }
 
@@ -109,17 +110,17 @@ class BookController extends Controller
                 "uuid" => 'required',
                 "book_name" => 'required',
                 "book_price" => 'required',
-                'image' => 'nullable'
-                // "association_name" => 'required',
-                // "association_web_link" => 'required',
-                // "association_email" => 'required',
-                // "association_ph_no" => 'required',
-                // "association_address" => 'required',
-                // "publication_name" => 'required',
-                // "publication_web_link" => 'required',
-                // "publication_email" => 'required',
-                // "publication_ph_no" => 'required',
-                // "publication_address" => 'required'
+                'image' => 'nullable',
+                "association_name" => 'required',
+                "association_web_link" => 'required',
+                "association_email" => 'required',
+                "association_ph_no" => 'required',
+                "association_address" => 'required',
+                "publication_name" => 'required',
+                "publication_web_link" => 'required',
+                "publication_email" => 'required',
+                "publication_ph_no" => 'required',
+                "publication_address" => 'required'
             ]);
 
             $uuid = $request->uuid;
@@ -145,8 +146,20 @@ class BookController extends Controller
     public function deleteBook($uuid)
     {
         $books = $this->book->where('uuid', $uuid)->firstOrFail();
-        $books->delete();
-        return redirect()->back()->with('success', 'Book deleted successfully!');
+
+        if ($books) {
+            try {
+               
+                $books->delete();
+
+                return redirect()->back()->with('status', 'success')
+                    ->with('message', 'Course Category and associated Food Items deleted successfully.');
+            } catch (\Exception $e) {
+                 return redirect()->back()->with('error', 'Course Category and associated Food Items not deleted successfully.');
+            }
+        }
+    
+        return redirect()->back()->with('success', 'Book deleted successfully!'); 
     }
 
     public function checkCategoryId(Request $request)
@@ -160,7 +173,6 @@ class BookController extends Controller
 
     public function addIndustryInBook(Request $request)
     {
-        // dd($request->all());
         try {
 
             $validatedData = $request->validate([
@@ -170,9 +182,6 @@ class BookController extends Controller
                 'industry_name' => 'required',
                 'contact_no' => 'required',
                 'address' => 'required',
-                // 'size.*' => 'required',
-                // 'quantity.*' => 'required',
-                // 'status.*' => 'required',
             ]);
 
             $imagePath = null;
@@ -208,16 +217,10 @@ class BookController extends Controller
     }
 
     public function userbookList(Request $request)
-{
-    $status = null;
-    $message = null;
-    $books = $this->book->all();
-    return view('user.books-list', compact('status', 'message', 'books'));
+    {
+        $status = null;
+        $message = null;
+        $books = $this->book->all();
+        return view('user.books-list', compact('status', 'message', 'books'));
+    }
 }
-
-
-
-}
-
-
-

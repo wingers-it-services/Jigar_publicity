@@ -4,12 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Throwable;
 
 class Book extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'image',
         'book_name',
@@ -36,7 +38,7 @@ class Book extends Model
 
     public function industries()
     {
-        return $this->belongsToMany(IndustryDetail::class);
+        return $this->hasMany(IndustryDetail::class);
     }
 
     public function addBook(array $addBook, $imagePath)
