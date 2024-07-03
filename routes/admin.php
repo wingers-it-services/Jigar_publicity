@@ -16,9 +16,9 @@ Route::get('/admin-enquiry', function () {
     return view('admin.admin-enquiry');
 });
 
-// Route::get('/admin-inbox', function () {
-//     return view('admin.admin-inbox');
-// });
+Route::get('/add-advertisment', function () {
+    return view('admin.add-advertisment');
+});
 Route::get('/admin-read', function () {
     return view('admin.admin-read');
 });

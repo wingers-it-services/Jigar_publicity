@@ -31,6 +31,8 @@
 
                                     </div>
                                 </div>
+
+
                                 <!--Tab slider End-->
                                 <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
                                     <div class="product-detail-content">
@@ -69,7 +71,45 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <!-- Tab panes -->
+                                                    <div class="tab-content" id="myTabContent">
+                                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                                            <img class="img-fluid rounded" src="" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Tab slider End -->
+                                                <div class="col-12">
+                                                    <div class="product-detail-content">
+                                                        <img class="img-fluid rounded " src="/images/adevertisting.jpg"style= "width=50px;" alt="">
+                                                        {{-- <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                            <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
 
+                                                        </div> --}}
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
