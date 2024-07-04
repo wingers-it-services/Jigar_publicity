@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+
 use App\Http\Controllers\IndustryController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,7 +16,7 @@ Route::get('/', function () {
 })->name('login');
 
 
-Route::get('/industry-list', [BookController::class, 'industryList'])->name('industry-list');
+Route::get('/industry-list', [UserController::class, 'industryList'])->name('industry-list');
 
 
 Route::get('/user-book-details', function () {

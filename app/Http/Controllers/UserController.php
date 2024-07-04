@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Book;
-use App\Models\GymStaff;
 use App\Traits\SessionTrait;
-use Dotenv\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use App\Models\IndustryDetail;
 use Throwable;
 
-class GymUserController extends Controller
+class UserController extends Controller
 {
     use SessionTrait;
-    protected $gymStaff;
-    protected $book;
+    protected $industrydetail;
 
-    public function __construct(
-        GymStaff $gymStaff,
-        Book $book
+    public function __construct(IndustryDetail $industrydetail
     ) {
-        $this->gymStaff = $gymStaff;
-        $this->book = $book;
+        $this-> industrydetail= $industrydetail;
     }
 
     public function industryList(Request $request)
     {
         $status = null;
         $message = null;
-        $books = $this->book->all();
-        return view('user.industry-list', compact('status', 'message', 'books'));
+        $industries = $this-> industrydetail->all();
+        return view('user.industry-list', compact('status', 'message','industries'));
     }
 }
