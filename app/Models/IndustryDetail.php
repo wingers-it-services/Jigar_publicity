@@ -35,6 +35,7 @@ class IndustryDetail extends Model
     {
         return $this->belongsTo(IndustriesCategorie::class, 'category_id');
     }
+    
 
     public function addIndustryDetail(array $addindustry, $imagePath)
     {

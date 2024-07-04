@@ -26,4 +26,22 @@ class IndustriesCategorie extends Model
             $model->uuid = Uuid::uuid4()->toString();
         });
     }
+
+    public function updateCategory(array $validatedData, $uuid)
+    {
+        $userDetail = IndustriesCategorie::where('uuid', $uuid)->first();
+        if (!$userDetail) {
+            return redirect()->back()->with('error', 'user not found');
+        }
+        try {
+            $userDetail->update([
+                "category_name"           => $validatedData['category_name'],
+            ]);
+
+            return $userDetail->save();
+
+        } catch (Throwable $e) {
+            Log::error('[IndustriesCategorie][updateCategory] Error while updating user detail: ' . $e->getMessage());
+        }
+    }
 }

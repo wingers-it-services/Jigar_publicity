@@ -893,6 +893,14 @@
                         </a>
                     </li>
 
+                    <li>
+                        <a href="/admin/area" class="ai-icon" aria-expanded="false">
+                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <span class="nav-text">Areas</span>
+                        </a>
+                    </li>
+
+
                     <li><a href="/admin/industries" aria-expanded="false">
                             <i class="fa fa-address-card-o" aria-hidden="true"></i>
                             <span class="nav-text">Industries</span>

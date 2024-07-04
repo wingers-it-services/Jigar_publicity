@@ -14,23 +14,18 @@ use Illuminate\Support\Facades\Validator;
 class IndustriesCategorieController extends Controller
 {
 
-    private $gym;
-    private $gymService;
     private $industriesCategorie;
 
     public function __construct(
-        Gym $gym,
-        GymService $gymService,
         IndustriesCategorie $industriesCategorie
     ) {
-        $this->gym = $gym;
-        $this->gymService = $gymService;
         $this->industriesCategorie = $industriesCategorie;
     }
 
     public function industriesCategorieList()
     {
         $industriesCategorie = $this->industriesCategorie->all();
+
         return view('admin.industries-categorie-list', compact('industriesCategorie'));
     }
 
@@ -42,7 +37,25 @@ class IndustriesCategorieController extends Controller
         return back()->with('status', 'success')->with('message', 'Category Added Succesfully');
     }
 
-   
+    public function updateCategory(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'uuid' => 'required',
+                'category_name' => 'required' // Corrected the typo from 'caregory_name' to 'category_name'
+            ]);
+            $uuid = $request->uuid;
+            $this->industriesCategorie->updateCategory($validatedData, $uuid);
+
+            return redirect()->back()->with('status', 'success')->with('message', 'Category updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('[IndustriesCategorieController][updateCategory] Error updating category. Request=' . $request . ', Exception=' . $e->getMessage());
+            return redirect()->back()->with('status', 'error')->with('message', 'Error while updating category.');
+        }
+    }
+
+
+
     public function deleteIndustriesCategorie($uuid)
     {
         $industriesCategorie = $this->industriesCategorie->where('uuid', $uuid)->firstOrFail();

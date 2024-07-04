@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Area;
 use App\Models\GymNotification;
 use App\Models\IndustriesCategorie;
 use App\Models\Industry_Detail;
@@ -19,33 +20,35 @@ class IndustryController extends Controller
     private $industriesCategorie;
     private $industryDetail;
     private $unitDetail;
+    private $area;
     private $purchase;
 
-    public function __construct(IndustriesCategorie $industriesCategorie, IndustryDetail $industryDetail, UnitDetail $unitDetail, UserPurchase $purchase)
+    public function __construct(IndustriesCategorie $industriesCategorie, IndustryDetail $industryDetail, UnitDetail $unitDetail, UserPurchase $purchase, Area $area)
     {
         $this->industriesCategorie = $industriesCategorie;
         $this->industryDetail = $industryDetail;
         $this->unitDetail = $unitDetail;
         $this->purchase = $purchase;
+        $this->area = $area;
     }
-
-   
-
-    
 
     public function industries()
     {
         $industryDetails = $this->industryDetail->all(); 
         $categorys = $this->industriesCategorie->all();
+        $areas = $this->area->all();
 
-        return view('admin.industries', compact('industryDetails', 'categorys'));
+        return view('admin.industries', compact('industryDetails', 'categorys', 'areas'));
     }
 
-   
+    public function addIndustries()
+    {
+        $industryDetails = $this->industryDetail->all(); 
+        $categorys = $this->industriesCategorie->all();
+        $areas = $this->area->all();
 
-   
-
-   
+        return view('admin.add-industries', compact('industryDetails', 'categorys', 'areas'));
+    }
 
     public function checkCategoryId(Request $request)
     {
