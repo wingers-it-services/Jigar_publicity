@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminSubscriptionController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\IndustriesCategorieController;
 use App\Http\Controllers\IndustryController;
 use Illuminate\Support\Facades\Route;
@@ -50,8 +51,17 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin-das
 Route::get('/industries-categories', [IndustriesCategorieController::class, 'industriesCategorieList'])->name('industriesCategorieList');
 Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesCategorie'])->name('deleteIndustriesCategorie');
 Route::post('/industries-categories', [IndustriesCategorieController::class, 'createIndustriesCategories'])->name('createIndustriesCategories');
+Route::post('/update-category', [AdminUserController::class, 'updateCategory'])->name('updateCategory');
+
+Route::get('/area', [AreaController::class, 'areaList'])->name('areaList');
+Route::post('/industries-area', [AreaController::class, 'createIndustriesArea'])->name('createIndustriesArea');
+Route::get('/delete-area/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesArea'])->name('deleteIndustriesArea');
+
+Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesCategorie'])->name('deleteIndustriesCategorie');
 
 /** Book related routes like create,show,list update */
+
+Route::get('/add-industries', [IndustryController::class, 'addIndustries'])->name('addIndustries');
  
 Route::get('/industries', [IndustryController::class, 'industries'])->name('industries');
 
@@ -60,10 +70,7 @@ Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->n
 
 Route::post('/addIndustryInBook', [IndustryController::class, 'addIndustryInBook'])->name('addIndustryInBook');
 
-Route::get('/viewAddAdminSubscription', [AdminSubscriptionController::class, 'viewAddAdminSubscription'])->name('viewAddAdminSubscription');
-Route::post('/addAdminSubscription', [AdminSubscriptionController::class, 'addAdminSubscription'])->name('addAdminSubscription');
-Route::get('/viewEditSubscription/{uuid}', [AdminSubscriptionController::class, 'viewEditAdminSubscription'])->name('viewEditSubscription');
-Route::post('/updateSubscription', [AdminSubscriptionController::class, 'updateAdminSubscription'])->name('updateSubscription');
+
 
 Route::get('/add-admin-users', [AdminUserController::class, 'showAddUsers']);
 Route::post('/add-user-by-admin', [AdminUserController::class, 'addUserByadmin'])->name('addUserByadmin');
