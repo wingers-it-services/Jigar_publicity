@@ -11,7 +11,6 @@ class IndustryDetail extends Model
 {
     protected $fillable = [
         'image',
-        'book_id',
         'category_id',
         'industry_name',
         'contact_no',
@@ -31,11 +30,6 @@ class IndustryDetail extends Model
         return $this->hasMany(UnitDetail::class);
     }
 
-    public function book()
-    {
-        return $this->belongsTo(Book::class);
-    }
-
     public function category()
     {
         return $this->belongsTo(IndustriesCategorie::class, 'category_id');
@@ -47,7 +41,6 @@ class IndustryDetail extends Model
             // Create the product
             return IndustryDetail::create([
                 'image' => $imagePath,
-                'book_id' => $addindustry['book_id'],
                 'category_id' => $addindustry['category_id'],
                 'industry_name' => $addindustry['industry_name'],
                 'contact_no' => $addindustry['contact_no'],

@@ -3,8 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminSubscriptionController;
 use App\Http\Controllers\AdminUserController;
-use App\Http\Controllers\BookController;
 use App\Http\Controllers\IndustriesCategorieController;
+use App\Http\Controllers\IndustryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -52,17 +52,13 @@ Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'de
 Route::post('/industries-categories', [IndustriesCategorieController::class, 'createIndustriesCategories'])->name('createIndustriesCategories');
 
 /** Book related routes like create,show,list update */
-Route::get('/books-list', [BookController::class, 'bookList'])->name('admin-book-list');
-Route::get('/book-details/{uuid}', [BookController::class, 'bookDetails'])->name('book-details');
-Route::get('/add-book', [BookController::class, 'showAddBook'])->name('showAddBook');
-Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
-Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
-Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
+ 
+Route::get('/industries', [IndustryController::class, 'industries'])->name('industries');
 
 Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
 Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');
 
-Route::post('/addIndustryInBook', [BookController::class, 'addIndustryInBook'])->name('addIndustryInBook');
+Route::post('/addIndustryInBook', [IndustryController::class, 'addIndustryInBook'])->name('addIndustryInBook');
 
 Route::get('/viewAddAdminSubscription', [AdminSubscriptionController::class, 'viewAddAdminSubscription'])->name('viewAddAdminSubscription');
 Route::post('/addAdminSubscription', [AdminSubscriptionController::class, 'addAdminSubscription'])->name('addAdminSubscription');
@@ -82,7 +78,7 @@ Route::post('/updateAdminUser', [AdminUserController::class, 'updateAdminUser'])
 Route::get('/user-login-history', [AdminUserController::class, 'userLoginHistory'])->name('userLoginHistory');
 
 
-Route::get('/check-category-id', [BookController::class, 'checkCategoryId']);
+Route::get('/check-category-id', [IndustryController::class, 'checkCategoryId']);
 
 // Route::get('/listEnquiry', [AdminEnquiryController::class, 'listEnquiry'])->name('listEnquiry');
 // Route::get('/viewAdminEnquiry/{uuid}', [AdminEnquiryController::class, 'viewAdminEnquiry'])->name('viewAdminEnquiry');
