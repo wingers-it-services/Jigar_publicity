@@ -190,10 +190,15 @@ class AdminUserController extends Controller
     /**
      * The function userPaymentList retrieves all users and passes them to the 'admin.user-payment' view.
      */
-    public function userPaymentList()
+    public function userPaymentList(Request $request)
     {
-        $users = $this->user->all();
-        return view('admin.user-payment', compact('users'));
+        $users = $this->userPurchase->all();
+        $userPurchases = $this->userPurchase
+        ->join('users', 'user_purchases.user_id', '=', 'users.uuid')
+        ->join('books', 'user_purchases.book_id', '=', 'books.id')
+        ->select('user_purchases.*', 'users.name as user_name', 'books.book_name', 'books.book_price')
+        ->get();
+        return view('admin.user-payment', compact('users','userPurchases'));
     }
 
 

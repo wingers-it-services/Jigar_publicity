@@ -84,7 +84,7 @@
                             <a class="nav-link active" data-bs-toggle="tab" href="#profile"><i class="la la-home me-2"></i>Book List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link " data-bs-toggle="tab" href="#home"><i class="la la-user me-2"></i>History</a>
+                            <a class="nav-link " data-bs-toggle="tab" href="#home"><i class="la la-user me-2"></i>Login History</a>
                         </li>
 
                         {{-- <li class="nav-item">
