@@ -11,6 +11,7 @@ class IndustryDetail extends Model
 {
     protected $fillable = [
         'image',
+        'area',
         'category_id',
         'industry_name',
         'contact_no',
@@ -52,5 +53,5 @@ class IndustryDetail extends Model
         }
     }
 
-   
+
 }

@@ -71,15 +71,12 @@
             Nav header start
         ***********************************-->
         <div class="nav-header">
-            <a href="/user-dashboard" class="brand-logo">
-                <!-- <img class="logo-abbr" src="{{ asset('images/logo.png') }}" alt="">
-    <img class="logo-compact" src="{{ asset('images/logo-text.png') }}" alt="">
-    <img class="brand-title" src="{{ asset('images/logo-text.png') }}" alt=""> -->
+            <a href="/user-advertisement" class="brand-logo">
                 <img class="brand-title" src="{{ asset('images/logo.png') }}" alt="">
             </a>
 
             <div class="nav-control">
-                <div class="hamburger">
+                <div class="hamburger ">
                     <span class="line"></span><span class="line"></span><span class="line"></span>
                 </div>
             </div>
@@ -623,16 +620,15 @@
         <div class="deznav">
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li><a href="/user-dashboard" aria-expanded="false">
+                    <li><a href="/user-advertisement" aria-expanded="false">
                             <i class="fa fa-pie-chart" aria-hidden="true"></i>
-                            <span class="nav-text">Dashboard</span>
+                            <span class="nav-text">Advertisement</span>
                         </a>
-                        
                     </li>
 
-                    <li><a href="/user-book-details" aria-expanded="false">
+                    <li><a  href="/industry-list" aria-expanded="false">
                             <i class="fa fa-address-card-o" aria-hidden="true"></i>
-                            <span class="nav-text">Books List</span>
+                            <span class="nav-text">Industry List</span>
                         </a>
 
                     </li>
@@ -697,7 +693,7 @@
             Footer start
         ***********************************-->
         <div class="footer">
-           
+
             <div class="copyright">
                 <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">Wingers IT
                         Services Pvt. Ltd</a> 2024</p>
