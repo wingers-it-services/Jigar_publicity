@@ -8,7 +8,6 @@ use App\Models\UserWorkout;
 use App\Models\UserDiet;
 use App\Models\User;
 use App\Models\UserPurchase;
-use App\Models\Book;
 use App\Models\UserBodyMeasurement;
 use App\Models\userBmi;
 use App\Models\GymStaff;
@@ -25,7 +24,6 @@ class AdminUserController extends Controller
     use SessionTrait;
     protected $user;
     protected $userPurchase;
-    protected $book;
     protected $gym;
     protected $userService;
     protected $workout;
@@ -37,7 +35,6 @@ class AdminUserController extends Controller
     public function __construct(
         User $user,
         UserPurchase $userPurchase,
-        Book $book,
         Gym $gym,
         UserService $userService,
         UserWorkout $workout,
@@ -48,7 +45,6 @@ class AdminUserController extends Controller
     ) {
         $this->user = $user;
         $this->userPurchase = $userPurchase;
-        $this->book = $book;
         $this->gym = $gym;
         $this->userService = $userService;
         $this->workout = $workout;
@@ -230,10 +226,9 @@ class AdminUserController extends Controller
 
         $users = $this->user->where('uuid', $uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
-        $books = $this->book->all();
         $userPurchases = $this->userPurchase->where('user_id', $uuid)->get();
 
-        return view('admin.user-details', compact('users', 'userDetails', 'books','userPurchases'));
+        return view('admin.user-details', compact('users', 'userDetails', 'userPurchases'));
     }
 
 
@@ -242,7 +237,6 @@ class AdminUserController extends Controller
         try {
             $request->validate([
                 'user_id' => 'required',
-                'book_id' => 'required',
                 'status' => 'required'
             ]);
 

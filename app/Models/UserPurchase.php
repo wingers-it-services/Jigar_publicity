@@ -13,7 +13,6 @@ class UserPurchase extends Model
     use HasFactory;
     protected $fillable = [
         'user_id',
-        'book_id',
         'status'
     ];
 
@@ -30,7 +29,6 @@ class UserPurchase extends Model
         try {
             return $this->create([
                 'user_id'           => $validatedData['user_id'],
-                'book_id'          => $validatedData['book_id'],
                 'status'       => $validatedData['status']
             ]);
         } catch (Throwable $e) {
@@ -38,8 +36,8 @@ class UserPurchase extends Model
         }
     }
 
-    public function book()
+    public function user()
     {
-        return $this->belongsTo(Book::class, 'book_id');
+        return $this->belongsTo(User::class);
     }
 }

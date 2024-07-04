@@ -6,7 +6,7 @@
                                     Content body start
                         ***********************************-->
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <div class="content-body ">
     <!-- row -->
@@ -31,38 +31,16 @@
 
                                     </div>
                                 </div>
-
-
-                                <!--Tab slider End-->
-                                <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
-                                    <div class="product-detail-content">
-                                        <!--Product details-->
-                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <h4>book name</h4>
-                                            <div class="d-table mb-2">
-                                                <p class="price float-start d-block">₹1000</p>
-                                            </div>
-                                            <p class="text-black">Email: <span class="item">
-                                            </p>
-                                            <p class="text-black">Phone number: <span class="item"></span> </p>
-                                            <p class="text-black">Address: <span class="item"></span></p>
-
+                                <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
+                                    <!-- Tab panes -->
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                            <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
                                         </div>
-                                    </div>
-                                    <hr>
-                                    <div class="product-detail-content">
-                                        <!--Product details-->
-                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <h4>Publication Name</h4>
 
-                                            <p class="text-black">Email: <span class="item">
-                                            </p>
-                                            <p class="text-black">Phone number: <span class="item"></span> </p>
-                                            <p class="text-black">Address: <span class="item"></span></p>
-
-                                        </div>
                                     </div>
                                 </div>
+
 
                             </div>
 
@@ -148,8 +126,39 @@
                 </div>
             </div>
 
-            <div class="modal fade bd-example-modal-lg" id="addindustry" tabindex="-1" role="dialog" aria-hidden="true">
-                <form method="POST" action="/admin/addIndustryInBook" enctype="multipart/form-data">
+            <div class="col-lg-2">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
+                                <!-- Tab panes -->
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                        <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
+                                <!-- Tab panes -->
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                        <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-12">
+            
+              
                     @csrf
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -204,21 +213,10 @@
                     </div>
 
 
-                    <div id="industryFields">
-                        <!-- Container for dynamically added fields -->
-                    </div>
-
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-light" onclick="addIndustryField()">Add New unit</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
+                   
+                   
+               
+            </div>
             </div>
         </div>
     </div>
@@ -297,26 +295,28 @@
 
         };
 
-    $(document).ready(function(){
-        $('#category_id').change(function(){
-            var selectedCategoryId = $(this).val();
+        $(document).ready(function() {
+            $('#category_id').change(function() {
+                var selectedCategoryId = $(this).val();
 
-            if (selectedCategoryId) {
-                $.ajax({
-                    url: '/admin/check-category-id', // Your route to check category ID
-                    type: 'GET',
-                    data: { category_id: selectedCategoryId },
-                    success: function(response) {
-                        if(response.exists) {
-                            $('#category-exists-message').show();
-                        } else {
-                            $('#category-exists-message').hide();
+                if (selectedCategoryId) {
+                    $.ajax({
+                        url: '/admin/check-category-id', // Your route to check category ID
+                        type: 'GET',
+                        data: {
+                            category_id: selectedCategoryId
+                        },
+                        success: function(response) {
+                            if (response.exists) {
+                                $('#category-exists-message').show();
+                            } else {
+                                $('#category-exists-message').hide();
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
+            });
         });
-    });
     </script>
 
     @endsection
