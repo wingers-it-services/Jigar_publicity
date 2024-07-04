@@ -2,16 +2,13 @@
 @section('title', 'Dashboard')
 @section('content')
 
-    <!--**********************************
+    <!--************
                                 Content body start
-                    ***********************************-->
+                    *************-->
     <div class="content-body ">
         <!-- row -->
         <div class="container-fluid">
             <div class="row">
-
-
-
                 <!-- Modal -->
                 <div class="modal fade" id="addNewPlan">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -27,6 +24,31 @@
                                     <div class="form-group">
                                         <label>Category Name</label>
                                         <input type="text" id="category_name" name="category_name" class="form-control"
+                                            required>
+                                    </div>
+
+                                    <button class="btn btn-primary" style=" width: -webkit-fill-available; ">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal fade" id="editCategory">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Update Industries Categories</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form method="POST" action="/admin/industries-categories">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label>Category Name</label>
+                                        <input type="text" id="category_name" value="" name="category_name" class="form-control"
                                             required>
                                     </div>
 
@@ -62,9 +84,6 @@
                                                 <tr>
                                                     <th scope="col">Categories</th>
                                                     <th scope="col">No of Books</th>
-                                                    <th scope="col">No of Industries</th>
-                                                    <th scope="col">Progress</th>
-                                                    <th scope="col">Label</th>
                                                     <th scope="col" class="text-end">Action</th>
                                                 </tr>
                                             </thead>
@@ -73,21 +92,11 @@
                                                     <tr>
                                                         <td>{{ $subscription->category_name }}</td>
                                                         <td>0</td>
-                                                        <td>0</td>
-                                                        <td>
-                                                            <div class="progress" style="background: rgba(255, 193, 7, .1)">
-                                                                <div class="progress-bar bg-warning" style="width: 0%;"
-                                                                    role="progressbar"><span class="sr-only">0%
-                                                                        Complete</span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td><span class="badge badge-warning">0%</span>
                                                         </td>
                                                         <td class="text-end">
                                                             <span>
                                                                 <a href="javascript:void()" class="me-4"
-                                                                    data-bs-toggle="tooltip" data-placement="top"
+                                                                 data-bs-toggle="modal"  data-placement="top" data-bs-target="#editCategory"
                                                                     title="Edit">
                                                                     <i class="fa fa-pencil color-muted"></i>
                                                                 </a>
@@ -112,8 +121,8 @@
             </div>
         </div>
     </div>
-    <!--**********************************
+    <!--************
                                 Content body end
-                            ***********************************-->
+                            *************-->
 
 @endsection
