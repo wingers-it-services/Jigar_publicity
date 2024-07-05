@@ -18,19 +18,19 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <form class="needs-validation" action="{{ route('addUserByadmin') }}" method="POST" enctype="multipart/form-data" novalidate>
+                <form class="needs-validation" action="{{ route('addIndustry') }}" method="POST" enctype="multipart/form-data" novalidate>
                     @csrf
 
                     <div class="card">
                         <div class="card-header">
-                            <h4 class="card-title">User Account Details</h4>
+                            <h4 class="card-title">Industry Details</h4>
                         </div>
                         <div class="card-body">
                             <div class="form-validation">
                                 <div class="row">
                                     <div class="col-xl-9">
                                         <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Industry Name<span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Industry Name
                                             </label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" id="validationCustom02" name="industry_name" required>
@@ -41,21 +41,22 @@
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-lg-4 col-form-label" for="validationCustom01">Advertisement Image
-                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
-                                                <input type="file" class="form-control" id="validationCustom01" accept="image/*" name="image" onchange="previewImage(event)" required>
+                                                <input type="file" class="form-control" id="validationCustom01" accept="image/*" name="advertisment_image" onchange="previewImage(event)" required>
                                                 <div class="invalid-feedback">
                                                     Please upload an image.
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group col-12">
+                                        <div class="mb-3 row">
                                             <br>
-                                            <label>Address</label>
-                                            <textarea class="form-control" name="address" required></textarea>
-                                            <div class="invalid-feedback">
-                                                Please enter an address.
+                                            <label class="col-lg-4 col-form-label" for="validationCustom01">Address</label>
+                                            <div class="col-lg-8">
+                                                <textarea class="form-control" name="address" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please enter an address.
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -66,9 +67,9 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6 mb-2">
-                                        <label>Category</label>
+                                        <label>Industrial Category</label>
                                         <select id="category_id" name="category_id" class="form-control" required>
-                                            <option value="" disabled selected>Select Category</option>
+                                            <option value="" disabled selected>Select Industrial Category</option>
                                             @foreach($categorys as $category)
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                             @endforeach
@@ -77,9 +78,9 @@
                                     </div>
                                     <br>
                                     <div class="col-lg-6 mb-2">
-                                        <label>Area</label>
+                                        <label>Industrial Area</label>
                                         <select id="area_id" name="area_id" class="form-control" required>
-                                            <option value="" disabled selected>Select Area</option>
+                                            <option value="" disabled selected>Select Industrial Area</option>
                                             @foreach($areas as $area)
                                             <option value="{{ $area->id }}">{{ $area->area_name }}</option>
                                             @endforeach
@@ -139,10 +140,10 @@
                                 <div class="row">
                                     <div class="col-xl-9">
                                         <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Product Name<span class="text-danger">*</span>
+                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Product Name
                                             </label>
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" id="product_name" name="product_name" required>
+                                                <input type="text" class="form-control" id="product" name="product" required>
                                                 <div class="invalid-feedback">
                                                     Please enter the product name.
                                                 </div>
@@ -150,7 +151,6 @@
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-lg-4 col-form-label" for="by_product">By Product
-                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" id="by_product" name="by_product" required>
@@ -161,7 +161,6 @@
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-lg-4 col-form-label" for="raw_material">Raw Material
-                                                <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" id="raw_material" name="raw_material" required>
@@ -183,8 +182,8 @@
                     <div class="card">
                         <div class="modal-content">
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light" onclick="addIndustryField()">Add Contacts</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                <button type="button" class="btn btn-light" onclick="addIndustryField()">Add Contacts</button>&nbsp;
+                                <button type="submit" class="btn btn-primary">Save</button>
                             </div>
                         </div>
                     </div>
@@ -270,7 +269,7 @@
                         <div class="col-lg-4 mt-3">
                             <div class="form-group">
                                 <label>Mobile</label>
-                                <input class="form-control" name="contact_no[]" type="text" required>
+                                <input class="form-control" name="mobile[]" type="text" required>
                                 <div class="invalid-feedback">
                                     Please enter the mobile number.
                                 </div>
@@ -279,7 +278,7 @@
                         <div class="col-lg-4 mt-3">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email[]" required>
+                                <input type="email" class="form-control" name="email_id[]" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid email.
                                 </div>

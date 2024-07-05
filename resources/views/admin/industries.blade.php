@@ -168,8 +168,8 @@
                                                                 @foreach($industryDetails as $industry)
                                                                 <tr>
                                                                     <td>{{$industry->industry_name}}</td>
-                                                                    <td>{{$industry->category}}</td>
-                                                                    <td>{{$industry->category}}</td>
+                                                                    <td>{{$industry->category->category_name}}</td>
+                                                                    <td>{{$industry->area->area_name}}</td>
                                                                     <td class="text-end">
                                                                         <span>
                                                                             <a href="javascript:void()" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="Edit">

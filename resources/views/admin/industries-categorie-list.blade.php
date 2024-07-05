@@ -39,8 +39,8 @@
                         <div class="modal-body">
                             <form method="POST" action="/admin/update-category">
                                 @csrf
+                                <input type="hidden" id="edit_uuid" name="uuid" class="form-control">
                                 <div class="form-group">
-                                    <input type="hidden" id="edit_uuid" name="uuid" class="form-control">
                                     <label>Category Name</label>
                                     <input type="text" id="edit_category_name" name="category_name" class="form-control" required>
                                 </div>
@@ -77,20 +77,21 @@
                                         </thead>
                                         <tbody>
                                             @foreach ($industriesCategorie as $subscription)
-                                                <tr>
-                                                    <td>{{ $subscription->category_name }}</td>
-                                                    <td>0</td>
-                                                    <td class="text-end">
-                                                        <span>
-                                                            <a href="javascript:void(0);" class="me-4 edit-category-btn" data-bs-toggle="modal" data-bs-target="#editCategory" data-uuid="{{ $subscription->uuid }}" data-category_name="{{ $subscription->category_name }}" title="Edit">
-                                                                <i class="fa fa-pencil color-muted"></i>
-                                                            </a>
-                                                            <a href="/admin/delete-category/{{ $subscription->uuid }}" data-bs-toggle="tooltip" data-placement="top" title="Close">
-                                                                <i class="fas fa-times color-danger"></i>
-                                                            </a>
-                                                        </span>
-                                                    </td>
-                                                </tr>
+                                            <tr>
+                                                <td>{{ $subscription->category_name }}</td>
+                                                <td>0</td>
+                                                <td class="text-end">
+                                                    <span>
+                                                        <a href="javascript:void(0);" class="me-4 edit-category-btn" data-bs-toggle="modal" data-bs-target="#editCategory" data-uuid="{{ $subscription->uuid }}" data-category_name="{{ $subscription->category_name }}" title="Edit">
+                                                            <i class="fa fa-pencil color-muted"></i>
+                                                        </a>
+
+                                                        <a href="/admin/delete-category/{{ $subscription->uuid }}" data-bs-toggle="tooltip" data-placement="top" title="Close">
+                                                            <i class="fas fa-times color-danger"></i>
+                                                        </a>
+                                                    </span>
+                                                </td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -106,17 +107,15 @@
 
 <!-- Content body end -->
 
-@endsection
-
-@section('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var editButtons = document.querySelectorAll('.edit-category-btn');
         editButtons.forEach(function(button) {
             button.addEventListener('click', function() {
-                var category = JSON.parse(this.dataset.industries_categories);
-                document.getElementById('edit_uuid').value = category.uuid;
-                document.getElementById('edit_category_name').value = category.category_name;
+                var uuid = this.getAttribute('data-uuid');
+                var categoryName = this.getAttribute('data-category_name');
+                document.getElementById('edit_uuid').value = uuid;
+                document.getElementById('edit_category_name').value = categoryName;
             });
         });
     });

@@ -51,24 +51,25 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin-das
 Route::get('/industries-categories', [IndustriesCategorieController::class, 'industriesCategorieList'])->name('industriesCategorieList');
 Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesCategorie'])->name('deleteIndustriesCategorie');
 Route::post('/industries-categories', [IndustriesCategorieController::class, 'createIndustriesCategories'])->name('createIndustriesCategories');
-Route::post('/update-category', [AdminUserController::class, 'updateCategory'])->name('updateCategory');
+Route::post('/update-category', [IndustriesCategorieController::class, 'updateCategory'])->name('updateCategory');
 
 Route::get('/area', [AreaController::class, 'areaList'])->name('areaList');
 Route::post('/industries-area', [AreaController::class, 'createIndustriesArea'])->name('createIndustriesArea');
-Route::get('/delete-area/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesArea'])->name('deleteIndustriesArea');
+Route::post('/update-area', [AreaController::class, 'updateArea'])->name('updateArea');
+Route::get('/delete-area/{uuid}', [AreaController::class, 'deleteIndustriesArea'])->name('deleteIndustriesArea');
 
 Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesCategorie'])->name('deleteIndustriesCategorie');
 
 /** Book related routes like create,show,list update */
 
-Route::get('/add-industries', [IndustryController::class, 'addIndustries'])->name('addIndustries');
+Route::get('/add-industries', [IndustryController::class, 'viewAddIndustries'])->name('viewAddIndustries');
  
 Route::get('/industries', [IndustryController::class, 'industries'])->name('industries');
+Route::post('/add-industry', [IndustryController::class, 'addIndustry'])->name('addIndustry');
 
 Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
 Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');
 
-Route::post('/addIndustryInBook', [IndustryController::class, 'addIndustryInBook'])->name('addIndustryInBook');
 
 
 
