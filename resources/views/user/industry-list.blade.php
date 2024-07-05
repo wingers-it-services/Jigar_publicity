@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                    Content body start
-                                        ***********************************-->
+                                                                    Content body start
+                                                        ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -74,8 +74,15 @@
                                     </thead>
                                     <tbody>
                                         @foreach ($industries as $industry)
-                                            <tr>
-
+                                            <tr class="clickable-row" data-industry_name="{{ $industry->industry_name }}"
+                                                data-email="{{ $industry->email }}" data-phone="{{ $industry->contact_no }}"
+                                                data-address="{{ $industry->address }}" data-area="{{ $industry->area_id }}"
+                                                data-category="{{ $industry->category_id }}"
+                                                data-product="{{ $industry->product }}"
+                                                data-by_product="{{ $industry->by_product }}"
+                                                data-raw_material="{{ $industry->raw_material }}" data-contact_name="XYZ"
+                                                data-contact_phone="" data-contact_email="{{ $industry->raw_material }}"
+                                                data-image="{{ $industry->advertisment_image }}">
 
                                                 <td>{{ $industry->industry_name }}</td>
                                                 <td>{{ $industry->category_id }}</td>
@@ -83,9 +90,8 @@
                                                 <td>
                                                     <div class="d-flex">
                                                         @if (!empty($industry->advertisment_image))
-                                                            <a href="{{ $industry->advertisment_image }}"
-                                                                class="btn btn-primary shadow btn-xs sharp me-1"
-                                                                data-bs-toggle="modal" data-bs-target="#addindustry">
+                                                            <a href="#"
+                                                                class="btn btn-primary shadow btn-xs sharp me-1 view-btn">
                                                                 <i class="fa fa-eye"></i>
                                                             </a>
                                                         @endif
@@ -124,8 +130,7 @@
 
                     </div>
                 </div>
-
-                <div class="row">
+                {{-- <div id="industryDetailsContainer" class="row" style="display: none;">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-header">
@@ -133,78 +138,121 @@
                             </div>
                             <div class="card-body">
                                 <div class="row">
-
-                                    <!--Tab slider End-->
-                                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <h4>{{ $industry->industry_name }}</h4>
-                                                <div class="d-table mb-2">
-                                                    <p class="price float-start d-block"></p>
-                                                </div>
-                                                <p class="text-black">Email: <span class="item">{{ $industry->email }}</p>
-                                                <p class="text-black">Phone number: <span
-                                                        class="item">{{ $industry->contact_no }}</span> </p>
-                                                <p class="text-black">Address: <span
-                                                        class="item">{{ $industry->address }}</span></p>
-                                                <p class="text-black">Area: <span
-                                                        class="item">{{ $industry->area_id }}</span></p>
-                                                <p class="text-black">Types of Industry: <span
-                                                        class="item">{{ $industry->category_id }}</span></p>
-
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <p class="text-black">Product:<span class="item">{{ $industry->product }}
-                                                </p>
-                                                <p class="text-black">By Product: <span
-                                                        class="item">{{ $industry->by_product }}</span> </p>
-                                                <p class="text-black">Raw Material: <span
-                                                        class="item">{{ $industry->raw_material }}</span></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <p class="text-black">Contact Name:<span class="item">XYZ
-                                                </p>
-                                                <p class="text-black">Phone: <span class="item"></span> </p>
-                                                <p class="text-black">Email: <span
-                                                        class="item">{{ $industry->raw_material }}</span></p>
-                                            </div>
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-xxl-12" style="margin-bottom: 20px;">
+                                        <div class="image-container">
+                                            <img id="industryImage" class="img-fluid rounded" src="" alt="">
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                                aria-labelledby="home-tab" tabindex="0">
-                                                <img class="img-fluid rounded "
-                                                    src="{{$industry->advertisment_image}}"
-                                                    alt="">
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-xxl-12">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <h4 id="industryName"></h4>
+                                                <p class="text-black">Email: <span class="item" id="industryEmail"></span></p>
+                                                <p class="text-black">Phone number: <span class="item" id="industryPhone"></span></p>
+                                                <p class="text-black">Address: <span class="item" id="industryAddress"></span></p>
+                                                <p class="text-black">Area: <span class="item" id="industryArea"></span></p>
+                                                <p class="text-black">Types of Industry: <span class="item" id="industryCategory"></span></p>
                                             </div>
-
+                                        </div>
+                                        <hr>
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <p class="text-black">Product: <span class="item" id="industryProduct"></span></p>
+                                                <p class="text-black">By Product: <span class="item" id="industryByProduct"></span></p>
+                                                <p class="text-black">Raw Material: <span class="item" id="industryRawMaterial"></span></p>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <p class="text-black">Contact Name: <span class="item" id="industryContactName">XYZ</span></p>
+                                                <p class="text-black">Phone: <span class="item" id="industryContactPhone"></span></p>
+                                                <p class="text-black">Email: <span class="item" id="industryContactEmail"></span></p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+                        </div>
+                    </div>
+                </div> --}}
+                <div id="industryDetailsContainer" class="row" style="display: none;">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Industries Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Column for Image -->
+                                    <div class="col-xl-12 col-lg-12 col-md-12 col-xxl-12 mb-3">
+                                        <div class="image-container">
+                                            <img id="industryImage" class="img-fluid rounded" src="" alt="">
+                                        </div>
+                                    </div>
 
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <h4 id="industryName"></h4>
+                                                <p class="text-black">Email: <span class="item" id="industryEmail"></span></p>
+                                                <p class="text-black">Phone number: <span class="item" id="industryPhone"></span></p>
+                                                <p class="text-black">Address: <span class="item" id="industryAddress"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Column for Product Details -->
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <p class="text-black">Area: <span class="item" id="industryArea"></span></p>
+                                                <p class="text-black">Product: <span class="item" id="industryProduct"></span></p>
+                                                <p class="text-black">By Product: <span class="item" id="industryByProduct"></span></p>
+                                                <p class="text-black">Raw Material: <span class="item" id="industryRawMaterial"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- Column for Contact Details -->
+                                    <div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <p class="text-black">Types of Industry: <span class="item" id="industryCategory"></span></p>
+                                                <p class="text-black">Contact Name: <span class="item" id="industryContactName">XYZ</span></p>
+                                                <p class="text-black">Contact Phone: <span class="item" id="industryContactPhone"></span></p>
+                                                <p class="text-black">Contact Email: <span class="item" id="industryContactEmail"></span></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+    <style>
+        .clickable-row:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+        .active-row {
+            background-color: #e0e0e0;
+        }
+    </style>
+
+
 
     <!--**********************************
-                                                    Content body end
-                                        ***********************************-->
+                                                                    Content body end
+                                                        ***********************************-->
     <script src="{{ asset('js/plugins-init/staff-attendance-overview-chart.js') }}" type="text/javascript"></script>
     <script>
         function addIndustryField() {
@@ -299,4 +347,59 @@
             });
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const detailsContainer = document.getElementById('industryDetailsContainer');
+            const industryNameElement = document.getElementById('industryName');
+            const industryEmailElement = document.getElementById('industryEmail');
+            const industryPhoneElement = document.getElementById('industryPhone');
+            const industryAddressElement = document.getElementById('industryAddress');
+            const industryAreaElement = document.getElementById('industryArea');
+            const industryCategoryElement = document.getElementById('industryCategory');
+            const industryProductElement = document.getElementById('industryProduct');
+            const industryByProductElement = document.getElementById('industryByProduct');
+            const industryRawMaterialElement = document.getElementById('industryRawMaterial');
+            const industryContactNameElement = document.getElementById('industryContactName');
+            const industryContactPhoneElement = document.getElementById('industryContactPhone');
+            const industryContactEmailElement = document.getElementById('industryContactEmail');
+            const industryImageElement = document.getElementById('industryImage');
+
+            document.querySelectorAll('.clickable-row').forEach(row => {
+                row.addEventListener('click', function() {
+                    const industryName = this.dataset.industry_name;
+                    const email = this.dataset.email;
+                    const phone = this.dataset.phone;
+                    const address = this.dataset.address;
+                    const area = this.dataset.area;
+                    const category = this.dataset.category;
+                    const product = this.dataset.product;
+                    const byProduct = this.dataset.by_product;
+                    const rawMaterial = this.dataset.raw_material;
+                    const contactName = this.dataset.contact_name;
+                    const contactPhone = this.dataset.contact_phone;
+                    const contactEmail = this.dataset.contact_email;
+                    const image = this.dataset.image;
+
+                    industryNameElement.textContent = industryName;
+                    industryEmailElement.textContent = email;
+                    industryPhoneElement.textContent = phone;
+                    industryAddressElement.textContent = address;
+                    industryAreaElement.textContent = area;
+                    industryCategoryElement.textContent = category;
+                    industryProductElement.textContent = product;
+                    industryByProductElement.textContent = byProduct;
+                    industryRawMaterialElement.textContent = rawMaterial;
+                    industryContactNameElement.textContent = contactName;
+                    industryContactPhoneElement.textContent = contactPhone;
+                    industryContactEmailElement.textContent = contactEmail;
+                    industryImageElement.src = image;
+
+                    detailsContainer.style.display = 'block';
+                });
+            });
+        });
+    </script>
+
+
 @endsection
+

@@ -63,78 +63,8 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                {{-- <table id="example3" class="display min-w850">
-                                    <thead>
-                                        <tr>
-                                            <th>Industry Name</th>
-                                            <th>Category</th>
-                                            <th>Area</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($industries as $industry)
-                                            <tr>
 
 
-                                                <td>{{ $industry->industry_name }}</td>
-                                                <td>{{ $industry->category_id }}</td>
-                                                <td>{{ $industry->area_id }}</td>
-                                                <td>
-                                                    <div class="d-flex">
-                                                        @if (!empty($industry->'advertisment_image))
-                                                            <a href="{{ $industry->image }}"
-                                                                class="btn btn-primary shadow btn-xs sharp me-1"
-                                                                data-bs-toggle="modal" data-bs-target="#addindustry">
-                                                                <i class="fa fa-eye"></i>
-                                                            </a>
-                                                        @endif
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table> --}}
-                                {{-- <table id="example3" class="display min-w850">
-                                    <thead>
-                                        <tr>
-                                            <th>Industry Name</th>
-                                            <th>Category</th>
-                                            <th>Area</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($industries as $industry)
-                                        <tr>
-                                            <td>{{ $industry->industry_name }}</td>
-                                            <td>{{ $industry->category_id }}</td>
-                                            <td>{{ $industry->area_id }}</td>
-
-                                            <td>
-                                                <div class="d-flex">
-                                                    <button class="btn btn-primary shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#industryDetailsModal"
-                                                        data-industry_name="{{ $industry->industry_name }}"
-                                                        data-email="{{ $industry->email }}"
-                                                        data-phone="{{ $industry->contact_no }}"
-                                                        data-address="{{ $industry->address }}"
-                                                        data-area="{{ $industry->area_id }}"
-                                                        data-category="{{ $industry->category_id }}"
-                                                        data-product="{{ $industry->product }}"
-                                                        data-by_product="{{ $industry->by_product }}"
-                                                        data-raw_material="{{ $industry->raw_material }}"
-                                                        data-contact_name="XYZ"
-                                                        data-contact_phone=""
-                                                        data-contact_email="{{ $industry->raw_material }}"
-                                                        data-image="{{ $industry->'advertisment_image }}">
-                                                        <i class="fa fa-eye"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table> --}}
                                 <table id="example3" class="display min-w850">
                                     <thead>
                                         <tr>
@@ -149,16 +79,16 @@
                                         <tr>
                                             <td>{{ $industry->industry_name }}</td>
                                             <td>{{ $industry->category_id }}</td>
-                                            <td>{{ $industry->area }}</td>
+                                            <td>{{ $industry->area_id }}</td>
                                             <td>
                                                 <div class="d-flex">
-                                                    @if (!empty($industry->image))
+                                                    @if (!empty($industry->advertisment_image))
                                                     <button class="btn btn-primary shadow btn-xs sharp me-1" data-bs-toggle="modal" data-bs-target="#industryDetailsModal"
                                                         data-industry_name="{{ $industry->industry_name }}"
                                                         data-email="{{ $industry->email }}"
                                                         data-phone="{{ $industry->contact_no }}"
                                                         data-address="{{ $industry->address }}"
-                                                        data-area="{{ $industry->area }}"
+                                                        data-area="{{ $industry->area_id }}"
                                                         data-category="{{ $industry->category_id }}"
                                                         data-product="{{ $industry->product }}"
                                                         data-by_product="{{ $industry->by_product }}"
@@ -166,7 +96,7 @@
                                                         data-contact_name="XYZ"
                                                         data-contact_phone=""
                                                         data-contact_email="{{ $industry->raw_material }}"
-                                                        data-image="{{ $industry->image }}">
+                                                        data-image="{{ $industry->advertisment_image }}">
                                                         <i class="fa fa-eye"></i>
                                                     </button>
                                                     @endif
@@ -208,80 +138,7 @@
                     </div>
                 </div>
 
-                {{-- <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Industries Details</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
 
-                                    <!--Tab slider End-->
-                                    <div class="col-xl-9 col-lg-6  col-md-6 col-xxl-7 col-sm-12">
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <h4>{{ $industry->industry_name }}</h4>
-                                                <div class="d-table mb-2">
-                                                    <p class="price float-start d-block"></p>
-                                                </div>
-                                                <p class="text-black">Email: <span class="item">{{ $industry->email }}</p>
-                                                <p class="text-black">Phone number: <span
-                                                        class="item">{{ $industry->contact_no }}</span> </p>
-                                                <p class="text-black">Address: <span
-                                                        class="item">{{ $industry->address }}</span></p>
-                                                <p class="text-black">Area: <span
-                                                        class="item">{{ $industry->area }}</span></p>
-                                                <p class="text-black">Types of Industry: <span
-                                                        class="item">{{ $industry->category_id }}</span></p>
-
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <p class="text-black">Product:<span class="item">{{ $industry->product }}
-                                                </p>
-                                                <p class="text-black">By Product: <span
-                                                        class="item">{{ $industry->by_product }}</span> </p>
-                                                <p class="text-black">Raw Material: <span
-                                                        class="item">{{ $industry->raw_material }}</span></p>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                        <div class="product-detail-content">
-                                            <!--Product details-->
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <p class="text-black">Contact Name:<span class="item">XYZ
-                                                </p>
-                                                <p class="text-black">Phone: <span
-                                                        class="item"></span> </p>
-                                                <p class="text-black">Email: <span
-                                                        class="item">{{ $industry->raw_material }}</span></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                                aria-labelledby="home-tab" tabindex="0">
-                                                <img class="img-fluid rounded "
-                                                    src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
-                                                    alt="">
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div> --}}
                 <!-- Industry Details Modal -->
 <div class="modal fade" id="industryDetailsModal" tabindex="-1" aria-labelledby="industryDetailsModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
