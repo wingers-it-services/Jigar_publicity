@@ -23,8 +23,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('industry_details', function (Blueprint $table) {
-            $table->renameColumn('area', 'area_id');
-            $table->renameColumn('image', 'advertisment_image');
-        });
+            $table->renameColumn('area_id', 'area');
+            $table->renameColumn('advertisment_image', 'image');
+          });
     }
 };
