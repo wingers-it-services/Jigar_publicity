@@ -23,6 +23,9 @@ Route::get('/user-book-details', function () {
     return view('user.user-book-details');
 });
 
+Route::get('/user-dashboard', function () {
+    return view('user.user-dashboard');
+});
 Route::get('/user-profile', function () {
     return view('user.user-profile');
 });

@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                Content body start
-                                    ***********************************-->
+                                                    Content body start
+                                        ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -79,11 +79,11 @@
 
                                                 <td>{{ $industry->industry_name }}</td>
                                                 <td>{{ $industry->category_id }}</td>
-                                                <td>{{ $industry->area }}</td>
+                                                <td>{{ $industry->area_id }}</td>
                                                 <td>
                                                     <div class="d-flex">
-                                                        @if (!empty($industry->image))
-                                                            <a href="{{ $industry->image }}"
+                                                        @if (!empty($industry->advertisment_image))
+                                                            <a href="{{ $industry->advertisment_image }}"
                                                                 class="btn btn-primary shadow btn-xs sharp me-1"
                                                                 data-bs-toggle="modal" data-bs-target="#addindustry">
                                                                 <i class="fa fa-eye"></i>
@@ -149,7 +149,7 @@
                                                 <p class="text-black">Address: <span
                                                         class="item">{{ $industry->address }}</span></p>
                                                 <p class="text-black">Area: <span
-                                                        class="item">{{ $industry->area }}</span></p>
+                                                        class="item">{{ $industry->area_id }}</span></p>
                                                 <p class="text-black">Types of Industry: <span
                                                         class="item">{{ $industry->category_id }}</span></p>
 
@@ -173,8 +173,7 @@
                                             <div class="new-arrival-content mt-md-0 mt-3 pr">
                                                 <p class="text-black">Contact Name:<span class="item">XYZ
                                                 </p>
-                                                <p class="text-black">Phone: <span
-                                                        class="item"></span> </p>
+                                                <p class="text-black">Phone: <span class="item"></span> </p>
                                                 <p class="text-black">Email: <span
                                                         class="item">{{ $industry->raw_material }}</span></p>
                                             </div>
@@ -186,7 +185,7 @@
                                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                                 aria-labelledby="home-tab" tabindex="0">
                                                 <img class="img-fluid rounded "
-                                                    src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                                    src="{{$industry->advertisment_image}}"
                                                     alt="">
                                             </div>
 
@@ -204,8 +203,8 @@
     </div>
 
     <!--**********************************
-                                                Content body end
-                                    ***********************************-->
+                                                    Content body end
+                                        ***********************************-->
     <script src="{{ asset('js/plugins-init/staff-attendance-overview-chart.js') }}" type="text/javascript"></script>
     <script>
         function addIndustryField() {
@@ -300,5 +299,4 @@
             });
         });
     </script>
-
 @endsection
