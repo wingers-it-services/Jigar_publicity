@@ -62,7 +62,7 @@ Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'de
 
 /** Book related routes like create,show,list update */
 
-Route::get('/add-industries', [IndustryController::class, 'addIndustries'])->name('addIndustries');
+Route::get('/add-industries', [IndustryController::class, 'viewAddIndustries'])->name('viewAddIndustries');
  
 Route::get('/industries', [IndustryController::class, 'industries'])->name('industries');
 Route::post('/add-industry', [IndustryController::class, 'addIndustry'])->name('addIndustry');

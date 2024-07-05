@@ -40,7 +40,7 @@ class IndustryController extends Controller
         return view('admin.industries', compact('industryDetails', 'categorys', 'areas'));
     }
 
-    public function addIndustries()
+    public function viewAddIndustries()
     {
         $industryDetails = $this->industryDetail->all(); 
         $categorys = $this->industriesCategorie->all();
@@ -69,7 +69,7 @@ class IndustryController extends Controller
                 'industry_name' => 'required',
                 'contact_no' => 'required',
                 'address' => 'required',
-                'industry_email' => 'required',
+                'email' => 'required',
                 'product' => 'required',
                 'by_product' => 'required',
                 'raw_material' => 'required',
@@ -101,9 +101,9 @@ class IndustryController extends Controller
 
 
             // Optionally, redirect or return a response
-            return redirect()->back()->with('success', 'Industries added successfully');
+            return redirect()->route("industries")->with('success', 'Industries added successfully');
         } catch (\Exception $th) {
-            Log::error("[IndustryController][addIndustryInBook] error " . $th->getMessage());
+            Log::error("[IndustryController][addIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }
     }

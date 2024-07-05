@@ -16,7 +16,7 @@ class IndustryDetail extends Model
         'industry_name',
         'contact_no',
         'address',
-        'industry_email',
+        'email',
         'product',
         'by_product',
         'raw_material'
@@ -38,6 +38,11 @@ class IndustryDetail extends Model
     public function category()
     {
         return $this->belongsTo(IndustriesCategorie::class, 'category_id');
+    }
+    
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
     }
     
 

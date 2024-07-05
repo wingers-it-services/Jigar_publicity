@@ -21,3 +21,4 @@ yarn-error.log
 .env
 public/books_images
 public/industry_images
+public/user_images

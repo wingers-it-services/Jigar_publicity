@@ -21,7 +21,7 @@
                     <h4 class="text-black fs-20">Advertisement</h4>
                 </div>
             </div> -->
-           
+
 
             <div class="col-xl-12">
                 <div class="card">
@@ -47,25 +47,24 @@
                                                             <thead>
                                                                 <tr>
                                                                     <th scope="col"> Image</th>
-                                                                    <th scope="col">Book Name</th>
-                                                                    <th scope="col"> Industry  Name</th>
+                                                                    <th scope="col"> Industry Name</th>
                                                                     <th scope="col">Category</th>
-                                                                    <th scope="col">Status</th>
+                                                                    <th scope="col">Area</th>
                                                                     <th scope="col" class="text-end">Action</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td> <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" style="width:50px;"alt=""></td>
-                                                                    <td>Zydus Book</td>
+                                                                    <td> <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" style="width:50px;" alt=""></td>
                                                                     <td>Zydus</td>
                                                                     <td>Pharma</td>
-                                                                    <td>Pending</td>
+                                                                    <td>Bharuch</td>
                                                                     <td class="text-end">
                                                                         <span>
-                                                                            <a href="javascript:void()" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="Edit">
-                                                                                <i class="fa fa-pencil color-muted"></i>
+                                                                            <a href="javascript:void()" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="View">
+                                                                                <i class="fa fa-eye color-muted"></i>
                                                                             </a>
+
                                                                             <a href="" data-bs-toggle="tooltip" data-placement="top" title="Close">
                                                                                 <i class="fas fa-times color-danger"></i>
                                                                             </a>
