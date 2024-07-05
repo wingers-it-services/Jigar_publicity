@@ -51,13 +51,13 @@ class IndustryDetail extends Model
         try {
             // Create the product
             return IndustryDetail::create([
-                'image' => $imagePath,
+                'advertisment_image' => $imagePath,
                 'category_id' => $addindustry['category_id'],
                 'area_id' => $addindustry['area_id'],
                 'industry_name' => $addindustry['industry_name'],
                 'contact_no' => $addindustry['contact_no'],
                 'address' => $addindustry['address'],
-                'industry_email' => $addindustry['industry_email'],
+                'email' => $addindustry['email'],
                 'product' => $addindustry['product'],
                 'by_product' => $addindustry['by_product'],
                 'raw_material' => $addindustry['raw_material'],

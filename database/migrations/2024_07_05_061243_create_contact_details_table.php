@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('industry_id');
             $table->string('contact_name');
             $table->string('mobile');
-            $table->string('email');
+            $table->string('email_id');
             $table->timestamps();
         });
     }

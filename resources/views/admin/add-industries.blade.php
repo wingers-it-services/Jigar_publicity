@@ -143,7 +143,7 @@
                                             <label class="col-lg-4 col-form-label" for="validationCustom02">Product Name
                                             </label>
                                             <div class="col-lg-8">
-                                                <input type="text" class="form-control" id="product_name" name="product_name" required>
+                                                <input type="text" class="form-control" id="product" name="product" required>
                                                 <div class="invalid-feedback">
                                                     Please enter the product name.
                                                 </div>
@@ -278,7 +278,7 @@
                         <div class="col-lg-4 mt-3">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email[]" required>
+                                <input type="email" class="form-control" name="email_id[]" required>
                                 <div class="invalid-feedback">
                                     Please enter a valid email.
                                 </div>

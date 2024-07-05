@@ -70,9 +70,9 @@ class IndustryController extends Controller
                 'contact_no' => 'required',
                 'address' => 'required',
                 'email' => 'required',
-                'product' => 'required',
-                'by_product' => 'required',
-                'raw_material' => 'required',
+                'product' => 'nullable',
+                'by_product' => 'nullable',
+                'raw_material' => 'nullable',
 
             ]);
 
@@ -92,7 +92,7 @@ class IndustryController extends Controller
                 'industry_id' => $industry->id,
                 'contact_name' => $request->input('contact_name'),
                 'mobile' => $request->input('mobile'),
-                'email' => $request->input('email'),
+                'email_id' => $request->input('email_id'),
 
             ];
 

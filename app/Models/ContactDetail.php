@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Log;
 
 class ContactDetail extends Model
@@ -12,7 +13,7 @@ class ContactDetail extends Model
         'industry_id',
         'contact_name',
         'mobile',
-        'email'
+        'email_id'
     ];
 
 
@@ -24,11 +25,19 @@ class ContactDetail extends Model
                     'industry_id' => $contactDetails['industry_id'],
                     'contact_name' => $contact,
                     'mobile' => $contactDetails['mobile'][$key],
-                    'email' => $contactDetails['email'][$key],
+                    'email_id' => $contactDetails['email_id'][$key],
                 ]);
             }
         } catch (\Throwable $e) {
             Log::error('[ContactDetail][addContacttData] Error creating contact detail: ' . $e->getMessage());
         }
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->uuid = Uuid::uuid4()->toString();
+        });
     }
 }
