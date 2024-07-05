@@ -42,11 +42,11 @@ class IndustriesCategorieController extends Controller
         try {
             $validatedData = $request->validate([
                 'uuid' => 'required',
-                'category_name' => 'required' // Corrected the typo from 'caregory_name' to 'category_name'
+                'category_name' => 'required'
             ]);
             $uuid = $request->uuid;
             $this->industriesCategorie->updateCategory($validatedData, $uuid);
-
+    
             return redirect()->back()->with('status', 'success')->with('message', 'Category updated successfully.');
         } catch (\Exception $e) {
             Log::error('[IndustriesCategorieController][updateCategory] Error updating category. Request=' . $request . ', Exception=' . $e->getMessage());

@@ -16,45 +16,17 @@
     <!-- row -->
     <div class="container-fluid">
         <div class="row">
-            <div class="card-header d-sm-flex d-block pb-0 border-0">
+            <!-- <div class="card-header d-sm-flex d-block pb-0 border-0">
                 <div class="me-auto pe-3">
                     <h4 class="text-black fs-20">Advertisement</h4>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12">
-                                    <!-- Tab panes -->
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                            <img class="img-fluid rounded" src="" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Tab slider End -->
-                                <div class="col-12">
-                                    <div class="product-detail-content">
-                                        <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-                                        {{-- <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-
-                                        </div> --}}
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </div> -->
+           
 
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"><i class="fas fa-ad"></i>    Advertisement</h4>
+                        <h4 class="card-title"><i class="fas fa-ad"></i>Advertisements</h4>
                     </div>
                     <div class="card-body">
                         <!-- Nav tabs -->
@@ -66,9 +38,9 @@
                                     <div class="pt-4">
                                         <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                                             <div class="card">
-                                                <div class="col-md-12 text-end">
+                                                <!-- <div class="col-md-12 text-end">
                                                     <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addIndustryModal">Add  Advertistment</button>
-                                                </div>
+                                                </div> -->
                                                 <div class="card-body">
                                                     <div class="table-responsive recentOrderTable">
                                                         <table id="example3" class="table verticle-middle table-responsive-md">
@@ -111,7 +83,7 @@
 
                             </div>
                             <!-- Modal -->
-                            <div class="modal fade" id="addIndustryModal" tabindex="-1" aria-labelledby="addIndustryModalLabel" aria-hidden="true">
+                            <!-- <div class="modal fade" id="addIndustryModal" tabindex="-1" aria-labelledby="addIndustryModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -142,7 +114,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- End of Modal -->
                         </div>
                     </div>

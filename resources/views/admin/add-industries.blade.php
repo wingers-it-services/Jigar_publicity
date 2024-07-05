@@ -18,9 +18,9 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <form class="needs-validation" action="{{ route('addUserByadmin') }}" method="POST" enctype="multipart/form-data" novalidate>
+                <form class="needs-validation" action="{{ route('addIndustry') }}" method="POST" enctype="multipart/form-data" novalidate>
                     @csrf
-
+                    
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">User Account Details</h4>
@@ -53,7 +53,7 @@
                                         <div class="form-group col-12">
                                             <br>
                                             <label>Address</label>
-                                            <textarea class="form-control" name="address" required></textarea>
+                                            <textarea class="form-control" name="industry_address" required></textarea>
                                             <div class="invalid-feedback">
                                                 Please enter an address.
                                             </div>
@@ -90,7 +90,7 @@
                                         <div class="form-group">
                                             <br>
                                             <label>Contact Number</label>
-                                            <input class="form-control" name="contact_no" type="text" required>
+                                            <input class="form-control" name="industry_contact_no" type="text" required>
                                             <div class="invalid-feedback">
                                                 Please enter a contact number.
                                             </div>
@@ -100,7 +100,7 @@
                                         <div class="form-group">
                                             <br>
                                             <label>Email</label>
-                                            <input type="email" class="form-control" name="email" required>
+                                            <input type="email" class="form-control" name="industry_email" required>
                                             <div class="invalid-feedback">
                                                 Please enter a valid email.
                                             </div>
@@ -183,7 +183,7 @@
                     <div class="card">
                         <div class="modal-content">
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-light" onclick="addIndustryField()">Add Contacts</button>
+                                <button type="button" class="btn btn-light" onclick="addIndustryField()">Add Contacts</button>&nbsp; 
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         </div>
@@ -270,7 +270,7 @@
                         <div class="col-lg-4 mt-3">
                             <div class="form-group">
                                 <label>Mobile</label>
-                                <input class="form-control" name="contact_no[]" type="text" required>
+                                <input class="form-control" name="mobile[]" type="text" required>
                                 <div class="invalid-feedback">
                                     Please enter the mobile number.
                                 </div>
