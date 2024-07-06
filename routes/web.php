@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 
 use App\Http\Controllers\IndustryController;
+use App\Http\Controllers\UserEnquiryController;
 use Illuminate\Support\Facades\Route;
 
 /* This code snippet defines a GET route in Laravel that maps to the root URL ("/"). When a user
@@ -48,6 +49,9 @@ Route::get('/user-enquiry-read', function () {
 Route::get('/user-enquiry', function () {
     return view('user.user-enquiry');
 });
+
+Route::post('/send-user-enquiry', [UserEnquiryController::class, 'addEnquiry'])->name('addUserEnquiry');
+
 
 
 Route::get('/user-advertisement', function () {

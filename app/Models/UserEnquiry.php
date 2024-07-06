@@ -9,35 +9,36 @@ use Ramsey\Uuid\Uuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Throwable;
 
-class GymEnquiry extends Model
+class UserEnquiry extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'title',
-        'description',
+        'subject',
+        'inquiry',
         'status',
-        'image',
-        'gym_id'
+        'user_id',
     ];
 
-    public function addGymEnquiry(array $gymEnquiryArray, $imagePath, $gymId)
-    {
-        try {
-            $this->create([
-                'title' => $gymEnquiryArray['title'],
-                'description' => $gymEnquiryArray['description'],
-                'image' => $imagePath,
-                'status' => EnquiryStatusEnum::PENDING,
-                'gym_id' => $gymId
-            ]);
-        } catch (Throwable $e) {
-            Log::error('[GymEnquiry][addGymEnquiry] Error while updating coupon detail: ' . $e->getMessage());
-        }
+    public function addEnquiry(array $validatedData)
+{
+    try {
+        return $this->create([
+            'subject'     => $validatedData['subject'],
+            'inquiry'     => $validatedData['inquiry'],
+            'status'      => $validatedData['status'],
+            'user_id'     => $validatedData['user_id'],
+            'attachment'  => $validatedData['attachments']
+        ]);
+    } catch (Throwable $e) {
+        Log::error('[UserEnquiry][addEnquiry] Error adding Enquiry detail: ' . $e->getMessage());
+        throw $e;  // Re-throw the exception after logging it
     }
+}
+
 
     public function updateEnquiryStatus(array $validatedData, $uuid)
     {
-        $gymEnquiry = GymEnquiry::where('uuid', $uuid)->first();
+        $gymEnquiry = UserEnquiry::where('uuid', $uuid)->first();
         try {
             $gymEnquiry->update([
                 "status" =>  $validatedData['status']
@@ -46,11 +47,6 @@ class GymEnquiry extends Model
         } catch (Throwable $e) {
             Log::error('[GymCoupon][updateCoupon] Error while updating coupon detail: ' . $e->getMessage());
         }
-    }
-
-    public function gym()
-    {
-        return $this->belongsTo(Gym::class, 'gym_id');
     }
 
     protected static function boot()
