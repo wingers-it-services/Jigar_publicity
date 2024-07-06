@@ -186,11 +186,12 @@
                                 <div class="row">
                                     <!-- Column for Image -->
                                     <div class="col-xl-12 col-lg-12 col-md-12 col-xxl-12 mb-3">
-                                        <div class="image-container">
+                                        <div class="image-container text-center">
                                             <img id="industryImage" class="img-fluid rounded" src="" alt="">
                                         </div>
                                     </div>
 
+                                    <!-- Column for Industry Name and Basic Info -->
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">
                                         <div class="product-detail-content">
                                             <div class="new-arrival-content mt-md-0 mt-3 pr">
@@ -214,9 +215,6 @@
                                         </div>
                                     </div>
 
-
-
-
                                     <!-- Column for Contact Details -->
                                     <div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">
                                         <div class="product-detail-content">
@@ -233,6 +231,7 @@
                         </div>
                     </div>
                 </div>
+
 
             </div>
         </div>
@@ -347,58 +346,60 @@
             });
         });
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const detailsContainer = document.getElementById('industryDetailsContainer');
-            const industryNameElement = document.getElementById('industryName');
-            const industryEmailElement = document.getElementById('industryEmail');
-            const industryPhoneElement = document.getElementById('industryPhone');
-            const industryAddressElement = document.getElementById('industryAddress');
-            const industryAreaElement = document.getElementById('industryArea');
-            const industryCategoryElement = document.getElementById('industryCategory');
-            const industryProductElement = document.getElementById('industryProduct');
-            const industryByProductElement = document.getElementById('industryByProduct');
-            const industryRawMaterialElement = document.getElementById('industryRawMaterial');
-            const industryContactNameElement = document.getElementById('industryContactName');
-            const industryContactPhoneElement = document.getElementById('industryContactPhone');
-            const industryContactEmailElement = document.getElementById('industryContactEmail');
-            const industryImageElement = document.getElementById('industryImage');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const detailsContainer = document.getElementById('industryDetailsContainer');
+    const industryNameElement = document.getElementById('industryName');
+    const industryEmailElement = document.getElementById('industryEmail');
+    const industryPhoneElement = document.getElementById('industryPhone');
+    const industryAddressElement = document.getElementById('industryAddress');
+    const industryAreaElement = document.getElementById('industryArea');
+    const industryCategoryElement = document.getElementById('industryCategory');
+    const industryProductElement = document.getElementById('industryProduct');
+    const industryByProductElement = document.getElementById('industryByProduct');
+    const industryRawMaterialElement = document.getElementById('industryRawMaterial');
+    const industryContactNameElement = document.getElementById('industryContactName');
+    const industryContactPhoneElement = document.getElementById('industryContactPhone');
+    const industryContactEmailElement = document.getElementById('industryContactEmail');
+    const industryImageElement = document.getElementById('industryImage');
 
-            document.querySelectorAll('.clickable-row').forEach(row => {
-                row.addEventListener('click', function() {
-                    const industryName = this.dataset.industry_name;
-                    const email = this.dataset.email;
-                    const phone = this.dataset.phone;
-                    const address = this.dataset.address;
-                    const area = this.dataset.area;
-                    const category = this.dataset.category;
-                    const product = this.dataset.product;
-                    const byProduct = this.dataset.by_product;
-                    const rawMaterial = this.dataset.raw_material;
-                    const contactName = this.dataset.contact_name;
-                    const contactPhone = this.dataset.contact_phone;
-                    const contactEmail = this.dataset.contact_email;
-                    const image = this.dataset.image;
+    document.querySelector('tbody').addEventListener('click', function(event) {
+        const row = event.target.closest('.clickable-row');
+        if (row) {
+            const industryName = row.dataset.industry_name;
+            const email = row.dataset.email;
+            const phone = row.dataset.phone;
+            const address = row.dataset.address;
+            const area = row.dataset.area;
+            const category = row.dataset.category;
+            const product = row.dataset.product;
+            const byProduct = row.dataset.by_product;
+            const rawMaterial = row.dataset.raw_material;
+            const contactName = row.dataset.contact_name;
+            const contactPhone = row.dataset.contact_phone;
+            const contactEmail = row.dataset.contact_email;
+            const image = row.dataset.image;
 
-                    industryNameElement.textContent = industryName;
-                    industryEmailElement.textContent = email;
-                    industryPhoneElement.textContent = phone;
-                    industryAddressElement.textContent = address;
-                    industryAreaElement.textContent = area;
-                    industryCategoryElement.textContent = category;
-                    industryProductElement.textContent = product;
-                    industryByProductElement.textContent = byProduct;
-                    industryRawMaterialElement.textContent = rawMaterial;
-                    industryContactNameElement.textContent = contactName;
-                    industryContactPhoneElement.textContent = contactPhone;
-                    industryContactEmailElement.textContent = contactEmail;
-                    industryImageElement.src = image;
+            industryNameElement.textContent = industryName;
+            industryEmailElement.textContent = email;
+            industryPhoneElement.textContent = phone;
+            industryAddressElement.textContent = address;
+            industryAreaElement.textContent = area;
+            industryCategoryElement.textContent = category;
+            industryProductElement.textContent = product;
+            industryByProductElement.textContent = byProduct;
+            industryRawMaterialElement.textContent = rawMaterial;
+            industryContactNameElement.textContent = contactName;
+            industryContactPhoneElement.textContent = contactPhone;
+            industryContactEmailElement.textContent = contactEmail;
+            industryImageElement.src = image;
 
-                    detailsContainer.style.display = 'block';
-                });
-            });
-        });
-    </script>
+            detailsContainer.style.display = 'block';
+        }
+    });
+});
+
+</script>
 
 
 @endsection

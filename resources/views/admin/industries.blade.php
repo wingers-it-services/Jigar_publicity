@@ -132,7 +132,7 @@
                                     </div>
 
                                     <div id="industryFields">
-                                        <!-- Container for dynamically added fields 
+                                        <!-- Container for dynamically added fields
                                     </div>
 
                                     <div class="modal-dialog modal-lg">
@@ -168,8 +168,8 @@
                                                                 @foreach($industryDetails as $industry)
                                                                 <tr>
                                                                     <td>{{$industry->industry_name}}</td>
-                                                                    <td>{{$industry->category->category_name}}</td>
-                                                                    <td>{{$industry->area->area_name}}</td>
+                                                                    <td>{{$industry->category ? $industry->category->category_name : 'N/A'}}</td>
+                                                                    <td>{{$industry->area ? $industry->area->area_name : 'N/A'}}</td>
                                                                     <td class="text-end">
                                                                         <span>
                                                                             <a href="javascript:void()" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="Edit">

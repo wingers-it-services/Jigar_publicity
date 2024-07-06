@@ -100,7 +100,6 @@ class AdminUserController extends Controller
                 $imagePath = 'user_images/' . $filename;
                 $userPhoto->move(public_path('user_images/'), $filename);
             }
-            // dd($imagePath);
             $this->user->addUser($validateData, $imagePath);
 
             return back()->with('status', 'success')->with('message', 'User Added Successfully');
@@ -201,22 +200,7 @@ class AdminUserController extends Controller
 
     public function userLoginHistory(Request $request)
     {
-        //     $agent = new Agent();
-        // $dt = Carbon::now();
 
-        // $device_name = '';
-        // if ($agent->isDesktop()) {
-        //     $device_name = 'desktop';
-        // } elseif ($agent->isTablet()) {
-        //     $device_name = 'tablet';
-        // } elseif ($agent->isMobile()) {
-        //     $device_name = 'mobile';
-        // }
-
-
-
-
-        //     dd(['device_name' => $device_name, 'tgl' => $dt->toDateString()]);
         $users = $this->user->all();
         return view('admin.login-history', compact('users'));
     }
