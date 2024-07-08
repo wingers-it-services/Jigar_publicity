@@ -133,7 +133,6 @@ class AdminUserController extends Controller
      */
     public function updateUser(Request $request)
     {
-        // dd($request->all());
         try {
             $validatedData = $request->validate([
                 "uuid" => 'required',

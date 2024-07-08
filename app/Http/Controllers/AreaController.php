@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Area;
+use App\Models\IndustryDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -10,11 +11,14 @@ class AreaController extends Controller
 {
 
     private $areas;
+    private $industries;
 
     public function __construct(
-        Area $areas
+        Area $areas,
+        IndustryDetail $industries
     ) {
         $this->areas = $areas;
+        $this->industries = $industries;
     }
 
     public function areaList()
@@ -35,7 +39,18 @@ class AreaController extends Controller
     public function deleteIndustriesArea($uuid)
     {
         $industriesArea = $this->areas->where('uuid', $uuid)->firstOrFail();
-        $industriesArea->delete();
+
+         // Store the ID before deletion
+         $industryAreaId = $industriesArea->id;
+
+         // Delete the category
+         $industriesArea->delete();
+ 
+         // Fetch and delete all industries associated with this category
+         $industries = $this->industries->where('area_id', $industryAreaId)->get();
+         foreach ($industries as $industry) {
+             $industry->delete();
+         }
 
         return redirect()->route('areaList')->with('success', 'Gym deleted successfully!');
     }

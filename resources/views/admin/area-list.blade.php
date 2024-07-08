@@ -95,7 +95,7 @@
                                                             <i class="fa fa-pencil color-muted"></i>
                                                         </a>
 
-                                                        <a href="/admin/delete-area/{{ $area->uuid }}" data-bs-toggle="tooltip" data-placement="top" title="Close">
+                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ $area->uuid }}')" data-bs-toggle="tooltip" data-placement="top" title="Close">
                                                             <i class="fas fa-times color-danger"></i>
                                                         </a>
                                                     </span>
@@ -129,5 +129,11 @@
             });
         });
     });
+
+    function confirmDelete(uuid) {
+        if (confirm('Are you sure you want to delete this area it will delete the related industries deleted?')) {
+            window.location.href = '/admin/delete-area/' + uuid;
+        }
+    }
 </script>
 @endsection
