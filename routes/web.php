@@ -52,6 +52,7 @@ Route::get('/user-enquiry', function () {
 
 Route::post('/send-user-enquiry', [UserEnquiryController::class, 'addEnquiry'])->name('addUserEnquiry');
 
+Route::post('/fetch-industry-details-by-id/{uuid}', [UserController::class, 'fetchIndustryDetailsById'])->name('fetch-industry-details-by-id');
 
 
 Route::get('/user-advertisement', function () {

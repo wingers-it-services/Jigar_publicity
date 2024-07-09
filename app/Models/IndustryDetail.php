@@ -39,12 +39,12 @@ class IndustryDetail extends Model
     {
         return $this->belongsTo(IndustriesCategorie::class, 'category_id');
     }
-    
+
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');
     }
-    
+
 
     public function addIndustryDetail(array $addindustry, $imagePath)
     {
@@ -69,5 +69,9 @@ class IndustryDetail extends Model
         }
     }
 
+    public function contacts()
+    {
+        return $this->hasMany(ContactDetail::class, 'industry_id','id'); // Make sure 'industry_id' is the correct foreign key
+    }
 
 }

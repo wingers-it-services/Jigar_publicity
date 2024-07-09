@@ -40,4 +40,9 @@ class ContactDetail extends Model
             $model->uuid = Uuid::uuid4()->toString();
         });
     }
+
+    public function industry()
+    {
+        return $this->belongsTo(IndustryDetail::class, 'industry_id', 'id');
+    }
 }
