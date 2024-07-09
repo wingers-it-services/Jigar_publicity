@@ -75,8 +75,8 @@
                                         @foreach ($industries as $industry)
                                             <tr onclick="fetchIndustryDetailsByUuid('{{ $industry->uuid }}')">
                                                 <td>{{ $industry->industry_name }}</td>
-                                                <td>{{ $industry->category_id }}</td>
-                                                <td>{{ $industry->area_id }}</td>
+                                                <td>{{ $industry->category->category_name }}</td>
+                                                <td>{{ $industry->area->area_name }}</td>
                                                 <td>
                                                     <div class="d-flex">
                                                         @if (!empty($industry->advertisment_image))
