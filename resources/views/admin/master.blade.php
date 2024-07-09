@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="csrf-token" content="ZY4pR8wIEdrTLWxVivLo4lvqoE0UPbxm6RtBU20w">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="DexignZone">
     <meta name="robots" content="">
     <meta name="keywords" content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
@@ -896,7 +897,7 @@
                     <li>
                         <a href="/admin/area" class="ai-icon" aria-expanded="false">
                             <i class="fa fa-folder" aria-hidden="true"></i>
-                            <span class="nav-text">Areas</span>
+                            <span class="nav-text">Industrial Areas</span>
                         </a>
                     </li>
 

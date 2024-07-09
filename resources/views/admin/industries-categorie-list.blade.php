@@ -71,7 +71,6 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Categories</th>
-                                                <th scope="col">No of Books</th>
                                                 <th scope="col" class="text-end">Action</th>
                                             </tr>
                                         </thead>
@@ -79,14 +78,13 @@
                                             @foreach ($industriesCategorie as $subscription)
                                             <tr>
                                                 <td>{{ $subscription->category_name }}</td>
-                                                <td>0</td>
                                                 <td class="text-end">
                                                     <span>
                                                         <a href="javascript:void(0);" class="me-4 edit-category-btn" data-bs-toggle="modal" data-bs-target="#editCategory" data-uuid="{{ $subscription->uuid }}" data-category_name="{{ $subscription->category_name }}" title="Edit">
                                                             <i class="fa fa-pencil color-muted"></i>
                                                         </a>
 
-                                                        <a href="/admin/delete-category/{{ $subscription->uuid }}" data-bs-toggle="tooltip" data-placement="top" title="Close">
+                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ $subscription->uuid }}')" data-bs-toggle="tooltip" data-placement="top" title="Close">
                                                             <i class="fas fa-times color-danger"></i>
                                                         </a>
                                                     </span>
@@ -119,5 +117,11 @@
             });
         });
     });
+
+    function confirmDelete(uuid) {
+        if (confirm('Are you sure you want to delete this category it will delete the related industries deleted?')) {
+            window.location.href = '/admin/delete-category/' + uuid;
+        }
+    }
 </script>
 @endsection

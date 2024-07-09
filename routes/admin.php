@@ -63,9 +63,12 @@ Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'de
 /** Book related routes like create,show,list update */
 
 Route::get('/add-industries', [IndustryController::class, 'viewAddIndustries'])->name('viewAddIndustries');
- 
 Route::get('/industries', [IndustryController::class, 'industries'])->name('industries');
 Route::post('/add-industry', [IndustryController::class, 'addIndustry'])->name('addIndustry');
+Route::get('/delete-industries/{id}', [IndustryController::class, 'deleteIndustries'])->name('deleteIndustries');
+Route::get('/update-industries/{uuid}', [IndustryController::class, 'viewUpdateIndustries'])->name('viewUpdateIndustries');
+Route::post('/update-industry/{uuid}', [IndustryController::class, 'updateIndustry'])->name('updateIndustry');
+Route::post('/delete-contacts/{id}',  [IndustryController::class, 'deleteContacts'])->name('delete-contacts');
 
 Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
 Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');

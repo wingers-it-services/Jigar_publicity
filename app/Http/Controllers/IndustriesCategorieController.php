@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Gym;
 use App\Models\GymSubscription;
 use App\Models\IndustriesCategorie;
+use App\Models\IndustryDetail;
 use App\Services\GymService;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,11 +16,14 @@ class IndustriesCategorieController extends Controller
 {
 
     private $industriesCategorie;
+    private $industries;
 
     public function __construct(
-        IndustriesCategorie $industriesCategorie
+        IndustriesCategorie $industriesCategorie,
+        IndustryDetail $industries
     ) {
         $this->industriesCategorie = $industriesCategorie;
+        $this->industries = $industries;
     }
 
     public function industriesCategorieList()
@@ -46,7 +50,7 @@ class IndustriesCategorieController extends Controller
             ]);
             $uuid = $request->uuid;
             $this->industriesCategorie->updateCategory($validatedData, $uuid);
-    
+
             return redirect()->back()->with('status', 'success')->with('message', 'Category updated successfully.');
         } catch (\Exception $e) {
             Log::error('[IndustriesCategorieController][updateCategory] Error updating category. Request=' . $request . ', Exception=' . $e->getMessage());
@@ -54,39 +58,23 @@ class IndustriesCategorieController extends Controller
         }
     }
 
-
-
     public function deleteIndustriesCategorie($uuid)
     {
+        // Retrieve the category first
         $industriesCategorie = $this->industriesCategorie->where('uuid', $uuid)->firstOrFail();
+
+        // Store the ID before deletion
+        $industryCategoryId = $industriesCategorie->id;
+
+        // Delete the category
         $industriesCategorie->delete();
+
+        // Fetch and delete all industries associated with this category
+        $industries = $this->industries->where('category_id', $industryCategoryId)->get();
+        foreach ($industries as $industry) {
+            $industry->delete();
+        }
+
         return redirect()->route('industriesCategorieList')->with('success', 'Gym deleted successfully!');
     }
-
-
-    // public function addTermsAndConditions(Request $request)
-    // {
-    //     try {
-    //         Validator::make($request->all(), []);
-    //         $data = $request->all();
-    //         $this->gym->addTandC($data);
-    //         return back()->with('status', 'success')->with('message', 'Gym terms and conditions added Succesfully');
-    //     } catch (\Exception $e) {
-    //         Log::error('[GymController][addTermsAndConditions]Error adding : ' . 'Request=' . $e->getMessage());
-    //         return back()->with('status', 'error')->with('message', 'T&C Not Added ');
-    //     }
-    // }
-
-    // public function addGymSocialLink(Request $request)
-    // {
-    //     try {
-    //         Validator::make($request->all(), []);
-    //         $data = $request->all();
-    //         $this->gym->addSocialLink($data);
-    //         return back()->with('status', 'success')->with('message', 'Gym terms and conditions added Succesfully');
-    //     } catch (\Exception $e) {
-    //         Log::error('[GymController][addGymSocialLink]Error adding : ' . 'Request=' . $e->getMessage());
-    //         return back()->with('status', 'error')->with('message', 'T&C Not Added ');
-    //     }
-    // }
 }

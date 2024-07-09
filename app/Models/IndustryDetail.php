@@ -4,17 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
+use Throwable;
 
 class IndustryDetail extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
         'advertisment_image',
         'category_id',
         'area_id',
         'industry_name',
         'contact_no',
+        'industry_type',
         'address',
         'email',
         'product',
@@ -30,9 +35,9 @@ class IndustryDetail extends Model
         });
     }
 
-    public function units()
+    public function contacts()
     {
-        return $this->hasMany(UnitDetail::class);
+        return $this->hasMany(ContactDetail::class, 'industry_id');
     }
 
     public function category()
@@ -56,6 +61,7 @@ class IndustryDetail extends Model
                 'area_id' => $addindustry['area_id'],
                 'industry_name' => $addindustry['industry_name'],
                 'contact_no' => $addindustry['contact_no'],
+                'industry_type' => $addindustry['industry_type'],
                 'address' => $addindustry['address'],
                 'email' => $addindustry['email'],
                 'product' => $addindustry['product'],
@@ -67,11 +73,6 @@ class IndustryDetail extends Model
             Log::error('[IndustryDetail][addIndustryDetail] Error creating industry: ' . $e->getMessage());
             throw $e; // Re-throw the exception to see the full stack trace
         }
-    }
-
-    public function contacts()
-    {
-        return $this->hasMany(ContactDetail::class, 'industry_id','id'); // Make sure 'industry_id' is the correct foreign key
     }
 
 }
