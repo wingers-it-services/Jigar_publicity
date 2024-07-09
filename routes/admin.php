@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminSubscriptionController;
 use App\Http\Controllers\AdminUserController;
+use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\IndustriesCategorieController;
 use App\Http\Controllers\IndustryController;
@@ -119,3 +120,7 @@ Route::get('/check-category-id', [IndustryController::class, 'checkCategoryId'])
 Route::fallback(function () {
     return view('admin.page-error-404');
 });
+
+Route::get('/advertisment', [AdvertismentController::class, 'viewAdvertisment'])->name('viewAdvertisment');
+Route::post('/advertisment', [AdvertismentController::class, 'addAdvertisment'])->name('addAdvertisment');
+Route::get('/delete-advertisment/{id}', [AdvertismentController::class, 'deleteAdvertisment'])->name('deleteAdvertisment');

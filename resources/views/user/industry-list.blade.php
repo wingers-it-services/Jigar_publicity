@@ -17,34 +17,29 @@
         <!-- row -->
         <div class="container-fluid">
             <div class="row">
-                <div class="card-header d-sm-flex d-block pb-0 border-0">
-                    <div class="me-auto pe-3">
-                        <h4 class="text-black fs-20">Book Details</h4>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-5">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
                                         <!-- Tab panes -->
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                                 aria-labelledby="home-tab" tabindex="0">
                                                 <img class="img-fluid rounded"
-                                                    src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                                    src="{{asset($advertisments->advertisment_image)}}"
                                                     alt="">
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-5">
+                                    <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
                                         <!-- Tab panes -->
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                                 aria-labelledby="home-tab" tabindex="0">
                                                 <img class="img-fluid rounded"
-                                                    src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                                    src="{{asset($advertisments->advertisment_image)}}"
                                                     alt="">
                                             </div>
                                         </div>
@@ -108,7 +103,7 @@
                                         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
                                             aria-labelledby="home-tab" tabindex="0">
                                             <img class="img-fluid rounded"
-                                                src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                                src="{{asset($advertisments->advertisment_image)}}"
                                                 alt="">
                                         </div>
                                     </div>

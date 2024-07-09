@@ -929,7 +929,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/admin/add-advertisment">
+                        <a href="/admin/advertisment">
                             <i class="fa-solid fa-rectangle-ad"></i>
                             <span class="nav-text">Advertisement</span>
                         </a>

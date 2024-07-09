@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisment;
 use App\Traits\SessionTrait;
 use Illuminate\Http\Request;
 use App\Models\IndustryDetail;
@@ -14,13 +15,16 @@ class UserController extends Controller
     use SessionTrait;
     protected $industrydetail;
     protected $contactDetail;
+    protected $advertisment;
 
     public function __construct(
         IndustryDetail $industrydetail,
-        ContactDetail $contactDetail
+        ContactDetail $contactDetail,
+        Advertisment  $advertisment
     ) {
         $this->industrydetail = $industrydetail;
         $this->contactDetail  = $contactDetail;
+        $this->advertisment   = $advertisment;
     }
 
     public function industryList(Request $request)
@@ -28,8 +32,8 @@ class UserController extends Controller
         $status = null;
         $message = null;
         $industries = $this->industrydetail->with('contacts')->get();
-
-        return view('user.industry-list', compact('status', 'message', 'industries'));
+        $advertisments = $this->advertisment->first();
+        return view('user.industry-list', compact('status', 'message', 'industries','advertisments'));
     }
 
     public function fetchIndustryDetailsById(Request $request, $uuid)
