@@ -922,12 +922,12 @@
                         </ul>
                     </li>
 
-                    <li>
+                    <!-- <li>
                         <a href="/admin/admin-enquiry">
                             <i class="fa fa-phone" aria-hidden="true"></i>
                             <span class="nav-text">Enquiry</span>
                         </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="/admin/advertisment">
                             <i class="fa-solid fa-rectangle-ad"></i>
