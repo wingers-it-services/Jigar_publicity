@@ -27,6 +27,7 @@
                             <div class="compose-content">
                                 <form class="needs-validation" action="{{ route('addUserEnquiry') }}" method="POST" enctype="multipart/form-data" novalidate>
                                     @csrf
+                                    <input type="hidden" name="user_id" id="editUserId">
                                     <div class="form-group">
                                         <input type="text" class="form-control bg-transparent" placeholder="Subject:" name="subject" required>
                                     </div>
@@ -35,7 +36,6 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="hidden" name="status" value="pending">
-                                        {{-- <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> --}}
                                     </div>
                                     <h5 class="mb-4"><i class="fa fa-paperclip"></i> Attachment</h5>
                                     <div class="form-group">
