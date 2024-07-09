@@ -74,7 +74,7 @@ class IndustryController extends Controller
         try {
 
             $validatedData = $request->validate([
-                'advertisment_image' => 'required',
+                'advertisment_image' => 'nullable',
                 'category_id' => 'required',
                 'area_id' => 'required',
                 'industry_name' => 'required',
