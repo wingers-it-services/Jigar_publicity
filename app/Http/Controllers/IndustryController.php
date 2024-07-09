@@ -175,18 +175,25 @@ class IndustryController extends Controller
                 );
             }
             // Redirect with success message
-            return redirect()->back()->with('status', 'success')->with('message', 'Industry updated successfully.');
+            return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
         } catch (\Exception $th) {
             Log::error("[IndustryController][updateIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
 
-    public function deleteContacts($id)
+    public function deleteContacts(Request $request, $id)
     {
-        $this->contactDetail->findOrFail($id)->delete();
+        try {
+            $deleteContact = $this->contactDetail->findOrFail($id);
+            $deleteContact->delete();
+    
+            return response()->json(['success' => 'Contact deleted successfully']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to delete contact'], 500);
+        }
     }
-
+    
     public function deleteIndustries($id)
     {
         $deleteIndustry = $this->industryDetail->where('id', $id)->firstOrFail();

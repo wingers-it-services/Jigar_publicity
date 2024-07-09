@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Throwable;
 
 class IndustryDetail extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
         'advertisment_image',
         'category_id',
@@ -71,43 +74,5 @@ class IndustryDetail extends Model
             throw $e; // Re-throw the exception to see the full stack trace
         }
     }
-
-    public function contacts()
-    {
-        return $this->hasMany(ContactDetail::class, 'industry_id','id'); // Make sure 'industry_id' is the correct foreign key
-    }
-
-    // public function updateIndustryDetails(array $validatedData,$uuid,$imagePath)
-    // {
-    //     $industryDetail = IndustryDetail::where('uuid', $uuid)->first();
-    //     if (!$industryDetail) {
-    //         return redirect()->back()->with('error', 'user not found');
-    //     }
-    //     try {
-    //         $industryDetail->update([
-    //             "category_id"           => $validatedData['category_id'],
-    //             "area_id"          => $validatedData['area_id'],
-    //             "industry_name"          => $validatedData['industry_name'],
-    //             "contact_no"         => $validatedData['contact_no'],
-    //             "industry_type"        => $validatedData['industry_type'],
-    //             "address"   => $validatedData['address'],
-    //             "email"=> $validatedData['email'],
-    //             "product"   => $validatedData['product'],
-    //             "by_product"=> $validatedData['by_product'],
-    //             "raw_material"   => $validatedData['raw_material']
-    //         ]);
-
-    //          // Update the image path if provided
-    //          if ($imagePath) {
-    //             $industryDetail->advertisment_image = $imagePath;
-    //         }
-
-    //         return $industryDetail->save();
-
-    //     } catch (Throwable $e) {
-    //         Log::error('[IndustryDetail][updateIndustryDetails] Error while updating user detail: ' . $e->getMessage());
-    //     }
-    // }
-
 
 }

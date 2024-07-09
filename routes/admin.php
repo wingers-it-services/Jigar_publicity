@@ -68,7 +68,7 @@ Route::post('/add-industry', [IndustryController::class, 'addIndustry'])->name('
 Route::get('/delete-industries/{id}', [IndustryController::class, 'deleteIndustries'])->name('deleteIndustries');
 Route::get('/update-industries/{uuid}', [IndustryController::class, 'viewUpdateIndustries'])->name('viewUpdateIndustries');
 Route::post('/update-industry/{uuid}', [IndustryController::class, 'updateIndustry'])->name('updateIndustry');
-Route::delete('/delete-contacts/{id}',  [IndustryController::class, 'deleteContacts'])->name('delete-contacts');
+Route::post('/delete-contacts/{id}',  [IndustryController::class, 'deleteContacts'])->name('delete-contacts');
 
 Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
 Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');

@@ -71,7 +71,6 @@
                                         <thead>
                                             <tr>
                                                 <th scope="col">Categories</th>
-                                                <th scope="col">No of Books</th>
                                                 <th scope="col" class="text-end">Action</th>
                                             </tr>
                                         </thead>
@@ -79,7 +78,6 @@
                                             @foreach ($industriesCategorie as $subscription)
                                             <tr>
                                                 <td>{{ $subscription->category_name }}</td>
-                                                <td>0</td>
                                                 <td class="text-end">
                                                     <span>
                                                         <a href="javascript:void(0);" class="me-4 edit-category-btn" data-bs-toggle="modal" data-bs-target="#editCategory" data-uuid="{{ $subscription->uuid }}" data-category_name="{{ $subscription->category_name }}" title="Edit">

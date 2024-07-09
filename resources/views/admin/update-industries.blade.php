@@ -349,31 +349,33 @@
     }
 
     $(document).ready(function() {
-        $(".card").on("click", ".btn-sm", function() {
-            var rowId = $(this).data('row-id');
-
-            if (rowId) {
-                // Make an AJAX request to delete the row from the database
-                $.ajax({
-                    url: "admin/delete-contacts/" + rowId,
-                    type: 'DELETE',
-                    data: {
-                        _token: "{{ csrf_token() }}",
-                    },
-                    success: function(response) {
-                        // Remove the row from the UI if the deletion was successful
-                        $(this).closest('.card').remove();
-                    },
-                    error: function(error) {
-                        console.log(error);
-                        // Handle the error, display a message, etc.
-                    }
-                });
-            } else {
-                // If no row ID is available, simply remove the row from the UI
-                $(this).closest('.card').remove();
-            }
-        });
+    $(".card").on("click", ".btn-sm", function() {
+        var button = $(this);
+        var rowId = button.data('row-id');
+        if (rowId) {
+            // Make an AJAX request to delete the row from the database
+            $.ajax({
+                url: "/admin/delete-contacts/" + rowId,
+                type: 'POST',
+                data: {
+                    _token: "{{ csrf_token() }}",
+                },
+                success: function(response) {
+                    // Remove the row from the UI if the deletion was successful
+                    button.closest('.card').remove();
+                    // Swal.fire('Deleted!', 'Contact has been deleted.', 'success');
+                },
+                error: function(error) {
+                    console.log(error);
+                    Swal.fire('Error!', 'Failed to delete contact.', 'error');
+                }
+            });
+        } else {
+            // If no row ID is available, simply remove the row from the UI
+            button.closest('.card').remove();
+        }
     });
+});
+
 </script>
 @endsection

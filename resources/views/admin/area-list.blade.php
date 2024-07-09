@@ -79,7 +79,6 @@
 
                                             <tr>
                                                 <th scope="col">Area</th>
-                                                <th scope="col">No of Books</th>
                                                 <th scope="col" class="text-end">Action</th>
                                             </tr>
                                         </thead>
@@ -87,7 +86,6 @@
                                             @foreach ($areas as $area)
                                             <tr>
                                                 <td>{{ $area->area_name }}</td>
-                                                <td>0</td>
                                                 </td>
                                                 <td class="text-end">
                                                     <span>
