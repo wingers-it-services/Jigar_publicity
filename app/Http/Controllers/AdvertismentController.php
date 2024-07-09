@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminAdvertisment;
+use App\Models\Advertisment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -10,7 +10,7 @@ class AdvertismentController extends Controller
 {
     protected $advertisment;
 
-    public function __construct(AdminAdvertisment $advertisment)
+    public function __construct(Advertisment $advertisment)
     {
         $this->advertisment = $advertisment;
     }
@@ -19,36 +19,33 @@ class AdvertismentController extends Controller
     {
         $status = null;
         $message = null;
-        $advertisments = $this->advertisment->all(); 
+        $advertisments = $this->advertisment->all();
 
-        return view('admin.advertisment', compact('status', 'message', 'advertisments'));
+        return view('admin.add-advertisment', compact('status', 'message', 'advertisments'));
     }
 
     public function addAdvertisment(Request $request)
     {
-        // dd($request->all());
+
 
         try {
             $validatedData = $request->validate([
-                "name" => 'required',
-                "from" => 'required',
-                "to" => 'required',
-                "image" => 'required',
-                "description" => 'required',
-                "users" => 'required',
-                "status" => 'required',
+                "advertisment_image" => 'required',
             ]);
 
             $imagePath = null;
-            if ($request->hasFile('image')) {
-                $subscriptionImage = $request->file('image');
+            if ($request->hasFile('advertisment_image')) {
+                $subscriptionImage = $request->file('advertisment_image');
                 $filename = time() . '_' . $subscriptionImage->getClientOriginalName();
-                $imagePath = 'adminAdversit_images/' . $filename;
-                $subscriptionImage->move(public_path('adminAdversit_images/'), $filename);
-            } else {
+                $imagePath = 'adversit_images/' . $filename;
+                $subscriptionImage->move(public_path('adversit_images/'), $filename);
+            }
+             else {
                 log::error("[AdvertismentController][addAdvertisment] error imagefile is null");
             }
-            $this->advertisment->addAdminAdvertisment($validatedData, $imagePath);
+            $this->advertisment->create([
+                'advertisment_image' => $imagePath
+            ]);
 
             return redirect()->back()->with('success', 'Advertisment Added successfully.');
         } catch (\Throwable $th) {
@@ -57,20 +54,10 @@ class AdvertismentController extends Controller
         }
     }
 
-    public function viewAdminAdvertisment(Request $request, $uuid)
+    public function deleteAdvertisment($id)
     {
-        $status = null;
-        $message = null;
-        $advertisments = $this->advertisment->where('uuid', $uuid)->first();
-        $status = $advertisments->status;
-
-        return view('admin.viewAdvertisment', compact('status', 'message','advertisments'));
-    }
-
-    public function deleteAdvertisment($uuid)
-    {
-        $advertisment = $this->advertisment->where('uuid', $uuid)->firstOrFail();
+        $advertisment = $this->advertisment->where('id', $id)->firstOrFail();
         $advertisment->delete();
-        return redirect()->route('viewAdvertisment')->with('success', 'Advertisment deleted successfully!');
+        return redirect()->back()->with('success', 'Advertisment deleted successfully!');
     }
 }

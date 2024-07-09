@@ -2,138 +2,133 @@
 @section('title', 'Dashboard')
 @section('content')
 
-<!--**********************************
-    Content body start
-***********************************-->
-<!-- Bootstrap CSS -->
-{{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
-<!-- jQuery and Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--**********************************
+                            Content body start
+                        ***********************************-->
+    <!-- Bootstrap CSS -->
+    {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-<div class="content-body">
-    <!-- row -->
-    <div class="container-fluid">
-        <div class="row">
-            <!-- <div class="card-header d-sm-flex d-block pb-0 border-0">
-                <div class="me-auto pe-3">
-                    <h4 class="text-black fs-20">Advertisement</h4>
-                </div>
-            </div> -->
-
-
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title"><i class="fas fa-ad"></i>Advertisements</h4>
-                    </div>
-                    <div class="card-body">
-                        <!-- Nav tabs -->
-                        <div class="default-tab">
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+            <div class="row">
+                <!-- <div class="card-header d-sm-flex d-block pb-0 border-0">
+                                        <div class="me-auto pe-3">
+                                            <h4 class="text-black fs-20">Advertisement</h4>
+                                        </div>
+                                    </div> -->
 
 
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="profile" role="tabpanel">
-                                    <div class="pt-4">
-                                        <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
-                                            <div class="card">
-                                                <!-- <div class="col-md-12 text-end">
-                                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addIndustryModal">Add  Advertistment</button>
-                                                </div> -->
-                                                <div class="card-body">
-                                                    <div class="table-responsive recentOrderTable">
-                                                        <table id="example3" class="table verticle-middle table-responsive-md">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col"> Image</th>
-                                                                    <th scope="col"> Industry Name</th>
-                                                                    <th scope="col">Category</th>
-                                                                    <th scope="col">Area</th>
-                                                                    <th scope="col" class="text-end">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td> <img class="img-fluid rounded " src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" style="width:50px;" alt=""></td>
-                                                                    <td>Zydus</td>
-                                                                    <td>Pharma</td>
-                                                                    <td>Bharuch</td>
-                                                                    <td class="text-end">
-                                                                        <span>
-                                                                            <a href="javascript:void()" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="View">
-                                                                                <i class="fa fa-eye color-muted"></i>
-                                                                            </a>
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"><i class="fas fa-ad"></i>Advertisements</h4>
+                        </div>
+                        <div class="card-body">
+                            <!-- Nav tabs -->
+                            <div class="default-tab">
 
-                                                                            <a href="" data-bs-toggle="tooltip" data-placement="top" title="Close">
-                                                                                <i class="fas fa-times color-danger"></i>
-                                                                            </a>
-                                                                        </span>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                                        <div class="pt-4">
+                                            <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
+                                                <div class="card">
+                                                    <div class="col-md-12 text-end">
+                                                        <button type="button" class="btn btn-primary mb-2"
+                                                            data-bs-toggle="modal" data-bs-target="#addIndustryModal">Add
+                                                            Advertistment</button>
+                                                    </div>
+                                                    <div class="card-body">
+                                                        <div class="table-responsive recentOrderTable">
+                                                            <table id="example3"
+                                                                class="table verticle-middle table-responsive-md">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col"> Image</th>
+                                                                        <th scope="col" class="text-end">Action</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    @foreach ($advertisments as $advertisment)
+                                                                        <tr>
+                                                                            <td> <img class="img-fluid rounded "
+                                                                                    src="{{ asset($advertisment->advertisment_image) }}"
+                                                                                    style="width:300px; height:160px"
+                                                                                    alt=""></td>
+                                                                            <td class="text-end">
+                                                                                <span>
+                                                                                    <a href="/admin/delete-advertisment/{{$advertisment->id}}"
+                                                                                        data-bs-toggle="tooltip"
+                                                                                        data-placement="top" title="Close">
+                                                                                        <i
+                                                                                            class="fas fa-times color-danger"></i>
+                                                                                    </a>
+                                                                                </span>
+                                                                            </td>
+                                                                        </tr>
+                                                                </tbody>
+                                                                @endforeach
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-
-                            </div>
-                            <!-- Modal -->
-                            <!-- <div class="modal fade" id="addIndustryModal" tabindex="-1" aria-labelledby="addIndustryModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="addIndustryModalLabel">Add Advertisement</h5>
-                                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="form-group">
-                                                <label for="industryName">Book  Name</label>
-                                                <input type="text" class="form-control" id="bookName" name="name" required>
+                                <!-- Modal -->
+                                <div class="modal fade" id="addIndustryModal" tabindex="-1"
+                                    aria-labelledby="addIndustryModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="addIndustryModalLabel">Add Advertisement</h5>
+                                                <button type="button" class="close" data-bs-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
                                             </div>
-                                                <div class="form-group">
-                                                    <label for="industryName">Industry Name</label>
-                                                    <input type="text" class="form-control" id="industryName" name="name" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="industryCategory">Category</label>
-                                                    <input type="text" class="form-control" id="industryCategory" name="category" required>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="industryImage">Image</label>
-                                                    <input type="file" class="form-control" id="industryImage" name="image" required>
-                                                </div>
-                                                <button type="submit" class="btn btn-primary">Save</button>
-
+                                            <div class="modal-body">
+                                                <form class="needs-validation" action="{{ route('addAdvertisment') }}"
+                                                    method="POST" enctype="multipart/form-data" novalidate>
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label for="industryImage">Image</label>
+                                                        <input type="file" class="form-control" id="industryImage"
+                                                            accept="image/*" name="advertisment_image" required>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary">Save</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div> -->
-                            <!-- End of Modal -->
+                                <!-- End of Modal -->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--**********************************
-    Content body end
-***********************************-->
+    <!--**********************************
+                            Content body end
+                        ***********************************-->
 
 @endsection
 
 @section('scripts')
-<!-- Data Table JS -->
-<script src="{{ asset('path/to/datatables.min.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        $('#example3').DataTable();
-    });
-</script>
+    <!-- Data Table JS -->
+    <script src="{{ asset('path/to/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example3').DataTable();
+        });
+    </script>
 @endsection
