@@ -26,7 +26,10 @@ class AdvertismentController extends Controller
 
     public function addAdvertisment(Request $request)
     {
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9efcfc5 (changes in master)
 
         try {
             $validatedData = $request->validate([
