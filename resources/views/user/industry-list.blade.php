@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                    Content body start
-                                                    ***********************************-->
+                                    Content body start
+                                    ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -47,7 +47,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-10">
+                <div class="col-xl-10">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Industry List</h4>
@@ -89,6 +89,8 @@
                         </div>
                     </div>
                 </div>
+
+
                 <div class="col-lg-2">
                     <div class="card">
                         <div class="card-body">
@@ -108,82 +110,80 @@
                     </div>
                 </div>
             </div>
-            </div>
-            </div>
 
-            <div id="industryDetailsContainer" class="row" style="display: none;">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Industry Details</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <!-- Column for Industry Name and Basic Info -->
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
-                                    <div class="product-detail-content">
-                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <h4 id="industryName"></h4>
-                                            <p class="text-black">Email: <span class="item" id="industryEmail"></span>
-                                            </p>
-                                            <p class="text-black">Phone number: <span class="item"
-                                                    id="industryPhone"></span></p>
-                                            <p class="text-black">Address: <span class="item" id="industryAddress"></span>
-                                            </p>
-                                            <p class="text-black">Area: <span class="item" id="industryArea"></span>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Column for Product Details -->
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
-                                    <div class="product-detail-content">
-                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <p class="text-black">Types of Industry: <span class="item"
-                                                    id="industryCategory"></span></p>
-                                            <p class="text-black">Product: <span class="item" id="industryProduct"></span>
-                                            </p>
-                                            <p class="text-black">By Product: <span class="item"
-                                                    id="industryByProduct"></span></p>
-                                            <p class="text-black">Raw Material: <span class="item"
-                                                    id="industryRawMaterial"></span></p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr>
+                <div id="industryDetailsContainer" class="row" style="display: none;">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Industry Details</h4>
                             </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <!-- Column for Industry Name and Basic Info -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <h4 id="industryName"></h4>
+                                                <p class="text-black">Email: <span class="item" id="industryEmail"></span>
+                                                </p>
+                                                <p class="text-black">Phone number: <span class="item"
+                                                        id="industryPhone"></span></p>
+                                                <p class="text-black">Address: <span class="item"
+                                                        id="industryAddress"></span></p>
+                                                <p class="text-black">Area: <span class="item" id="industryArea"></span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Column for Product Details -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <p class="text-black">Types of Industry: <span class="item"
+                                                        id="industryCategory"></span></p>
+                                                <p class="text-black">Product: <span class="item"
+                                                        id="industryProduct"></span></p>
+                                                <p class="text-black">By Product: <span class="item"
+                                                        id="industryByProduct"></span></p>
+                                                <p class="text-black">Raw Material: <span class="item"
+                                                        id="industryRawMaterial"></span></p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
 
 
-                            <!-- Column for Contact Details -->
-                            <div class="contact-details-container">
+                                <!-- Column for Contact Details -->
+                                <div class="contact-details-container">
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Bootstrap Modal -->
-            <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="industryModalLabel">Advertisement</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Image Container -->
-                            <img class="img-fluid rounded" id="modalIndustryImage" src="" alt="">
+                <!-- Bootstrap Modal -->
+                <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="industryModalLabel">Advertisement</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Image Container -->
+                                <img class="img-fluid rounded" id="modalIndustryImage" src="" alt="">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <style>
