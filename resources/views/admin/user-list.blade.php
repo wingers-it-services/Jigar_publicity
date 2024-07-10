@@ -132,7 +132,8 @@
                                 <table id="example3" class="display min-w850">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Name</th>
+                                            <th>Image</th>
+                                            <th>Name</th>
                                             <th>Company Name</th>
                                             <th>Contact Number</th>
                                             <th>Company Address</th>
