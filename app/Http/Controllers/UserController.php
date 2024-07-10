@@ -32,8 +32,10 @@ class UserController extends Controller
         $status = null;
         $message = null;
         $industries = $this->industrydetail->with('contacts')->get();
-        $advertisments = $this->advertisment->first();
-        return view('user.industry-list', compact('status', 'message', 'industries','advertisments'));
+        $imageType = $this->advertisment->image_type;
+        $horImages = $this->advertisment->where('image_type','horizontal')->get();
+        $verImages = $this->advertisment->where('image_type','vertical')->get();
+        return view('user.industry-list', compact('status', 'message', 'industries','horImages','verImages'));
     }
 
     public function fetchIndustryDetailsById(Request $request, $uuid)
