@@ -54,10 +54,8 @@ Route::post('/send-user-enquiry', [UserEnquiryController::class, 'addEnquiry'])-
 
 Route::post('/fetch-industry-details-by-id/{uuid}', [UserController::class, 'fetchIndustryDetailsById'])->name('fetch-industry-details-by-id');
 
+Route::get('/user-advertisement', [UserController::class, 'viewAdvertisment'])->name('viewUserAdvertisment');
 
-Route::get('/user-advertisement', function () {
-    return view('user.user-advertisement');
-});
 
 
 Route::post('/admin-login', [AdminController::class, 'adminLogin'])->name('user-login');

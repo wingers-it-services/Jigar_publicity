@@ -62,4 +62,13 @@ class UserController extends Controller
             ]);
         }
     }
+
+    public function viewAdvertisment()
+    {
+        $status = null;
+        $message = null;
+        $advertisments = $this->industrydetail->whereNotNull('advertisment_image')->get();
+        return view('user.user-advertisement', compact('status', 'message', 'advertisments'));
+    }
+
 }

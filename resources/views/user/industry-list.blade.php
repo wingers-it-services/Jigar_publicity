@@ -27,7 +27,7 @@
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                                 @if ($advertisments && $advertisments->advertisment_image)
-                                                    <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
+                                                    <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt=""">
                                                 @else
                                                     <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
                                                 @endif
