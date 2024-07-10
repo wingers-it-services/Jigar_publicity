@@ -24,34 +24,13 @@ class AdminUserController extends Controller
     use SessionTrait;
     protected $user;
     protected $userPurchase;
-    protected $gym;
-    protected $userService;
-    protected $workout;
-    protected $diet;
-    protected $userBodyMeasurement;
-    protected $bmi;
-    protected $gymStaff;
 
     public function __construct(
         User $user,
         UserPurchase $userPurchase,
-        Gym $gym,
-        UserService $userService,
-        UserWorkout $workout,
-        UserDiet $diet,
-        UserBodyMeasurement $userBodyMeasurement,
-        userBmi $bmi,
-        GymStaff $gymStaff
     ) {
         $this->user = $user;
         $this->userPurchase = $userPurchase;
-        $this->gym = $gym;
-        $this->userService = $userService;
-        $this->workout = $workout;
-        $this->diet = $diet;
-        $this->userBodyMeasurement = $userBodyMeasurement;
-        $this->bmi = $bmi;
-        $this->gymStaff = $gymStaff;
     }
 
     /**
