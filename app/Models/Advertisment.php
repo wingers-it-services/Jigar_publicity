@@ -12,5 +12,6 @@ class Advertisment extends Model
 {
     protected $fillable = [
         'advertisment_image',
+        'image_type'
     ];
 }
