@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                    Content body start
-                    ***********************************-->
+                                Content body start
+                                ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -25,24 +25,30 @@
                                     <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
                                         <!-- Tab panes -->
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                                aria-labelledby="home-tab" tabindex="0">
-                                                <img class="img-fluid rounded"
-                                                    src="{{asset($advertisments->advertisment_image)}}"
-                                                    alt="">
+                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                                @if ($advertisments && $advertisments->advertisment_image)
+                                                    <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
+                                                @else
+                                                    <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                                @endif
                                             </div>
                                         </div>
+
+
                                     </div>
                                     <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
                                         <!-- Tab panes -->
                                         <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                                aria-labelledby="home-tab" tabindex="0">
-                                                <img class="img-fluid rounded"
-                                                    src="{{asset($advertisments->advertisment_image)}}"
-                                                    alt="">
+                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                                @if ($advertisments && $advertisments->advertisment_image)
+                                                    <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
+                                                @else
+                                                    <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                                @endif
                                             </div>
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -100,13 +106,16 @@
                                 <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-5">
                                     <!-- Tab panes -->
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                            aria-labelledby="home-tab" tabindex="0">
-                                            <img class="img-fluid rounded"
-                                                src="{{asset($advertisments->advertisment_image)}}"
-                                                alt="">
+                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                            @if ($advertisments && $advertisments->advertisment_image)
+                                                <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
+                                            @else
+                                                <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                            @endif
                                         </div>
                                     </div>
+
+
                                 </div>
                             </div>
                         </div>
@@ -143,7 +152,7 @@
                                         <div class="product-detail-content">
                                             <div class="new-arrival-content mt-md-0 mt-3 pr">
                                                 <p class="text-black">Types of Industry: <span class="item"
-                                                    id="industryCategory"></span></p>
+                                                        id="industryCategory"></span></p>
                                                 <p class="text-black">Product: <span class="item"
                                                         id="industryProduct"></span></p>
                                                 <p class="text-black">By Product: <span class="item"
@@ -158,10 +167,10 @@
                                 </div>
 
 
-                                    <!-- Column for Contact Details -->
-                                    <div class="contact-details-container">
+                                <!-- Column for Contact Details -->
+                                <div class="contact-details-container">
 
-                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -242,21 +251,25 @@
 
 
                         // Add contact details from the response
-                        contactData=' ';
-                        contactData= contactData + '<div class="row">';
+                        contactData = ' ';
+                        contactData = contactData + '<div class="row">';
 
                         response.contacts.forEach(contact => {
-                            contactData = contactData + '<div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">'+
-                                            '<div class="new-arrival-content mt-md-0 mt-3 pr">'+
-                                                '<p class="text-black">Contact Name: <span class="item">'+ contact.contact_name +'</span></p>'+
-                                                '<p class="text-black">Contact Phone: <span class="item">'+ contact.mobile +'</span></p>'+
-                                                '<p class="text-black">Contact Email: <span class="item">Test email</span></p>'+
-                                            '</div>'+
-                                        '</div>';
+                            contactData = contactData +
+                                '<div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">' +
+                                '<div class="new-arrival-content mt-md-0 mt-3 pr">' +
+                                '<p class="text-black">Contact Name: <span class="item">' + contact
+                                .contact_name + '</span></p>' +
+                                '<p class="text-black">Contact Phone: <span class="item">' + contact
+                                .mobile + '</span></p>' +
+                                '<p class="text-black">Contact Email: <span class="item">Test email</span></p>' +
+                                '</div>' +
+                                '</div>';
                         });
                         // Populate contact details
-                        contactData= contactData + '</div>';
-                        const contactDetailsContainer = document.querySelector('.contact-details-container').innerHTML = contactData; // Clear existing content
+                        contactData = contactData + '</div>';
+                        const contactDetailsContainer = document.querySelector('.contact-details-container')
+                            .innerHTML = contactData; // Clear existing content
 
 
                         // Show the industry details container
