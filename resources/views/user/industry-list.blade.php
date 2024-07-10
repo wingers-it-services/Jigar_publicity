@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                Content body start
-                                ***********************************-->
+                                                    Content body start
+                                                    ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -22,41 +22,32 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                                @if ($advertisments && $advertisments->advertisment_image)
-                                                    <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
-                                                @else
-                                                    <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-                                                @endif
+                                    @foreach ($horImages as $horImage)
+                                        <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
+                                            <!-- Tab panes -->
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                                    aria-labelledby="home-tab" tabindex="0">
+                                                    @if ($horImage == null)
+                                                        <img class="img-fluid rounded"
+                                                            src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                                            alt="">
+                                                    @else
+                                                        <img class="img-fluid rounded"
+                                                            src="{{ asset($horImage->advertisment_image) }}"
+                                                            alt=""">
+                                                    @endif
+                                                </div>
                                             </div>
                                         </div>
-
-
-                                    </div>
-                                    <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                                @if ($advertisments && $advertisments->advertisment_image)
-                                                    <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
-                                                @else
-                                                    <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-                                                @endif
-                                            </div>
-                                        </div>
-
-
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-xl-10">
+                <div class="col-lg-10">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Industry List</h4>
@@ -98,103 +89,101 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-lg-2">
                     <div class="card">
                         <div class="card-body">
+                            @foreach ($verImages as $verImage)
+                                <div class="mb-12">
+                                    @if ($verImage == null)
+                                        <img class="img-fluid rounded"
+                                            src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                            alt="">
+                                    @else
+                                        <img class="img-fluid rounded" src="{{ asset($verImage->advertisment_image) }}"
+                                            alt="">
+                                    @endif
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            </div>
+
+            <div id="industryDetailsContainer" class="row" style="display: none;">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Industry Details</h4>
+                        </div>
+                        <div class="card-body">
                             <div class="row">
-                                <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-5">
-                                    <!-- Tab panes -->
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                            @if ($advertisments && $advertisments->advertisment_image)
-                                                <img class="img-fluid rounded" src="{{ asset($advertisments->advertisment_image) }}" alt="">
-                                            @else
-                                                <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-                                            @endif
+                                <!-- Column for Industry Name and Basic Info -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
+                                    <div class="product-detail-content">
+                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                            <h4 id="industryName"></h4>
+                                            <p class="text-black">Email: <span class="item" id="industryEmail"></span>
+                                            </p>
+                                            <p class="text-black">Phone number: <span class="item"
+                                                    id="industryPhone"></span></p>
+                                            <p class="text-black">Address: <span class="item" id="industryAddress"></span>
+                                            </p>
+                                            <p class="text-black">Area: <span class="item" id="industryArea"></span>
+                                            </p>
                                         </div>
                                     </div>
-
-
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div id="industryDetailsContainer" class="row" style="display: none;">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Industry Details</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <!-- Column for Industry Name and Basic Info -->
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
-                                        <div class="product-detail-content">
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <h4 id="industryName"></h4>
-                                                <p class="text-black">Email: <span class="item" id="industryEmail"></span>
-                                                </p>
-                                                <p class="text-black">Phone number: <span class="item"
-                                                        id="industryPhone"></span></p>
-                                                <p class="text-black">Address: <span class="item"
-                                                        id="industryAddress"></span></p>
-                                                <p class="text-black">Area: <span class="item" id="industryArea"></span>
-                                                </p>
-                                            </div>
+                                <!-- Column for Product Details -->
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
+                                    <div class="product-detail-content">
+                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                            <p class="text-black">Types of Industry: <span class="item"
+                                                    id="industryCategory"></span></p>
+                                            <p class="text-black">Product: <span class="item" id="industryProduct"></span>
+                                            </p>
+                                            <p class="text-black">By Product: <span class="item"
+                                                    id="industryByProduct"></span></p>
+                                            <p class="text-black">Raw Material: <span class="item"
+                                                    id="industryRawMaterial"></span></p>
+
                                         </div>
                                     </div>
-
-                                    <!-- Column for Product Details -->
-                                    <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
-                                        <div class="product-detail-content">
-                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                                <p class="text-black">Types of Industry: <span class="item"
-                                                        id="industryCategory"></span></p>
-                                                <p class="text-black">Product: <span class="item"
-                                                        id="industryProduct"></span></p>
-                                                <p class="text-black">By Product: <span class="item"
-                                                        id="industryByProduct"></span></p>
-                                                <p class="text-black">Raw Material: <span class="item"
-                                                        id="industryRawMaterial"></span></p>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
                                 </div>
-
-
-                                <!-- Column for Contact Details -->
-                                <div class="contact-details-container">
-
-                                </div>
+                                <hr>
                             </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Bootstrap Modal -->
-                <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="industryModalLabel">Advertisement</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Image Container -->
-                                <img class="img-fluid rounded" id="modalIndustryImage" src="" alt="">
+
+                            <!-- Column for Contact Details -->
+                            <div class="contact-details-container">
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Bootstrap Modal -->
+            <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="industryModalLabel">Advertisement</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- Image Container -->
+                            <img class="img-fluid rounded" id="modalIndustryImage" src="" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
 
     <style>

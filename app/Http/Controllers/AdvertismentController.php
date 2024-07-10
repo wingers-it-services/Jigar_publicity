@@ -29,34 +29,34 @@ class AdvertismentController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'advertisment_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'advertisment_image' => 'required|max:3602',
                 'image_type' => 'required|in:horizontal,vertical'
             ]);
-    
+
             if ($request->hasFile('advertisment_image')) {
                 $advertismentImage = $request->file('advertisment_image');
                 $imageType = $request->input('image_type');
-    
+
                 // Get image dimensions
                 list($width, $height) = getimagesize($advertismentImage);
-    
+
                 // Define your criteria for horizontal and vertical images
                 $isHorizontal = $width > $height;
                 $isVertical = $height > $width;
-    
+
                 if (($imageType == 'horizontal' && !$isHorizontal) || ($imageType == 'vertical' && !$isVertical)) {
                     return redirect()->back()->with('error', 'Image dimensions do not match the selected type.');
                 }
-    
+
                 $filename = time() . '_' . $advertismentImage->getClientOriginalName();
                 $imagePath = 'advertisement_images/' . $filename;
                 $advertismentImage->move(public_path('advertisement_images/'), $filename);
-    
+
                 Advertisment::create([
                     'advertisment_image' => $imagePath,
                     'image_type' => $imageType
                 ]);
-    
+
                 return redirect()->back()->with('success', 'Advertisement added successfully.');
             } else {
                 Log::error("[AdvertismentController][addAdvertisment] Error: Image file is null.");
