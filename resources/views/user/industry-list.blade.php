@@ -229,9 +229,9 @@
                         document.getElementById('industryEmail').textContent = response.industries.email;
                         document.getElementById('industryPhone').textContent = response.industries.contact_no;
                         document.getElementById('industryAddress').textContent = response.industries.address;
-                        document.getElementById('industryArea').textContent = response.industries.area_id;
-                        document.getElementById('industryCategory').textContent = response.industries
-                            .category_id;
+                        document.getElementById('industryArea').textContent = response.areas.area_name;
+                        document.getElementById('industryCategory').textContent = response.categorys
+                            .category_name;
                         document.getElementById('industryProduct').textContent = response.industries.product;
                         document.getElementById('industryByProduct').textContent = response.industries
                             .by_product;

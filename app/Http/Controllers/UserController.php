@@ -39,7 +39,7 @@ class UserController extends Controller
     public function fetchIndustryDetailsById(Request $request, $uuid)
     {
         try {
-            $industry = $this->industrydetail->where('uuid', $uuid)->with('contacts')->first();
+            $industry = $this->industrydetail->where('uuid', $uuid)->with('contacts','category','area')->first();
             if (!$industry) {
                 return response()->json([
                     'status' => 404,
@@ -51,7 +51,9 @@ class UserController extends Controller
                 'status'     => 200,
                 'message'    => 'Industry details fetched successfully',
                 'industries' => $industry,
-                'contacts'   => $industry->contacts
+                'contacts'   => $industry->contacts,
+                'categorys'  => $industry->category,
+                'areas'  => $industry->area,
             ]);
         } catch (Exception $e) {
             return response()->json([
