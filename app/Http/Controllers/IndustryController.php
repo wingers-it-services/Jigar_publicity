@@ -78,13 +78,15 @@ class IndustryController extends Controller
                 'category_id' => 'required',
                 'area_id' => 'required',
                 'industry_name' => 'required',
-                'contact_no' => 'required',
+                'contact_no' => 'nullable',
                 'address' => 'required',
-                'email' => 'required',
+                'email' => 'nullable',
                 'industry_type' => 'required',
                 'product' => 'nullable',
                 'by_product' => 'nullable',
                 'raw_material' => 'nullable',
+                'web_link' => 'nullable',
+                'office_address' => 'nullable'
 
             ]);
 
@@ -136,6 +138,7 @@ class IndustryController extends Controller
                 'product' => $request->input('product'),
                 'by_product' => $request->input('by_product'),
                 'raw_material' => $request->input('raw_material'),
+                'web_link' => $request->input('web_link'),
 
             ];
             // Handle image upload

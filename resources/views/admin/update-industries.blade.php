@@ -53,7 +53,7 @@
                                             <br>
                                             <label class="col-lg-4 col-form-label" for="validationCustom01">Address</label>
                                             <div class="col-lg-8">
-                                                <textarea class="form-control" name="address" required>{{$industryDetails->address}}</textarea>
+                                                <textarea class="form-control" name="address" required>{{$industryDetails->office_address}}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please enter an address.
                                                 </div>
@@ -66,6 +66,15 @@
                                 </div>
                                 <br>
                                 <div class="row">
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <label>Office Address</label>
+                                            <textarea class="form-control" name="office_address" type="text" required>{{ $industryDetails->office_address }}</textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a office address.
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-lg-6 mb-2">
                                         <label>Industrial Category</label>
                                         <select id="category_id" name="category_id" class="form-control" required {{ $categorys->isEmpty() ? 'disabled' : '' }}>
@@ -100,7 +109,6 @@
                                     </div>
                                     <div class="col-lg-6 mb-2">
                                         <div class="form-group">
-                                            <br>
                                             <label>Contact Number</label>
                                             <input class="form-control" name="contact_no" value="{{ $industryDetails->contact_no }}" type="text" required>
                                             <div class="invalid-feedback">
@@ -110,7 +118,6 @@
                                     </div>
                                     <div class="col-lg-6 mb-2">
                                         <div class="form-group">
-                                            <br>
                                             <label>Email</label>
                                             <input type="email" class="form-control" value="{{ $industryDetails->email }}" name="email" required>
                                             <div class="invalid-feedback">
@@ -118,23 +125,36 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-lg-3 col-form-label">Select Sector</label>
-                                        <div class="col-lg-9 d-flex align-items-center">
-                                            <div class="form-check me-3">
-                                                <input class="form-check-input" type="radio" name="industry_type" value="manufacturing" id="validationCustom12" {{ $industryDetails->industry_type == 'manufacturing' ? 'checked' : '' }} required>
-                                                <label class="form-check-label" for="validationCustom12">
-                                                    Manufacturing
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="industry_type" value="non-manufacturing" id="validationCustom13" {{ $industryDetails->industry_type == 'non-manufacturing' ? 'checked' : '' }} required>
-                                                <label class="form-check-label" for="validationCustom13">
-                                                    Non-Manufacturing
-                                                </label>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <label>Web Link</label>
+                                            <input type="text" class="form-control" name="web_link" value="{{ $industryDetails->web_link }}" required>
+                                            <div class="invalid-feedback">
+                                                Please enter a valid website.
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-form-label">Select Sector</label>
+                                            <br>
+                                            <div class="col-lg-9 d-flex align-items-center">
+                                                <div class="form-check me-3">
+                                                    <input class="form-check-input" type="radio" name="industry_type" value="manufacturing" id="validationCustom12" {{ $industryDetails->industry_type == 'manufacturing' ? 'checked' : '' }} required>
+                                                    <label class="form-check-label" for="validationCustom12">
+                                                        Manufacturing
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="industry_type" value="non-manufacturing" id="validationCustom13" {{ $industryDetails->industry_type == 'non-manufacturing' ? 'checked' : '' }} required>
+                                                    <label class="form-check-label" for="validationCustom13">
+                                                        Non-Manufacturing
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -349,33 +369,32 @@
     }
 
     $(document).ready(function() {
-    $(".card").on("click", ".btn-sm", function() {
-        var button = $(this);
-        var rowId = button.data('row-id');
-        if (rowId) {
-            // Make an AJAX request to delete the row from the database
-            $.ajax({
-                url: "/admin/delete-contacts/" + rowId,
-                type: 'POST',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                },
-                success: function(response) {
-                    // Remove the row from the UI if the deletion was successful
-                    button.closest('.card').remove();
-                    // Swal.fire('Deleted!', 'Contact has been deleted.', 'success');
-                },
-                error: function(error) {
-                    console.log(error);
-                    Swal.fire('Error!', 'Failed to delete contact.', 'error');
-                }
-            });
-        } else {
-            // If no row ID is available, simply remove the row from the UI
-            button.closest('.card').remove();
-        }
+        $(".card").on("click", ".btn-sm", function() {
+            var button = $(this);
+            var rowId = button.data('row-id');
+            if (rowId) {
+                // Make an AJAX request to delete the row from the database
+                $.ajax({
+                    url: "/admin/delete-contacts/" + rowId,
+                    type: 'POST',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                    },
+                    success: function(response) {
+                        // Remove the row from the UI if the deletion was successful
+                        button.closest('.card').remove();
+                        // Swal.fire('Deleted!', 'Contact has been deleted.', 'success');
+                    },
+                    error: function(error) {
+                        console.log(error);
+                        Swal.fire('Error!', 'Failed to delete contact.', 'error');
+                    }
+                });
+            } else {
+                // If no row ID is available, simply remove the row from the UI
+                button.closest('.card').remove();
+            }
+        });
     });
-});
-
 </script>
 @endsection
