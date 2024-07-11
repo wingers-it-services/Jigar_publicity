@@ -30,7 +30,7 @@
                                 <div class="row">
                                     <div class="col-xl-9">
                                         <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Industry Name
+                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Industry Name <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" id="validationCustom02" name="industry_name" required>
@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="mb-3 row">
                                             <br>
-                                            <label class="col-lg-4 col-form-label" for="validationCustom01">Address</label>
+                                            <label class="col-lg-4 col-form-label" for="validationCustom01">Industry Address <span class="text-danger">*</span></label>
                                             <div class="col-lg-8">
                                                 <textarea class="form-control" name="address" required></textarea>
                                                 <div class="invalid-feedback">
@@ -67,7 +67,16 @@
                                 <br>
                                 <div class="row">
                                     <div class="col-lg-6 mb-2">
-                                        <label>Industrial Category</label>
+                                        <div class="form-group">
+                                            <label>Office Address</label>
+                                            <textarea class="form-control" name="office_address" type="text" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter a office address.
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <label>Industrial Category <span class="text-danger">*</span></label>
                                         <select id="category_id" name="category_id" class="form-control" required>
                                             <option value="" disabled selected>Select Industrial Category</option>
                                             @foreach($categorys as $category)
@@ -78,7 +87,7 @@
                                     </div>
                                     <br>
                                     <div class="col-lg-6 mb-2">
-                                        <label>Industrial Area</label>
+                                        <label>Industrial Area <span class="text-danger">*</span></label>
                                         <select id="area_id" name="area_id" class="form-control" required>
                                             <option value="" disabled selected>Select Industrial Area</option>
                                             @foreach($areas as $area)
@@ -89,7 +98,6 @@
                                     </div>
                                     <div class="col-lg-6 mb-2">
                                         <div class="form-group">
-                                            <br>
                                             <label>Contact Number</label>
                                             <input class="form-control" name="contact_no" type="text" required>
                                             <div class="invalid-feedback">
@@ -99,7 +107,6 @@
                                     </div>
                                     <div class="col-lg-6 mb-2">
                                         <div class="form-group">
-                                            <br>
                                             <label>Email</label>
                                             <input type="email" class="form-control" name="email" required>
                                             <div class="invalid-feedback">
@@ -107,21 +114,32 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="mb-3 row">
-                                        <label class="col-lg-3 col-form-label">Select Sector</label>
-                                        <div class="col-lg-9 d-flex align-items-center">
-                                            <div class="form-check me-3">
-                                                <input class="form-check-input" type="radio" name="industry_type" value="manufacturing" id="validationCustom12" required>
-                                                <label class="form-check-label" for="validationCustom12">
-                                                    Manufacturing
-                                                </label>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <label>Web Link</label>
+                                            <input type="text" class="form-control" name="web_link" required>
+                                            <div class="invalid-feedback">
+                                                Please enter a valid website.
                                             </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="industry_type" value="non-manufacturing" id="validationCustom13" required>
-                                                <label class="form-check-label" for="validationCustom13">
-                                                    Non-Manufacturing
-                                                </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mb-2">
+                                        <div class="form-group">
+                                            <label class="col-lg-3 col-form-label">Select Sector <span class="text-danger">*</span></label>
+                                            <br>
+                                            <div class="col-lg-9 d-flex align-items-center">
+                                                <div class="form-check me-3">
+                                                    <input class="form-check-input" type="radio" name="industry_type" value="manufacturing" id="validationCustom12" required>
+                                                    <label class="form-check-label" for="validationCustom12">
+                                                        Manufacturing
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="radio" name="industry_type" value="non-manufacturing" id="validationCustom13" required>
+                                                    <label class="form-check-label" for="validationCustom13">
+                                                        Non-Manufacturing
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -140,7 +158,7 @@
                                 <div class="row">
                                     <div class="col-xl-9">
                                         <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Product Name
+                                            <label class="col-lg-4 col-form-label" for="validationCustom02">Product Name <span class="text-danger">*</span>
                                             </label>
                                             <div class="col-lg-8">
                                                 <input type="text" class="form-control" id="product" name="product" required>
@@ -259,7 +277,7 @@
                     <div class="row">
                         <div class="col-lg-4 mt-3">
                             <div class="form-group">
-                                <label>Contact Name</label>
+                                <label>Contact Name <span class="text-danger">*</span></label>
                                 <input class="form-control" name="contact_name[]" type="text" required>
                                 <div class="invalid-feedback">
                                     Please enter the contact name.

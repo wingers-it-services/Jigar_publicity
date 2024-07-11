@@ -24,7 +24,9 @@ class IndustryDetail extends Model
         'email',
         'product',
         'by_product',
-        'raw_material'
+        'raw_material',
+        'web_link',
+        'office_address'
     ];
 
     protected static function boot()
@@ -67,6 +69,8 @@ class IndustryDetail extends Model
                 'product' => $addindustry['product'],
                 'by_product' => $addindustry['by_product'],
                 'raw_material' => $addindustry['raw_material'],
+                'web_link' => $addindustry['web_link'],
+                'office_address' => $addindustry['office_address']
 
             ]);
         } catch (\Throwable $e) {
