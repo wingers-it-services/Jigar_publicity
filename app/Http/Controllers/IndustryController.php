@@ -139,6 +139,7 @@ class IndustryController extends Controller
                 'by_product' => $request->input('by_product'),
                 'raw_material' => $request->input('raw_material'),
                 'web_link' => $request->input('web_link'),
+                'office_address' => $request->input('office_address'),
 
             ];
             // Handle image upload
