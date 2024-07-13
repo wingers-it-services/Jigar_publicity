@@ -23,13 +23,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-5 ">
+                                <div class="col-xl-3 col-lg-6  col-md-6 col-xxl-3">
                                     <!-- Tab panes -->
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                            <img class="img-fluid rounded " loading="lazy" alt="image" src="{{ asset($users->image) }}" alt="">
+                                            <img class="img-fluid rounded " loading="lazy" alt="image" src="{{ asset($users->image) }}" alt="" style="width: 200px; height: 245px;">
                                         </div>
-
                                     </div>
                                 </div>
                                 <!--Tab slider End-->
@@ -82,8 +81,8 @@
                                                     <td>o</td>
                                                     <td>127.0.0.1:8001</td>
                                                     <td><span class="badge light badge-warning">InActive</span></td>
-                                                    
-                                                    
+
+
 
                                                     <td>2011/04/25</td>
                                                     <td>

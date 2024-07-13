@@ -53,7 +53,7 @@
                                             <br>
                                             <label class="col-lg-4 col-form-label" for="validationCustom01">Address</label>
                                             <div class="col-lg-8">
-                                                <textarea class="form-control" name="address" required>{{$industryDetails->office_address}}</textarea>
+                                                <textarea class="form-control" name="address" required>{{$industryDetails->address}}</textarea>
                                                 <div class="invalid-feedback">
                                                     Please enter an address.
                                                 </div>

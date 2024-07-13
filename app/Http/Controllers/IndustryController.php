@@ -5,13 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\ContactDetail;
 use App\Models\IndustriesCategorie;
-use App\Models\Industry_Detail;
 use App\Models\IndustryDetail;
 use App\Models\UserPurchase;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Throwable;
 
 class IndustryController extends Controller
 {
@@ -94,8 +91,8 @@ class IndustryController extends Controller
             if ($request->hasFile('advertisment_image')) {
                 $industryImage = $request->file('advertisment_image');
                 $filename = time() . '_' . $industryImage->getClientOriginalName();
-                $imagePath = 'advertisment_images/' . $filename;
-                $industryImage->move(public_path('advertisment_images/'), $filename);
+                $imagePath = 'industry_images/' . $filename;
+                $industryImage->move(public_path('industry_images/'), $filename);
             }
 
             // Call addProductDetail to create the product and get the product instance
@@ -146,8 +143,8 @@ class IndustryController extends Controller
             if ($request->hasFile('advertisment_image')) {
                 $industryImage = $request->file('advertisment_image');
                 $filename = time() . '_' . $industryImage->getClientOriginalName();
-                $imagePath = 'advertisment_images/' . $filename;
-                $industryImage->move(public_path('advertisment_images/'), $filename);
+                $imagePath = 'industry_images/' . $filename;
+                $industryImage->move(public_path('industry_images/'), $filename);
 
                 // Add the new image path to the industry data
                 $industryData['advertisment_image'] = $imagePath;

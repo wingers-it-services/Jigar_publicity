@@ -122,7 +122,8 @@ class AdminUserController extends Controller
                 "website" => 'required',
                 "company_name" => 'required',
                 "company_address" => 'required',
-                "no_of_device" => 'required'
+                "no_of_device" => 'required',
+                "password" => 'required'
             ]);
 
             $uuid = $request->uuid;
@@ -178,14 +179,12 @@ class AdminUserController extends Controller
 
     public function userLoginHistory(Request $request)
     {
-
         $users = $this->user->all();
         return view('admin.login-history', compact('users'));
     }
 
     public function userDetails(string $uuid)
     {
-
         $users = $this->user->where('uuid', $uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
         $userPurchases = $this->userPurchase->where('user_id', $uuid)->get();

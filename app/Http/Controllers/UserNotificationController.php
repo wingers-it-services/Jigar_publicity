@@ -32,8 +32,8 @@ class UserNotificationController extends Controller
             'name'  => $data['name'],
             'description'  => $data['description'],
         ]);
+
         return redirect()->back()->with('status','success')->with('message','User Notification Added Successfully');
-   
     }
 
     public function deleteNotification($uuid)
@@ -42,6 +42,4 @@ class UserNotificationController extends Controller
         $notification->delete();
         return redirect()->route('viewNotification')->with('success', 'Notification deleted successfully!');
     }
-       
-
 }

@@ -878,13 +878,20 @@
         <div class="deznav">
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
+                    <!-- <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
                             <i class="fa fa-pie-chart" aria-hidden="true"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                         <ul aria-expanded="false">
                             <li><a href="/admin/dashboard">AI Dashboard<span class="badge badge-xs badge-danger ms-3">New</span></a></li>
                         </ul>
+                    </li> -->
+
+                    <li>
+                        <a href="/admin/dashboard" class="ai-icon" aria-expanded="false">
+                            <i class="fa fa-pie-chart" aria-hidden="true"></i>
+                            <span class="nav-text">Dashboard</span>
+                        </a>
                     </li>
 
                     <li>
@@ -896,18 +903,20 @@
 
                     <li>
                         <a href="/admin/area" class="ai-icon" aria-expanded="false">
-                            <i class="fa fa-folder" aria-hidden="true"></i>
+                            <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
                             <span class="nav-text">Industrial Areas</span>
                         </a>
                     </li>
 
 
-                    <li><a href="/admin/industries" aria-expanded="false">
-                            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+
+                    <li>
+                        <a href="/admin/industries" aria-expanded="false">
+                            <i class="fa fa-industry" aria-hidden="true"></i>
                             <span class="nav-text">Industries</span>
                         </a>
-
                     </li>
+
 
 
                     <li><a class="has-arrow ai-icon" href="javascript:void(0)" aria-expanded="false">
