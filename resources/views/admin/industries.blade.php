@@ -18,7 +18,7 @@
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title">Industry Details</h4>
+                        <h4 class="card-title">Industry List</h4>
 
                         <div class="text-end">
                             <a href="/admin/add-industries"><button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Add Industries</button></a>

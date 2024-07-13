@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gym;
-use App\Models\GymSubscription;
 use App\Models\IndustriesCategorie;
 use App\Models\IndustryDetail;
-use App\Services\GymService;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class IndustriesCategorieController extends Controller
 {

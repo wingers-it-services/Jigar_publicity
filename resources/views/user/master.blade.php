@@ -621,18 +621,21 @@
         <div class="deznav">
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
-                    <li><a href="/user-advertisement" aria-expanded="false">
-                            <i class="fa fa-pie-chart" aria-hidden="true"></i>
-                            <span class="nav-text">Advertisement</span>
+                    <li>
+                        <a href="/user-advertisement" aria-expanded="false">
+                            <i class="fa fa-ad" aria-hidden="true"></i>
+                            <span class="nav-text">Advertisements</span>
                         </a>
                     </li>
 
-                    <li><a  href="/industry-list" aria-expanded="false">
-                            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+
+                    <li>
+                        <a href="/industry-list" aria-expanded="false">
+                            <i class="fa fa-list" aria-hidden="true"></i>
                             <span class="nav-text">Industry List</span>
                         </a>
-
                     </li>
+
 
                     {{-- <li>
                         <a href="">
@@ -644,8 +647,9 @@
 
                     <li>
                         <a href="/user-list">
-                            <i class="fa fa-bell" aria-hidden="true"></i>
-                            <span class="nav-text">User Login History</span></a>
+                            <i class="fa fa-history" aria-hidden="true"></i>
+                            <span class="nav-text">User Login History</span>
+                        </a>
                     </li>
 
 

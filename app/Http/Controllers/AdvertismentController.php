@@ -52,7 +52,7 @@ class AdvertismentController extends Controller
                 $imagePath = 'advertisement_images/' . $filename;
                 $advertismentImage->move(public_path('advertisement_images/'), $filename);
 
-                Advertisment::create([
+                $this->advertisment->create([
                     'advertisment_image' => $imagePath,
                     'image_type' => $imageType
                 ]);

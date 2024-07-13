@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Models\IndustryDetail;
 use App\Models\ContactDetail;
 use Exception;
-use Throwable;
 
 class UserController extends Controller
 {

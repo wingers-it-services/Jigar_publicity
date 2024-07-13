@@ -16,32 +16,24 @@
     <!-- row -->
     <div class="container-fluid">
         <div class="row">
-            <!-- <div class="card-header d-sm-flex d-block pb-0 border-0">
-                                        <div class="me-auto pe-3">
-                                            <h4 class="text-black fs-20">Advertisement</h4>
-                                        </div>
-                                    </div> -->
-
-
             <div class="col-xl-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"><i class="fas fa-ad"></i>Advertisements</h4>
+                        <h4 class="card-title"><i class="fas fa-ad"></i> Advertisements</h4>
+
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addIndustryModal">Add
+                                Advertistment</button>
+                        </div>
                     </div>
                     <div class="card-body">
                         <!-- Nav tabs -->
                         <div class="default-tab">
-
-
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="profile" role="tabpanel">
                                     <div class="pt-4">
                                         <div class="col-xl-12 col-lg-12 col-xxl-12 col-sm-12">
                                             <div class="card">
-                                                <div class="col-md-12 text-end">
-                                                    <button type="button" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#addIndustryModal">Add
-                                                        Advertistment</button>
-                                                </div>
                                                 <div class="card-body">
                                                     <div class="table-responsive recentOrderTable">
                                                         <table id="example3" class="table verticle-middle table-responsive-md">

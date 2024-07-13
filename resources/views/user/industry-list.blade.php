@@ -17,26 +17,24 @@
     <!-- row -->
     <div class="container-fluid">
         <div class="row">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                @foreach ($horImages as $horImage)
-                                <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
-                                    <!-- Tab panes -->
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-                                            @if ($horImage == null)
-                                            <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-                                            @else
-                                            <img class="img-fluid rounded" src="{{ asset($horImage->advertisment_image) }}" alt="">
-                                            @endif
-                                        </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach ($horImages as $horImage)
+                            <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
+                                <!-- Tab panes -->
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                                        @if ($horImage == null)
+                                        <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                                        @else
+                                        <img class="img-fluid rounded" src="{{ asset($horImage->advertisment_image) }}" alt="">
+                                        @endif
                                     </div>
                                 </div>
-                                @endforeach
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

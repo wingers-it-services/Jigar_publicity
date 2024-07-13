@@ -64,7 +64,7 @@
                         <div class="card">
                             <div class="card-header d-sm-flex d-block pb-0 border-0">
                                 <div class="me-auto pe-3">
-                                    <h4 class="text-black fs-20">Area List</h4>
+                                    <h4 class="text-black fs-20">Industrial Area List</h4>
                                 </div>
 
                                 <div class="dropdown mt-sm-0 mt-3">
