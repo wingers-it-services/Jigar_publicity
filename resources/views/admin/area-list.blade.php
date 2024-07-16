@@ -112,9 +112,7 @@
         </div>
     </div>
 </div>
-<!--************
-                                Content body end
-                            *************-->
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var editButtons = document.querySelectorAll('.edit-area-btn');
@@ -134,4 +132,5 @@
         }
     }
 </script>
+@include('CustomSweetAlert');
 @endsection

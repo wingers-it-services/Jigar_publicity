@@ -4,28 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
 use App\Models\Advertisment;
+use App\Models\UserLoginHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-class AdvertismentController extends Controller
+class UserLoginHistoryController extends Controller
 {
-    protected $advertisment;
+    protected $userLoginHistory;
 
-    public function __construct(Advertisment $advertisment)
+    public function __construct(UserLoginHistory $userLoginHistory)
     {
-        $this->advertisment = $advertisment;
+        $this->userLoginHistory = $userLoginHistory;
     }
 
-    public function viewAdvertisment()
+    public function loginHistory()
     {
-        $status = null;
-        $message = null;
-        $advertisments = $this->advertisment->all();
+        $userId = auth()->user()->id;
+        $userLoginHistorys = $this->userLoginHistory->where('user_id', $userId)->get();
 
-        return view('admin.add-advertisment', compact('status', 'message', 'advertisments'));
+        return view('user.user-login-history', compact('userLoginHistorys'));
     }
 
-    public function addAdvertisment(Request $request)
+    public function userLoginHistoryById(int $userId)
     {
         try {
             $validatedData = $request->validate([

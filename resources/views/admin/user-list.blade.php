@@ -244,4 +244,5 @@
         });
     });
 </script>
+@include('CustomSweetAlert');
 @endsection

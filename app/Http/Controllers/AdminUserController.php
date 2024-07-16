@@ -130,14 +130,15 @@ class AdminUserController extends Controller
             $updateUser = $this->user->updateUser($validatedData, $uuid);
 
             if ($updateUser) {
-                return redirect()->back()->with("status", "success")->with("message", "Subscription Upated Succesfully");
+                return redirect()->back()->with("status", "success")->with("message", "User UpDated Succesfully");
             } else {
 
                 return redirect()->back()->with('error', 'error while updating profile');
             }
         } catch (\Exception $th) {
             Log::error("[AdminUserController][updateUser] error " . $th->getMessage());
-            return redirect()->back()->with('error', $th->getMessage());
+            // return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', 'error while updating profile');
         }
     }
 
@@ -157,7 +158,8 @@ class AdminUserController extends Controller
     {
         $user = $this->user->where('uuid', $uuid)->firstOrFail();
         $user->delete();
-        return redirect()->back()->with('success', 'User deleted successfully!');
+        // return redirect()->back()->with('success', 'User deleted successfully!');
+        return redirect()->back()->with("status", "success")->with("message", "User deleted successfully!");
     }
 
 

@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <div class=" col-xl-12">
+            <div class=" col-xl-10">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Industry List</h4>
@@ -60,8 +60,8 @@
                                     @foreach ($industries as $industry)
                                     <tr onclick="fetchIndustryDetailsByUuid('{{ $industry->uuid }}')">
                                         <td>{{ $industry->industry_name }}</td>
-                                        <td>{{ $industry->category->category_name }}</td>
-                                        <td>{{ $industry->area->area_name }}</td>
+                                        <td>{{ $industry->category->category_name??'' }}</td>
+                                        <td>{{ $industry->area->area_name ?? '' }}</td>
                                         <td>
                                             <div class="d-flex">
                                                 @if (!empty($industry->advertisment_image))
@@ -81,21 +81,21 @@
             </div>
 
 
-            <!-- <div class="col-lg-2">
-                                            <div class="card">
-                                                <div class="card-body">
-                                                    @foreach ($verImages as $verImage)
-                                                    <div class="mb-12">
-                                                        @if ($verImage == null)
-                                                        <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
-                                                        @else
-                                                        <img class="img-fluid rounded" src="{{ asset($verImage->advertisment_image) }}" alt="">
-                                                        @endif
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-                                            </div>
-                                        </div> -->
+            <div class="col-lg-2">
+                <div class="card">
+                    <div class="card-body">
+                        @foreach ($verImages as $verImage)
+                        <div class="mb-12">
+                            @if ($verImage == null)
+                            <img class="img-fluid rounded" src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png" alt="">
+                            @else
+                            <img class="img-fluid rounded" src="{{ asset($verImage->advertisment_image) }}" alt="">
+                            @endif
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="industryDetailsContainer" class="row" style="display: none;">

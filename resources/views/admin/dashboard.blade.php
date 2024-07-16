@@ -293,7 +293,10 @@
 						</div>
 					</div>
 					<div class="card-body">
-						<div id="chartTimeline"></div>
+					<div style="position: absolute !important;bottom: 0;width: 100%;z-index: 3;mix-blend-mode: exclusion;">
+                        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.3.5/build/spline-viewer.js"></script>
+                        <spline-viewer url="https://prod.spline.design/AqtlWJlNbO-ZMkvz/scene.splinecode"></spline-viewer>
+                    </div>
 					</div>
 				</div>
 			</div>
