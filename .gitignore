@@ -18,6 +18,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-.env
 public/books_images
 public/industry_images
