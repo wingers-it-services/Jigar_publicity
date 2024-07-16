@@ -42,7 +42,7 @@
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <div class="mailclinet" id="mailclinet">
-                                                    <img id="selected_image" src="{{asset('images/logo.png')}}">
+                                                    <img id="selected_image" src="{{asset('images/logo.png')}}" class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
