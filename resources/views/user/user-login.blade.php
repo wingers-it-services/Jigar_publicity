@@ -63,7 +63,7 @@
                                             <label class="mb-1"><strong>Password</strong></label>
                                             <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
                                             <span class="show-pass eye" onclick="togglePasswordVisibility()">
-                                                <i class="fa fa-eye-slash"></i>
+                                                <i class="fa fa-eye-slash" id="togglePassword"></i>
                                             </span>
                                         </div>
                                         <div class="row d-flex justify-content-between mt-4 mb-2">

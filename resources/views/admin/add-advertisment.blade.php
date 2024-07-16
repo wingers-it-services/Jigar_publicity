@@ -111,7 +111,7 @@
                         ***********************************-->
 
 @endsection
-@include('CustomSweetAlert');
+@include('CustomSweetAlert')
 @section('scripts')
 <!-- Data Table JS -->
 <script src="{{ asset('path/to/datatables.min.js') }}"></script>

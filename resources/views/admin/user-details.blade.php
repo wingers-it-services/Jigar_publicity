@@ -66,33 +66,27 @@
                                         <table id="example3" class="display min-w850">
                                             <thead>
                                                 <tr>
-                                                    <th>Device</th>
-                                                    <th>Browser</th>
+                                                    <th>Device Type</th>
                                                     <th>IP Address</th>
-                                                    <th>Status</th>
+                                                    <th>IP Address</th>
+                                                    <th>City</th>
+                                                    <th>State</th>
+                                                    <th>country</th>
                                                     <th>Date</th>
-                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-
+                                                @foreach ($userLogins as $userLogin)
                                                 <tr>
-                                                    <td>o</td>
-                                                    <td>o</td>
-                                                    <td>127.0.0.1:8001</td>
-                                                    <td><span class="badge light badge-warning">InActive</span></td>
-
-
-
-                                                    <td>2011/04/25</td>
-                                                    <td>
-                                                        <div class="d-flex">
-                                                            <a href="#" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                                            <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                                        </div>
-                                                    </td>
+                                                    <td> {{ $userLogin->device_type}}</td>
+                                                    <td><a href="javascript:void(0);"><strong>{{ $userLogin->ip_address}}</strong></a></td>
+                                                    <td> {{ $userLogin->user_agent}}</td>
+                                                    <td> {{ $userLogin->city}}</td>
+                                                    <td>{{ $userLogin->region}}</td>
+                                                    <td> {{ $userLogin->country}}</td>
+                                                    <td> {{ $userLogin->created_at}}</td>
                                                 </tr>
-
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
