@@ -59,16 +59,16 @@ class AdminUserController extends Controller
     {
         try {
             $request->validate([
-                'image' => 'required',
-                'name' => 'required',
-                'email' => 'required',
-                'password' => 'required',
-                'gender' => 'required',
-                'phone' => 'required',
-                'website' => 'required',
-                'company_name' => 'required',
+                'image'           => 'required',
+                'name'            => 'required',
+                'email'           => 'required|unique:users,email',
+                'password'        => 'required',
+                'gender'          => 'required',
+                'phone'           => 'required',
+                'website'         => 'required',
+                'company_name'    => 'required',
                 'company_address' => 'required',
-                'no_of_device' => 'required'
+                'no_of_device'    => 'required'
             ]);
 
             $validateData = $request->all();
