@@ -2,35 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AdminUser;
 use App\Models\Gym;
-use App\Models\UserWorkout;
-use App\Models\UserDiet;
 use App\Models\User;
+use App\Models\UserLoginHistory;
 use App\Models\UserPurchase;
-use App\Models\UserBodyMeasurement;
-use App\Models\userBmi;
-use App\Models\GymStaff;
-use App\Services\UserService;
 use Illuminate\Http\Request;
 use App\Traits\SessionTrait;
-use Carbon\Carbon;
-use Jenssegers\Agent\Agent;
 use Illuminate\Support\Facades\Log;
-use Throwable;
 
 class AdminUserController extends Controller
 {
     use SessionTrait;
     protected $user;
     protected $userPurchase;
+    protected $userHistory;
 
     public function __construct(
         User $user,
         UserPurchase $userPurchase,
+        UserLoginHistory $userHistory
     ) {
         $this->user = $user;
         $this->userPurchase = $userPurchase;
+        $this->userHistory = $userHistory;
     }
 
     /**
@@ -190,8 +184,11 @@ class AdminUserController extends Controller
         $users = $this->user->where('uuid', $uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
         $userPurchases = $this->userPurchase->where('user_id', $uuid)->get();
+        $userId = $users->id;
+        $userLogins = $this->userHistory->where('user_id', $userId)->get();
 
-        return view('admin.user-details', compact('users', 'userDetails', 'userPurchases'));
+
+        return view('admin.user-details', compact('users', 'userDetails', 'userPurchases', 'userLogins'));
     }
 
 
