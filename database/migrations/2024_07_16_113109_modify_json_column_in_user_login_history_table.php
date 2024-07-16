@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('user_login_history', function (Blueprint $table) {
-            $table->text('json')->change();
+            $table->longText('json')->change();
         });
     }
 

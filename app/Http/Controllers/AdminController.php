@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gym;
+use App\Models\IndustryDetail;
 use App\Traits\SessionTrait;
 use Exception;
 use Illuminate\Http\Request;
@@ -15,10 +16,12 @@ class AdminController extends Controller
 {
     use SessionTrait;
     protected $user;
+    protected $industryDetail;
 
-    public function __construct(User $user)
+    public function __construct(User $user, IndustryDetail $industryDetail)
     {
         $this->user = $user;
+        $this->industryDetail = $industryDetail;
     }
     public function adminLogin(Request $request)
     {
@@ -47,6 +50,9 @@ class AdminController extends Controller
 
     public function dashboard(Request $request)
     {
-        return view('admin.dashboard');
+        $totalIndustries = $this->industryDetail->all()->count();
+        $totalUsers = $this->user->whereNot('is_admin', 1)->get()->count();
+
+        return view('admin.dashboard', compact('totalIndustries', 'totalUsers'));
     }
 }
