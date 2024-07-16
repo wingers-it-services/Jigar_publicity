@@ -93,7 +93,7 @@ class AdminUserController extends Controller
      */
     public function userList()
     {
-        $users = $this->user->all();
+        $users = $this->user->whereNot('is_admin', 1)->get();
         return view('admin.user-list', compact('users'));
     }
 
@@ -170,11 +170,11 @@ class AdminUserController extends Controller
     {
         $users = $this->userPurchase->all();
         $userPurchases = $this->userPurchase
-        ->join('users', 'user_purchases.user_id', '=', 'users.uuid')
-        ->join('books', 'user_purchases.book_id', '=', 'books.id')
-        ->select('user_purchases.*', 'users.name as user_name', 'books.book_name', 'books.book_price')
-        ->get();
-        return view('admin.user-payment', compact('users','userPurchases'));
+            ->join('users', 'user_purchases.user_id', '=', 'users.uuid')
+            ->join('books', 'user_purchases.book_id', '=', 'books.id')
+            ->select('user_purchases.*', 'users.name as user_name', 'books.book_name', 'books.book_price')
+            ->get();
+        return view('admin.user-payment', compact('users', 'userPurchases'));
     }
 
 
