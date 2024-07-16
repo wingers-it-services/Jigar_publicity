@@ -114,16 +114,16 @@ class AdminUserController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                "uuid" => 'required',
-                "name" => 'required',
-                "email" => 'required',
-                "phone" => 'required',
-                "gender" => 'required',
-                "website" => 'required',
-                "company_name" => 'required',
+                "uuid"            => 'required',
+                "name"            => 'required',
+                "email"           => 'required',
+                "phone"           => 'required',
+                "gender"          => 'required',
+                "website"         => 'required',
+                "company_name"    => 'required',
                 "company_address" => 'required',
-                "no_of_device" => 'required',
-                "password" => 'required'
+                "no_of_device"    => 'required',
+                "password"        => 'required'
             ]);
 
             $uuid = $request->uuid;
