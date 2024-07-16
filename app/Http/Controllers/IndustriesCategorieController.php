@@ -70,6 +70,6 @@ class IndustriesCategorieController extends Controller
             $industry->delete();
         }
 
-        return redirect()->route('industriesCategorieList')->with('success', 'Gym deleted successfully!');
+        return redirect()->route('industriesCategorieList')->with('success', 'Category deleted successfully!');
     }
 }

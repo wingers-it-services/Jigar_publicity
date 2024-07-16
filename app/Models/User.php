@@ -38,7 +38,7 @@ class User extends Authenticatable
             return $this->create([
                 'name'           => $validatedData['name'],
                 'email'          => $validatedData['email'],
-                'password'       => $validatedData['password'],
+                'password'       => Hash::make($validatedData['password']),
                 'gender'         => $validatedData['gender'],
                 'phone'          => $validatedData['phone'],
                 'website'        => $validatedData['website'],

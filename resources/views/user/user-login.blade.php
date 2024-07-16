@@ -42,19 +42,19 @@
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <div class="mailclinet" id="mailclinet">
-                                                    <img id="selected_image" src="{{asset('images/logo.png')}}" >
+                                                    <img id="selected_image" src="{{asset('images/logo.png')}}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"  role="progressbar">
+                                        <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" role="progressbar">
                                         </div>
                                     </div>
 
                                     <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">User account</h4>
-                                    {{-- <form class="form" id="log_in" method="POST" action=""> --}}
-                                        {{-- @csrf --}}
+                                    <form class="form" id="log_in" method="POST" action="/user-login">
+                                        @csrf
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
                                             <input type="email" class="form-control" name="email" placeholder="Email" required>
@@ -83,9 +83,11 @@
                                         <div class="text-center">
                                             <a href='/user-dashboard'><button type="submit" class="btn btn-primary btn-block">Sign Me In</button></a>
                                         </div>
-                                    {{-- </form> --}}
+                                    </form>
                                     <div class="new-account mt-3">
-                                        <a class="text-primary" href="/admin/login"><p>Admin Login</a></p>
+                                        <a class="text-primary" href="/admin/login">
+                                            <p>Admin Login
+                                        </a></p>
                                     </div>
                                 </div>
                             </div>

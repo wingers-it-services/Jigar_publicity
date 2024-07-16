@@ -7,6 +7,7 @@ use App\Models\ContactDetail;
 use App\Models\IndustriesCategorie;
 use App\Models\IndustryDetail;
 use App\Models\UserPurchase;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -110,9 +111,9 @@ class IndustryController extends Controller
             // Process product specification data
             $this->contactDetail->addContactData($contactDetails);
 
-
+            return back()->with('status', 'success')->with('message', 'Industries added Successfully');
             // Optionally, redirect or return a response
-            return redirect()->route("industries")->with('success', 'Industries added successfully');
+            // return redirect()->route("industries")->with('success', 'Industries added successfully');
         } catch (\Exception $th) {
             Log::error("[IndustryController][addIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
@@ -123,7 +124,7 @@ class IndustryController extends Controller
     {
         try {
             $industry = $this->industryDetail->where('uuid', $uuid)->first();
-            
+
             $industryData = [
                 'category_id' => $request->input('category_id'),
                 'area_id' => $request->input('area_id'),
@@ -188,21 +189,25 @@ class IndustryController extends Controller
         try {
             $deleteContact = $this->contactDetail->findOrFail($id);
             $deleteContact->delete();
-    
+
             return response()->json(['success' => 'Contact deleted successfully']);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to delete contact'], 500);
         }
     }
-    
+
     public function deleteIndustries($id)
     {
-        $deleteIndustry = $this->industryDetail->where('id', $id)->firstOrFail();
-        $deleteIndustry->delete();
-        $deleteContact = $this->contactDetail->where('industry_id', $id)->firstOrFail();
-        $deleteContact->delete();
+        try {
+            $deleteIndustry = $this->industryDetail->where('id', $id)->firstOrFail();
+            $this->contactDetail->where('industry_id', $id)->delete();
+            $deleteIndustry->delete();
 
-        return redirect()->back()->with('success', 'Industry deleted successfully!');
+            return redirect()->back()->with("status", "success")->with("message", "Industry deleted successfully!");
+        } catch (Exception $e) {
+            Log::error("[IndustryController][deleteIndustries] error " . $e->getMessage());
+            return redirect()->back()->with("status", "error")->with("message", $e->getMessage());
+        }
     }
 
     public function userbookList(Request $request)

@@ -312,4 +312,6 @@
         button.closest('.card').remove();
     }
 </script>
+
+@include('CustomSweetAlert');
 @endsection
