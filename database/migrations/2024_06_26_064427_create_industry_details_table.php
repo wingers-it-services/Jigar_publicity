@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->uuid('uuid')->unique();
             $table->string('image');
-            $table->uuid('book_id');
+            $table->string('area');
             $table->integer('category_id');
             $table->string('industry_name');
             $table->string('contact_no');

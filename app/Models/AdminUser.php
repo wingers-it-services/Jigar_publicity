@@ -78,11 +78,6 @@ class AdminUser extends Model
         }
     }
 
-    public function gym()
-    {
-        return $this->belongsTo(Gym::class, 'gym_id');
-    }
-
     protected static function boot()
     {
         parent::boot();

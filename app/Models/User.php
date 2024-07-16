@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Ramsey\Uuid\Uuid;
 use Throwable;
@@ -32,18 +32,13 @@ class User extends Authenticatable
         });
     }
 
-    public function trainerDetails()
-    {
-        // $trainer = GymStaff::
-    }
-
     public function addUser(array $validatedData,$imagePath)
     {
         try {
             return $this->create([
                 'name'           => $validatedData['name'],
                 'email'          => $validatedData['email'],
-                'password'       => $validatedData['password'],
+                'password'       => Hash::make($validatedData['password']),
                 'gender'         => $validatedData['gender'],
                 'phone'          => $validatedData['phone'],
                 'website'        => $validatedData['website'],
@@ -72,7 +67,8 @@ class User extends Authenticatable
                 "website"        => $validatedData['website'],
                 "company_name"   => $validatedData['company_name'],
                 "company_address"=> $validatedData['company_address'],
-                "no_of_device"   => $validatedData['no_of_device']
+                "no_of_device"   => $validatedData['no_of_device'],
+                "password"       => Hash::make($validatedData['password']),
             ]);
 
             return $userDetail->save();

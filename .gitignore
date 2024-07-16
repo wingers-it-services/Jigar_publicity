@@ -20,3 +20,5 @@ yarn-error.log
 /.vscode
 public/books_images
 public/industry_images
+public/user_images
+public/advertisement_images

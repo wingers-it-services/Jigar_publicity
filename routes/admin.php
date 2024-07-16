@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminSubscriptionController;
 use App\Http\Controllers\AdminUserController;
-use App\Http\Controllers\BookController;
+use App\Http\Controllers\AdvertismentController;
+use App\Http\Controllers\AreaController;
 use App\Http\Controllers\IndustriesCategorieController;
+use App\Http\Controllers\IndustryController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -12,32 +14,34 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', function () {
     return view('admin.login');
 });
-Route::get('/admin-enquiry', function () {
-    return view('admin.admin-enquiry');
-});
+// Route::get('/admin-enquiry', function () {
+//     return view('admin.admin-enquiry');
+// });
 
-Route::get('/add-advertisment', function () {
-    return view('admin.add-advertisment');
-});
-Route::get('/admin-read', function () {
-    return view('admin.admin-read');
-});
+// Route::get('/admin-read', function () {
+//     return view('admin.admin-read');
+// });
 
 Route::get('/admin-faq', function () {
     return view('admin.admin-faq');
 });
 
-Route::get('/admin-notification', function () {
-    return view('admin.admin-notification');
+Route::fallback(function () {
+    return view('admin.page-error-404');
 });
 
-Route::get('/admin-notification-inbox', function () {
-    return view('admin.admin-notification-inbox');
-});
 
-Route::get('/admin-notification-read', function () {
-    return view('admin.admin-notification-read');
-});
+// Route::get('/admin-notification', function () {
+//     return view('admin.admin-notification');
+// });
+
+// Route::get('/admin-notification-inbox', function () {
+//     return view('admin.admin-notification-inbox');
+// });
+
+// Route::get('/admin-notification-read', function () {
+//     return view('admin.admin-notification-read');
+// });
 
 
 
@@ -50,25 +54,24 @@ Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin-das
 Route::get('/industries-categories', [IndustriesCategorieController::class, 'industriesCategorieList'])->name('industriesCategorieList');
 Route::get('/delete-category/{uuid}', [IndustriesCategorieController::class, 'deleteIndustriesCategorie'])->name('deleteIndustriesCategorie');
 Route::post('/industries-categories', [IndustriesCategorieController::class, 'createIndustriesCategories'])->name('createIndustriesCategories');
+Route::post('/update-category', [IndustriesCategorieController::class, 'updateCategory'])->name('updateCategory');
+
+Route::get('/area', [AreaController::class, 'areaList'])->name('areaList');
+Route::post('/industries-area', [AreaController::class, 'createIndustriesArea'])->name('createIndustriesArea');
+Route::post('/update-area', [AreaController::class, 'updateArea'])->name('updateArea');
+Route::get('/delete-area/{uuid}', [AreaController::class, 'deleteIndustriesArea'])->name('deleteIndustriesArea');
 
 /** Book related routes like create,show,list update */
-Route::get('/books-list', [BookController::class, 'bookList'])->name('admin-book-list');
-Route::get('/book-details/{uuid}', [BookController::class, 'bookDetails'])->name('book-details');
-Route::get('/add-book', [BookController::class, 'showAddBook'])->name('showAddBook');
-Route::post('/addBook', [BookController::class, 'addBook'])->name('addBook');
-Route::get('/delete-book/{uuid}', [BookController::class, 'deleteBook'])->name('deleteBook');
-Route::post('/update-book', [BookController::class, 'updateBook'])->name('updateBook');
+Route::get('/add-industries', [IndustryController::class, 'viewAddIndustries'])->name('viewAddIndustries');
+Route::get('/industries', [IndustryController::class, 'industries'])->name('industries');
+Route::post('/add-industry', [IndustryController::class, 'addIndustry'])->name('addIndustry');
+Route::get('/delete-industries/{id}', [IndustryController::class, 'deleteIndustries'])->name('deleteIndustries');
+Route::get('/update-industries/{uuid}', [IndustryController::class, 'viewUpdateIndustries'])->name('viewUpdateIndustries');
+Route::post('/update-industry/{uuid}', [IndustryController::class, 'updateIndustry'])->name('updateIndustry');
+Route::post('/delete-contacts/{id}',  [IndustryController::class, 'deleteContacts'])->name('delete-contacts');
 
 Route::post('/update-user', [AdminUserController::class, 'updateUser'])->name('updateUser');
 Route::get('/delete-user/{uuid}', [AdminUserController::class, 'deleteUser'])->name('deleteUser');
-
-Route::post('/addIndustryInBook', [BookController::class, 'addIndustryInBook'])->name('addIndustryInBook');
-
-Route::get('/viewAddAdminSubscription', [AdminSubscriptionController::class, 'viewAddAdminSubscription'])->name('viewAddAdminSubscription');
-Route::post('/addAdminSubscription', [AdminSubscriptionController::class, 'addAdminSubscription'])->name('addAdminSubscription');
-Route::get('/viewEditSubscription/{uuid}', [AdminSubscriptionController::class, 'viewEditAdminSubscription'])->name('viewEditSubscription');
-Route::post('/updateSubscription', [AdminSubscriptionController::class, 'updateAdminSubscription'])->name('updateSubscription');
-
 Route::get('/add-admin-users', [AdminUserController::class, 'showAddUsers']);
 Route::post('/add-user-by-admin', [AdminUserController::class, 'addUserByadmin'])->name('addUserByadmin');
 Route::get('/user-details/{uuid}', [AdminUserController::class, 'userDetails'])->name('user-details');
@@ -81,34 +84,8 @@ Route::post('/updateAdminUser', [AdminUserController::class, 'updateAdminUser'])
 
 Route::get('/user-login-history', [AdminUserController::class, 'userLoginHistory'])->name('userLoginHistory');
 
+Route::get('/check-category-id', [IndustryController::class, 'checkCategoryId']);
 
-Route::get('/check-category-id', [BookController::class, 'checkCategoryId']);
-
-// Route::get('/listEnquiry', [AdminEnquiryController::class, 'listEnquiry'])->name('listEnquiry');
-// Route::get('/viewAdminEnquiry/{uuid}', [AdminEnquiryController::class, 'viewAdminEnquiry'])->name('viewAdminEnquiry');
-// Route::post('/updateStatus', [AdminEnquiryController::class, 'updateStatus'])->name('updateStatus');
-
-
-// Route::get('/adminUserprofile', function () {
-//     return view('admin.adminUser.adminUserprofile');
-// });
-
-
-// Route::get('/viewAdvertisment', [AdvertismentController::class, 'viewAdvertisment'])->name('viewAdvertisment');
-// Route::post('/addAdvertisment', [AdvertismentController::class, 'addAdvertisment'])->name('addAdvertisment');
-// Route::get('/viewAdminAdvertisment/{uuid}', [AdvertismentController::class, 'viewAdminAdvertisment'])->name('viewAdminAdvertisment');
-// Route::delete('/deleteAdvertisment/{uuid}', [AdvertismentController::class, 'deleteAdvertisment'])->name('deleteAdvertisment');
-
-
-
-// Route::get('/viewNotification', [UserNotificationController::class, 'viewNotification'])->name('viewNotification');
-// Route::post('/addNotification', [UserNotificationController::class, 'addNotification'])->name('addNotification');
-// Route::delete('/deleteNotification/{uuid}', [UserNotificationController::class, 'deleteNotification'])->name('deleteNotification');
-
-// Route::get('/viewGymNotification', [GymNotificationController::class, 'viewGymNotification'])->name('viewGymNotification');
-// Route::post('/addGymNotification', [GymNotificationController::class, 'addGymNotification'])->name('addGymNotification');
-// Route::delete('/deleteGymNotification/{uuid}', [GymNotificationController::class, 'deleteGymNotification'])->name('deleteGymNotification');
-
-Route::fallback(function () {
-    return view('admin.page-error-404');
-});
+Route::get('/advertisment', [AdvertismentController::class, 'viewAdvertisment'])->name('viewAdvertisment');
+Route::post('/advertisment', [AdvertismentController::class, 'addAdvertisment'])->name('addAdvertisment');
+Route::get('/delete-advertisment/{id}', [AdvertismentController::class, 'deleteAdvertisment'])->name('deleteAdvertisment');

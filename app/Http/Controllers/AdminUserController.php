@@ -8,7 +8,6 @@ use App\Models\UserWorkout;
 use App\Models\UserDiet;
 use App\Models\User;
 use App\Models\UserPurchase;
-use App\Models\Book;
 use App\Models\UserBodyMeasurement;
 use App\Models\userBmi;
 use App\Models\GymStaff;
@@ -25,37 +24,13 @@ class AdminUserController extends Controller
     use SessionTrait;
     protected $user;
     protected $userPurchase;
-    protected $book;
-    protected $gym;
-    protected $userService;
-    protected $workout;
-    protected $diet;
-    protected $userBodyMeasurement;
-    protected $bmi;
-    protected $gymStaff;
 
     public function __construct(
         User $user,
         UserPurchase $userPurchase,
-        Book $book,
-        Gym $gym,
-        UserService $userService,
-        UserWorkout $workout,
-        UserDiet $diet,
-        UserBodyMeasurement $userBodyMeasurement,
-        userBmi $bmi,
-        GymStaff $gymStaff
     ) {
         $this->user = $user;
         $this->userPurchase = $userPurchase;
-        $this->book = $book;
-        $this->gym = $gym;
-        $this->userService = $userService;
-        $this->workout = $workout;
-        $this->diet = $diet;
-        $this->userBodyMeasurement = $userBodyMeasurement;
-        $this->bmi = $bmi;
-        $this->gymStaff = $gymStaff;
     }
 
     /**
@@ -104,7 +79,6 @@ class AdminUserController extends Controller
                 $imagePath = 'user_images/' . $filename;
                 $userPhoto->move(public_path('user_images/'), $filename);
             }
-            // dd($imagePath);
             $this->user->addUser($validateData, $imagePath);
 
             return back()->with('status', 'success')->with('message', 'User Added Successfully');
@@ -138,7 +112,6 @@ class AdminUserController extends Controller
      */
     public function updateUser(Request $request)
     {
-        // dd($request->all());
         try {
             $validatedData = $request->validate([
                 "uuid" => 'required',
@@ -149,21 +122,23 @@ class AdminUserController extends Controller
                 "website" => 'required',
                 "company_name" => 'required',
                 "company_address" => 'required',
-                "no_of_device" => 'required'
+                "no_of_device" => 'required',
+                "password" => 'required'
             ]);
 
             $uuid = $request->uuid;
             $updateUser = $this->user->updateUser($validatedData, $uuid);
 
             if ($updateUser) {
-                return redirect()->back()->with("status", "success")->with("message", "Subscription Upated Succesfully");
+                return redirect()->back()->with("status", "success")->with("message", "User UpDated Succesfully");
             } else {
 
                 return redirect()->back()->with('error', 'error while updating profile');
             }
         } catch (\Exception $th) {
             Log::error("[AdminUserController][updateUser] error " . $th->getMessage());
-            return redirect()->back()->with('error', $th->getMessage());
+            // return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', 'error while updating profile');
         }
     }
 
@@ -183,52 +158,40 @@ class AdminUserController extends Controller
     {
         $user = $this->user->where('uuid', $uuid)->firstOrFail();
         $user->delete();
-        return redirect()->back()->with('success', 'User deleted successfully!');
+        // return redirect()->back()->with('success', 'User deleted successfully!');
+        return redirect()->back()->with("status", "success")->with("message", "User deleted successfully!");
     }
 
 
     /**
      * The function userPaymentList retrieves all users and passes them to the 'admin.user-payment' view.
      */
-    public function userPaymentList()
+    public function userPaymentList(Request $request)
     {
-        $users = $this->user->all();
-        return view('admin.user-payment', compact('users'));
+        $users = $this->userPurchase->all();
+        $userPurchases = $this->userPurchase
+        ->join('users', 'user_purchases.user_id', '=', 'users.uuid')
+        ->join('books', 'user_purchases.book_id', '=', 'books.id')
+        ->select('user_purchases.*', 'users.name as user_name', 'books.book_name', 'books.book_price')
+        ->get();
+        return view('admin.user-payment', compact('users','userPurchases'));
     }
 
 
 
     public function userLoginHistory(Request $request)
     {
-        //     $agent = new Agent();
-        // $dt = Carbon::now();
-
-        // $device_name = '';
-        // if ($agent->isDesktop()) {
-        //     $device_name = 'desktop';
-        // } elseif ($agent->isTablet()) {
-        //     $device_name = 'tablet';
-        // } elseif ($agent->isMobile()) {
-        //     $device_name = 'mobile';
-        // }
-
-
-
-
-        //     dd(['device_name' => $device_name, 'tgl' => $dt->toDateString()]);
         $users = $this->user->all();
         return view('admin.login-history', compact('users'));
     }
 
     public function userDetails(string $uuid)
     {
-
         $users = $this->user->where('uuid', $uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
-        $books = $this->book->all();
         $userPurchases = $this->userPurchase->where('user_id', $uuid)->get();
 
-        return view('admin.user-details', compact('users', 'userDetails', 'books','userPurchases'));
+        return view('admin.user-details', compact('users', 'userDetails', 'userPurchases'));
     }
 
 
@@ -237,7 +200,6 @@ class AdminUserController extends Controller
         try {
             $request->validate([
                 'user_id' => 'required',
-                'book_id' => 'required',
                 'status' => 'required'
             ]);
 

@@ -2,35 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gym;
-use App\Models\GymSubscription;
 use App\Models\IndustriesCategorie;
-use App\Services\GymService;
-use Exception;
+use App\Models\IndustryDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Validator;
 
 class IndustriesCategorieController extends Controller
 {
 
-    private $gym;
-    private $gymService;
     private $industriesCategorie;
+    private $industries;
 
     public function __construct(
-        Gym $gym,
-        GymService $gymService,
-        IndustriesCategorie $industriesCategorie
+        IndustriesCategorie $industriesCategorie,
+        IndustryDetail $industries
     ) {
-        $this->gym = $gym;
-        $this->gymService = $gymService;
         $this->industriesCategorie = $industriesCategorie;
+        $this->industries = $industries;
     }
 
     public function industriesCategorieList()
     {
         $industriesCategorie = $this->industriesCategorie->all();
+
         return view('admin.industries-categorie-list', compact('industriesCategorie'));
     }
 
@@ -42,38 +36,40 @@ class IndustriesCategorieController extends Controller
         return back()->with('status', 'success')->with('message', 'Category Added Succesfully');
     }
 
-   
-    public function deleteIndustriesCategorie($uuid)
+    public function updateCategory(Request $request)
     {
-        $industriesCategorie = $this->industriesCategorie->where('uuid', $uuid)->firstOrFail();
-        $industriesCategorie->delete();
-        return redirect()->route('industriesCategorieList')->with('success', 'Gym deleted successfully!');
+        try {
+            $validatedData = $request->validate([
+                'uuid' => 'required',
+                'category_name' => 'required'
+            ]);
+            $uuid = $request->uuid;
+            $this->industriesCategorie->updateCategory($validatedData, $uuid);
+
+            return redirect()->back()->with('status', 'success')->with('message', 'Category updated successfully.');
+        } catch (\Exception $e) {
+            Log::error('[IndustriesCategorieController][updateCategory] Error updating category. Request=' . $request . ', Exception=' . $e->getMessage());
+            return redirect()->back()->with('status', 'error')->with('message', 'Error while updating category.');
+        }
     }
 
+    public function deleteIndustriesCategorie($uuid)
+    {
+        // Retrieve the category first
+        $industriesCategorie = $this->industriesCategorie->where('uuid', $uuid)->firstOrFail();
 
-    // public function addTermsAndConditions(Request $request)
-    // {
-    //     try {
-    //         Validator::make($request->all(), []);
-    //         $data = $request->all();
-    //         $this->gym->addTandC($data);
-    //         return back()->with('status', 'success')->with('message', 'Gym terms and conditions added Succesfully');
-    //     } catch (\Exception $e) {
-    //         Log::error('[GymController][addTermsAndConditions]Error adding : ' . 'Request=' . $e->getMessage());
-    //         return back()->with('status', 'error')->with('message', 'T&C Not Added ');
-    //     }
-    // }
+        // Store the ID before deletion
+        $industryCategoryId = $industriesCategorie->id;
 
-    // public function addGymSocialLink(Request $request)
-    // {
-    //     try {
-    //         Validator::make($request->all(), []);
-    //         $data = $request->all();
-    //         $this->gym->addSocialLink($data);
-    //         return back()->with('status', 'success')->with('message', 'Gym terms and conditions added Succesfully');
-    //     } catch (\Exception $e) {
-    //         Log::error('[GymController][addGymSocialLink]Error adding : ' . 'Request=' . $e->getMessage());
-    //         return back()->with('status', 'error')->with('message', 'T&C Not Added ');
-    //     }
-    // }
+        // Delete the category
+        $industriesCategorie->delete();
+
+        // Fetch and delete all industries associated with this category
+        $industries = $this->industries->where('category_id', $industryCategoryId)->get();
+        foreach ($industries as $industry) {
+            $industry->delete();
+        }
+
+        return redirect()->route('industriesCategorieList')->with('success', 'Category deleted successfully!');
+    }
 }

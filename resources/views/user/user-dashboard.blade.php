@@ -22,7 +22,7 @@
 							<span class="circle bg-primary"></span>
 						</div>
 						<h2 class="fs-24 text-black font-w600 mb-0">42</h2>
-						<span class="fs-14">No. Of Books</span>
+						<span class="fs-14">No. Of Industries</span>
 					</div>
 				</div>
 			</div>
@@ -70,7 +70,7 @@
 							<span class="circle bg-warning"></span>
 						</div>
 						<h2 class="fs-24 text-black font-w600 mb-0">5 Left</h2>
-						<span class="fs-14">Diet Programs</span>
+						<span class="fs-14">Active Users</span>
 					</div>
 				</div>
 			</div>
@@ -94,7 +94,7 @@
 							<span class="circle bg-info"></span>
 						</div>
 						<h2 class="fs-24 text-black font-w600 mb-0">8 Hours</h2>
-						<span class="fs-14">Sleeping Potency</span>
+						<span class="fs-14">New Users</span>
 					</div>
 				</div>
 			</div>
@@ -111,7 +111,7 @@
 							<span class="circle bg-success"></span>
 						</div>
 						<h2 class="fs-24 text-black font-w600 mb-0">974 Person</h2>
-						<span class="fs-14">Total Members</span>
+						<span class="fs-14">Total Revenue</span>
 					</div>
 				</div>
 			</div>
