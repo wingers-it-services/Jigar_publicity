@@ -20,7 +20,8 @@ class AdminUser extends Model
         'phone_no',
         'username',
         'password',
-        'image'
+        'image',
+        'payment_status'
     ];
 
     public function addUser(array $addUser, $imagePath)
@@ -36,6 +37,7 @@ class AdminUser extends Model
                 'phone_no' => $addUser['phone_no'],
                 'username' => $addUser['username'],
                 'password' => $addUser['password'],
+                'payment_status' => $addUser['payment_status'],
                 'image' => $imagePath,
             ]);
         } catch (\Throwable $e) {

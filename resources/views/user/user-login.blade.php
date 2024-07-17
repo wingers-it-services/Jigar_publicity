@@ -63,7 +63,8 @@
                                             <label class="mb-1"><strong>Password</strong></label>
                                             <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
                                             <span class="show-pass eye" onclick="togglePasswordVisibility()">
-                                                <i class="fa fa-eye-slash" id="togglePassword"></i>
+                                                <i class="fa fa-eye-slash"></i>
+                                                <i class="fa fa-eye"></i>
                                             </span>
                                         </div>
                                         <div class="row d-flex justify-content-between mt-4 mb-2">
@@ -122,6 +123,12 @@
             }
         }
     </script>
+
+    <script src="https://fito.dexignzone.com/laravel/demo/vendor/global/global.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/vendor/deznav/deznav.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script>
 </body>
 
 </html>

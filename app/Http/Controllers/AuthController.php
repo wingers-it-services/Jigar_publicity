@@ -25,48 +25,50 @@ class AuthController extends Controller
     }
 
     /**
-     * The function `userLogin` in PHP validates user credentials, checks device limit, logs user login
+     * The function userLogin in PHP validates user credentials, checks device limit, logs user login
      * details, and redirects to the user dashboard if authentication is successful.
      *
-     * @param Request request The `userLogin` function you provided is responsible for handling user
+     * @param Request request The userLogin function you provided is responsible for handling user
      * login functionality. It first validates the email and password fields from the request. Then, it
      * attempts to find a user with the provided email address and checks if the password matches using
-     * `Hash::check`.
+     * Hash::check.
      *
-     * @return The `userLogin` function is returning different responses based on the conditions:
+     * @return The userLogin function is returning different responses based on the conditions:
      */
     public function userLogin(Request $request)
     {
-
-
         try {
             $request->validate([
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-
+    
             $credentials = $request->only('email', 'password');
             $user = $this->user->where('email', $request->email)->whereNot('is_admin', 1)->first();
-
+    
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
             }
-
+    
             if ($this->checkAllowUserTologin($user)) {
                 return back()->with('status', 'error')->with('message', 'You reached max allowed device limit.');
             }
-
-            if (auth()->user()->id) {
-                $this->logUserLoginDetails($request);
-                return redirect()->route('industry-list');
+    
+            if (auth()->check()) {
+                if (auth()->user()->id == $user->id) {
+                    $this->logUserLoginDetails($request);
+                    return redirect()->route('industry-list');
+                } else {
+                      return back()->with('status', 'error')->with('message', 'Someone is already logged in. You cannot log in from this device.');
+                }
             } elseif (Auth::attempt($credentials)) {
                 $user->active_device += 1;
                 $user->save();
-
+    
                 $this->logUserLoginDetails($request);
                 return redirect()->route('industry-list');
             }
-
+    
             return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
         } catch (Exception $e) {
             Log::error('[AuthController][userLogin] Login error: ' . $e->getMessage());
@@ -75,10 +77,10 @@ class AuthController extends Controller
     }
 
     /**
-     * The function `logUserLoginDetails` logs user login details including device type, IP address,
+     * The function logUserLoginDetails logs user login details including device type, IP address,
      * user agent, and geolocation information.
      *
-     * @param Request request The `logUserLoginDetails` function is used to log details of a user's
+     * @param Request request The logUserLoginDetails function is used to log details of a user's
      * login activity. Here's an explanation of the parameters used in the function:
      */
     private function logUserLoginDetails(Request $request)
@@ -107,10 +109,10 @@ class AuthController extends Controller
     }
 
     /**
-     * The function `lockedUserDeviceDetails` determines the type of device (desktop, tablet, mobile,
+     * The function lockedUserDeviceDetails determines the type of device (desktop, tablet, mobile,
      * or unknown) based on the user agent.
      *
-     * @return The function `lockedUserDeviceDetails()` returns the type of device based on the user
+     * @return The function lockedUserDeviceDetails() returns the type of device based on the user
      * agent information. It returns 'desktop' if the user is using a desktop device, 'tablet' if the
      * user is using a tablet device, 'mobile' if the user is using a mobile device, and 'unknown' if
      * the device type cannot be determined or an exception occurs during the process.
@@ -129,11 +131,11 @@ class AuthController extends Controller
     }
 
     /**
-     * The function `getUserIp` in PHP retrieves the user's IP address from various server variables.
+     * The function getUserIp in PHP retrieves the user's IP address from various server variables.
      *
-     * @return The function `getUserIp()` returns the IP address of the user. It checks various server
-     * variables like `HTTP_CLIENT_IP`, `HTTP_X_FORWARDED_FOR`, `HTTP_X_FORWARDED`,
-     * `HTTP_FORWARDED_FOR`, `HTTP_FORWARDED`, and `REMOTE_ADDR` to determine the user's IP address. If
+     * @return The function getUserIp() returns the IP address of the user. It checks various server
+     * variables like HTTP_CLIENT_IP, HTTP_X_FORWARDED_FOR, HTTP_X_FORWARDED,
+     * HTTP_FORWARDED_FOR, HTTP_FORWARDED, and REMOTE_ADDR to determine the user's IP address. If
      * none of these variables are set, it returns 'UNKNOWN'.
      */
     public function getUserIp()

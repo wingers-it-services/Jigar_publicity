@@ -31,9 +31,7 @@ Route::middleware('auth.users')->group(function () {
         return view('user.user-dashboard');
     })->name('user-dashboard');
 
-    Route::get('/user-profile', function () {
-        return view('user.user-profile');
-    });
+    Route::get('/user-profile', [UserController::class,'viewUserProfile']);
 
     Route::get('/login-history', [UserLoginHistoryController::class, 'loginHistory'])->name('loginHistory');
     Route::get('/user-list', function () {
@@ -61,4 +59,6 @@ Route::middleware('auth.users')->group(function () {
     Route::get('/user-advertisement', [UserController::class, 'viewAdvertisment'])->name('viewUserAdvertisment');
 
     Route::post('/admin-login', [AdminController::class, 'adminLogin'])->name('user-login');
+
+    Route::post('/user-profile-update',[UserController::class,'updateUserDetails'])->name('updateUserDetails');
 });
