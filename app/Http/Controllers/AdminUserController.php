@@ -62,7 +62,8 @@ class AdminUserController extends Controller
                 'website'         => 'required',
                 'company_name'    => 'required',
                 'company_address' => 'required',
-                'no_of_device'    => 'required'
+                'no_of_device'    => 'required',
+                'payment_status'  => 'required'
             ]);
 
             $validateData = $request->all();
@@ -117,7 +118,8 @@ class AdminUserController extends Controller
                 "company_name"    => 'required',
                 "company_address" => 'required',
                 "no_of_device"    => 'required',
-                "password"        => 'required'
+                "password"        => 'required',
+                "payment_status"   => 'required'
             ]);
 
             $uuid = $request->uuid;
@@ -162,20 +164,16 @@ class AdminUserController extends Controller
      */
     public function userPaymentList(Request $request)
     {
-        $users = $this->userPurchase->all();
-        $userPurchases = $this->userPurchase
-            ->join('users', 'user_purchases.user_id', '=', 'users.uuid')
-            ->join('books', 'user_purchases.book_id', '=', 'books.id')
-            ->select('user_purchases.*', 'users.name as user_name', 'books.book_name', 'books.book_price')
-            ->get();
-        return view('admin.user-payment', compact('users', 'userPurchases'));
+        $userPayments = $this->user->whereNot('is_admin', 1)->get();
+       
+        return view('admin.user-payment', compact('userPayments'));
     }
 
 
 
     public function userLoginHistory(Request $request)
     {
-        $users = $this->user->all();
+        $users = $this->userHistory->all();
         return view('admin.login-history', compact('users'));
     }
 

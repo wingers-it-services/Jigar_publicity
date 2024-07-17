@@ -7,7 +7,9 @@ use App\Traits\SessionTrait;
 use Illuminate\Http\Request;
 use App\Models\IndustryDetail;
 use App\Models\ContactDetail;
+use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -15,15 +17,18 @@ class UserController extends Controller
     protected $industrydetail;
     protected $contactDetail;
     protected $advertisment;
+    protected $user;
 
     public function __construct(
         IndustryDetail $industrydetail,
         ContactDetail $contactDetail,
-        Advertisment  $advertisment
+        Advertisment  $advertisment,
+        User $user
     ) {
         $this->industrydetail = $industrydetail;
         $this->contactDetail  = $contactDetail;
         $this->advertisment   = $advertisment;
+        $this->user = $user;
     }
 
     public function industryList(Request $request)
@@ -32,15 +37,15 @@ class UserController extends Controller
         $message = null;
         $industries = $this->industrydetail->with('contacts')->get();
         $imageType = $this->advertisment->image_type;
-        $horImages = $this->advertisment->where('image_type','horizontal')->get();
-        $verImages = $this->advertisment->where('image_type','vertical')->get();
-        return view('user.industry-list', compact('status', 'message', 'industries','horImages','verImages'));
+        $horImages = $this->advertisment->where('image_type', 'horizontal')->get();
+        $verImages = $this->advertisment->where('image_type', 'vertical')->get();
+        return view('user.industry-list', compact('status', 'message', 'industries', 'horImages', 'verImages'));
     }
 
     public function fetchIndustryDetailsById(Request $request, $uuid)
     {
         try {
-            $industry = $this->industrydetail->where('uuid', $uuid)->with('contacts','category','area')->first();
+            $industry = $this->industrydetail->where('uuid', $uuid)->with('contacts', 'category', 'area')->first();
             if (!$industry) {
                 return response()->json([
                     'status' => 404,
@@ -72,4 +77,56 @@ class UserController extends Controller
         return view('user.user-advertisement', compact('status', 'message', 'advertisments'));
     }
 
+    public function viewUserProfile()
+    {
+        $status = null;
+        $message = null;
+        $userDetail = $this->user->where('id', auth()->user()->id)->first();
+        return view('user.user-profile', compact('status', 'message', 'userDetail'));
+    }
+
+    public function updateUserDetails(Request $request)
+    {
+        try {
+            $request->validate([
+                "name"            => 'required',
+                "phone"           => 'required',
+                "gender"          => 'required',
+                "website"         => 'required',
+                "company_name"    => 'required',
+                "company_address" => 'required',
+            ]);
+
+            
+            $user = $this->user->where('uuid',$request->uuid)->first();
+
+            if ($request->hasFile('image')) {
+                if ($user->image) {
+                    $existingImagePath = public_path($user->image);
+                    if (file_exists($existingImagePath)) {
+                        unlink($existingImagePath); 
+                    }
+                }
+                $imagefile = $request->file('image');
+                $filename = time() . '_' . $imagefile->getClientOriginalName();
+                $imagePath = 'user_images/' . $filename;
+                $imagefile->move(public_path('user_images/'), $filename);
+            
+                $user->update(['image' => $imagePath]);
+            }
+
+            $updateUser = $this->user->updateUserDetail($request->all());
+
+            if ($updateUser) {
+                return redirect()->back()->with("status", "success")->with("message", "User UpDated Succesfully");
+            } else {
+
+                return redirect()->back()->with('error', 'error while updating profile');
+            }
+        } catch (\Exception $th) {
+            Log::error("[UserController][updateUserDetails] error " . $th->getMessage());
+            // return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', 'error while updating profile');
+        }
+    }
 }

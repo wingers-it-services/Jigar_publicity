@@ -19,7 +19,7 @@
                                     <tr>
                                         <th>Device Type</th>
                                         <th>IP Address</th>
-                                        <th>IP Address</th>
+                                        <th>System Info</th>
                                         <th>City</th>
                                         <th>State</th>
                                         <th>country</th>
@@ -35,7 +35,7 @@
                                         <td> {{ $userLoginHistory->city}}</td>
                                         <td>{{ $userLoginHistory->region}}</td>
                                         <td> {{ $userLoginHistory->country}}</td>
-                                        <td> {{ $userLoginHistory->created_at}}</td>
+                                        <td> {{ $userLoginHistory->created_at->format('d/m/Y')}}</td>
 
                                     </tr>
                                     @endforeach

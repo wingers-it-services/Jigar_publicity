@@ -15,34 +15,26 @@
                             <table id="example3" class="display min-w850">
                                 <thead>
                                     <tr>
-                                        <th>Image</th>
-                                        <th>Name</th>
-                                        <th>Device</th>
-                                        <th>Browser</th>
+                                        <th>Device Type</th>
                                         <th>IP Address</th>
-                                        <th>Status</th>
+                                        <th>System Info</th>
+                                        <th>City</th>
+                                        <th>State</th>
+                                        <th>country</th>
                                         <th>Date</th>
-                                        <th>Gender</th>
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach($users as $user)
                                     <tr>
-                                        <td><img width="80" src="{{asset($user->image)}}" style="border-radius: 45px;width: 60px;height: 60px;" alt=""></td>
-                                        <td>{{ $user->name}}</td>
-                                        <td>HP</td>
-                                        <td>Google</td>
-                                        <td>111111</td>
-                                        <td><span class="badge light badge-warning">Logout</span></td>
-                                        <td>2011/04/25</td>
-                                        <td> {{ $user->gender }} </td>
+                                        <td> {{ $user->device_type}}</td>
+                                        <td><a href="javascript:void(0);"><strong>{{ $user->ip_address}}</strong></a></td>
+                                        <td> {{ $user->user_agent}}</td>
+                                        <td> {{ $user->city}}</td>
+                                        <td>{{ $user->region}}</td>
+                                        <td> {{ $user->country}}</td>
+                                        <td> {{ $user->created_at->format('d/m/Y')}}</td>
 
-                                        <td>
-                                            <div class="d-flex">
-                                                <a href="#" class="btn btn-danger shadow btn-xs sharp"><i class="fa fa-trash"></i></a>
-                                            </div>
-                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

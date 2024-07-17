@@ -2,11 +2,6 @@
 @section('title', 'Dashboard')
 @section('content')
 
-<!--************
-                        Content body start
-                    *************-->
-<!-- Content body start -->
-
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -19,14 +14,6 @@
                 <div class="modal-body">
                     <div class="row">
                         <input type="hidden" name="uuid" id="editUserId">
-                        {{-- <div class="col-lg-6 mb-2">
-                                <div class="form-group">
-                                    <label class="text-label">Username<span class="required">*</span></label>
-                                    <input type="text" class="form-control" id="editUsername" name="username"
-                                        placeholder="Enter a Username.." required>
-                                </div>
-                            </div> --}}
-
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Email<span class="required">*</span></label>
@@ -45,7 +32,6 @@
                                 <input type="text" class="form-control" id="editName" name="name" placeholder="Enter a name.." required>
                             </div>
                         </div>
-
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
                                 <label class="text-label">Phone Number<span class="required">*</span></label>
@@ -57,8 +43,6 @@
                                 <label class="text-label">Gender<span class="required">*</span></label>
                                 <div class="gender-dropdown-container"></div>
                             </div>
-
-
                         </div>
                         <div class="col-lg-6 mb-2">
                             <div class="form-group">
@@ -78,22 +62,17 @@
                                 <input type="text" class="form-control" id="editCompanyAddress" name="company_address" placeholder="Enter a Company Address.." required>
                             </div>
                         </div>
-                        <div class="col-lg-12 mb-3">
+                        <div class="col-lg-6 mb-2">
                             <div class="form-group">
                                 <label class="text-label">No Of Device<span class="required">*</span></label>
-                                <select class="default-select wide form-control" id="editNoOfDevice" name="no_of_device">
-                                    <option data-display="Select">Please select</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
+                                <div class="device-dropdown-container"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-2">
+                            <div class="form-group">
+                                <label class="text-label">Payment Status </label>
+                                <div class="status-dropdown-container"></div>
                             </div>
                         </div>
                     </div>
@@ -139,10 +118,9 @@
                                         <td>
                                             <img width="80" src="{{ asset($user->image) }}" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
                                         </td>
-                                        <td> {{ $user->name }} </td>
+                                        <td>{{ $user->name }}</td>
                                         <td>{{ $user->company_name }}</td>
-                                        <td><a href="javascript:void(0);"><strong>{{ $user->phone }}</strong></a>
-                                        </td>
+                                        <td><a href="javascript:void(0);"><strong>{{ $user->phone }}</strong></a></td>
                                         <td>{{ $user->company_address }}</td>
                                         <td>{{ $user->no_of_device }}</td>
                                         <td>
@@ -170,9 +148,6 @@
     </div>
 </div>
 
-<!--************
-                        Content body end
-                    *************-->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var editButtons = document.querySelectorAll('.edit-book-button');
@@ -180,8 +155,6 @@
         editButtons.forEach(function(button) {
             button.addEventListener('click', function() {
                 var user = JSON.parse(this.dataset.book);
-
-                console.log(user.gender); // Ensure the gender value is being logged correctly
 
                 document.getElementById('editUserId').value = user.uuid;
                 document.getElementById('editName').value = user.name;
@@ -191,11 +164,10 @@
                 document.getElementById('editWebsite').value = user.website;
                 document.getElementById('editCompanyName').value = user.company_name;
                 document.getElementById('editCompanyAddress').value = user.company_address;
-                document.getElementById('editNoOfDevice').value = user.no_of_device;
+
 
                 // Clear existing options and set the gender dropdown to the user's gender
-                var genderDropdownContainer = document.querySelector(
-                    '.gender-dropdown-container');
+                var genderDropdownContainer = document.querySelector('.gender-dropdown-container');
                 genderDropdownContainer.innerHTML = ''; // Clear any existing content
 
                 var selectElement = document.createElement('select');
@@ -233,11 +205,116 @@
 
                 genderDropdownContainer.appendChild(selectElement);
 
-                // Log the selected value for debugging
-                console.log('Selected Gender:', selectElement.value);
+
+                // Clear existing options and set the device dropdown to the user's no_of_device
+                var deviceDropdownContainer = document.querySelector('.device-dropdown-container');
+                deviceDropdownContainer.innerHTML = ''; // Clear any existing content
+
+                var deviceSelectElement = document.createElement('select');
+                deviceSelectElement.className = 'default-select wide form-control';
+                deviceSelectElement.id = 'editDevice';
+                deviceSelectElement.name = 'no_of_device';
+
+                var devicesOptions = [{
+                        value: '',
+                        text: 'Please select'
+                    },
+                    {
+                        value: '1',
+                        text: '1'
+                    },
+                    {
+                        value: '2',
+                        text: '2'
+                    },
+                    {
+                        value: '3',
+                        text: '3'
+                    },
+                    {
+                        value: '4',
+                        text: '4'
+                    },
+                    {
+                        value: '5',
+                        text: '5'
+                    },
+                    {
+                        value: '6',
+                        text: '6'
+                    },
+                    {
+                        value: '7',
+                        text: '7'
+                    },
+                    {
+                        value: '8',
+                        text: '8'
+                    },
+                    {
+                        value: '9',
+                        text: '9'
+                    },
+                    {
+                        value: '10',
+                        text: '10'
+                    }
+                    // Add more options as needed
+                ];
+
+                devicesOptions.forEach(function(option) {
+                    var opt = document.createElement('option');
+                    opt.value = option.value;
+                    opt.text = option.text;
+                    if (user.no_of_device.toString() === option.value) {
+                        opt.selected = true;
+                    }
+                    deviceSelectElement.appendChild(opt);
+                });
+
+                deviceDropdownContainer.appendChild(deviceSelectElement);
+
+
+                // Clear existing options and set the status dropdown to the user's payment_status
+                var statusDropdownContainer = document.querySelector('.status-dropdown-container');
+                statusDropdownContainer.innerHTML = ''; // Clear any existing content
+
+                var statusSelectElement = document.createElement('select');
+                statusSelectElement.className = 'default-select wide form-control';
+                statusSelectElement.id = 'editStatus';
+                statusSelectElement.name = 'payment_status';
+
+                var statusOptions = [{
+                        value: '',
+                        text: 'Please select'
+                    },
+                    {
+                        value: '1',
+                        text: 'Paid'
+                    },
+                    {
+                        value: '0',
+                        text: 'Pending'
+                    }
+                ];
+
+                statusOptions.forEach(function(option) {
+                    var opt = document.createElement('option');
+                    opt.value = option.value;
+                    opt.text = option.text;
+                    if (user.payment_status.toString() === option.value) {
+                        opt.selected = true;
+                    }
+                    statusSelectElement.appendChild(opt);
+                });
+
+                statusDropdownContainer.appendChild(statusSelectElement);
+
+
             });
         });
     });
 </script>
-@include('CustomSweetAlert');
+
+@include('CustomSweetAlert')
 @endsection

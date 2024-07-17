@@ -22,7 +22,8 @@ class User extends Authenticatable
         'website',
         'company_name',
         'company_address',
-        'no_of_device'
+        'no_of_device',
+        'payment_status'
     ];
 
     protected static function boot()
@@ -46,7 +47,9 @@ class User extends Authenticatable
                 'company_name'   => $validatedData['company_name'],
                 'company_address'=> $validatedData['company_address'],
                 'no_of_device'   => $validatedData['no_of_device'],
-                'image'          => $imagePath
+                'image'          => $imagePath,
+                'payment_status' => $validatedData['payment_status'],
+
             ]);
         } catch (Throwable $e) {
             Log::error('[User][addUser] Error adding user detail: ' . $e->getMessage());
@@ -70,12 +73,37 @@ class User extends Authenticatable
                 "company_address"=> $validatedData['company_address'],
                 "no_of_device"   => $validatedData['no_of_device'],
                 "password"       => Hash::make($validatedData['password']),
+                "payment_status"  => $validatedData['payment_status'],
             ]);
 
             return $userDetail->save();
 
         } catch (Throwable $e) {
             Log::error('[User][updateUser] Error while updating user detail: ' . $e->getMessage());
+        }
+    }
+
+
+    public function updateUserDetail(array $validatedData)
+    {
+        $userDetail = User::where('uuid', $validatedData['uuid'])->first();
+        if (!$userDetail) {
+            return redirect()->back()->with('error', 'user not found');
+        }
+        try {
+            $userDetail->update([
+                "name"           => $validatedData['name'],
+                "phone"          => $validatedData['phone'],
+                "gender"         => $validatedData['gender'],
+                "website"        => $validatedData['website'],
+                "company_name"   => $validatedData['company_name'],
+                "company_address"=> $validatedData['company_address']
+            ]);
+
+            return $userDetail->save();
+
+        } catch (Throwable $e) {
+            Log::error('[User][updateUserDetail] Error while updating user detail: ' . $e->getMessage());
         }
     }
 }
