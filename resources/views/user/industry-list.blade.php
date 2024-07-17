@@ -3,15 +3,17 @@
 @section('content')
 
     <!--**********************************
-                                        Content body start
-                                        ***********************************-->
+                                                                                                                                                            Content body start
+                                                                                                                                                            ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" rel="stylesheet">
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 
     <div class="content-body">
         <!-- row -->
@@ -23,27 +25,26 @@
                             <div class="row">
                                 @foreach ($horImages as $horImage)
                                     <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6">
-                                        <!-- Tab panes -->
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                                                aria-labelledby="home-tab" tabindex="0">
-                                                @if ($horImage == null)
-                                                    <img class="img-fluid rounded"
-                                                        src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
-                                                        alt="">
-                                                @else
-                                                    <img class="img-fluid rounded"
-                                                        src="{{ asset($horImage->advertisment_image) }}" alt="">
-                                                @endif
+                                        < !-- Tab panes -->
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                                    aria-labelledby="home-tab" tabindex="0">
+                                                    @if ($horImage == null)
+                                                        <img class="img-fluid rounded"
+                                                            src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
+                                                            alt="">
+                                                    @else
+                                                        <img class="img-fluid rounded"
+                                                            src="{{ asset($horImage->advertisment_image) }}" alt="">
+                                                    @endif
+                                                </div>
                                             </div>
-                                        </div>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class=" col-xl-10">
                     <div class="card">
                         <div class="card-header">
@@ -51,7 +52,7 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example3" class="display min-w850">
+                                <table id="industyList" class="display min-w850">
                                     <thead>
                                         <tr>
                                             <th>Industry Name</th>
@@ -107,7 +108,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="industryDetailsContainer" class="row" style="display: none;">
                 <div class="col-lg-12">
                     <div class="card">
@@ -116,68 +116,61 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <!-- Column for Industry Name and Basic Info -->
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
-                                    <div class="product-detail-content">
-                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <h4 id="industryName"></h4>
-                                            <p class="text-black">Email: <span class="item" id="industryEmail"></span>
-                                            </p>
-                                            <p class="text-black">Phone number: <span class="item"
-                                                    id="industryPhone"></span></p>
-                                            <p class="text-black">Office Address: <span class="item"
-                                                    id="officeAddress"></span></p>
-                                            <p class="text-black">Industry Address: <span class="item"
-                                                    id="industryAddress"></span></p>
-                                            <p class="text-black">Website: <span class="item" id="industryWeb"></span></p>
-                                            <p class="text-black">Area: <span class="item" id="industryArea"></span>
-                                            </p>
+                                < !-- Column for Industry Name and Basic Info -->
+                                    <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
+                                        <div class="product-detail-content">
+                                            <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                <h4 id="industryName"></h4>
+                                                <p class="text-black">Email: <span class="item" id="industryEmail"></span>
+                                                </p>
+                                                <p class="text-black">Phone number: <span class="item"
+                                                        id="industryPhone"></span></p>
+                                                <p class="text-black">Office Address: <span class="item"
+                                                        id="officeAddress"></span></p>
+                                                <p class="text-black">Industry Address: <span class="item"
+                                                        id="industryAddress"></span></p>
+                                                <p class="text-black">Website: <span class="item" id="industryWeb"></span>
+                                                </p>
+                                                <p class="text-black">Area: <span class="item" id="industryArea"></span>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-
-                                <!-- Column for Product Details -->
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
-                                    <div class="product-detail-content">
-                                        <div class="new-arrival-content mt-md-0 mt-3 pr">
-                                            <p class="text-black">Types of Industry: <span class="item"
-                                                    id="industryCategory"></span></p>
-                                            <p class="text-black">Product: <span class="item" id="industryProduct"></span>
-                                            </p>
-                                            <p class="text-black">By Product: <span class="item"
-                                                    id="industryByProduct"></span></p>
-                                            <p class="text-black">Raw Material: <span class="item"
-                                                    id="industryRawMaterial"></span></p>
-
+                                    < !-- Column for Product Details -->
+                                        <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
+                                            <div class="product-detail-content">
+                                                <div class="new-arrival-content mt-md-0 mt-3 pr">
+                                                    <p class="text-black">Types of Industry: <span class="item"
+                                                            id="industryCategory"></span></p>
+                                                    <p class="text-black">Product: <span class="item"
+                                                            id="industryProduct"></span></p>
+                                                    <p class="text-black">By Product: <span class="item"
+                                                            id="industryByProduct"></span></p>
+                                                    <p class="text-black">Raw Material: <span class="item"
+                                                            id="industryRawMaterial"></span></p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <hr>
+                                        <hr>
                             </div>
-
-
-                            <!-- Column for Contact Details -->
-                            <div class="contact-details-container">
-
-                            </div>
+                            < !-- Column for Contact Details -->
+                                <div class="contact-details-container"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Bootstrap Modal -->
             <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="industryModalLabel">Advertisement</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <h5 class="modal-title" id="industryModalLabel">Advertisement</h5><button type="button"
+                                class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Image Container -->
-                            <img class="img-fluid rounded" id="modalIndustryImage" src="" alt="">
+                            < !-- Image Container --><img class="img-fluid rounded" id="modalIndustryImage"
+                                    src="" alt="">
                         </div>
                     </div>
                 </div>
@@ -185,7 +178,6 @@
         </div>
     </div>
     </div>
-
     <style>
         .clickable-row:hover {
             background-color: #f5f5f5;
@@ -210,6 +202,29 @@
 
 
     <script>
+        var table = $('#industyList').DataTable({
+            initComplete: function() {
+                this.api()
+                    .columns()
+                    .every(function() {
+                        var column = this;
+                        var title = $(column.header()).text().trim();
+
+                        // Creating a search input for each column header
+                        var input = $(
+                                '<input type="text" class="form-control form-control-sm" placeholder="Search ' +
+                                title + '" />')
+                            .on('keyup change', function() {
+                                if (column.search() !== this.value) {
+                                    column.search(this.value).draw();
+                                }
+                            });
+
+                        $(input).appendTo($(column.header()).empty());
+                    });
+            }
+        });
+
         function fetchIndustryDetailsByUuid(industryUuid) {
             $.ajax({
                 url: 'fetch-industry-details-by-id/' + industryUuid,
@@ -282,16 +297,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const modal = new bootstrap.Modal(document.getElementById('industryModal'));
 
-            document.querySelectorAll('.view-btn').forEach(button => {
-                button.addEventListener('click', function(event) {
-                    const image = button.dataset.image;
-
-                    // Set the src attribute of the image in the modal
-                    document.getElementById('modalIndustryImage').src = image;
-
-                    // Show the modal
-                    modal.show();
-                });
+            $('.view-btn').on('click', function(event) {
+                const image = $(this).data('image');
+                $('#modalIndustryImage').attr('src', image);
+                modal.show();
             });
         });
     </script>
