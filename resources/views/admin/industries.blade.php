@@ -47,15 +47,15 @@
                                                                 @foreach($industryDetails as $industry)
                                                                 <tr>
                                                                     <td>{{$industry->industry_name}}</td>
-                                                                    <td>{{$industry->category ? $industry->category->category_name : 'N/A'}}</td>
-                                                                    <td>{{$industry->area ? $industry->area->area_name : 'N/A'}}</td>
+                                                                    <td>{{$industry->category ? $industry->category->category_name : 'Not Defined'}}</td>
+                                                                    <td>{{$industry->area ? $industry->area->area_name : 'Not Defined'}}</td>
                                                                     <td class="text-end">
                                                                         <span>
                                                                             <a href="/admin/update-industries/{{ $industry->uuid }}" class="me-4" data-bs-toggle="tooltip" data-placement="top" title="Edit">
                                                                                 <i class="fa fa-pencil color-muted"></i>
                                                                             </a>
 
-                                                                            <a href="/admin/delete-industries/{{ $industry->id }}" data-bs-toggle="tooltip" data-placement="top" title="Close"><i class="fas fa-times color-danger"></i>
+                                                                            <a onclick="confirmDelete('{{ $industry->id }}')" data-bs-toggle="tooltip" data-placement="top" title="Close"><i class="fas fa-times color-danger"></i>
                                                                             </a>
                                                                         </span>
                                                                     </td>
@@ -177,6 +177,22 @@
                 }
             });
         });
+
+        function confirmDelete(id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'Are you sure you want to delete this area? It will delete the related industries.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/admin/delete-industries/' + id;
+                }
+            });
+        }
     </script>
-@include('CustomSweetAlert');
+    @include('CustomSweetAlert');
     @endsection

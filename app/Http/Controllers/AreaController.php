@@ -46,12 +46,7 @@ class AreaController extends Controller
          // Delete the category
          $industriesArea->delete();
  
-         // Fetch and delete all industries associated with this category
-         $industries = $this->industries->where('area_id', $industryAreaId)->get();
-         foreach ($industries as $industry) {
-             $industry->delete();
-         }
-
+       
         return redirect()->route('areaList')->with('success', 'Gym deleted successfully!');
     }
 

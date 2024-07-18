@@ -578,7 +578,7 @@
                             </li> --}}
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
-                                    <img src="{{ asset('images/profile/17.jpg') }}" width="20" alt="">
+                                    <img id="user-image" src="{{ asset('images/profile/17.jpg') }}" width="20" alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="/user-profile" class="dropdown-item ai-icon">
@@ -747,7 +747,20 @@
     </script>
     <script src="https://fito.dexignzone.com/laravel/demo/js/plugins-init/fullcalendar-init.js" type="text/javascript">
     </script>
-
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            url: '/fetch-profile',
+            method: 'GET',
+            success: function(data) {
+                $('#user-image').attr('src', data.image);
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching user profile:', error);
+            }
+        });
+    });
+</script>
     <script>
         function featuredmenus() {
 

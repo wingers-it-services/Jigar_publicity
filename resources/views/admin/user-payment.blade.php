@@ -20,9 +20,10 @@
                             <table id="example3" class="display min-w850">
                                 <thead>
                                     <tr>
-                                        <th>Order</th>
                                         <th>Date</th>
                                         <th>User Name</th>
+                                        <th>User Email</th>
+                                        <th>User Phone</th>
                                         <th>Payment Status</th>
                                         <!-- <th>Action</th> -->
                                     </tr>
@@ -30,17 +31,18 @@
                                 <tbody id="orders">
                                     @foreach ($userPayments as $payment)
                                     <tr>
-                                        <td>{{ $payment->id }}</td>
                                         <td>{{ $payment->created_at->format('d/m/Y') }}</td>
                                         <td>{{ $payment->name }}</td>
-                                        <td>
-                                            @if($payment->payment_status == \App\Enums\PaymentStatus::PAID)
-                                            Paid
-                                            @elseif($payment->payment_status == \App\Enums\PaymentStatus::PENDING)
-                                            Pending
-                                            @else
-                                            Unknown
-                                            @endif
+                                        <td>{{ $payment->email }}</td>
+                                        <td>{{ $payment->phone }}</td>
+                                        <td><span class="badge badge-warning badge-sm light">
+                                                @if($payment->payment_status == \App\Enums\PaymentStatus::PAID)
+                                                Paid
+                                                @elseif($payment->payment_status == \App\Enums\PaymentStatus::PENDING)
+                                                Pending
+                                                @else
+                                                Unknown
+                                                @endif
                                         </td>
                                     </tr>
                                     @endforeach

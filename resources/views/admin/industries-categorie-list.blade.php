@@ -83,7 +83,7 @@
                                                             <i class="fa fa-pencil color-muted"></i>
                                                         </a>
 
-                                                        <a href="javascript:void(0);" onclick="confirmDelete('{{ $subscription->uuid }}')" data-bs-toggle="tooltip" data-placement="top" title="Close">
+                                                        <a onclick="confirmDelete('{{ $subscription->uuid }}')" data-bs-toggle="tooltip" data-placement="top" title="Close">
                                                             <i class="fas fa-times color-danger"></i>
                                                         </a>
                                                     </span>
@@ -118,9 +118,19 @@
     });
 
     function confirmDelete(uuid) {
-        if (confirm('Are you sure you want to delete this category it will delete the related industries deleted?')) {
-            window.location.href = '/admin/delete-category/' + uuid;
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this area? It will delete the related industries.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/admin/delete-category/' + uuid;
+            }
+        });
     }
 </script>
 @include('CustomSweetAlert');

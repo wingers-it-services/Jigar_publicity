@@ -73,6 +73,14 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories', 'totalIndustrialAreas'));
     }
 
+    public function viewAdminProfile()
+    {
+        $status = null;
+        $message = null;
+        $userDetail = $this->user->where('id', auth()->user()->id)->first();
+        return view('admin.admin-profile', compact('status', 'message', 'userDetail'));
+    }
+
 
     public function adminLogout(Request $request)
     {

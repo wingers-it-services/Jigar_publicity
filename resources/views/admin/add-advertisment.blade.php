@@ -51,7 +51,7 @@
                                                                     <td>{{$advertisment->image_type}}</td>
                                                                     <td class="text-end">
                                                                         <span>
-                                                                            <a href="/admin/delete-advertisment/{{$advertisment->id}}" data-bs-toggle="tooltip" data-placement="top" title="Close">
+                                                                            <a onclick="confirmDelete('{{ $advertisment->id }}')" data-bs-toggle="tooltip" data-placement="top" title="Close">
                                                                                 <i class="fas fa-times color-danger"></i>
                                                                             </a>
                                                                         </span>
@@ -119,6 +119,23 @@
     $(document).ready(function() {
         $('#example3').DataTable();
     });
+
+
+    function confirmDelete(id) {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'Are you sure you want to delete this area? It will delete the related industries.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '/admin/delete-advertisment/' + id;
+        }
+    });
+}
 </script>
 
 @endsection

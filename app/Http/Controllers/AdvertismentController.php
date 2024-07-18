@@ -52,10 +52,18 @@ class AdvertismentController extends Controller
                 $imagePath = 'advertisement_images/' . $filename;
                 $advertismentImage->move(public_path('advertisement_images/'), $filename);
 
-                $this->advertisment->create([
-                    'advertisment_image' => $imagePath,
-                    'image_type' => $imageType
-                ]);
+                $countImage = $this->advertisment->get()->count();
+
+                if ($countImage >= 2) {
+
+                    return back()->with('status', 'error')->with('message', 'The advertisment image add max 2.');
+                } else {
+
+                    $this->advertisment->create([
+                        'advertisment_image' => $imagePath,
+                        'image_type' => $imageType
+                    ]);
+                }
                 return back()->with('status', 'success')->with('message', 'Advertisement added successfully');
                 // return redirect()->back()->with('success', 'Advertisement added successfully.');
             } else {
