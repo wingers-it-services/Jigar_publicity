@@ -83,7 +83,7 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Don't have an account? <a class="text-primary" href='/register'>Sign up</a></p>
+                                        <p>Go to the User Login <a class="text-primary" href='/'>User Login</a></p>
                                     </div>
                                 </div>
                             </div>

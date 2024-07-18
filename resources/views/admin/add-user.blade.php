@@ -164,58 +164,56 @@
                                                 </div>
 
                                             </div>
-                                            <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device Allowed </label>
-                                            <div class="col-lg-6">
-                                                <select class="default-select wide form-control" id="validationCustom05" name="no_of_device">
-                                                    <option data-display="Select">Please select</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="6">6</option>
-                                                    <option value="7">7</option>
-                                                    <option value="8">8</option>
-                                                    <option value="9">9</option>
-                                                    <option value="10">10</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Please select a one.
-                                                </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device Allowed </label>
+                                                <div class="col-lg-6">
+                                                    <select class="default-select wide form-control" id="validationCustom05" name="no_of_device">
+                                                        <option data-display="Select">Please select</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                        <option value="6">6</option>
+                                                        <option value="7">7</option>
+                                                        <option value="8">8</option>
+                                                        <option value="9">9</option>
+                                                        <option value="10">10</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a one.
+                                                    </div>
 
+                                                </div>
                                             </div>
-                                            <label class="col-lg-4 col-form-label" for="validationCustom05">Payment Status </label>
-                                            <div class="col-lg-6">
-                                                <select class="default-select wide form-control" id="validationCustom05" name="payment_status" id="payment_status">
-                                                    <option data-display="Select">Please select</option>
-                                                    <option name="payment_status" value="{{ \App\Enums\PaymentStatus::PAID }}">PAID</option>
-                                                    <option name="payment_status" value="{{ \App\Enums\PaymentStatus::PENDING }}">PENDING</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Please select a one.
-                                                </div>
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom05">Payment Status </label>
+                                                <div class="col-lg-6">
+                                                    <select class="default-select wide form-control" id="validationCustom05" name="payment_status" id="payment_status">
+                                                        <option data-display="Select">Please select</option>
+                                                        <option name="payment_status" value="{{ \App\Enums\PaymentStatus::PAID }}">PAID</option>
+                                                        <option name="payment_status" value="{{ \App\Enums\PaymentStatus::PENDING }}">PENDING</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a one.
+                                                    </div>
 
+                                                </div>
+                                            </div>
+
+                                            <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label"><a href="javascript:void(0);">Terms Conditions</a> <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-8">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="" id="validationCustom12" required>
+                                                        <label class="form-check-label" for="validationCustom12">
+                                                            Agree to terms and conditions
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-
-
-
-
-
-                                        <div class="mb-3 row">
-                                            <label class="col-lg-4 col-form-label"><a href="javascript:void(0);">Terms
-                                                    &amp; Conditions</a> <span class="text-danger">*</span>
-                                            </label>
-                                            <div class="col-lg-8">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="validationCustom12" required>
-                                                    <label class="form-check-label" for="validationCustom12">
-                                                        Agree to terms and conditions
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-
                                     </div>
                                     <div class="col-xl-12">
                                         <div class="col-lg-12 ms-auto">
