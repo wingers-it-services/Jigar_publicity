@@ -82,7 +82,8 @@ class UserController extends Controller
         $status = null;
         $message = null;
         $userDetail = $this->user->where('id', auth()->user()->id)->first();
-        return view('user.user-profile', compact('status', 'message', 'userDetail'));
+        $horImages = $this->advertisment->where('image_type', 'horizontal')->get();
+        return view('user.user-profile', compact('status', 'message', 'userDetail', 'horImages'));
     }
 
     public function updateUserDetails(Request $request)
@@ -97,21 +98,21 @@ class UserController extends Controller
                 "company_address" => 'required',
             ]);
 
-            
-            $user = $this->user->where('uuid',$request->uuid)->first();
+
+            $user = $this->user->where('uuid', $request->uuid)->first();
 
             if ($request->hasFile('image')) {
                 if ($user->image) {
                     $existingImagePath = public_path($user->image);
                     if (file_exists($existingImagePath)) {
-                        unlink($existingImagePath); 
+                        unlink($existingImagePath);
                     }
                 }
                 $imagefile = $request->file('image');
                 $filename = time() . '_' . $imagefile->getClientOriginalName();
                 $imagePath = 'user_images/' . $filename;
                 $imagefile->move(public_path('user_images/'), $filename);
-            
+
                 $user->update(['image' => $imagePath]);
             }
 
