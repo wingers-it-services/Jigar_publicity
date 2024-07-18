@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                    Content body start
-                                        ***********************************-->
+                                                                        Content body start
+                                                            ***********************************-->
     <div class="content-body ">
         <!-- row -->
         <div class="container-fluid">
@@ -53,8 +53,8 @@
                                 </small>
                                 <span class="circle bg-danger"></span>
                             </div>
-                            <h2 class="fs-24 text-black font-w600 mb-0">67</h2>
-                            <span class="fs-14">No. of Persons</span>
+                            <h2 class="fs-24 text-black font-w600 mb-0">{{$totalIndustryCategories}}</h2>
+                            <span class="fs-14">Industry Categories</span>
                         </div>
                     </div>
                 </div>
@@ -719,7 +719,7 @@
         </div>
     </div>
     <!--**********************************
-                                                    Content body end
-                                        ***********************************-->
+                                                                        Content body end
+                                                            ***********************************-->
 
 @endsection
