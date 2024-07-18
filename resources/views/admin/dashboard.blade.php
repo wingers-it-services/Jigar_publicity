@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                    Content body start
-                        ***********************************-->
+                                                                                                Content body start
+                                                                                    ***********************************-->
     <div class="content-body ">
         <!-- row -->
         <div class="container-fluid">
@@ -53,8 +53,36 @@
                                 </small>
                                 <span class="circle bg-danger"></span>
                             </div>
-                            <h2 class="fs-24 text-black font-w600 mb-0">67</h2>
-                            <span class="fs-14">No. of Persons</span>
+                            <h2 class="fs-24 text-black font-w600 mb-0">{{ $totalIndustryCategories }}</h2>
+                            <span class="fs-14">Industry Categories</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl col-md-4 col-sm-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
+                                <span class="donut1"
+                                    data-peity='{ "fill": ["rgb(238, 252, 255)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>8/8</span>
+                                <small class="text-primary">
+                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g clip-path="url(#clip3)">
+                                            <path
+                                                d="M20 32.9688C17.4153 32.9688 15.3125 30.8659 15.3125 28.2812C15.3125 25.6966 17.4153 23.5938 20 23.5938C22.5847 23.5938 24.6875 25.6966 24.6875 28.2812C24.6875 30.8659 22.5847 32.9688 20 32.9688ZM20 26.7188C19.1384 26.7188 18.4375 27.4197 18.4375 28.2812C18.4375 29.1428 19.1384 29.8438 20 29.8438C20.8616 29.8438 21.5625 29.1428 21.5625 28.2812C21.5625 27.4197 20.8616 26.7188 20 26.7188ZM12.6373 20.7029C14.4202 20.687 16.1845 19.9548 17.8812 18.5266L15.8687 16.1359C13.593 18.0516 11.5632 18.0515 9.28742 16.1359L7.275 18.5267C8.99117 19.9711 10.775 20.7031 12.5782 20.7031C12.5979 20.7031 12.6177 20.703 12.6373 20.7029ZM32.5941 18.5994L30.6873 16.1236C28.3111 17.9535 26.259 17.9616 24.0334 16.1498L22.0605 18.5732C23.7464 19.9458 25.5029 20.632 27.2809 20.632C29.0471 20.6319 30.8346 19.9544 32.5941 18.5994ZM40 9.375H33.6466L40 2.92391V0H29.0625V3.125H35.4159L29.0625 9.57609V12.5H40V9.375ZM36.2987 15.625C36.6737 17.0209 36.875 18.4873 36.875 20C36.875 29.3049 29.3049 36.875 20 36.875C10.6951 36.875 3.125 29.3049 3.125 20C3.125 10.6951 10.6951 3.125 20 3.125C22.1183 3.125 24.146 3.51844 26.0156 4.23422V0.917344C24.0943 0.314141 22.0714 0 20 0C14.6578 0 9.63539 2.08039 5.85781 5.85781C2.08039 9.63539 0 14.6578 0 20C0 25.3422 2.08039 30.3646 5.85781 34.1422C9.63539 37.9196 14.6578 40 20 40C25.3422 40 30.3646 37.9196 34.1422 34.1422C37.9196 30.3646 40 25.3422 40 20C40 18.5101 39.8377 17.0452 39.5224 15.625H36.2987Z"
+                                                fill="white" />
+                                        </g>
+                                        <defs>
+                                            <clipPath id="clip3">
+                                                <rect width="40" height="40" fill="white" />
+                                            </clipPath>
+                                        </defs>
+                                    </svg>
+                                </small>
+                                <span class="circle bg-info"></span>
+                            </div>
+                            <h2 class="fs-24 text-black font-w600 mb-0">{{ $totalIndustrialAreas }}</h2>
+                            <span class="fs-14">Industrial Areas</span>
                         </div>
                     </div>
                 </div>
@@ -84,34 +112,6 @@
                         <div class="card-body p-4">
                             <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
                                 <span class="donut1"
-                                    data-peity='{ "fill": ["rgb(238, 252, 255)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>8/8</span>
-                                <small class="text-primary">
-                                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g clip-path="url(#clip3)">
-                                            <path
-                                                d="M20 32.9688C17.4153 32.9688 15.3125 30.8659 15.3125 28.2812C15.3125 25.6966 17.4153 23.5938 20 23.5938C22.5847 23.5938 24.6875 25.6966 24.6875 28.2812C24.6875 30.8659 22.5847 32.9688 20 32.9688ZM20 26.7188C19.1384 26.7188 18.4375 27.4197 18.4375 28.2812C18.4375 29.1428 19.1384 29.8438 20 29.8438C20.8616 29.8438 21.5625 29.1428 21.5625 28.2812C21.5625 27.4197 20.8616 26.7188 20 26.7188ZM12.6373 20.7029C14.4202 20.687 16.1845 19.9548 17.8812 18.5266L15.8687 16.1359C13.593 18.0516 11.5632 18.0515 9.28742 16.1359L7.275 18.5267C8.99117 19.9711 10.775 20.7031 12.5782 20.7031C12.5979 20.7031 12.6177 20.703 12.6373 20.7029ZM32.5941 18.5994L30.6873 16.1236C28.3111 17.9535 26.259 17.9616 24.0334 16.1498L22.0605 18.5732C23.7464 19.9458 25.5029 20.632 27.2809 20.632C29.0471 20.6319 30.8346 19.9544 32.5941 18.5994ZM40 9.375H33.6466L40 2.92391V0H29.0625V3.125H35.4159L29.0625 9.57609V12.5H40V9.375ZM36.2987 15.625C36.6737 17.0209 36.875 18.4873 36.875 20C36.875 29.3049 29.3049 36.875 20 36.875C10.6951 36.875 3.125 29.3049 3.125 20C3.125 10.6951 10.6951 3.125 20 3.125C22.1183 3.125 24.146 3.51844 26.0156 4.23422V0.917344C24.0943 0.314141 22.0714 0 20 0C14.6578 0 9.63539 2.08039 5.85781 5.85781C2.08039 9.63539 0 14.6578 0 20C0 25.3422 2.08039 30.3646 5.85781 34.1422C9.63539 37.9196 14.6578 40 20 40C25.3422 40 30.3646 37.9196 34.1422 34.1422C37.9196 30.3646 40 25.3422 40 20C40 18.5101 39.8377 17.0452 39.5224 15.625H36.2987Z"
-                                                fill="white" />
-                                        </g>
-                                        <defs>
-                                            <clipPath id="clip3">
-                                                <rect width="40" height="40" fill="white" />
-                                            </clipPath>
-                                        </defs>
-                                    </svg>
-                                </small>
-                                <span class="circle bg-info"></span>
-                            </div>
-                            <h2 class="fs-24 text-black font-w600 mb-0">8 Hours</h2>
-                            <span class="fs-14">New Users</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl col-md-4 col-sm-6">
-                    <div class="card">
-                        <div class="card-body p-4">
-                            <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
-                                <span class="donut1"
                                     data-peity='{ "fill": ["rgb(242, 255, 253)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>8/8</span>
                                 <small class="text-primary">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
@@ -123,8 +123,8 @@
                                 </small>
                                 <span class="circle bg-success"></span>
                             </div>
-                            <h2 class="fs-24 text-black font-w600 mb-0">974 Person</h2>
-                            <span class="fs-14">Total Revenue</span>
+                            <h2 class="fs-24 text-black font-w600 mb-0">{{ $totalAds }} Ads</h2>
+                            <span class="fs-14">Total Advertisement</span>
                         </div>
                     </div>
                 </div>
@@ -719,7 +719,7 @@
         </div>
     </div>
     <!--**********************************
-                                    Content body end
-                        ***********************************-->
+                                                                                                Content body end
+                                                                                    ***********************************-->
 
 @endsection
