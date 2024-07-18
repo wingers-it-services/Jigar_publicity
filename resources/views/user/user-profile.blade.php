@@ -25,8 +25,6 @@
                                 <div class="profile-details">
                                     <div class="profile-name px-3 pt-2">
                                         <h4 class="text-primary mb-0">{{ $userDetail->name }}</h4>
-                                    </div>
-                                    <div class="profile-email px-2 pt-2">
                                         <p>{{ $userDetail->email }}</p>
                                     </div>
                                 </div>
