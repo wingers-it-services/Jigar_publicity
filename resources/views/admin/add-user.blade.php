@@ -44,7 +44,7 @@
                                             <div class="col-lg-8">
                                                 <input type="file" class="form-control" id="validationCustom01" placeholder="Enter a username.." accept="image/*" name="image" onchange="previewImage(event)">
                                                 <div class="invalid-feedback">
-                                                    Please enter a username.
+                                                    Please select image.
                                                 </div>
                                             </div>
                                         </div>
@@ -136,8 +136,34 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {{-- <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom04">Suggestions
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <div class="col-lg-6">
+                                                    <textarea class="form-control" id="validationCustom04" rows="5" placeholder="What would you like to see?"
+                                                        required></textarea>
+                                                    <div class="invalid-feedback">
+                                                        Please enter a Suggestions.
+                                                    </div>
+                                                </div>
+                                            </div> --}}
                                     </div>
                                     <div class="col-xl-6">
+                                        {{-- <div class="mb-3 row">
+                                                <label class="col-lg-4 col-form-label" for="validationCustom05">Payment Status</label>
+                                                <div class="col-lg-6">
+                                                    <select class="default-select wide form-control"
+                                                        id="validationCustom05">
+                                                        <option data-display="Select">Please select</option>
+                                                        <option value="pending">Pending</option>
+                                                        <option value="paid">Paid</option>
+                                                    </select>
+                                                    <div class="invalid-feedback">
+                                                        Please select a one.
+                                                    </div>
+                                                </div>
+                                            </div> --}}
                                         <div class="mb-3 row">
 
                                             <div class="mb-3 row">
@@ -147,7 +173,7 @@
                                                 <div class="col-lg-6">
                                                     <input type="text" class="form-control" id="validationCustom01" name="company_name" placeholder="Enter a Company Name.." required>
                                                     <div class="invalid-feedback">
-                                                        Please enter a username.
+                                                        Please enter a Company name.
                                                     </div>
                                                 </div>
 
@@ -159,12 +185,14 @@
                                                 <div class="col-lg-6">
                                                     <input type="text" class="form-control" id="validationCustom01" name="company_address" placeholder="Enter a Company Address.." required>
                                                     <div class="invalid-feedback">
-                                                        Please enter a username.
+                                                        Please enter a Company address.
                                                     </div>
                                                 </div>
 
                                             </div>
-                                            <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device Allowed </label>
+                                            <label class="col-lg-4 col-form-label" for="validationCustom05">No of
+                                                Device
+                                                Allowed </label>
                                             <div class="col-lg-6">
                                                 <select class="default-select wide form-control" id="validationCustom05" name="no_of_device">
                                                     <option data-display="Select">Please select</option>
@@ -182,22 +210,8 @@
                                                 <div class="invalid-feedback">
                                                     Please select a one.
                                                 </div>
-
-                                            </div>
-                                            <label class="col-lg-4 col-form-label" for="validationCustom05">Payment Status </label>
-                                            <div class="col-lg-6">
-                                                <select class="default-select wide form-control" id="validationCustom05" name="payment_status" id="payment_status">
-                                                    <option data-display="Select">Please select</option>
-                                                    <option name="payment_status" value="{{ \App\Enums\PaymentStatus::PAID }}">PAID</option>
-                                                    <option name="payment_status" value="{{ \App\Enums\PaymentStatus::PENDING }}">PENDING</option>
-                                                </select>
-                                                <div class="invalid-feedback">
-                                                    Please select a one.
-                                                </div>
-
                                             </div>
                                         </div>
-
 
 
 

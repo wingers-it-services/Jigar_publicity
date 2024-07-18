@@ -21,7 +21,7 @@ Route::get('/login', function () {
 // Route::get('/admin-read', function () {
 //     return view('admin.admin-read');
 // });
-
+Route::middleware('auth.admin')->group(function () {
 Route::get('/admin-faq', function () {
     return view('admin.admin-faq');
 });
@@ -90,3 +90,9 @@ Route::get('/check-category-id', [IndustryController::class, 'checkCategoryId'])
 Route::get('/advertisment', [AdvertismentController::class, 'viewAdvertisment'])->name('viewAdvertisment');
 Route::post('/advertisment', [AdvertismentController::class, 'addAdvertisment'])->name('addAdvertisment');
 Route::get('/delete-advertisment/{id}', [AdvertismentController::class, 'deleteAdvertisment'])->name('deleteAdvertisment');
+
+Route::get('/fetch-admin-profile',[AdminController::class,'viewAdminProfile'])->name('viewAdminProfile');
+
+Route::get('/get-payment-status', [AdminController::class,'getPaymentStatus'])->name('get-payment-status');
+
+});

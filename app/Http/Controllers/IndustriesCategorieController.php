@@ -64,12 +64,8 @@ class IndustriesCategorieController extends Controller
         // Delete the category
         $industriesCategorie->delete();
 
-        // Fetch and delete all industries associated with this category
-        $industries = $this->industries->where('category_id', $industryCategoryId)->get();
-        foreach ($industries as $industry) {
-            $industry->delete();
-        }
+       
 
-        return redirect()->route('industriesCategorieList')->with('success', 'Category deleted successfully!');
+        return redirect()->route('industriesCategorieList')->with('status', 'success')->with('message', 'Category deleted successfully!');
     }
 }

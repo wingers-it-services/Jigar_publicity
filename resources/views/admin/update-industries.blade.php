@@ -61,7 +61,9 @@
                                         </div>
                                     </div>
                                     <div class="col-xl-3" id="imagePreview">
-                                        <img src="{{asset($industryDetails->advertisment_image)}}" style="width: 400px;height:200px" loading="lazy" alt="image">
+                                        @if($industryDetails->advertisment_image)
+                                            <img src="{{ asset($industryDetails->advertisment_image) }}" style="width: 400px; height: 200px" loading="lazy" alt="image">
+                                        @endif
                                     </div>
                                 </div>
                                 <br>

@@ -173,7 +173,12 @@ class AdminUserController extends Controller
 
     public function userLoginHistory(Request $request)
     {
-        $users = $this->userHistory->all();
+        $users = $this->userHistory->with(['user' => function($query) {
+            $query->where('is_admin', '!=', 1);
+        }])->get(); 
+        $users = $users->filter(function ($history) {
+            return $history->user !== null;
+        });
         return view('admin.login-history', compact('users'));
     }
 
@@ -207,4 +212,6 @@ class AdminUserController extends Controller
             return back()->with('status', 'error')->with('message', 'UserPurchase Not Added');
         }
     }
+
+    
 }

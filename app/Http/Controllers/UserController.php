@@ -130,4 +130,11 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'error while updating profile');
         }
     }
+
+    public function fetchUserProfile()
+    {
+        $user = $this->user->findOrFail(auth()->user()->id);
+        $user->profile_image_url = url('images/' . $user->image); 
+        return response()->json($user);
+    }
 }

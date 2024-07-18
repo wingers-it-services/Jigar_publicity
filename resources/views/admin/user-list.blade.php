@@ -121,7 +121,7 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->company_name }}</td>
                                         <td><a href="javascript:void(0);"><strong>{{ $user->phone }}</strong></a></td>
-                                        <td>{{ $user->company_address }}</td>
+                                        <td>{{ Str::limit($user->company_address, 10, '...') }}</td>
                                         <td>{{ $user->no_of_device }}</td>
                                         <td>
                                             <div class="d-flex">
@@ -131,7 +131,7 @@
                                                 <a href="/admin/update-user" class="btn btn-primary shadow btn-xs sharp me-1 edit-book-button" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg" data-book='@json($user)'>
                                                     <i class="fa fa-pencil"></i>
                                                 </a>
-                                                <a href="/admin/delete-user/{{ $user->uuid }}" class="btn btn-danger shadow btn-xs sharp">
+                                                <a onclick="confirmDelete('{{ $user->uuid }}')" class="btn btn-danger shadow btn-xs sharp">
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </div>
@@ -314,6 +314,22 @@
             });
         });
     });
+
+    function confirmDelete(uuid) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'Are you sure you want to delete this area? It will delete the related industries.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/admin/delete-user/' + uuid;
+            }
+        });
+    }
 </script>
 
 @include('CustomSweetAlert')
