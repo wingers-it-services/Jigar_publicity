@@ -42,33 +42,36 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-    
+
             $credentials = $request->only('email', 'password');
             $user = $this->user->where('email', $request->email)->whereNot('is_admin', 1)->first();
-    
+
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
             }
-    
+
             if ($this->checkAllowUserTologin($user)) {
                 return back()->with('status', 'error')->with('message', 'You reached max allowed device limit.');
             }
-    
+
             if (auth()->check()) {
                 if (auth()->user()->id == $user->id) {
                     $this->logUserLoginDetails($request);
                     return redirect()->route('industry-list');
                 } else {
-                      return back()->with('status', 'error')->with('message', 'Someone is already logged in. You cannot log in from this device.');
+                    if (auth()->user()->is_admin == 1)
+                        return back()->with('status', 'error')->with('message', 'This system is occupied by Admin Please login with Admin credentials');
+                    else
+                        return back()->with('status', 'error')->with('message', 'This system is occupied by user ' . auth()->user()->name . ' Please login with ' . auth()->user()->name);
                 }
             } elseif (Auth::attempt($credentials)) {
                 $user->active_device += 1;
                 $user->save();
-    
+
                 $this->logUserLoginDetails($request);
                 return redirect()->route('industry-list');
             }
-    
+
             return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
         } catch (Exception $e) {
             Log::error('[AuthController][userLogin] Login error: ' . $e->getMessage());
