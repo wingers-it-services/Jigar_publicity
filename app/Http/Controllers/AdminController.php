@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Advertisment;
+use App\Models\Area;
 use App\Models\Gym;
 use App\Models\IndustriesCategorie;
 use App\Models\IndustryDetail;
@@ -21,12 +22,19 @@ class AdminController extends Controller
     protected $industryDetail;
     protected $advertisment;
     protected $industriesCategory;
+    protected $industryArea;
 
-    public function __construct(User $user, IndustryDetail $industryDetail, IndustriesCategorie $industriesCategory, Advertisment $advertisment)
-    {
+    public function __construct(
+        User $user,
+        IndustryDetail $industryDetail,
+        IndustriesCategorie $industriesCategory,
+        Area $industryArea,
+        Advertisment $advertisment
+    ) {
         $this->user = $user;
         $this->industryDetail = $industryDetail;
         $this->industriesCategory = $industriesCategory;
+        $this->industryArea = $industryArea;
         $this->advertisment = $advertisment;
     }
     public function adminLogin(Request $request)
@@ -60,7 +68,8 @@ class AdminController extends Controller
         $totalUsers = $this->user->whereNot('is_admin', 1)->get()->count();
         $totalAds = $this->advertisment->get()->count();
         $totalIndustryCategories = $this->industriesCategory->get()->count();
+        $totalIndustrialAreas = $this->industryArea->get()->count();
 
-        return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories'));
+        return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories', 'totalIndustrialAreas'));
     }
 }
