@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Advertisment;
 use App\Models\Gym;
 use App\Models\IndustryDetail;
 use App\Traits\SessionTrait;
@@ -17,11 +18,13 @@ class AdminController extends Controller
     use SessionTrait;
     protected $user;
     protected $industryDetail;
+    protected $advertisment;
 
-    public function __construct(User $user, IndustryDetail $industryDetail)
+    public function __construct(User $user, IndustryDetail $industryDetail, Advertisment $advertisment)
     {
         $this->user = $user;
         $this->industryDetail = $industryDetail;
+        $this->advertisment = $advertisment;
     }
     public function adminLogin(Request $request)
     {
@@ -52,7 +55,8 @@ class AdminController extends Controller
     {
         $totalIndustries = $this->industryDetail->all()->count();
         $totalUsers = $this->user->whereNot('is_admin', 1)->get()->count();
+        $totalAds = $this->advertisment->get()->count();
 
-        return view('admin.dashboard', compact('totalIndustries', 'totalUsers'));
+        return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds'));
     }
 }
