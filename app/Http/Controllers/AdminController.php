@@ -72,4 +72,19 @@ class AdminController extends Controller
 
         return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories', 'totalIndustrialAreas'));
     }
+
+
+    public function adminLogout(Request $request)
+    {
+        try {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect()->route('admin-login')->with('status', 'success')->with('message', 'Logged out successfully.');
+        } catch (Exception $e) {
+            Log::error('[AdminController] [adminLogout] Error while logging in admin : ' . $e->getMessage());
+            return redirect()->back()->with('status', 'error')->with('message', $e->getMessage());
+        }
+    }
 }

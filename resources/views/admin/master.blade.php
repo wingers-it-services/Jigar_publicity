@@ -12,7 +12,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="author" content="DexignZone">
     <meta name="robots" content="">
-    <meta name="keywords" content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
+    <meta name="keywords"
+        content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
     <meta name="description" content="Some description for the page">
     <meta property="og:title" content="Fito - A Comprehensive Fitness Solution for a Healthier Lifestyle | DexignZone">
     <meta property="og:description" content="Laravel | Dashboard">
@@ -29,21 +30,25 @@
 
     <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('vendor/jquery-steps/css/jquery.steps.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('vendor/jquery-smartwizard/dist/css/smart_wizard.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('vendor/jquery-smartwizard/dist/css/smart_wizard.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- datatable releted -->
-    <link href="https://fito.dexignzone.com/laravel/demo/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fito.dexignzone.com/laravel/demo/vendor/datatables/css/jquery.dataTables.min.css"
+        rel="stylesheet" type="text/css" />
     <link href="https://fito.dexignzone.com/laravel/demo/css/style.css" rel="stylesheet" type="text/css" />
 
     <!-- fullcalendar -->
-    <link href="https://fito.dexignzone.com/laravel/demo/vendor/fullcalendar/css/main.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://fito.dexignzone.com/laravel/demo/vendor/fullcalendar/css/main.min.css" rel="stylesheet"
+        type="text/css" />
 </head>
 
 <body>
@@ -110,17 +115,24 @@
                     <div class="tab-pane fade active show" id="chat" role="tabpanel">
                         <div class="card mb-sm-3 mb-md-0 contacts_card dz-chat-user-box">
                             <div class="card-header chat-list-header text-center">
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                        viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect fill="#000000" x="4" y="11" width="16" height="2" rx="1" />
-                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " x="4" y="11" width="16" height="2" rx="1" />
+                                            <rect fill="#000000" x="4" y="11" width="16" height="2"
+                                                rx="1" />
+                                            <rect fill="#000000" opacity="0.3"
+                                                transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                                                x="4" y="11" width="16" height="2" rx="1" />
                                         </g>
                                     </svg></a>
                                 <div>
                                     <h6 class="mb-1">Chat List</h6>
                                     <p class="mb-0">Show All</p>
                                 </div>
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                        viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="0" y="0" width="24" height="24" />
                                             <circle fill="#000000" cx="5" cy="12" r="2" />
@@ -135,7 +147,8 @@
                                     <li class="active dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/1.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon"></span>
                                             </div>
                                             <div class="user_info">
@@ -147,7 +160,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/2.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -159,7 +173,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/3.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/3.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon"></span>
                                             </div>
                                             <div class="user_info">
@@ -171,7 +186,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/4.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/4.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -184,7 +200,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/5.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/5.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -196,7 +213,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/1.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon"></span>
                                             </div>
                                             <div class="user_info">
@@ -208,7 +226,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/2.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -221,7 +240,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/3.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/3.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon"></span>
                                             </div>
                                             <div class="user_info">
@@ -233,7 +253,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/4.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/4.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -246,7 +267,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/5.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/5.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -258,7 +280,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/1.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon"></span>
                                             </div>
                                             <div class="user_info">
@@ -270,7 +293,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/2.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -282,7 +306,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/3.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/3.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon"></span>
                                             </div>
                                             <div class="user_info">
@@ -295,7 +320,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/4.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/4.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -307,7 +333,8 @@
                                     <li class="dz-chat-user">
                                         <div class="d-flex bd-highlight">
                                             <div class="img_cont">
-                                                <img src="{{ asset('images/avatar/5.jpg') }}" class="rounded-circle user_img" alt="">
+                                                <img src="{{ asset('images/avatar/5.jpg') }}"
+                                                    class="rounded-circle user_img" alt="">
                                                 <span class="online_icon offline"></span>
                                             </div>
                                             <div class="user_info">
@@ -322,11 +349,17 @@
                         <div class="card chat dz-chat-history-box d-none">
                             <div class="card-header chat-list-header text-center">
                                 <a href="#" class="dz-chat-history-back">
-                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <polygon points="0 0 24 0 24 24 0 24" />
-                                            <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) " x="14" y="7" width="2" height="10" rx="1" />
-                                            <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) " />
+                                            <rect fill="#000000" opacity="0.3"
+                                                transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) "
+                                                x="14" y="7" width="2" height="10" rx="1" />
+                                            <path
+                                                d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z"
+                                                fill="#000000" fill-rule="nonzero"
+                                                transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) " />
                                         </g>
                                     </svg>
                                 </a>
@@ -335,7 +368,10 @@
                                     <p class="mb-0 text-success">Online</p>
                                 </div>
                                 <div class="dropdown">
-                                    <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                    <a href="#" data-bs-toggle="dropdown" aria-expanded="false"><svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                            viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                                 <rect x="0" y="0" width="24" height="24" />
                                                 <circle fill="#000000" cx="5" cy="12" r="2" />
@@ -358,7 +394,8 @@
                             <div class="card-body msg_card_body dz-scroll" id="DZ_W_Contacts_Body3">
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         Hi, how are you samim?
@@ -371,12 +408,14 @@
                                         <span class="msg_time_send">8:55 AM, Today</span>
                                     </div>
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/2.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         I am good too, thank you for your chat template
@@ -389,12 +428,14 @@
                                         <span class="msg_time_send">9:05 AM, Today</span>
                                     </div>
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/2.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         I am looking for your next templates
@@ -407,12 +448,14 @@
                                         <span class="msg_time_send">9:10 AM, Today</span>
                                     </div>
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/2.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         Bye, see you
@@ -421,7 +464,8 @@
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         Hi, how are you samim?
@@ -434,12 +478,14 @@
                                         <span class="msg_time_send">8:55 AM, Today</span>
                                     </div>
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/2.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         I am good too, thank you for your chat template
@@ -452,12 +498,14 @@
                                         <span class="msg_time_send">9:05 AM, Today</span>
                                     </div>
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/2.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         I am looking for your next templates
@@ -470,12 +518,14 @@
                                         <span class="msg_time_send">9:10 AM, Today</span>
                                     </div>
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/2.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/2.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-start mb-4">
                                     <div class="img_cont_msg">
-                                        <img src="{{ asset('images/avatar/1.jpg') }}" class="rounded-circle user_img_msg" alt="">
+                                        <img src="{{ asset('images/avatar/1.jpg') }}"
+                                            class="rounded-circle user_img_msg" alt="">
                                     </div>
                                     <div class="msg_cotainer">
                                         Bye, see you
@@ -487,7 +537,8 @@
                                 <div class="input-group">
                                     <textarea class="form-control" placeholder="Type your message..."></textarea>
                                     <div class="input-group-append">
-                                        <button type="button" class="btn btn-primary"><i class="fa fa-location-arrow"></i></button>
+                                        <button type="button" class="btn btn-primary"><i
+                                                class="fa fa-location-arrow"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -496,7 +547,9 @@
                     <div class="tab-pane fade" id="alerts" role="tabpanel">
                         <div class="card mb-sm-3 mb-md-0 contacts_card">
                             <div class="card-header chat-list-header text-center">
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                        viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="0" y="0" width="24" height="24" />
                                             <circle fill="#000000" cx="5" cy="12" r="2" />
@@ -508,11 +561,17 @@
                                     <h6 class="mb-1">Notications</h6>
                                     <p class="mb-0">Show All</p>
                                 </div>
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                        viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="0" y="0" width="24" height="24" />
-                                            <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                            <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
+                                            <path
+                                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                                fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <path
+                                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                                fill="#000000" fill-rule="nonzero" />
                                         </g>
                                     </svg></a>
                             </div>
@@ -566,21 +625,32 @@
                     <div class="tab-pane fade" id="notes">
                         <div class="card mb-sm-3 mb-md-0 note_card">
                             <div class="card-header chat-list-header text-center">
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                        viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                            <rect fill="#000000" x="4" y="11" width="16" height="2" rx="1" />
-                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " x="4" y="11" width="16" height="2" rx="1" />
+                                            <rect fill="#000000" x="4" y="11" width="16" height="2"
+                                                rx="1" />
+                                            <rect fill="#000000" opacity="0.3"
+                                                transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "
+                                                x="4" y="11" width="16" height="2" rx="1" />
                                         </g>
                                     </svg></a>
                                 <div>
                                     <h6 class="mb-1">Notes</h6>
                                     <p class="mb-0">Add New Nots</p>
                                 </div>
-                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px" viewBox="0 0 24 24" version="1.1">
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="18px" height="18px"
+                                        viewBox="0 0 24 24" version="1.1">
                                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                                             <rect x="0" y="0" width="24" height="24" />
-                                            <path d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" />
-                                            <path d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z" fill="#000000" fill-rule="nonzero" />
+                                            <path
+                                                d="M14.2928932,16.7071068 C13.9023689,16.3165825 13.9023689,15.6834175 14.2928932,15.2928932 C14.6834175,14.9023689 15.3165825,14.9023689 15.7071068,15.2928932 L19.7071068,19.2928932 C20.0976311,19.6834175 20.0976311,20.3165825 19.7071068,20.7071068 C19.3165825,21.0976311 18.6834175,21.0976311 18.2928932,20.7071068 L14.2928932,16.7071068 Z"
+                                                fill="#000000" fill-rule="nonzero" opacity="0.3" />
+                                            <path
+                                                d="M11,16 C13.7614237,16 16,13.7614237 16,11 C16,8.23857625 13.7614237,6 11,6 C8.23857625,6 6,8.23857625 6,11 C6,13.7614237 8.23857625,16 11,16 Z M11,18 C7.13400675,18 4,14.8659932 4,11 C4,7.13400675 7.13400675,4 11,4 C14.8659932,4 18,7.13400675 18,11 C18,14.8659932 14.8659932,18 11,18 Z"
+                                                fill="#000000" fill-rule="nonzero" />
                                         </g>
                                     </svg></a>
                             </div>
@@ -593,8 +663,10 @@
                                                 <p>10 Aug 2020</p>
                                             </div>
                                             <div class="ms-auto">
-                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger btn-xs sharp"><i
+                                                        class="fa fa-trash"></i></a>
                                             </div>
                                         </div>
                                     </li>
@@ -605,8 +677,10 @@
                                                 <p>10 Aug 2020</p>
                                             </div>
                                             <div class="ms-auto">
-                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger btn-xs sharp"><i
+                                                        class="fa fa-trash"></i></a>
                                             </div>
                                         </div>
                                     </li>
@@ -617,8 +691,10 @@
                                                 <p>10 Aug 2020</p>
                                             </div>
                                             <div class="ms-auto">
-                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger btn-xs sharp"><i
+                                                        class="fa fa-trash"></i></a>
                                             </div>
                                         </div>
                                     </li>
@@ -629,8 +705,10 @@
                                                 <p>10 Aug 2020</p>
                                             </div>
                                             <div class="ms-auto">
-                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i class="fa fa-pencil"></i></a>
-                                                <a href="#" class="btn btn-danger btn-xs sharp"><i class="fa fa-trash"></i></a>
+                                                <a href="#" class="btn btn-primary btn-xs sharp me-1"><i
+                                                        class="fa fa-pencil"></i></a>
+                                                <a href="#" class="btn btn-danger btn-xs sharp"><i
+                                                        class="fa fa-trash"></i></a>
                                             </div>
                                         </div>
                                     </li>
@@ -839,7 +917,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
                                     <a href="app-profile.html" class="dropdown-item ai-icon">
-                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
+                                            width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
@@ -853,8 +934,12 @@
                                         </svg>
                                         <span class="ms-2">Inbox </span>
                                     </a> -->
-                                    <a href="/admin/login" class="dropdown-item ai-icon">
-                                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <a href="{{ route('admin-logout') }}" class="dropdown-item ai-icon"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <svg id="icon-logout" xmlns="http://www.w3.org/2000/svg" class="text-danger"
+                                            width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
                                             <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
                                             <polyline points="16 17 21 12 16 7"></polyline>
                                             <line x1="21" y1="12" x2="9" y2="12">
@@ -862,6 +947,11 @@
                                         </svg>
                                         <span class="ms-2">Logout </span>
                                     </a>
+                                    <form id="logout-form" action="{{ route('admin-logout') }}" method="POST"
+                                        style="display: none;">
+                                        @csrf
+                                    </form>
+
                                 </div>
                             </li>
                         </ul>
@@ -968,18 +1058,26 @@
                         </a>
                     </li>
 
-                    <li><a href="/admin/login">
+                    <li>
+                        <a href="{{ route('admin-logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             <i class="fa fa-lock" aria-hidden="true"></i>
                             <span class="nav-text">Log Out</span>
                         </a>
+                        <form id="logout-form" action="{{ route('admin-logout') }}" method="POST"
+                            style="display: none;">
+                            @csrf
+                        </form>
                     </li>
+
                 </ul>
                 <div class="drum-box">
                     {{-- <img src="https://wingersitservices.co.in/assets/images/logo.png"
                         style="  width: -webkit-fill-available; " alt=""> --}}
                     <p class="fs-18 font-w500 mb-4">WINGERS IT SERVICES Pvt. Ltd</p>
                     <a class="" href="https://wingersitservices.co.in/">Check schedule
-                        <svg class="ms-3" width="6" height="12" viewBox="0 0 6 12" fill="none" xmlns="https://wingersitservices.co.in/assets/images/logo.png">
+                        <svg class="ms-3" width="6" height="12" viewBox="0 0 6 12" fill="none"
+                            xmlns="https://wingersitservices.co.in/assets/images/logo.png">
                             <path d="M0 12L6 6L0 0" fill="#BCD7FF" />
                         </svg>
                     </a>
@@ -1038,12 +1136,17 @@
     <script src="{{ asset('vendor/jquery-smartwizard/dist/js/jquery.smartWizard.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/plugins-init/jquery-steps-init.js') }}" type="text/javascript"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Required vendors -->
 
-    <script src="https://fito.dexignzone.com/laravel/demo/vendor/datatables/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/vendor/datatables/js/jquery.dataTables.min.js"
+        type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/js/plugins-init/datatables.init.js" type="text/javascript">
     </script>
 

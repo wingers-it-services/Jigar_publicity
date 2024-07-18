@@ -38,8 +38,7 @@
                             found!</h4>
                         <p>You may have mistyped the address or the page may have moved.</p>
                         <div>
-                            <a class="btn btn-primary" href="https://fito.dexignzone.com/laravel/demo/index">Back to
-                                Home</a>
+                            <a class="btn btn-primary">Back to Home</a>
                         </div>
                     </div>
                 </div>
