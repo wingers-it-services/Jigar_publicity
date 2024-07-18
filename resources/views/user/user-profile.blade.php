@@ -25,12 +25,8 @@
                                 <div class="profile-details">
                                     <div class="profile-name px-3 pt-2">
                                         <h4 class="text-primary mb-0">{{ $userDetail->name }}</h4>
-                                        <p>UX / UI Designer</p>
                                     </div>
                                     <div class="profile-email px-2 pt-2">
-                                        <h4 class="text-muted mb-0"><a href="/cdn-cgi/l/email-protection" class="_cf_email_"
-                                                data-cfemail="9af2fff6f6f5dafff7fbf3f6b4f9f5f7">[email&#160;protected]</a>
-                                        </h4>
                                         <p>{{ $userDetail->email }}</p>
                                     </div>
                                 </div>
