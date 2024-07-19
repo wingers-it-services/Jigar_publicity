@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\DummyPasswordEnum;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +35,7 @@ class User extends Authenticatable
         });
     }
 
-    public function addUser(array $validatedData,$imagePath)
+    public function addUser(array $validatedData, $imagePath)
     {
         try {
             return $this->create([
@@ -45,7 +46,7 @@ class User extends Authenticatable
                 'phone'          => $validatedData['phone'],
                 'website'        => $validatedData['website'],
                 'company_name'   => $validatedData['company_name'],
-                'company_address'=> $validatedData['company_address'],
+                'company_address' => $validatedData['company_address'],
                 'no_of_device'   => $validatedData['no_of_device'],
                 'image'          => $imagePath,
                 'payment_status' => $validatedData['payment_status'],
@@ -56,28 +57,33 @@ class User extends Authenticatable
         }
     }
 
-    public function updateUser(array $validatedData,$uuid)
+    public function updateUser(array $validatedData, $uuid)
     {
         $userDetail = User::where('uuid', $uuid)->first();
         if (!$userDetail) {
             return redirect()->back()->with('error', 'user not found');
         }
         try {
-            $userDetail->update([
+            $updateData = [
                 "name"           => $validatedData['name'],
                 "email"          => $validatedData['email'],
                 "phone"          => $validatedData['phone'],
                 "gender"         => $validatedData['gender'],
                 "website"        => $validatedData['website'],
                 "company_name"   => $validatedData['company_name'],
-                "company_address"=> $validatedData['company_address'],
+                "company_address" => $validatedData['company_address'],
                 "no_of_device"   => $validatedData['no_of_device'],
-                "password"       => Hash::make($validatedData['password']),
-                "payment_status"  => $validatedData['payment_status'],
-            ]);
+                "payment_status" => $validatedData['payment_status'],
+            ];
+
+            // Only update the password if it is not "**********"
+            if ($validatedData['password'] !== DummyPasswordEnum::PAASWORD) {
+                $updateData["password"] = Hash::make($validatedData['password']);
+            }
+
+            $userDetail->update($updateData);
 
             return $userDetail->save();
-
         } catch (Throwable $e) {
             Log::error('[User][updateUser] Error while updating user detail: ' . $e->getMessage());
         }
@@ -97,11 +103,10 @@ class User extends Authenticatable
                 "gender"         => $validatedData['gender'],
                 "website"        => $validatedData['website'],
                 "company_name"   => $validatedData['company_name'],
-                "company_address"=> $validatedData['company_address']
+                "company_address" => $validatedData['company_address']
             ]);
 
             return $userDetail->save();
-
         } catch (Throwable $e) {
             Log::error('[User][updateUserDetail] Error while updating user detail: ' . $e->getMessage());
         }
