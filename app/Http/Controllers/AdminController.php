@@ -102,8 +102,8 @@ class AdminController extends Controller
     public function getPaymentStatus(Request $request)
     {
         try {
-            $paidCount = $this->user->where('payment_status', '1')->count();
-            $pendingCount = $this->user->where('payment_status', '0')->count();
+            $paidCount = $this->user->whereNot('is_admin', 1)->where('payment_status', '1')->count();
+            $pendingCount = $this->user->whereNot('is_admin', 1)->where('payment_status', '0')->count();
 
             $data = [
                 'paid' => $paidCount,
