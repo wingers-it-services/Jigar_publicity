@@ -74,7 +74,7 @@
 
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-bordered table-striped verticle-middle table-responsive-sm">
+                                    <table id="example3" class="table table-bordered table-striped verticle-middle table-responsive-sm">
                                         <thead>
 
                                             <tr>
