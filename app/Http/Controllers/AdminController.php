@@ -70,7 +70,10 @@ class AdminController extends Controller
         $totalIndustryCategories = $this->industriesCategory->get()->count();
         $totalIndustrialAreas = $this->industryArea->get()->count();
 
-        return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories', 'totalIndustrialAreas'));
+        $paidStatus = $this->user->where('payment_status', 1)->get()->count();
+        $pendingStatus = $this->user->where('payment_status', 0)->get()->count();
+
+        return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories', 'totalIndustrialAreas', 'paidStatus', 'pendingStatus'));
     }
 
     public function viewAdminProfile()
@@ -93,6 +96,24 @@ class AdminController extends Controller
         } catch (Exception $e) {
             Log::error('[AdminController] [adminLogout] Error while logging in admin : ' . $e->getMessage());
             return redirect()->back()->with('status', 'error')->with('message', $e->getMessage());
+        }
+    }
+
+    public function getPaymentStatus(Request $request)
+    {
+        try {
+            $paidCount = $this->user->where('payment_status', '1')->count();
+            $pendingCount = $this->user->where('payment_status', '0')->count();
+
+            $data = [
+                'paid' => $paidCount,
+                'pending' => $pendingCount
+            ];
+
+            return response()->json($data);
+        } catch (\Exception $e) {
+            Log::error('[AdminUserController][getPaymentStatus] Error fetching payment status: ' . $e->getMessage());
+            return response()->json(['error' => 'Error fetching payment status'], 500);
         }
     }
 }
