@@ -158,7 +158,7 @@
 
                 document.getElementById('editUserId').value = user.uuid;
                 document.getElementById('editName').value = user.name;
-                document.getElementById('editPassword').value = "**********";
+                document.getElementById('editPassword').value = "{{ \App\Enums\DummyPasswordEnum::PAASWORD }}";
                 document.getElementById('editEmail').value = user.email;
                 document.getElementById('editPhone').value = user.phone;
                 document.getElementById('editWebsite').value = user.website;
