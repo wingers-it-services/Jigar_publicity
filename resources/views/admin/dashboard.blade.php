@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                Content body start
-                                                                                    ***********************************-->
+                                                                                                            Content body start
+                                                                                                ***********************************-->
     <div class="content-body ">
         <!-- row -->
         <div class="container-fluid">
@@ -14,7 +14,7 @@
                         <div class="card-body p-4">
                             <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
                                 <span class="donut1"
-                                    data-peity='{ "fill": ["rgb(192, 255, 134)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>4/8</span>
+                                    data-peity='{ "fill": ["rgb(192, 255, 134)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>{{ $totalIndustries }}/100</span>
                                 <small class="text-primary">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
                         <div class="card-body p-4">
                             <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
                                 <span class="donut1"
-                                    data-peity='{ "fill": ["rgb(255, 195, 210)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>3/8</span>
+                                    data-peity='{ "fill": ["rgb(255, 195, 210)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>{{ $totalIndustryCategories }}/100</span>
                                 <small class="text-primary">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -63,7 +63,7 @@
                         <div class="card-body p-4">
                             <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
                                 <span class="donut1"
-                                    data-peity='{ "fill": ["rgb(238, 252, 255)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>8/8</span>
+                                    data-peity='{ "fill": ["rgb(238, 252, 255)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>{{ $totalIndustrialAreas }}/100</span>
                                 <small class="text-primary">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -91,7 +91,7 @@
                         <div class="card-body p-4">
                             <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
                                 <span class="donut1"
-                                    data-peity='{ "fill": ["rgb(242, 255, 253)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>8/8</span>
+                                    data-peity='{ "fill": ["rgb(242, 255, 253)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>{{ $totalUsers }}/100</span>
                                 <small class="text-primary">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -112,7 +112,7 @@
                         <div class="card-body p-4">
                             <div class="d-inline-block mb-4 ms--12 position-relative donut-chart-sale">
                                 <span class="donut1"
-                                    data-peity='{ "fill": ["rgb(242, 255, 253)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>8/8</span>
+                                    data-peity='{ "fill": ["rgb(242, 255, 253)", "rgba(255, 255, 255, 1)"],   "innerRadius": 45, "radius": 10}'>{{ $totalAds }}/100</span>
                                 <small class="text-primary">
                                     <svg width="40" height="40" viewBox="0 0 40 40" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -362,7 +362,7 @@
         </div>
     </div>
     <!--**********************************
-                                                                                                Content body end
-                                                                                    ***********************************-->
+                                                                                                            Content body end
+                                                                                                ***********************************-->
 
 @endsection
