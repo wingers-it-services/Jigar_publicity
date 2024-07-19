@@ -1109,7 +1109,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">Wingers IT
+                <p>Copyright © Designed &amp; Developed by <a href="https://wingersitservices.co.in/" target="_blank">Wingers IT
                         Services Pvt. Ltd</a> 2024</p>
             </div>
         </div> <!--**********************************
