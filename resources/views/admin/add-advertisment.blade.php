@@ -110,9 +110,6 @@
                             Content body end
                         ***********************************-->
 
-@endsection
-@include('CustomSweetAlert')
-@section('scripts')
 <!-- Data Table JS -->
 <script src="{{ asset('path/to/datatables.min.js') }}"></script>
 <script>
@@ -138,4 +135,5 @@
 }
 </script>
 
+@include('CustomSweetAlert')
 @endsection
