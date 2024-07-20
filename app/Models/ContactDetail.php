@@ -21,17 +21,23 @@ class ContactDetail extends Model
     public function addContactData(array $contactDetails)
     {
         try {
+
             foreach ($contactDetails['contact_name'] as $key => $contact) {
+                // dd($contactDetails);
+                // if (empty($contact)) {
+                //     continue;
+                // }
+
                 $this->create([
-                    'industry_id' => $contactDetails['industry_id'],
+                    'industry_id'  => $contactDetails['industry_id'],
                     'contact_name' => $contact,
-                    'designation'  => $contactDetails["designation"][$key],
-                    'mobile' => $contactDetails['mobile'][$key],
-                    'email_id' => $contactDetails['email_id'][$key],
+                    'designation'  => $contactDetails['designation'][$key],
+                    'mobile'       => $contactDetails['mobile'][$key],
+                    'email_id'     => $contactDetails['email_id'][$key]
                 ]);
             }
         } catch (\Throwable $e) {
-            Log::error('[ContactDetail][addContacttData] Error creating contact detail: ' . $e->getMessage());
+            Log::error('[ContactDetail1][addContacttData] Error creating contact detail: ' . $e->getMessage());
         }
     }
 

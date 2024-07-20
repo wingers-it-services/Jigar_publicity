@@ -108,11 +108,11 @@ class IndustryController extends Controller
 
             // Prepare product specification data
             $contactDetails = [
-                'industry_id' => $industry->id,
+                'industry_id'  => $industry->id,
                 'contact_name' => $request->input('contact_name'),
-                'mobile' => $request->input('mobile'),
-                'email_id' => $request->input('email_id'),
-
+                'designation'  => $request->input('designation'),
+                'mobile'       => $request->input('mobile'),
+                'email_id'     => $request->input('email_id')
             ];
 
             // Process product specification data
@@ -121,7 +121,7 @@ class IndustryController extends Controller
             return back()->with('status', 'success')->with('message', 'Industries added Successfully');
             // Optionally, redirect or return a response
             // return redirect()->route("industries")->with('success', 'Industries added successfully');
-        } catch (\Exception $th) {
+        } catch (Exception $th) {
             Log::error("[IndustryController][addIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }
@@ -167,40 +167,21 @@ class IndustryController extends Controller
             $industry->update($industryData);
 
             $contactData = $request->only(['contact_name', 'designation', 'mobile', 'email_id']);
-            $contactCount = count($contactData["contact_name"]);
+            $contactData['industry_id'] = $industry->id;
 
-            if ($contactCount > 0) {
+
+            if (count($contactData["contact_name"]) > 0) {
                 $this->contactDetail->where('industry_id', $industry->id)->delete();
-                $this->createContactDetail($contactData, $industry->id, $contactCount);
+                $this->contactDetail->addContactData($contactData);
             }
 
             return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
-        } catch (\Exception $th) {
+        } catch (Exception $th) {
             Log::error("[IndustryController][updateIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }
     }
 
-    public function createContactDetail(array $contactData, int $industryId, int  $contactCount)
-    {
-        try {
-            for ($i = 0; $i < $contactCount; $i++) {
-                if (empty($contactData["contact_name"][$i])) {
-                    continue;
-                }
-                $this->contactDetail->create([
-                    'industry_id'  => $industryId,
-                    'contact_name' => $contactData["contact_name"][$i] ?? '',
-                    'designation'  => $contactData['designation'][$i] ?? '',
-                    'mobile'       => $contactData["mobile"][$i] ?? '',
-                    'email_id'     => $contactData["email_id"][$i] ?? '',
-                ]);
-            }
-        } catch (Exception $e) {
-            Log::error("[IndustryController][createContactDetail] error " . $e->getMessage());
-            return redirect()->back()->with('error', $e->getMessage());
-        }
-    }
     public function deleteContacts(Request $request, $id)
     {
         try {
