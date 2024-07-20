@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                            Content body start
-                                                                                                                                                                                                            ***********************************-->
+                                                                                                                                                                                                                        Content body start
+                                                                                                                                                                                                                        ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -155,7 +155,7 @@
                                             <tr onclick="fetchIndustryDetailsByUuid('{{ $industry->uuid }}')">
                                                 <td>{{ $industry->industry_name }}</td>
                                                 <td>{{ $industry->category->category_name ?? '' }}</td>
-                                                <td>{{ $industry->category->category_name ?? '' }}</td>
+                                                <td>{{ $industry->product ?? '' }}</td>
                                                 <td>{{ $industry->area->area_name ?? '' }}</td>
                                                 <td>
                                                     <div class="d-flex">
@@ -295,7 +295,7 @@
 
     <script>
         var table = $('#industyList').DataTable({
-            searching: false, // Disable global search
+            // searching: false, // Disable global search
             initComplete: function() {
                 var api = this.api();
 

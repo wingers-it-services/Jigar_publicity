@@ -243,14 +243,14 @@
                             <div class="row">
                                 <div class="card mb-3">
                                     <div class="card-header d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title mb-0">Add Contact Details</h5>
+                                        <h5 class="card-title mb-0">Contact Details</h5>
                                         <button type="button" class="btn btn-danger btn-sm"
                                             data-row-id="{{ $contact->id }}"
                                             onclick="removeIndustryField(this)">Remove</button>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-lg-4 mt-3">
+                                            <div class="col-lg-3 mt-3">
                                                 <div class="form-group">
                                                     <label>Contact Name</label>
                                                     <input class="form-control" name="contact_name[]"
@@ -260,7 +260,17 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 mt-3">
+                                            <div class="col-lg-3 mt-3">
+                                                <div class="form-group">
+                                                    <label>Designation</label>
+                                                    <input class="form-control" name="designation[]"
+                                                        value="{{ $contact->designation }}" type="text" required>
+                                                    <div class="invalid-feedback">
+                                                        Please enter the contact name.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 mt-3">
                                                 <div class="form-group">
                                                     <label>Mobile</label>
                                                     <input class="form-control" name="mobile[]"
@@ -270,7 +280,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-4 mt-3">
+                                            <div class="col-lg-3 mt-3">
                                                 <div class="form-group">
                                                     <label>Email</label>
                                                     <input type="email" class="form-control"

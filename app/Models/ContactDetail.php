@@ -12,6 +12,7 @@ class ContactDetail extends Model
     protected $fillable = [
         'industry_id',
         'contact_name',
+        'designation',
         'mobile',
         'email_id'
     ];
@@ -24,6 +25,7 @@ class ContactDetail extends Model
                 $this->create([
                     'industry_id' => $contactDetails['industry_id'],
                     'contact_name' => $contact,
+                    'designation'  => $contactDetails["designation"][$key],
                     'mobile' => $contactDetails['mobile'][$key],
                     'email_id' => $contactDetails['email_id'][$key],
                 ]);

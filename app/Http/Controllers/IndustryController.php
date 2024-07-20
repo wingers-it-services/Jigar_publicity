@@ -11,6 +11,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isEmpty;
+
 class IndustryController extends Controller
 {
     protected $notification;
@@ -20,8 +22,13 @@ class IndustryController extends Controller
     private $area;
     private $purchase;
 
-    public function __construct(IndustriesCategorie $industriesCategorie, IndustryDetail $industryDetail, ContactDetail $contactDetail, UserPurchase $purchase, Area $area)
-    {
+    public function __construct(
+        IndustriesCategorie $industriesCategorie,
+        IndustryDetail $industryDetail,
+        ContactDetail $contactDetail,
+        UserPurchase $purchase,
+        Area $area
+    ) {
         $this->industriesCategorie = $industriesCategorie;
         $this->industryDetail = $industryDetail;
         $this->contactDetail = $contactDetail;
@@ -126,19 +133,18 @@ class IndustryController extends Controller
             $industry = $this->industryDetail->where('uuid', $uuid)->first();
 
             $industryData = [
-                'category_id' => $request->input('category_id'),
-                'area_id' => $request->input('area_id'),
-                'industry_name' => $request->input('industry_name'),
-                'contact_no' => $request->input('contact_no'),
-                'address' => $request->input('address'),
-                'email' => $request->input('email'),
-                'industry_type' => $request->input('industry_type'),
-                'product' => $request->input('product'),
-                'by_product' => $request->input('by_product'),
-                'raw_material' => $request->input('raw_material'),
-                'web_link' => $request->input('web_link'),
-                'office_address' => $request->input('office_address'),
-
+                'category_id'    => $request->input('category_id'),
+                'area_id'        => $request->input('area_id'),
+                'industry_name'  => $request->input('industry_name'),
+                'contact_no'     => $request->input('contact_no'),
+                'address'        => $request->input('address'),
+                'email'          => $request->input('email'),
+                'industry_type'  => $request->input('industry_type'),
+                'product'        => $request->input('product'),
+                'by_product'     => $request->input('by_product'),
+                'raw_material'   => $request->input('raw_material'),
+                'web_link'       => $request->input('web_link'),
+                'office_address' => $request->input('office_address')
             ];
             // Handle image upload
             if ($request->hasFile('advertisment_image')) {
@@ -158,25 +164,16 @@ class IndustryController extends Controller
                     }
                 }
             }
-
             $industry->update($industryData);
 
-            // Loop through the specifications
-            foreach ($request->input('contact_name') as $index => $contact_name) {
-                // Prepare specification data
-                $contactData = [
-                    'contact_name' => $contact_name,
-                    'mobile' => $request->input('mobile')[$index],
-                    'email_id' => $request->input('email_id')[$index],
-                ];
+            $contactData = $request->only(['contact_name', 'designation', 'mobile', 'email_id']);
+            $contactCount = count($contactData["contact_name"]);
 
-                // Update or create the specification
-                $industry->contacts()->updateOrCreate(
-                    ['contact_name' => $contact_name],
-                    $contactData
-                );
+            if ($contactCount > 0) {
+                $this->contactDetail->where('industry_id', $industry->id)->delete();
+                $this->createContactDetail($contactData, $industry->id, $contactCount);
             }
-            // Redirect with success message
+
             return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
         } catch (\Exception $th) {
             Log::error("[IndustryController][updateIndustry] error " . $th->getMessage());
@@ -184,6 +181,26 @@ class IndustryController extends Controller
         }
     }
 
+    public function createContactDetail(array $contactData, int $industryId, int  $contactCount)
+    {
+        try {
+            for ($i = 0; $i < $contactCount; $i++) {
+                if (empty($contactData["contact_name"][$i])) {
+                    continue;
+                }
+                $this->contactDetail->create([
+                    'industry_id'  => $industryId,
+                    'contact_name' => $contactData["contact_name"][$i] ?? '',
+                    'designation'  => $contactData['designation'][$i] ?? '',
+                    'mobile'       => $contactData["mobile"][$i] ?? '',
+                    'email_id'     => $contactData["email_id"][$i] ?? '',
+                ]);
+            }
+        } catch (Exception $e) {
+            Log::error("[IndustryController][createContactDetail] error " . $e->getMessage());
+            return redirect()->back()->with('error', $e->getMessage());
+        }
+    }
     public function deleteContacts(Request $request, $id)
     {
         try {
