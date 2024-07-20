@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                    Content body start
-                                                                                                                                                                                    ***********************************-->
+                                                                                                                                                                                                                        Content body start
+                                                                                                                                                                                                                        ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -27,21 +27,31 @@
                                 <ol class="carousel-indicators">
                                     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
                                     </li>
-                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
-                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class=""></li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="">
+                                    </li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="">
+                                    </li>
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img1.jpg" alt="First slide">
+                                        <img class="d-block w-100 rounded"
+                                            src="https://fito.dexignzone.com/laravel/demo/images/big/img1.jpg"
+                                            alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img2.jpg" alt="Second slide">
+                                        <img class="d-block w-100 rounded"
+                                            src="https://fito.dexignzone.com/laravel/demo/images/big/img2.jpg"
+                                            alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img3.jpg" alt="Third slide">
+                                        <img class="d-block w-100 rounded"
+                                            src="https://fito.dexignzone.com/laravel/demo/images/big/img3.jpg"
+                                            alt="Third slide">
                                     </div>
-                                </div><a class="carousel-control-prev" href="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span> <span
-                                        class="sr-only">Previous</span> </a><a class="carousel-control-next" href="#carouselExampleIndicators" data-bs-slide="next"><span
+                                </div><a class="carousel-control-prev" href="#carouselExampleIndicators"
+                                    data-bs-slide="prev"><span class="carousel-control-prev-icon"></span> <span
+                                        class="sr-only">Previous</span> </a><a class="carousel-control-next"
+                                    href="#carouselExampleIndicators" data-bs-slide="next"><span
                                         class="carousel-control-next-icon"></span>
                                     <span class="sr-only">Next</span></a>
                             </div>
@@ -55,27 +65,38 @@
                                 <ol class="carousel-indicators">
                                     <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
                                     </li>
-                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
-                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class=""></li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class="">
+                                    </li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="">
+                                    </li>
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img1.jpg" alt="First slide">
+                                        <img class="d-block w-100 rounded"
+                                            src="https://fito.dexignzone.com/laravel/demo/images/big/img1.jpg"
+                                            alt="First slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img2.jpg" alt="Second slide">
+                                        <img class="d-block w-100 rounded"
+                                            src="https://fito.dexignzone.com/laravel/demo/images/big/img2.jpg"
+                                            alt="Second slide">
                                     </div>
                                     <div class="carousel-item">
-                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img3.jpg" alt="Third slide">
+                                        <img class="d-block w-100 rounded"
+                                            src="https://fito.dexignzone.com/laravel/demo/images/big/img3.jpg"
+                                            alt="Third slide">
                                     </div>
-                                </div><a class="carousel-control-prev" href="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span> <span
-                                        class="sr-only">Previous</span> </a><a class="carousel-control-next" href="#carouselExampleIndicators" data-bs-slide="next"><span
+                                </div><a class="carousel-control-prev" href="#carouselExampleIndicators"
+                                    data-bs-slide="prev"><span class="carousel-control-prev-icon"></span> <span
+                                        class="sr-only">Previous</span> </a><a class="carousel-control-next"
+                                    href="#carouselExampleIndicators" data-bs-slide="next"><span
                                         class="carousel-control-next-icon"></span>
                                     <span class="sr-only">Next</span></a>
                             </div>
                         </div>
                     </div>
-                </div></div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -118,7 +139,7 @@
                                             <th>Category</th>
                                             <th>Products</th>
                                             <th>Area</th>
-                                            <th>View</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tfoot style="display: table-row-group">
@@ -134,7 +155,7 @@
                                             <tr onclick="fetchIndustryDetailsByUuid('{{ $industry->uuid }}')">
                                                 <td>{{ $industry->industry_name }}</td>
                                                 <td>{{ $industry->category->category_name ?? '' }}</td>
-                                                <td>{{ $industry->category->category_name ?? '' }}</td>
+                                                <td>{{ $industry->product ?? '' }}</td>
                                                 <td>{{ $industry->area->area_name ?? '' }}</td>
                                                 <td>
                                                     <div class="d-flex">
@@ -212,7 +233,8 @@
                                         <div class="new-arrival-content mt-md-0 mt-3 pr">
                                             <p class="text-black">Types of Industry: <span class="item"
                                                     id="industryCategory"></span></p>
-                                            <p class="text-black">Product: <span class="item" id="industryProduct"></span>
+                                            <p class="text-black">Product: <span class="item"
+                                                    id="industryProduct"></span>
                                             </p>
                                             <p class="text-black">By Product: <span class="item"
                                                     id="industryByProduct"></span></p>
@@ -272,31 +294,33 @@
 
 
     <script>
-        // document.getElementsByClassName('dt-layout-row').hide();
-
         var table = $('#industyList').DataTable({
-            // "searching": false,
+            // searching: false, // Disable global search
             initComplete: function() {
-                this.api()
-                    .columns()
-                    .every(function() {
-                        var column = this;
-                        var title = $(column.header()).text().trim();
+                var api = this.api();
 
-                        // Creating a search input for each column header
-                        var input = $(
-                                '<input type="text" class="form-control form-control-sm" placeholder="Search ' +
-                                title + '" />')
-                            .on('keyup change', function() {
-                                if (column.search() !== this.value) {
-                                    column.search(this.value).draw();
-                                }
-                            });
+                // Add search input to each column header except the last one
+                api.columns().every(function(index) {
+                    if (index === api.columns().count() - 1) {
+                        return; // Skip the last column
+                    }
 
-                        $(input).appendTo($(column.header()).empty());
-                    });
+                    var column = this;
+                    var title = $(column.header()).text().trim();
+                    var input = $(
+                            '<input type="text" class="form-control form-control-sm" placeholder="Search ' +
+                            title + '" />')
+                        .appendTo($(column.header()).empty())
+                        .on('keyup change', function() {
+                            if (column.search() !== this.value) {
+                                column.search(this.value).draw();
+                            }
+                        });
+                });
             }
         });
+
+
 
         function fetchIndustryDetailsByUuid(industryUuid) {
             $.ajax({

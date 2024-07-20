@@ -11,6 +11,8 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
+use function PHPUnit\Framework\isEmpty;
+
 class IndustryController extends Controller
 {
     protected $notification;
@@ -20,8 +22,13 @@ class IndustryController extends Controller
     private $area;
     private $purchase;
 
-    public function __construct(IndustriesCategorie $industriesCategorie, IndustryDetail $industryDetail, ContactDetail $contactDetail, UserPurchase $purchase, Area $area)
-    {
+    public function __construct(
+        IndustriesCategorie $industriesCategorie,
+        IndustryDetail $industryDetail,
+        ContactDetail $contactDetail,
+        UserPurchase $purchase,
+        Area $area
+    ) {
         $this->industriesCategorie = $industriesCategorie;
         $this->industryDetail = $industryDetail;
         $this->contactDetail = $contactDetail;
@@ -101,11 +108,11 @@ class IndustryController extends Controller
 
             // Prepare product specification data
             $contactDetails = [
-                'industry_id' => $industry->id,
+                'industry_id'  => $industry->id,
                 'contact_name' => $request->input('contact_name'),
-                'mobile' => $request->input('mobile'),
-                'email_id' => $request->input('email_id'),
-
+                'designation'  => $request->input('designation'),
+                'mobile'       => $request->input('mobile'),
+                'email_id'     => $request->input('email_id')
             ];
 
             // Process product specification data
@@ -114,7 +121,7 @@ class IndustryController extends Controller
             return back()->with('status', 'success')->with('message', 'Industries added Successfully');
             // Optionally, redirect or return a response
             // return redirect()->route("industries")->with('success', 'Industries added successfully');
-        } catch (\Exception $th) {
+        } catch (Exception $th) {
             Log::error("[IndustryController][addIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }
@@ -126,19 +133,18 @@ class IndustryController extends Controller
             $industry = $this->industryDetail->where('uuid', $uuid)->first();
 
             $industryData = [
-                'category_id' => $request->input('category_id'),
-                'area_id' => $request->input('area_id'),
-                'industry_name' => $request->input('industry_name'),
-                'contact_no' => $request->input('contact_no'),
-                'address' => $request->input('address'),
-                'email' => $request->input('email'),
-                'industry_type' => $request->input('industry_type'),
-                'product' => $request->input('product'),
-                'by_product' => $request->input('by_product'),
-                'raw_material' => $request->input('raw_material'),
-                'web_link' => $request->input('web_link'),
-                'office_address' => $request->input('office_address'),
-
+                'category_id'    => $request->input('category_id'),
+                'area_id'        => $request->input('area_id'),
+                'industry_name'  => $request->input('industry_name'),
+                'contact_no'     => $request->input('contact_no'),
+                'address'        => $request->input('address'),
+                'email'          => $request->input('email'),
+                'industry_type'  => $request->input('industry_type'),
+                'product'        => $request->input('product'),
+                'by_product'     => $request->input('by_product'),
+                'raw_material'   => $request->input('raw_material'),
+                'web_link'       => $request->input('web_link'),
+                'office_address' => $request->input('office_address')
             ];
             // Handle image upload
             if ($request->hasFile('advertisment_image')) {
@@ -158,27 +164,19 @@ class IndustryController extends Controller
                     }
                 }
             }
-
             $industry->update($industryData);
 
-            // Loop through the specifications
-            foreach ($request->input('contact_name') as $index => $contact_name) {
-                // Prepare specification data
-                $contactData = [
-                    'contact_name' => $contact_name,
-                    'mobile' => $request->input('mobile')[$index],
-                    'email_id' => $request->input('email_id')[$index],
-                ];
+            $contactData = $request->only(['contact_name', 'designation', 'mobile', 'email_id']);
+            $contactData['industry_id'] = $industry->id;
 
-                // Update or create the specification
-                $industry->contacts()->updateOrCreate(
-                    ['contact_name' => $contact_name],
-                    $contactData
-                );
+
+            if (count($contactData["contact_name"]) > 0) {
+                $this->contactDetail->where('industry_id', $industry->id)->delete();
+                $this->contactDetail->addContactData($contactData);
             }
-            // Redirect with success message
+
             return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
-        } catch (\Exception $th) {
+        } catch (Exception $th) {
             Log::error("[IndustryController][updateIndustry] error " . $th->getMessage());
             return redirect()->back()->with('error', $th->getMessage());
         }

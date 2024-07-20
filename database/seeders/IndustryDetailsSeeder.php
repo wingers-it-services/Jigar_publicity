@@ -15,6 +15,14 @@ class IndustryDetailsSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        // Predefined array of industrial chemicals
+        $industrialChemicals = [
+            'Sulfuric Acid', 'Nitric Acid', 'Hydrochloric Acid', 'Sodium Hydroxide', 'Ammonia',
+            'Benzene', 'Methanol', 'Acetone', 'Ethylene', 'Propylene',
+            'Chlorine', 'Formaldehyde', 'Acetic Acid', 'Sodium Carbonate', 'Sodium Hypochlorite',
+            'Hydrogen Peroxide', 'Phosphoric Acid', 'Ammonium Nitrate', 'Calcium Carbonate', 'Sodium Chloride'
+        ];
+
         for ($i = 0; $i < 50; $i++) {
             $areaId = DB::table('areas')->inRandomOrder()->first()->id;
             $categoryId = DB::table('industries_categories')->inRandomOrder()->first()->id;
@@ -30,7 +38,7 @@ class IndustryDetailsSeeder extends Seeder
                 'created_at'         => now(),
                 'updated_at'         => now(),
                 'email'              => $faker->email,
-                'product'            => $faker->word,
+                'product'            => $industrialChemicals[array_rand($industrialChemicals)],
                 'by_product'         => $faker->word,
                 'raw_material'       => $faker->word,
                 'industry_type'      => $faker->word,

@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('admin_user_books', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid')->unique();
-            $table->integer('user_id');
-            $table->integer('book_id');
-            $table->integer('payment_status');
-            $table->timestamps();
+        Schema::table('contact_details', function (Blueprint $table) {
+            $table->string('designation')->after('contact_name');
         });
     }
 
@@ -26,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('admin_user_books');
+        Schema::table('contact_details', function (Blueprint $table) {
+            $table->dropColumn('designation');
+        });
     }
 };

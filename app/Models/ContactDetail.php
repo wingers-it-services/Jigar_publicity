@@ -12,6 +12,7 @@ class ContactDetail extends Model
     protected $fillable = [
         'industry_id',
         'contact_name',
+        'designation',
         'mobile',
         'email_id'
     ];
@@ -22,14 +23,15 @@ class ContactDetail extends Model
         try {
             foreach ($contactDetails['contact_name'] as $key => $contact) {
                 $this->create([
-                    'industry_id' => $contactDetails['industry_id'],
+                    'industry_id'  => $contactDetails['industry_id'],
                     'contact_name' => $contact,
-                    'mobile' => $contactDetails['mobile'][$key],
-                    'email_id' => $contactDetails['email_id'][$key],
+                    'designation'  => $contactDetails['designation'][$key],
+                    'mobile'       => $contactDetails['mobile'][$key],
+                    'email_id'     => $contactDetails['email_id'][$key]
                 ]);
             }
         } catch (\Throwable $e) {
-            Log::error('[ContactDetail][addContacttData] Error creating contact detail: ' . $e->getMessage());
+            Log::error('[ContactDetail1][addContacttData] Error creating contact detail: ' . $e->getMessage());
         }
     }
 
