@@ -3,19 +3,79 @@
 @section('content')
 
     <!--**********************************
-                                        Content body start
-                                        ***********************************-->
+                                                                                                                                                                                    Content body start
+                                                                                                                                                                                    ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css" rel="stylesheet">
 
     <!-- Bootstrap JavaScript Bundle with Popper -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
 
     <div class="content-body">
         <!-- row -->
         <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
+                                    </li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class=""></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img1.jpg" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img2.jpg" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img3.jpg" alt="Third slide">
+                                    </div>
+                                </div><a class="carousel-control-prev" href="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span> <span
+                                        class="sr-only">Previous</span> </a><a class="carousel-control-next" href="#carouselExampleIndicators" data-bs-slide="next"><span
+                                        class="carousel-control-next-icon"></span>
+                                    <span class="sr-only">Next</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active">
+                                    </li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
+                                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class=""></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img1.jpg" alt="First slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img2.jpg" alt="Second slide">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img class="d-block w-100 rounded" src="https://fito.dexignzone.com/laravel/demo/images/big/img3.jpg" alt="Third slide">
+                                    </div>
+                                </div><a class="carousel-control-prev" href="#carouselExampleIndicators" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span> <span
+                                        class="sr-only">Previous</span> </a><a class="carousel-control-next" href="#carouselExampleIndicators" data-bs-slide="next"><span
+                                        class="carousel-control-next-icon"></span>
+                                    <span class="sr-only">Next</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
@@ -43,27 +103,37 @@
                         </div>
                     </div>
                 </div>
-
-                <div class=" col-xl-10">
+                <div class=" col-xl-12">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Industry List</h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example3" class="display min-w850">
+                                <table id="industyList" class="display min-w850">
+
                                     <thead>
                                         <tr>
                                             <th>Industry Name</th>
                                             <th>Category</th>
+                                            <th>Products</th>
                                             <th>Area</th>
                                             <th>View</th>
                                         </tr>
                                     </thead>
+                                    <tfoot style="display: table-row-group">
+                                        <th style="background-color: #333 !important;">Industry Name</th>
+                                        <th style="background-color: #333 !important;">Category</th>
+                                        <th style="background-color: #333 !important;">Products</th>
+                                        <th style="background-color: #333 !important;">Area</th>
+                                        <th style="background-color: #333 !important;">Banner</th>
+                                    </tfoot>
                                     <tbody>
+
                                         @foreach ($industries as $industry)
                                             <tr onclick="fetchIndustryDetailsByUuid('{{ $industry->uuid }}')">
                                                 <td>{{ $industry->industry_name }}</td>
+                                                <td>{{ $industry->category->category_name ?? '' }}</td>
                                                 <td>{{ $industry->category->category_name ?? '' }}</td>
                                                 <td>{{ $industry->area->area_name ?? '' }}</td>
                                                 <td>
@@ -81,6 +151,7 @@
                                             </tr>
                                         @endforeach
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>
@@ -107,7 +178,6 @@
                     </div>
                 </div>
             </div>
-
             <div id="industryDetailsContainer" class="row" style="display: none;">
                 <div class="col-lg-12">
                     <div class="card">
@@ -129,13 +199,13 @@
                                                     id="officeAddress"></span></p>
                                             <p class="text-black">Industry Address: <span class="item"
                                                     id="industryAddress"></span></p>
-                                            <p class="text-black">Website: <span class="item" id="industryWeb"></span></p>
+                                            <p class="text-black">Website: <span class="item" id="industryWeb"></span>
+                                            </p>
                                             <p class="text-black">Area: <span class="item" id="industryArea"></span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-
                                 <!-- Column for Product Details -->
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-xxl-6 mb-3">
                                     <div class="product-detail-content">
@@ -148,36 +218,29 @@
                                                     id="industryByProduct"></span></p>
                                             <p class="text-black">Raw Material: <span class="item"
                                                     id="industryRawMaterial"></span></p>
-
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
                             </div>
-
-
                             <!-- Column for Contact Details -->
-                            <div class="contact-details-container">
-
-                            </div>
+                            <div class="contact-details-container"></div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- Bootstrap Modal -->
             <div class="modal fade" id="industryModal" tabindex="-1" aria-labelledby="industryModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="industryModalLabel">Advertisement</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                            <h5 class="modal-title" id="industryModalLabel">Advertisement</h5><button type="button"
+                                class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Image Container -->
-                            <img class="img-fluid rounded" id="modalIndustryImage" src="" alt="">
+                            <!-- Image Container --><img class="img-fluid rounded" id="modalIndustryImage" src=""
+                                alt="">
                         </div>
                     </div>
                 </div>
@@ -185,7 +248,6 @@
         </div>
     </div>
     </div>
-
     <style>
         .clickable-row:hover {
             background-color: #f5f5f5;
@@ -210,6 +272,32 @@
 
 
     <script>
+        // document.getElementsByClassName('dt-layout-row').hide();
+
+        var table = $('#industyList').DataTable({
+            // "searching": false,
+            initComplete: function() {
+                this.api()
+                    .columns()
+                    .every(function() {
+                        var column = this;
+                        var title = $(column.header()).text().trim();
+
+                        // Creating a search input for each column header
+                        var input = $(
+                                '<input type="text" class="form-control form-control-sm" placeholder="Search ' +
+                                title + '" />')
+                            .on('keyup change', function() {
+                                if (column.search() !== this.value) {
+                                    column.search(this.value).draw();
+                                }
+                            });
+
+                        $(input).appendTo($(column.header()).empty());
+                    });
+            }
+        });
+
         function fetchIndustryDetailsByUuid(industryUuid) {
             $.ajax({
                 url: 'fetch-industry-details-by-id/' + industryUuid,
@@ -282,16 +370,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const modal = new bootstrap.Modal(document.getElementById('industryModal'));
 
-            document.querySelectorAll('.view-btn').forEach(button => {
-                button.addEventListener('click', function(event) {
-                    const image = button.dataset.image;
-
-                    // Set the src attribute of the image in the modal
-                    document.getElementById('modalIndustryImage').src = image;
-
-                    // Show the modal
-                    modal.show();
-                });
+            $('.view-btn').on('click', function(event) {
+                const image = $(this).data('image');
+                $('#modalIndustryImage').attr('src', image);
+                modal.show();
             });
         });
     </script>
