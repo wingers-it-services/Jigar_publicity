@@ -21,13 +21,7 @@ class ContactDetail extends Model
     public function addContactData(array $contactDetails)
     {
         try {
-
             foreach ($contactDetails['contact_name'] as $key => $contact) {
-                // dd($contactDetails);
-                // if (empty($contact)) {
-                //     continue;
-                // }
-
                 $this->create([
                     'industry_id'  => $contactDetails['industry_id'],
                     'contact_name' => $contact,
