@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                        Content body start
-                                                                                                                                                                                                                        ***********************************-->
+                                                                                                                                                                                                                                                                                                Content body start
+                                                                                                                                                                                                                                                                                                ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -294,31 +294,56 @@
 
 
     <script>
-        var table = $('#industyList').DataTable({
-            // searching: false, // Disable global search
-            initComplete: function() {
-                var api = this.api();
+        $(document).ready(function() {
+            // Function to get query parameters from URL
+            function getQueryParams(param) {
+                var urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
 
-                // Add search input to each column header except the last one
-                api.columns().every(function(index) {
-                    if (index === api.columns().count() - 1) {
-                        return; // Skip the last column
+            // Initialize the DataTable
+            var table = $('#industyList').DataTable({
+                initComplete: function() {
+                    var api = this.api();
+
+                    // Add search input to each column header except the last one
+                    api.columns().every(function(index) {
+                        if (index === api.columns().count() - 1) {
+                            return; // Skip the last column
+                        }
+
+                        var column = this;
+                        var title = $(column.header()).text().trim();
+                        var input = $(
+                                '<input type="text" class="form-control form-control-sm" placeholder="Search ' +
+                                title + '" />')
+                            .appendTo($(column.header()).empty())
+                            .on('keyup change', function() {
+                                if (column.search() !== this.value) {
+                                    column.search(this.value).draw();
+                                }
+                            });
+                    });
+
+                    // Function to apply search value from URL
+                    function applySearchFromUrl() {
+                        var searchValue = getQueryParams('search');
+                        if (searchValue) {
+                            api.search(searchValue).draw();
+                        }
                     }
 
-                    var column = this;
-                    var title = $(column.header()).text().trim();
-                    var input = $(
-                            '<input type="text" class="form-control form-control-sm" placeholder="Search ' +
-                            title + '" />')
-                        .appendTo($(column.header()).empty())
-                        .on('keyup change', function() {
-                            if (column.search() !== this.value) {
-                                column.search(this.value).draw();
-                            }
-                        });
-                });
-            }
+                    // Apply initial search value
+                    applySearchFromUrl();
+
+                    // Periodically check for URL changes
+                    setInterval(function() {
+                        applySearchFromUrl();
+                    }, 1000); // Check every second
+                }
+            });
         });
+
 
 
 
@@ -335,20 +360,29 @@
                     // Check if response.industries is defined and not empty
                     if (response.status == 200) {
                         // Update industry details container with fetched data
-                        document.getElementById('industryName').textContent = response.industries.industry_name;
-                        document.getElementById('industryEmail').textContent = response.industries.email;
-                        document.getElementById('industryPhone').textContent = response.industries.contact_no;
+                        document.getElementById('industryName').textContent = response.industries
+                            .industry_name;
+                        document.getElementById('industryEmail').textContent = response.industries
+                            .email;
+                        document.getElementById('industryPhone').textContent = response.industries
+                            .contact_no;
                         document.getElementById('officeAddress').textContent = response.industries
                             .office_address;
-                        document.getElementById('industryAddress').textContent = response.industries.address;
-                        document.getElementById('industryWeb').textContent = response.industries.web_link;
-                        document.getElementById('industryArea').textContent = response.areas.area_name;
+                        document.getElementById('industryAddress').textContent = response.industries
+                            .address;
+                        document.getElementById('industryWeb').textContent = response.industries
+                            .web_link;
+                        document.getElementById('industryArea').textContent = response.areas
+                            .area_name;
                         document.getElementById('industryCategory').textContent = response.categorys
                             .category_name;
-                        document.getElementById('industryProduct').textContent = response.industries.product;
-                        document.getElementById('industryByProduct').textContent = response.industries
+                        document.getElementById('industryProduct').textContent = response.industries
+                            .product;
+                        document.getElementById('industryByProduct').textContent = response
+                            .industries
                             .by_product;
-                        document.getElementById('industryRawMaterial').textContent = response.industries
+                        document.getElementById('industryRawMaterial').textContent = response
+                            .industries
                             .raw_material;
 
 
@@ -362,18 +396,22 @@
                             contactData = contactData +
                                 '<div class="col-xl-4 col-lg-4 col-md-4 col-xxl-4 mb-3">' +
                                 '<div class="new-arrival-content mt-md-0 mt-3 pr">' +
-                                '<p class="text-black">Contact Name: <span class="item">' + contact
+                                '<p class="text-black">Contact Name: <span class="item">' +
+                                contact
                                 .contact_name + '</span></p>' +
-                                '<p class="text-black">Contact Phone: <span class="item">' + contact
+                                '<p class="text-black">Contact Phone: <span class="item">' +
+                                contact
                                 .mobile + '</span></p>' +
-                                '<p class="text-black">Contact Email: <span class="item">' + contact
+                                '<p class="text-black">Contact Email: <span class="item">' +
+                                contact
                                 .email_id + '</span></p>' +
                                 '</div>' +
                                 '</div>';
                         });
                         // Populate contact details
                         contactData = contactData + '</div>';
-                        const contactDetailsContainer = document.querySelector('.contact-details-container')
+                        const contactDetailsContainer = document.querySelector(
+                                '.contact-details-container')
                             .innerHTML = contactData; // Clear existing content
 
 
