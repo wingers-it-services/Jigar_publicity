@@ -783,7 +783,8 @@
 					<div class="bg-primary dlab-separator"></div>
 				</div>
 				<div class="testimonial-two-dots owl-theme owl-dots-primary-full owl-loaded owl-carousel owl-none">
-					<div class="item">
+			@foreach($industryCategories as $category)
+				<div class="item">
 						<div class="testimonial-2">
 							<div class="testimonial-text">
 								<div class="review-star">
@@ -795,7 +796,7 @@
 										<li class="fa fa-star"></li>
 									</ul>
 									<span>Or</span>
-									<h4>Code Quality</h4>
+									<h4>{{$category->category_name}}</h4>
 								</div>
 								<p>Mind Blowing design and coding quality, easy to customize, easy to use and I just loving to work with this template. I can use it's any section any where easily. CSS, JS and even HTML everything is perfect and I can say for this item , this is really Created With Love, Thank you so much Team.</p>
 							</div>
@@ -808,7 +809,8 @@
 							</div>
 						</div>
 					</div>
-					<div class="item">
+					@endforeach
+					<!-- <div class="item">
 						<div class="testimonial-2">
 							<div class="testimonial-text">
 								<div class="review-star">
@@ -986,7 +988,7 @@
 								<span class="testimonial-position">Customer</span> 
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="text-right ">
 					<a href="#SupportSection" class="need-any-help text-white"><img src="welcome/images/support-white.png" alt=""/>Need Any Help Link</a>
