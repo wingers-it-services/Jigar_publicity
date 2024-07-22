@@ -20,7 +20,7 @@ use ReflectionUnionType;
 final class ReflectionMapper
 {
     /**
-     * @return list<Parameter>
+     * @psalm-return list<Parameter>
      */
     public function fromParameterTypes(ReflectionFunction|ReflectionMethod $functionOrMethod): array
     {
@@ -129,6 +129,8 @@ final class ReflectionMapper
         $types = [];
 
         foreach ($type->getTypes() as $_type) {
+            assert($_type instanceof ReflectionNamedType || $_type instanceof ReflectionIntersectionType);
+
             if ($_type instanceof ReflectionNamedType) {
                 $types[] = $this->mapNamedType($_type, $functionOrMethod);
 

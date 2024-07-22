@@ -180,7 +180,7 @@ class ResponseHeaderBag extends HeaderBag
             }
         }
 
-        if (!$this->cookies) {
+        if (empty($this->cookies)) {
             unset($this->headerNames['set-cookie']);
         }
     }

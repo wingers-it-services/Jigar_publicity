@@ -19,8 +19,6 @@ use PHPUnit\Framework\MockObject\Rule\AnyInvokedCount;
  */
 trait Method
 {
-    abstract public function __phpunit_getInvocationHandler(): InvocationHandler;
-
     public function method(): InvocationMocker
     {
         $expects = $this->__phpunit_getInvocationHandler()->expects(new AnyInvokedCount);

@@ -18,7 +18,7 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (!auth()->user()) {
-            return redirect('/view-user-login');
+            return redirect('/');
         }
 
         return $next($request);

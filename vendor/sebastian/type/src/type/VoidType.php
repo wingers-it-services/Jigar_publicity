@@ -17,7 +17,7 @@ final class VoidType extends Type
     }
 
     /**
-     * @return 'void'
+     * @psalm-return 'void'
      */
     public function name(): string
     {
@@ -29,6 +29,9 @@ final class VoidType extends Type
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true VoidType $this
+     */
     public function isVoid(): bool
     {
         return true;

@@ -124,7 +124,6 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
 
                 // create a per-method map of argument-names to service/type-references
                 $args = [];
-                $erroredIds = 0;
                 foreach ($parameters as $p) {
                     /** @var \ReflectionParameter $p */
                     $type = preg_replace('/(^|[(|&])\\\\/', '\1', $target = ltrim(ProxyHelper::exportType($p) ?? '', '?'));
@@ -173,8 +172,10 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
                         $value = $parameterBag->resolveValue($attribute->value);
 
                         if ($attribute instanceof AutowireCallable) {
-                            $args[$p->name] = $attribute->buildDefinition($value, $type, $p);
-                        } elseif ($value instanceof Reference) {
+                            $value = $attribute->buildDefinition($value, $type, $p);
+                        }
+
+                        if ($value instanceof Reference) {
                             $args[$p->name] = $type ? new TypedReference($value, $type, $invalidBehavior, $p->name) : new Reference($value, $invalidBehavior);
                         } else {
                             $args[$p->name] = new Reference('.value.'.$container->hash($value));
@@ -198,7 +199,6 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
                             ->addError($message);
 
                         $args[$p->name] = new Reference($erroredId, ContainerInterface::RUNTIME_EXCEPTION_ON_INVALID_REFERENCE);
-                        ++$erroredIds;
                     } else {
                         $target = preg_replace('/(^|[(|&])\\\\/', '\1', $target);
                         $args[$p->name] = $type ? new TypedReference($target, $type, $invalidBehavior, Target::parseName($p)) : new Reference($target, $invalidBehavior);
@@ -206,7 +206,7 @@ class RegisterControllerArgumentLocatorsPass implements CompilerPassInterface
                 }
                 // register the maps as a per-method service-locators
                 if ($args) {
-                    $controllers[$id.'::'.$r->name] = ServiceLocatorTagPass::register($container, $args, \count($args) !== $erroredIds ? $id.'::'.$r->name.'()' : null);
+                    $controllers[$id.'::'.$r->name] = ServiceLocatorTagPass::register($container, $args);
 
                     foreach ($publicAliases[$id] ?? [] as $alias) {
                         $controllers[$alias.'::'.$r->name] = clone $controllers[$id.'::'.$r->name];

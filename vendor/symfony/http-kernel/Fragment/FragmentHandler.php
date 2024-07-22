@@ -29,21 +29,21 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
  */
 class FragmentHandler
 {
-    /** @var array<string, FragmentRendererInterface> */
+    private bool $debug;
     private array $renderers = [];
+    private RequestStack $requestStack;
 
     /**
      * @param FragmentRendererInterface[] $renderers An array of FragmentRendererInterface instances
      * @param bool                        $debug     Whether the debug mode is enabled or not
      */
-    public function __construct(
-        private RequestStack $requestStack,
-        array $renderers = [],
-        private bool $debug = false,
-    ) {
+    public function __construct(RequestStack $requestStack, array $renderers = [], bool $debug = false)
+    {
+        $this->requestStack = $requestStack;
         foreach ($renderers as $renderer) {
             $this->addRenderer($renderer);
         }
+        $this->debug = $debug;
     }
 
     /**

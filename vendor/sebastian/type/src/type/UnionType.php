@@ -9,7 +9,6 @@
  */
 namespace SebastianBergmann\Type;
 
-use function array_is_list;
 use function assert;
 use function count;
 use function implode;
@@ -18,7 +17,7 @@ use function sort;
 final class UnionType extends Type
 {
     /**
-     * @var non-empty-list<Type>
+     * @psalm-var non-empty-list<Type>
      */
     private array $types;
 
@@ -29,8 +28,6 @@ final class UnionType extends Type
     {
         $this->ensureMinimumOfTwoTypes(...$types);
         $this->ensureOnlyValidTypes(...$types);
-
-        assert(array_is_list($types) && !empty($types));
 
         $this->types = $types;
     }
@@ -47,7 +44,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function asString(): string
     {
@@ -55,7 +52,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function name(): string
     {
@@ -75,7 +72,6 @@ final class UnionType extends Type
 
         $name = implode('|', $types);
 
-        /** @phpstan-ignore empty.variable */
         assert(!empty($name));
 
         return $name;
@@ -92,6 +88,9 @@ final class UnionType extends Type
         return false;
     }
 
+    /**
+     * @psalm-assert-if-true UnionType $this
+     */
     public function isUnion(): bool
     {
         return true;
@@ -109,7 +108,7 @@ final class UnionType extends Type
     }
 
     /**
-     * @return non-empty-list<Type>
+     * @psalm-return non-empty-list<Type>
      */
     public function types(): array
     {

@@ -22,15 +22,8 @@ final class Chunk implements IteratorAggregate
     private int $startRange;
     private int $end;
     private int $endRange;
-
-    /**
-     * @var list<Line>
-     */
     private array $lines;
 
-    /**
-     * @param list<Line> $lines
-     */
     public function __construct(int $start = 0, int $startRange = 1, int $end = 0, int $endRange = 1, array $lines = [])
     {
         $this->start      = $start;
@@ -61,7 +54,7 @@ final class Chunk implements IteratorAggregate
     }
 
     /**
-     * @return list<Line>
+     * @psalm-return list<Line>
      */
     public function lines(): array
     {
@@ -69,7 +62,7 @@ final class Chunk implements IteratorAggregate
     }
 
     /**
-     * @param list<Line> $lines
+     * @psalm-param list<Line> $lines
      */
     public function setLines(array $lines): void
     {

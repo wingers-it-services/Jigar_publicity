@@ -27,7 +27,7 @@ use PhpParser\NodeVisitorAbstract;
 final class ComplexityCalculatingVisitor extends NodeVisitorAbstract
 {
     /**
-     * @var list<Complexity>
+     * @psalm-var list<Complexity>
      */
     private array $result = [];
     private bool $shortCircuitTraversal;
@@ -81,7 +81,7 @@ final class ComplexityCalculatingVisitor extends NodeVisitorAbstract
     /**
      * @param Stmt[] $statements
      *
-     * @return positive-int
+     * @psalm-return positive-int
      */
     private function cyclomaticComplexity(array $statements): int
     {
@@ -98,7 +98,7 @@ final class ComplexityCalculatingVisitor extends NodeVisitorAbstract
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     private function classMethodName(ClassMethod $node): string
     {
@@ -117,7 +117,7 @@ final class ComplexityCalculatingVisitor extends NodeVisitorAbstract
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     private function functionName(Function_ $node): string
     {

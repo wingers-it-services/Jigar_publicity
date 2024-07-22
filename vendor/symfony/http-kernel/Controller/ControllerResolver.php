@@ -25,12 +25,13 @@ use Symfony\Component\HttpKernel\Attribute\AsController;
  */
 class ControllerResolver implements ControllerResolverInterface
 {
+    private ?LoggerInterface $logger;
     private array $allowedControllerTypes = [];
     private array $allowedControllerAttributes = [AsController::class => AsController::class];
 
-    public function __construct(
-        private ?LoggerInterface $logger = null,
-    ) {
+    public function __construct(?LoggerInterface $logger = null)
+    {
+        $this->logger = $logger;
     }
 
     /**
@@ -239,7 +240,7 @@ class ControllerResolver implements ControllerResolverInterface
             $r = new \ReflectionFunction($controller);
             $name = $r->name;
 
-            if ($r->isAnonymous()) {
+            if (str_contains($name, '{closure')) {
                 $name = $class = \Closure::class;
             } elseif ($class = $r->getClosureCalledClass()) {
                 $class = $class->name;

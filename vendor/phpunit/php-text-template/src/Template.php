@@ -21,29 +21,29 @@ use function str_replace;
 final class Template
 {
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private readonly string $template;
 
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private readonly string $openDelimiter;
 
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private readonly string $closeDelimiter;
 
     /**
-     * @var array<string,string>
+     * @psalm-var array<string,string>
      */
     private array $values = [];
 
     /**
-     * @param non-empty-string $templateFile
-     * @param non-empty-string $openDelimiter
-     * @param non-empty-string $closeDelimiter
+     * @psalm-param non-empty-string $templateFile
+     * @psalm-param non-empty-string $openDelimiter
+     * @psalm-param non-empty-string $closeDelimiter
      *
      * @throws InvalidArgumentException
      */
@@ -55,7 +55,7 @@ final class Template
     }
 
     /**
-     * @param array<string,string> $values
+     * @psalm-param array<string,string> $values
      */
     public function setVar(array $values, bool $merge = true): void
     {
@@ -95,11 +95,11 @@ final class Template
     }
 
     /**
-     * @param non-empty-string $file
+     * @psalm-param non-empty-string $file
+     *
+     * @psalm-return non-empty-string
      *
      * @throws InvalidArgumentException
-     *
-     * @return non-empty-string
      */
     private function loadTemplateFile(string $file): string
     {

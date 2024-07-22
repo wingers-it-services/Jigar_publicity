@@ -20,6 +20,7 @@ use Symfony\Component\HttpKernel\DataCollector\DataCollectorInterface;
  */
 class Profile
 {
+    private string $token;
 
     /**
      * @var DataCollectorInterface[]
@@ -39,9 +40,9 @@ class Profile
      */
     private array $children = [];
 
-    public function __construct(
-        private string $token,
-    ) {
+    public function __construct(string $token)
+    {
+        $this->token = $token;
     }
 
     public function setToken(string $token): void

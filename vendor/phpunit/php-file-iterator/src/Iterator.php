@@ -15,11 +15,12 @@ use function realpath;
 use function str_ends_with;
 use function str_replace;
 use function str_starts_with;
+use AppendIterator;
 use FilterIterator;
 use SplFileInfo;
 
 /**
- * @template-extends FilterIterator<int, SplFileInfo, \Iterator>
+ * @template-extends FilterIterator<int, string, AppendIterator>
  *
  * @internal This class is not covered by the backward compatibility promise for phpunit/php-file-iterator
  */
@@ -30,18 +31,18 @@ final class Iterator extends FilterIterator
     private false|string $basePath;
 
     /**
-     * @var list<string>
+     * @psalm-var list<string>
      */
     private array $suffixes;
 
     /**
-     * @var list<string>
+     * @psalm-var list<string>
      */
     private array $prefixes;
 
     /**
-     * @param list<string> $suffixes
-     * @param list<string> $prefixes
+     * @psalm-param list<string> $suffixes
+     * @psalm-param list<string> $prefixes
      */
     public function __construct(string $basePath, \Iterator $iterator, array $suffixes = [], array $prefixes = [])
     {
@@ -93,7 +94,7 @@ final class Iterator extends FilterIterator
     }
 
     /**
-     * @param list<string> $subStrings
+     * @psalm-param list<string> $subStrings
      */
     private function acceptSubString(string $filename, array $subStrings, int $type): bool
     {

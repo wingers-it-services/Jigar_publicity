@@ -15,7 +15,7 @@ use function hrtime;
 final class Timer
 {
     /**
-     * @var list<float>
+     * @psalm-var list<float>
      */
     private array $startTimes = [];
 

@@ -21,12 +21,12 @@ use SplFileInfo;
 final class ExcludeIterator extends RecursiveFilterIterator
 {
     /**
-     * @var list<string>
+     * @psalm-var list<string>
      */
     private array $exclude;
 
     /**
-     * @param list<string> $exclude
+     * @psalm-param list<string> $exclude
      */
     public function __construct(RecursiveDirectoryIterator $iterator, array $exclude)
     {

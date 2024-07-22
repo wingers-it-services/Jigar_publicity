@@ -25,15 +25,17 @@ use Symfony\Component\Routing\RouteCollection;
  */
 class AttributeFileLoader extends FileLoader
 {
-    public function __construct(
-        FileLocatorInterface $locator,
-        protected AttributeClassLoader $loader,
-    ) {
+    protected AttributeClassLoader $loader;
+
+    public function __construct(FileLocatorInterface $locator, AttributeClassLoader $loader)
+    {
         if (!\function_exists('token_get_all')) {
             throw new \LogicException('The Tokenizer extension is required for the routing attribute loader.');
         }
 
         parent::__construct($locator);
+
+        $this->loader = $loader;
     }
 
     /**

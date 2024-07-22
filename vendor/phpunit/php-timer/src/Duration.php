@@ -13,7 +13,7 @@ use function floor;
 use function sprintf;
 
 /**
- * @immutable
+ * @psalm-immutable
  */
 final readonly class Duration
 {
