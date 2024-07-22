@@ -13,9 +13,18 @@ other parts of the application. */
 
 
 
-Route::get('/', function () {
+Route::get('/view-user-login', function () {
     return view('user.user-login');
 })->name('login');
+
+Route::get('/', function () {
+    return view('home');
+});
+
+Route::get('/view-user-register', [UserController::class, 'viewUserRegister'])->name('viewUserRegister');
+
+Route::post('/user-register', [UserController::class, 'registerUser'])->name('registerUser');
+
 
 Route::post('/user-login', [AuthController::class, 'userLogin'])->name('userLogin');
 
