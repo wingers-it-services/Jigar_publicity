@@ -235,8 +235,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * This method is called before the first test of this test class is run.
-     *
-     * @codeCoverageIgnore
      */
     public static function setUpBeforeClass(): void
     {
@@ -244,8 +242,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * This method is called after the last test of this test class is run.
-     *
-     * @codeCoverageIgnore
      */
     public static function tearDownAfterClass(): void
     {
@@ -253,8 +249,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * This method is called before each test.
-     *
-     * @codeCoverageIgnore
      */
     protected function setUp(): void
     {
@@ -264,8 +258,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * Performs assertions shared by all tests of a test case.
      *
      * This method is called between setUp() and test.
-     *
-     * @codeCoverageIgnore
      */
     protected function assertPreConditions(): void
     {
@@ -275,8 +267,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * Performs assertions shared by all tests of a test case.
      *
      * This method is called between test and tearDown().
-     *
-     * @codeCoverageIgnore
      */
     protected function assertPostConditions(): void
     {
@@ -284,8 +274,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * This method is called after each test.
-     *
-     * @codeCoverageIgnore
      */
     protected function tearDown(): void
     {
@@ -347,15 +335,13 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
         if (!$this->shouldRunInSeparateProcess()) {
             (new TestRunner)->run($this);
-
-            return;
+        } else {
+            (new TestRunner)->runInSeparateProcess(
+                $this,
+                $this->runClassInSeparateProcess && !$this->runTestInSeparateProcess,
+                $this->preserveGlobalState,
+            );
         }
-
-        IsolatedTestRunnerRegistry::run(
-            $this,
-            $this->runClassInSeparateProcess && !$this->runTestInSeparateProcess,
-            $this->preserveGlobalState,
-        );
     }
 
     /**
@@ -477,9 +463,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
             $hasMetRequirements = true;
 
             if ($this->inIsolation) {
-                // @codeCoverageIgnoreStart
                 $this->invokeBeforeClassHookMethods($hookMethods, $emitter);
-                // @codeCoverageIgnoreEnd
             }
 
             if (method_exists(static::class, $this->methodName) &&
@@ -594,9 +578,7 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
                 $this->invokeAfterTestHookMethods($hookMethods, $emitter);
 
                 if ($this->inIsolation) {
-                    // @codeCoverageIgnoreStart
                     $this->invokeAfterClassHookMethods($hookMethods, $emitter);
-                    // @codeCoverageIgnoreEnd
                 }
             }
         } catch (AssertionError|AssertionFailedError $e) {
@@ -655,8 +637,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
-     *
-     * @codeCoverageIgnore
      */
     final public function setDependencyInput(array $dependencyInput): void
     {
@@ -739,8 +719,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
-     *
-     * @codeCoverageIgnore
      */
     final public function setInIsolation(bool $inIsolation): void
     {
@@ -749,8 +727,14 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * @internal This method is not covered by the backward compatibility promise for PHPUnit
-     *
-     * @codeCoverageIgnore
+     */
+    final public function isInIsolation(): bool
+    {
+        return $this->inIsolation;
+    }
+
+    /**
+     * @internal This method is not covered by the backward compatibility promise for PHPUnit
      */
     final public function result(): mixed
     {
@@ -982,8 +966,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated Use <code>$double->willReturn()</code> instead of <code>$double->will($this->returnValue())</code>
      * @see https://github.com/sebastianbergmann/phpunit/issues/5423
-     *
-     * @codeCoverageIgnore
      */
     final protected function returnValue(mixed $value): ReturnStub
     {
@@ -998,8 +980,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated Use <code>$double->willReturnMap()</code> instead of <code>$double->will($this->returnValueMap())</code>
      * @see https://github.com/sebastianbergmann/phpunit/issues/5423
-     *
-     * @codeCoverageIgnore
      */
     final protected function returnValueMap(array $valueMap): ReturnValueMapStub
     {
@@ -1014,8 +994,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated Use <code>$double->willReturnArgument()</code> instead of <code>$double->will($this->returnArgument())</code>
      * @see https://github.com/sebastianbergmann/phpunit/issues/5423
-     *
-     * @codeCoverageIgnore
      */
     final protected function returnArgument(int $argumentIndex): ReturnArgumentStub
     {
@@ -1030,8 +1008,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated Use <code>$double->willReturnCallback()</code> instead of <code>$double->will($this->returnCallback())</code>
      * @see https://github.com/sebastianbergmann/phpunit/issues/5423
-     *
-     * @codeCoverageIgnore
      */
     final protected function returnCallback(callable $callback): ReturnCallbackStub
     {
@@ -1046,8 +1022,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
     /**
      * @deprecated Use <code>$double->willReturnSelf()</code> instead of <code>$double->will($this->returnSelf())</code>
      * @see https://github.com/sebastianbergmann/phpunit/issues/5423
-     *
-     * @codeCoverageIgnore
      */
     final protected function returnSelf(): ReturnSelfStub
     {
@@ -1068,8 +1042,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @deprecated Use <code>$double->willReturn()</code> instead of <code>$double->will($this->onConsecutiveCalls())</code>
      * @see https://github.com/sebastianbergmann/phpunit/issues/5423
      * @see https://github.com/sebastianbergmann/phpunit/issues/5425
-     *
-     * @codeCoverageIgnore
      */
     final protected function onConsecutiveCalls(mixed ...$arguments): ConsecutiveCallsStub
     {
@@ -1222,8 +1194,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws Exception
      *
      * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5214
-     *
-     * @codeCoverageIgnore
      */
     final protected function iniSet(string $varName, string $newValue): void
     {
@@ -1254,8 +1224,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
      * @throws Exception
      *
      * @deprecated https://github.com/sebastianbergmann/phpunit/issues/5216
-     *
-     * @codeCoverageIgnore
      */
     final protected function setLocale(mixed ...$arguments): void
     {
@@ -2251,8 +2219,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * @throws Throwable
-     *
-     * @codeCoverageIgnore
      */
     private function invokeBeforeClassHookMethods(array $hookMethods, Event\Emitter $emitter): void
     {
@@ -2318,8 +2284,6 @@ abstract class TestCase extends Assert implements Reorderable, SelfDescribing, T
 
     /**
      * @throws Throwable
-     *
-     * @codeCoverageIgnore
      */
     private function invokeAfterClassHookMethods(array $hookMethods, Event\Emitter $emitter): void
     {

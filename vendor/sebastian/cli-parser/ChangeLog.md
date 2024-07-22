@@ -2,12 +2,6 @@
 
 All notable changes are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
-## [3.0.2] - 2024-07-03
-
-### Changed
-
-* This project now uses PHPStan instead of Psalm for static analysis
-
 ## [3.0.1] - 2024-03-02
 
 ### Changed
@@ -19,12 +13,6 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 ### Removed
 
 * This component is no longer supported on PHP 8.1
-
-## [2.0.1] - 2024-03-02
-
-### Changed
-
-* Do not use implicitly nullable parameters
 
 ## [2.0.0] - 2023-02-03
 
@@ -42,10 +30,8 @@ All notable changes are documented in this file using the [Keep a CHANGELOG](htt
 
 * Initial release
 
-[3.0.2]: https://github.com/sebastianbergmann/cli-parser/compare/3.0.1...3.0.2
 [3.0.1]: https://github.com/sebastianbergmann/cli-parser/compare/3.0.0...3.0.1
 [3.0.0]: https://github.com/sebastianbergmann/cli-parser/compare/2.0...3.0.0
-[2.0.1]: https://github.com/sebastianbergmann/cli-parser/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/sebastianbergmann/cli-parser/compare/1.0.1...2.0.0
 [1.0.1]: https://github.com/sebastianbergmann/cli-parser/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/sebastianbergmann/cli-parser/compare/bb7bb3297957927962b0a3335befe7b66f7462e9...1.0.0

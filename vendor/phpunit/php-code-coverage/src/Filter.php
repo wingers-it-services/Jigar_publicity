@@ -18,17 +18,17 @@ use function str_starts_with;
 final class Filter
 {
     /**
-     * @var array<string,true>
+     * @psalm-var array<string,true>
      */
     private array $files = [];
 
     /**
-     * @var array<string,bool>
+     * @psalm-var array<string,bool>
      */
     private array $isFileCache = [];
 
     /**
-     * @param list<string> $filenames
+     * @psalm-param list<string> $files
      */
     public function includeFiles(array $filenames): void
     {
@@ -79,7 +79,7 @@ final class Filter
     }
 
     /**
-     * @return list<string>
+     * @psalm-return list<string>
      */
     public function files(): array
     {

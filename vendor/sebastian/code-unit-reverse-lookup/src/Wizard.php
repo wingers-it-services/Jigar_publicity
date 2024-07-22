@@ -17,28 +17,27 @@ use function get_declared_classes;
 use function get_declared_traits;
 use function get_defined_functions;
 use function is_array;
-use function is_int;
-use function is_string;
 use function range;
 use function trait_exists;
 use ReflectionClass;
 use ReflectionFunction;
+use ReflectionFunctionAbstract;
 use ReflectionMethod;
 
 final class Wizard
 {
     /**
-     * @var array<string, array<int, string>>
+     * @psalm-var array<string,array<int,string>>
      */
     private array $lookupTable = [];
 
     /**
-     * @var array<class-string, true>
+     * @psalm-var array<class-string,true>
      */
     private array $processedClasses = [];
 
     /**
-     * @var array<string, true>
+     * @psalm-var array<string,true>
      */
     private array $processedFunctions = [];
 
@@ -98,7 +97,7 @@ final class Wizard
         }
     }
 
-    private function processFunctionOrMethod(ReflectionFunction|ReflectionMethod $functionOrMethod): void
+    private function processFunctionOrMethod(ReflectionFunctionAbstract $functionOrMethod): void
     {
         if ($functionOrMethod->isInternal()) {
             return;
@@ -110,23 +109,12 @@ final class Wizard
             $name = $functionOrMethod->getDeclaringClass()->getName() . '::' . $name;
         }
 
-        $fileName = $functionOrMethod->getFileName();
-
-        assert(is_string($fileName));
-
-        if (!isset($this->lookupTable[$fileName])) {
-            $this->lookupTable[$fileName] = [];
+        if (!isset($this->lookupTable[$functionOrMethod->getFileName()])) {
+            $this->lookupTable[$functionOrMethod->getFileName()] = [];
         }
 
-        $startLine = $functionOrMethod->getStartLine();
-        $endLine   = $functionOrMethod->getEndLine();
-
-        assert(is_int($startLine));
-        assert(is_int($endLine));
-        assert($endLine >= $startLine);
-
-        foreach (range($startLine, $endLine) as $line) {
-            $this->lookupTable[$fileName][$line] = $name;
+        foreach (range($functionOrMethod->getStartLine(), $functionOrMethod->getEndLine()) as $line) {
+            $this->lookupTable[$functionOrMethod->getFileName()][$line] = $name;
         }
     }
 }

@@ -137,44 +137,4 @@ class UserController extends Controller
         $user->profile_image_url = url('images/' . $user->image); 
         return response()->json($user);
     }
-
-    
-    public function viewUserRegister()
-    {
-        $status = null;
-        $message = null;
-        return view('user.user-register', compact('status', 'message'));
-    }
-
-    public function registerUser(Request $request){
-        try {
-            $request->validate([
-                'image'           => 'required',
-                'name'            => 'required',
-                'email'           => 'required|unique:users,email',
-                'password'        => 'required',
-                'gender'          => 'required',
-                'phone'           => 'required',
-                'website'         => 'required',
-                'company_name'    => 'required',
-                'company_address' => 'required',
-                'no_of_device'    => 'required',
-            ]);
-
-            $validateData = $request->all();
-            $imagePath = null;
-            if ($request->hasFile('image')) {
-                $userPhoto = $request->file('image');
-                $filename = time() . '_' . $userPhoto->getClientOriginalName();
-                $imagePath = 'user_images/' . $filename;
-                $userPhoto->move(public_path('user_images/'), $filename);
-            }
-            $this->user->addUser($validateData, $imagePath);
-
-            return back()->with('status', 'success')->with('message', 'User Registered Successfully');
-        } catch (\Exception $e) {
-            Log::error('[UserController][registerUser] Error adding user: ' . $e->getMessage());
-            return back()->with('status', 'error')->with('message', 'User Not Registered');
-        }
-    }
 }

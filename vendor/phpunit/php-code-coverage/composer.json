@@ -56,8 +56,9 @@
         ]
     },
     "autoload-dev": {
-        "classmap": [
-            "tests/"
+        "files": [
+            "tests/TestCase.php",
+            "tests/_files/BankAccountTest.php"
         ]
     },
     "extra": {

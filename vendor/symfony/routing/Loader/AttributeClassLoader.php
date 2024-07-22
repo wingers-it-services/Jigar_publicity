@@ -15,7 +15,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\Config\Resource\FileResource;
 use Symfony\Component\Routing\Attribute\Route as RouteAnnotation;
-use Symfony\Component\Routing\Exception\LogicException;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 
@@ -227,7 +226,6 @@ abstract class AttributeClassLoader implements LoaderInterface
 
     public function getResolver(): LoaderResolverInterface
     {
-        throw new LogicException(sprintf('The "%s()" method must not be called.', __METHOD__));
     }
 
     /**

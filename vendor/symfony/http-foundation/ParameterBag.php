@@ -160,8 +160,6 @@ class ParameterBag implements \IteratorAggregate, \Countable
      * @param ?T              $default
      *
      * @return ?T
-     *
-     * @psalm-return ($default is null ? T|null : T)
      */
     public function getEnum(string $key, string $class, ?\BackedEnum $default = null): ?\BackedEnum
     {

@@ -30,7 +30,7 @@ use ReflectionMethod;
 final class Mapper
 {
     /**
-     * @return array<string,list<int>>
+     * @psalm-return array<string,list<int>>
      */
     public function codeUnitsToSourceLines(CodeUnitCollection $codeUnits): array
     {
@@ -85,7 +85,7 @@ final class Mapper
             if ($this->isUserDefinedClass($unit)) {
                 $units = [CodeUnit::forClass($unit)];
 
-                foreach ((new ReflectionClass($unit))->getTraits() as $trait) {
+                foreach ($this->reflectorForClass($unit)->getTraits() as $trait) {
                     if (!$trait->isUserDefined()) {
                         // @codeCoverageIgnoreStart
                         continue;
@@ -120,8 +120,25 @@ final class Mapper
     }
 
     /**
-     * @phpstan-assert-if-true callable-string $functionName
+     * @psalm-param class-string $className
+     *
+     * @throws ReflectionException
      */
+    private function reflectorForClass(string $className): ReflectionClass
+    {
+        try {
+            return new ReflectionClass($className);
+            // @codeCoverageIgnoreStart
+        } catch (\ReflectionException $e) {
+            throw new ReflectionException(
+                $e->getMessage(),
+                $e->getCode(),
+                $e,
+            );
+        }
+        // @codeCoverageIgnoreEnd
+    }
+
     private function isUserDefinedFunction(string $functionName): bool
     {
         if (!function_exists($functionName)) {
@@ -131,9 +148,6 @@ final class Mapper
         return (new ReflectionFunction($functionName))->isUserDefined();
     }
 
-    /**
-     * @phpstan-assert-if-true class-string $className
-     */
     private function isUserDefinedClass(string $className): bool
     {
         if (!class_exists($className)) {
@@ -143,9 +157,6 @@ final class Mapper
         return (new ReflectionClass($className))->isUserDefined();
     }
 
-    /**
-     * @phpstan-assert-if-true interface-string $interfaceName
-     */
     private function isUserDefinedInterface(string $interfaceName): bool
     {
         if (!interface_exists($interfaceName)) {
@@ -155,9 +166,6 @@ final class Mapper
         return (new ReflectionClass($interfaceName))->isUserDefined();
     }
 
-    /**
-     * @phpstan-assert-if-true trait-string $traitName
-     */
     private function isUserDefinedTrait(string $traitName): bool
     {
         if (!trait_exists($traitName)) {
@@ -167,9 +175,6 @@ final class Mapper
         return (new ReflectionClass($traitName))->isUserDefined();
     }
 
-    /**
-     * @phpstan-assert-if-true class-string $className
-     */
     private function isUserDefinedMethod(string $className, string $methodName): bool
     {
         if (!class_exists($className)) {

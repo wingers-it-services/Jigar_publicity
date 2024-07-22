@@ -12,13 +12,13 @@ namespace SebastianBergmann\Type;
 final readonly class Parameter
 {
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private string $name;
     private Type $type;
 
     /**
-     * @param non-empty-string $name
+     * @psalm-param non-empty-string $name
      */
     public function __construct(string $name, Type $type)
     {
@@ -27,7 +27,7 @@ final readonly class Parameter
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function name(): string
     {

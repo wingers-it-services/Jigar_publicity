@@ -19,24 +19,24 @@ use Traversable;
 final class Diff implements IteratorAggregate
 {
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private string $from;
 
     /**
-     * @var non-empty-string
+     * @psalm-var non-empty-string
      */
     private string $to;
 
     /**
-     * @var list<Chunk>
+     * @psalm-var list<Chunk>
      */
     private array $chunks;
 
     /**
-     * @param non-empty-string $from
-     * @param non-empty-string $to
-     * @param list<Chunk>      $chunks
+     * @psalm-param non-empty-string $from
+     * @psalm-param non-empty-string $to
+     * @psalm-param list<Chunk> $chunks
      */
     public function __construct(string $from, string $to, array $chunks = [])
     {
@@ -46,7 +46,7 @@ final class Diff implements IteratorAggregate
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function from(): string
     {
@@ -54,7 +54,7 @@ final class Diff implements IteratorAggregate
     }
 
     /**
-     * @return non-empty-string
+     * @psalm-return non-empty-string
      */
     public function to(): string
     {
@@ -62,7 +62,7 @@ final class Diff implements IteratorAggregate
     }
 
     /**
-     * @return list<Chunk>
+     * @psalm-return list<Chunk>
      */
     public function chunks(): array
     {
@@ -70,7 +70,7 @@ final class Diff implements IteratorAggregate
     }
 
     /**
-     * @param list<Chunk> $chunks
+     * @psalm-param list<Chunk> $chunks
      */
     public function setChunks(array $chunks): void
     {
