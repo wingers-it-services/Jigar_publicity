@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<!-- Title -->
-	<title>Fito - Your Ultimate Fitness Solution for a Healthier Lifestyle | DexignZone</title>
+	<title>Jigar Publicity</title>
 
 	<!-- Meta -->
 	<meta charset="utf-8">
@@ -593,20 +593,21 @@
 					<div class="bg-primary dlab-separator"></div>
 				</div>
 				<div class="row">
-                    <div class="column">
-                    <div class="col-xl-4 col-lg-12">
+                    <!-- <div class="column"> -->
+                    <div class="col-xl-6 col-lg-12">
                         <div class="card">
                             <div class="card-header border-0 pb-0">
                                 <h4 class="card-title">Timeline</h4>
                             </div>
                             <div class="card-body p-0">
-                                <div id="DZ_W_TimeLine" class="widget-timeline dz-scroll  my-4 px-4  height370">
+                                <div id="DZ_W_TimeLine" class="widget-timeline  my-4 px-4">
                                     <ul class="timeline">
                                         <li>
                                             <div class="timeline-badge primary"></div>
                                             <a class="timeline-panel text-muted" href="#">
-                                                <span>10 minutes ago</span>
-                                                <h6 class="mb-0">Youtube, a video-sharing website, goes live <strong class="text-primary">$500</strong>.</h6>
+                                                <span>July 20, 2024</span>
+                                                <h6 class="mb-0"><strong class="text-info">ગ્રાસીમ ઇન્ડસ્ટ્રીઝ લિમિટેડ, વિલાયત ના CSR વિભાગ દ્વારા ભરૃચ જિલ્લાના 33 ગામના HIV/AIDS અસરગ્રસ્ત 70 જેટલા જરૂરિયાત મંદ બાળકોને શૈક્ષણિક કીટ નું વિતરણ કરવામાં આવ્યું.
+													</strong></h6>
                                             </a>
                                         </li>
                                         <li>
@@ -655,205 +656,70 @@
                             </div>
                         </div>
 					</div>
-                    </div>
-                    <div class="column">
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/1.png" alt="">
+					<div class="col-xl-6 col-lg-12">
+                        <div class="card">
+                            <div class="card-header border-0 pb-0">
+                                <h4 class="card-title">Timeline</h4>
                             </div>
-                            <h3>Bootstrap v5.3.0</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/30.png" alt="">
+                            <div class="card-body p-0">
+                                <div id="DZ_W_TimeLine" class="widget-timeline  my-4 px-4">
+                                    <ul class="timeline">
+                                        <li>
+                                            <div class="timeline-badge primary"></div>
+                                            <a class="timeline-panel text-muted" href="#">
+                                                <span>July 20, 2024</span>
+                                                <h6 class="mb-0"><strong class="text-info">ગ્રાસીમ ઇન્ડસ્ટ્રીઝ લિમિટેડ, વિલાયત ના CSR વિભાગ દ્વારા ભરૃચ જિલ્લાના 33 ગામના HIV/AIDS અસરગ્રસ્ત 70 જેટલા જરૂરિયાત મંદ બાળકોને શૈક્ષણિક કીટ નું વિતરણ કરવામાં આવ્યું.
+													</strong></h6>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge info">
+                                            </div>
+                                            <a class="timeline-panel text-muted" href="#">
+                                                <span>20 minutes ago</span>
+                                                <h6 class="mb-0">New order placed <strong class="text-info">#XF-2356.</strong></h6>
+												<p class="mb-0">Quisque a consequat ante Sit amet magna at volutapt...</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge danger">
+                                            </div>
+                                            <a class="timeline-panel text-muted" href="#">
+                                                <span>30 minutes ago</span>
+                                                <h6 class="mb-0">john just buy your product <strong class="text-warning">Sell $250</strong></h6>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge success">
+                                            </div>
+                                            <a class="timeline-panel text-muted" href="#">
+                                                <span>15 minutes ago</span>
+                                                <h6 class="mb-0">StumbleUpon is acquired by eBay. </h6>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge warning">
+                                            </div>
+                                            <a class="timeline-panel text-muted" href="#">
+                                                <span>20 minutes ago</span>
+                                                <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="timeline-badge dark">
+                                            </div>
+                                            <a class="timeline-panel text-muted" href="#">
+                                                <span>20 minutes ago</span>
+                                                <h6 class="mb-0">Mashable, a news website and blog, goes live.</h6>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <h3>JQuery 3+</h3>
                         </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/3.png" alt="">
-                            </div>
-                            <h3>100% Responsive</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/4.png" alt="">
-                            </div>
-                            <h3>High Performance</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/5.png" alt="">
-                            </div>
-                            <h3>Fully Customizable</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/6.png" alt="">
-                            </div>
-                            <h3>Easy to Use</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/7.png" alt="">
-                            </div>
-                            <h3>Unlimited Options</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/8.png" alt="">
-                            </div>
-                            <h3>Multiple Headers</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/9.png" alt="">
-                            </div>
-                            <h3>W3C Validated</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/10.png" alt="">
-                            </div>
-                            <h3>Touch Enabled</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/11.png" alt="">
-                            </div>
-                            <h3>Multiple Colors</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/40.png" alt="">
-                            </div>
-                            <h3>Use Sass</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/15.png" alt="">
-                            </div>
-                            <h3>Mega Menu</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/16.png" alt="">
-                            </div>
-                            <h3>Well Documented</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/17.png" alt="">
-                            </div>
-                            <h3>Cross Browser</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/18.png" alt="">
-                            </div>
-                            <h3> Modern Design</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/19.png" alt="">
-                            </div>
-                            <h3> Category Style</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/20.png" alt="">
-                            </div>
-                            <h3>Masonry</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/21.png" alt="">
-                            </div>
-                            <h3>OWL Carousel</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/23.png" alt="">
-                            </div>
-                            <h3>Lifetime Updates</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/6.png" alt="">
-                            </div>
-                            <h3>Search options</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/24.png" alt="">
-                            </div>
-                            <h3>Google Fonts</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/25.png" alt="">
-                            </div>
-                            <h3>FontAwesome Icons</h3>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-4 col-lg-2 col-6">
-                        <div class="core-features">
-                            <div class="circle">
-                                <img src="welcome/images/icons/28.png" alt="">
-                            </div>
-                            <h3>Home Variations</h3>
-                        </div>
-                    </div>
-                    </div>
-				</div>
-				<div class="text-right">
-					<a href="#SupportSection" class="need-any-help"><img src="welcome/images/support.png" alt=""/>Need Any Help Link</a>
-				</div>
+					</div>
+                </div>
+				<!--  -->
 			</div>
 		</div>
 		<!-- <div class="section-full content-inner bg-white content-inner" style="background-image:url(welcome/images/axiom-pattern.png)">
@@ -909,7 +775,7 @@
 				</div>
 			</div>
 		</div> -->
-		<!-- <div class="section-full content-inner bg-gray content-inner">
+		<div class="section-full content-inner bg-gray content-inner">
 			<div class="container-fluid">
 				<div class="section-head title-box text-center" data-name="REVIEWS">
 					<h2>Reviews</h2>
@@ -1126,7 +992,7 @@
 					<a href="#SupportSection" class="need-any-help text-white"><img src="welcome/images/support-white.png" alt=""/>Need Any Help Link</a>
 				</div>
 			</div>
-		</div> -->
+		</div>
 		<!-- <div class="section-full content-inner">
 			<div class="container-fluid">
 				<div class="row align-items-center">
