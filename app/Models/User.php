@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use App\Enums\AccountStatusEnum;
 use App\Enums\DummyPasswordEnum;
+use App\Enums\PaymentStatus;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
@@ -24,7 +26,8 @@ class User extends Authenticatable
         'company_name',
         'company_address',
         'no_of_device',
-        'payment_status'
+        'payment_status',
+        'account_status'
     ];
 
     protected static function boot()
@@ -49,7 +52,8 @@ class User extends Authenticatable
                 'company_address' => $validatedData['company_address'],
                 'no_of_device'   => $validatedData['no_of_device'],
                 'image'          => $imagePath,
-                'payment_status' => $validatedData['payment_status'],
+                'payment_status' => $validatedData['payment_status'] ?? PaymentStatus::PENDING,
+                'account_status' => $validatedData['account_status'] ?? AccountStatusEnum::PENDING,
 
             ]);
         } catch (Throwable $e) {

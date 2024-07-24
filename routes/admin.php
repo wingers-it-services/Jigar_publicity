@@ -7,6 +7,7 @@ use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\IndustriesCategorieController;
 use App\Http\Controllers\IndustryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -97,4 +98,5 @@ Route::get('/fetch-admin-profile',[AdminController::class,'viewAdminProfile'])->
 
 Route::get('/get-payment-status', [AdminController::class,'getPaymentStatus'])->name('get-payment-status');
 
+Route::post('/update-account-status/{id}',[UserController::class,'updateUserAcoountStatus']);
 });

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserLoginHistoryController;
@@ -18,7 +19,7 @@ Route::get('/view-user-login', function () {
     return view('user.user-login');
 })->name('login');
 
-Route::get('/', [HomeController::class,'viewHome']);
+Route::get('/', [HomeController::class, 'viewHome']);
 
 Route::get('/view-user-register', [UserController::class, 'viewUserRegister'])->name('viewUserRegister');
 
@@ -39,7 +40,7 @@ Route::middleware('auth.users')->group(function () {
         return view('user.user-dashboard');
     })->name('user-dashboard');
 
-    Route::get('/user-profile', [UserController::class,'viewUserProfile']);
+    Route::get('/user-profile', [UserController::class, 'viewUserProfile']);
 
     Route::get('/login-history', [UserLoginHistoryController::class, 'loginHistory'])->name('loginHistory');
     Route::get('/user-list', function () {
@@ -68,7 +69,12 @@ Route::middleware('auth.users')->group(function () {
 
     Route::post('/admin-login', [AdminController::class, 'adminLogin'])->name('user-login');
 
-    Route::post('/user-profile-update',[UserController::class,'updateUserDetails'])->name('updateUserDetails');
+    Route::post('/user-profile-update', [UserController::class, 'updateUserDetails'])->name('updateUserDetails');
 
     Route::get('/fetch-profile', [UserController::class, 'fetchUserProfile']);
 });
+Route::get('/payment', function () {
+    return view('user.payment');
+});
+Route::get('checkout', [CheckoutController::class, 'showCheckOutPage'])->name('checkout');
+Route::any('response', [CheckoutController::class, 'response'])->name('response');
