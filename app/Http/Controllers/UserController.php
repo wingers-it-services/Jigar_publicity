@@ -134,18 +134,19 @@ class UserController extends Controller
     public function fetchUserProfile()
     {
         $user = $this->user->findOrFail(auth()->user()->id);
-        $user->profile_image_url = url('images/' . $user->image); 
+        $user->profile_image_url = url('images/' . $user->image);
         return response()->json($user);
     }
 
-      public function viewUserRegister()
+    public function viewUserRegister()
     {
         $status = null;
         $message = null;
         return view('user.user-register', compact('status', 'message'));
     }
 
-    public function registerUser(Request $request){
+    public function registerUser(Request $request)
+    {
         try {
             $request->validate([
                 'image'           => 'required',
@@ -177,4 +178,23 @@ class UserController extends Controller
         }
     }
 
+    public function updateUserAcoountStatus(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'account_status' => 'required|string'
+            ]);
+
+            $user = $this->user->find($id);
+            if ($user) {
+                $user->account_status = $request->account_status;
+                $user->save();
+                return response()->json(['message' => 'Account status updated successfully.', 'user' => $user]);
+            } else {
+                return response()->json(['message' => 'User not found.'], 404);
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Unable to update' . $e->getMessage()], 500);
+        }
+    }
 }

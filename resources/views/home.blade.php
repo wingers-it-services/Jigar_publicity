@@ -71,7 +71,7 @@
 					<div class="wl-bynw">
 						<a href="/view-user-register" target="blank" class="site-button shadow radius-xl">Register</a>
 					
-						<a href="/view-user-register" target="blank" class="site-button shadow radius-xl">Login</a>
+						<a href="/view-user-login" target="blank" class="site-button shadow radius-xl">Login</a>
 					</div>
 				</div>
 			</div>

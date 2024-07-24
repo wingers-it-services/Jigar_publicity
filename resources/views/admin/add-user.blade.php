@@ -136,18 +136,22 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- <div class="mb-3 row">
-                                                <label class="col-lg-4 col-form-label" for="validationCustom04">Suggestions
-                                                    <span class="text-danger">*</span>
-                                                </label>
-                                                <div class="col-lg-6">
-                                                    <textarea class="form-control" id="validationCustom04" rows="5" placeholder="What would you like to see?"
-                                                        required></textarea>
-                                                    <div class="invalid-feedback">
-                                                        Please enter a Suggestions.
-                                                    </div>
+                                        <div class="mb-3 row">
+                                            <label class="col-lg-4 col-form-label" for="validationCustom05">Account Status
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <select class="default-select wide form-control" id="validationCustom05" name="account_status">
+                                                    <option data-display="Select">Please select</option>
+                                                    <option value="{{\App\Enums\AccountStatusEnum::APPROVED }}">APPROVED</option>
+                                                    <option value="{{ \App\Enums\AccountStatusEnum::PENDING }}">PENDING</option>
+                                                    <option value="{{ \App\Enums\AccountStatusEnum::BLOCKED }}">BLOCKED</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a one.
                                                 </div>
-                                            </div> --}}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-xl-6">
                                         {{-- <div class="mb-3 row">

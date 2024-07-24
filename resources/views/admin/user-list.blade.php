@@ -109,6 +109,7 @@
                                         <th>Contact Number</th>
                                         <th>Company Address</th>
                                         <th>No Of Device</th>
+                                        <th>Account Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -123,6 +124,19 @@
                                         <td><a href="javascript:void(0);"><strong>{{ $user->phone }}</strong></a></td>
                                         <td>{{ Str::limit($user->company_address, 10, '...') }}</td>
                                         <td>{{ $user->no_of_device }}</td>
+                                        <td>
+                                            <select class="form-select" id="account_status_{{ $user->id }}" onchange="confirmUpdateStatus({{ $user->id }})">
+                                                <option value="{{\App\Enums\AccountStatusEnum::APPROVED}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::APPROVED ? 'selected' : '' }}>Approved</option>
+                                                <option value="{{\App\Enums\AccountStatusEnum::PENDING}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::PENDING ? 'selected' : '' }}>Pending</option>
+                                                <option value="{{\App\Enums\AccountStatusEnum::BLOCKED}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::BLOCKED ? 'selected' : '' }}>Blocked</option>
+                                                </select>
+                                        </td>
+
+                                        <!-- <td>
+                                            <span class="badge light {{ $user->account_status == 1 ? 'badge-success' : 'badge-warning' }}">
+                                                {{ $user->account_status == 1 ? 'Approved' : 'Pending' }}
+                                            </span>
+                                        </td> -->
                                         <td>
                                             <div class="d-flex">
                                                 <a href="/admin/user-details/{{ $user->uuid }}" class="btn btn-primary shadow btn-xs sharp me-1">
@@ -332,5 +346,56 @@
     }
 </script>
 
+<script>
+        function confirmUpdateStatus(userId) {
+            const selectElement = document.getElementById('account_status_' + userId);
+            const selectedStatus = selectElement.value;
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you want to update the account status?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    updateAccountStatus(userId, selectedStatus);
+                } else {
+                    // Reset the select value if the user cancels the update
+                    selectElement.value = selectElement.getAttribute('data-current-status');
+                }
+            });
+        }
+
+        function updateAccountStatus(userId, status) {
+            $.ajax({
+                url: `/admin/update-account-status/${userId}`,
+                type: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                data: JSON.stringify({ account_status: status }),
+                success: function(data) {
+                    Swal.fire('Updated!', data.message, 'success');
+                    // Update the data-current-status attribute
+                    $('#account_status_' + userId).attr('data-current-status', status);
+                },
+                error: function(xhr) {
+                    console.error('There was a problem with the AJAX operation:', xhr);
+                    Swal.fire('Error!', 'An error occurred while updating the status.', 'error');
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            // Initialize the data-current-status attribute
+            $('select.form-select').each(function() {
+                $(this).attr('data-current-status', $(this).val());
+            });
+        });
+    </script>
 @include('CustomSweetAlert')
 @endsection
