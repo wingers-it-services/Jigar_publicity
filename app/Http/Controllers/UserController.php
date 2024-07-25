@@ -37,9 +37,12 @@ class UserController extends Controller
         $message = null;
         $industries = $this->industrydetail->with('contacts')->get();
         $imageType = $this->advertisment->image_type;
-        $horImages = $this->advertisment->where('image_type', 'horizontal')->get();
-        $verImages = $this->advertisment->where('image_type', 'vertical')->get();
-        return view('user.industry-list', compact('status', 'message', 'industries', 'horImages', 'verImages'));
+        $horImages = $this->advertisment->where('image_type', 'horizontal')->inRandomOrder()->get();
+        $chunks = $horImages->chunk(ceil($horImages->count() / 2));
+        $horImages1 = $chunks->get(0);
+        $horImages2 = $chunks->get(1);
+        $verImages = $this->advertisment->where('image_type', 'vertical')->inRandomOrder()->take(4)->get();
+        return view('user.industry-list', compact('status', 'message', 'industries', 'horImages1', 'horImages2', 'verImages'));
     }
 
     public function fetchIndustryDetailsById(Request $request, $uuid)

@@ -30,7 +30,7 @@ class AdvertismentController extends Controller
         try {
             $validatedData = $request->validate([
                 'advertisment_image' => 'required|max:3602',
-                'image_type' => 'required|in:horizontal,vertical'
+                'image_type'         => 'required|in:horizontal,vertical'
             ]);
 
             if ($request->hasFile('advertisment_image')) {
@@ -45,7 +45,7 @@ class AdvertismentController extends Controller
                 $isVertical = $height > $width;
 
                 if (($imageType == 'horizontal' && !$isHorizontal) || ($imageType == 'vertical' && !$isVertical)) {
-                    return redirect()->back()->with('error', 'Image dimensions do not match the selected type.');
+                    return redirect()->back()->with('status', 'error')->with('message', 'Image dimensions do not match the selected type.');
                 }
 
                 $filename = time() . '_' . $advertismentImage->getClientOriginalName();
@@ -54,16 +54,15 @@ class AdvertismentController extends Controller
 
                 $countImage = $this->advertisment->get()->count();
 
-                if ($countImage >= 2) {
+                // if ($countImage >= 2) {
+                //     return back()->with('status', 'error')->with('message', 'The advertisment image add max 2.');
+                // }
 
-                    return back()->with('status', 'error')->with('message', 'The advertisment image add max 2.');
-                } else {
+                $this->advertisment->create([
+                    'advertisment_image' => $imagePath,
+                    'image_type' => $imageType
+                ]);
 
-                    $this->advertisment->create([
-                        'advertisment_image' => $imagePath,
-                        'image_type' => $imageType
-                    ]);
-                }
                 return back()->with('status', 'success')->with('message', 'Advertisement added successfully');
                 // return redirect()->back()->with('success', 'Advertisement added successfully.');
             } else {
@@ -72,7 +71,6 @@ class AdvertismentController extends Controller
             }
         } catch (\Throwable $th) {
             Log::error("[AdvertismentController][addAdvertisment] Error: " . $th->getMessage());
-            // return redirect()->back()->with('error', $th->getMessage());
             return back()->with('status', 'error')->with('message', 'Advertisement Not Added');
         }
     }
