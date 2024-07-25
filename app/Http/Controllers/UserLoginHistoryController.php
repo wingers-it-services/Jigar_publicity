@@ -17,7 +17,7 @@ class UserLoginHistoryController extends Controller
     {
         $userId = auth()->user()->id;
         $userLoginHistorys = $this->userLoginHistory->where('user_id', $userId)->get();
-
+        dd($userId);
         return view('user.user-login-history', compact('userLoginHistorys'));
     }
 }

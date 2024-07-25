@@ -85,7 +85,7 @@ class UserController extends Controller
         $status = null;
         $message = null;
         $userDetail = $this->user->where('id', auth()->user()->id)->first();
-        $horImages = $this->advertisment->where('image_type', 'horizontal')->get();
+        $horImages = $this->advertisment->where('image_type', 'vertical')->inRandomOrder()->get();
         return view('user.user-profile', compact('status', 'message', 'userDetail', 'horImages'));
     }
 
