@@ -14,32 +14,32 @@
 
                 <div class="col-xl-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" id="cardHeader1">
                             <h5 class="card-title">How can I view the details of the industry on the industry list page?
                             </h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="cardBody1">
                             <p class="card-text">To view the details of an industry on the industry list page, simply click
                                 on any text within </br> the specific row of the table corresponding to that industry. The
                                 details of the selected </br> industry will then be displayed below the table.</p>
                         </div>
                         <!-- <div class="card-footer d-sm-flex justify-content-between align-items-center">
-                                                            <div class="card-footer-link mb-4 mb-sm-0">
-                                                                <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
-                                                            </div>
+                                                                                            <div class="card-footer-link mb-4 mb-sm-0">
+                                                                                                <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
+                                                                                            </div>
 
-                                                            <a href="javascript:void()" class="btn btn-primary">Go somewhere</a>
-                                                        </div> -->
+                                                                                            <a href="javascript:void()" class="btn btn-primary">Go somewhere</a>
+                                                                                        </div> -->
                     </div>
                 </div>
 
                 <div class="col-xl-12">
                     <div class="card">
-                        <div class="card-header">
+                        <div class="card-header" id="cardHeader2">
                             <h5 class="card-title">How can I view the industry advertisement on the industry list page?
                             </h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" id="cardBody2">
                             <p class="card-text">To view the advertisement for an industry on the industry list page, click
                                 on the "View" button located within the </br> specific row of the table corresponding to
                                 that
@@ -54,10 +54,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader3">
                         <h5 class="card-title">How can I use multi-search column on the industry list page?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody3">
                         <p class="card-text"> <strong>To use multi-search columns on the industry list page, follow these
                                 steps:</strong></br></br>
                             1. Search within a particular column, such as entering a search term in the "Area" column.</br>
@@ -72,10 +72,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader4">
                         <h5 class="card-title">How can I view my Login History?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody4">
                         <p class="card-text"><strong> To view your login history:</strong></br></br>
                             1. Click on the "User Login History" menu.</br>
                             2. You will see a list of your login history, including the dates of your logins,</br> the
@@ -88,10 +88,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader5">
                         <h5 class="card-title">How can I view and update my profile?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody5">
                         <p class="card-text">
                             <strong>To view and update your profile:</strong></br></br>
                             1. Go to the right side corner of the page where you can see your profile image.</br>
@@ -105,10 +105,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader6">
                         <h5 class="card-title">How can I minimize menu bar?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody6">
                         <p class="card-text"><strong> To minimize your menu bar:</strong></br></br>
                             1. Click on the three horizontal lines located beside the main menu bar at the upper left side
                             of the page.</br>
@@ -120,24 +120,62 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader7" style="cursor: pointer;">
                         <h5 class="card-title">How can I change the dark theme mode of the web page.</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody7" style="display: none;">
                         <p class="card-text"><strong>To change the theme mode of the web page:</strong></br></br>
                             1. Click on the sun symbol beside the user profile to switch to dark theme mode.</br>
                             2. To switch back to light theme mode, click on the moon symbol.
-
                         </p>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
     </div>
     </div>
 
+    <script>
+        function toggleCardBody(cardBodyId) {
+            const cardBody = document.getElementById(cardBodyId);
+            if (cardBody.style.display === 'none' || cardBody.style.display === '') {
+                cardBody.style.display = 'block';
+            } else {
+                cardBody.style.display = 'none';
+            }
+        }
 
+        document.getElementById('cardHeader1').addEventListener('click', function() {
+            toggleCardBody('cardBody1');
+        });
+
+        document.getElementById('cardHeader2').addEventListener('click', function() {
+            toggleCardBody('cardBody2');
+        });
+
+        document.getElementById('cardHeader3').addEventListener('click', function() {
+            toggleCardBody('cardBody3');
+        });
+
+        document.getElementById('cardHeader4').addEventListener('click', function() {
+            toggleCardBody('cardBody4');
+        });
+
+        document.getElementById('cardHeader5').addEventListener('click', function() {
+            toggleCardBody('cardBody5');
+        });
+
+        document.getElementById('cardHeader6').addEventListener('click', function() {
+            toggleCardBody('cardBody6');
+        });
+
+        document.getElementById('cardHeader7').addEventListener('click', function() {
+            toggleCardBody('cardBody7');
+        });
+    </script>
 
 
 @endsection
