@@ -70,8 +70,8 @@ class AdminController extends Controller
         $totalIndustryCategories = $this->industriesCategory->get()->count();
         $totalIndustrialAreas = $this->industryArea->get()->count();
 
-        $paidStatus = $this->user->where('payment_status', 1)->get()->count();
-        $pendingStatus = $this->user->where('payment_status', 0)->get()->count();
+        $paidStatus = $this->user->whereNot('is_admin', 1)->where('payment_status', 1)->get()->count();
+        $pendingStatus = $this->user->whereNot('is_admin', 1)->where('payment_status', 0)->get()->count();
 
         return view('admin.dashboard', compact('totalIndustries', 'totalUsers', 'totalAds', 'totalIndustryCategories', 'totalIndustrialAreas', 'paidStatus', 'pendingStatus'));
     }
