@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\AccountStatusEnum;
 use App\Models\Gym;
 use App\Models\User;
 use App\Models\UserLoginHistory;
@@ -169,8 +170,6 @@ class AdminUserController extends Controller
         return view('admin.user-payment', compact('userPayments'));
     }
 
-
-
     public function userLoginHistory(Request $request)
     {
         $users = $this->userHistory->with(['user' => function($query) {
@@ -213,5 +212,9 @@ class AdminUserController extends Controller
         }
     }
 
-    
+    public function pendingUserList()
+    {
+        $users = $this->user->where('account_status',AccountStatusEnum::PENDING)->whereNot('is_admin', 1)->get();
+        return view('admin.pending-user-list', compact('users'));
+    }
 }

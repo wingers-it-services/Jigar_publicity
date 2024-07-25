@@ -1022,6 +1022,7 @@
                         <ul aria-expanded="false">
                             <li><a href="/admin/add-admin-users">Add New User</a></li>
                             <li><a href="/admin/user-list">Users List</a></li>
+                            <li><a href="/admin/pending-user-list">Pending Users List</a></li>
                             <li><a href="/admin/user-payment">Payment Details</a></li>
                         </ul>
                     </li>
@@ -1050,11 +1051,11 @@
                             <span class="nav-text">User Login History</span></a>
                     </li>
 
-                    {{-- <li>
-                        <a href="#">
+                    <li>
+                        <a href="/admin/view-site-setting">
                             <i class="fa fa-user" aria-hidden="true"></i>
-                            <span class="nav-text">GYM Profile</span></a>
-                    </li> --}}
+                            <span class="nav-text">Setting</span></a>
+                    </li>
 
                     <li>
                         <a class="" href="/admin/admin-faq" aria-expanded="false">
