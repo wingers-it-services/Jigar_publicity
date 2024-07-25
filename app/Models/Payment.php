@@ -31,7 +31,8 @@ class Payment extends Model
             "name"       => $orderData['name'],
             "email"      => $orderData['email'],
             "mobile"     => $orderData['mobile'],
-            "amount"     => $orderData['totalprice'],
+            "no_of_device" => $orderData['no_of_device'],
+            "number_of_hours" => $orderData['number_of_hours']
         ]);
     }
 }

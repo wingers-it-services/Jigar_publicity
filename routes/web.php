@@ -75,6 +75,6 @@ Route::middleware('auth.users')->group(function () {
 });
 Route::get('/payment', function () {
     return view('user.payment');
-});
+})->name('payment');
 Route::get('checkout', [CheckoutController::class, 'showCheckOutPage'])->name('checkout');
 Route::any('response', [CheckoutController::class, 'response'])->name('response');

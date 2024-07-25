@@ -20,8 +20,10 @@ class SiteSetting extends Model
         'seven_device_per_hour',
         'eight_device_per_hour',
         'nine_device_per_hour',
-        'ten_device_per_hour'
+        'ten_device_per_hour',
+        'igst'
     ];
+
     public function addOrUpdateSiteSetting(array $siteSetting)
     {
         try {
@@ -39,6 +41,7 @@ class SiteSetting extends Model
                     'eight_device_per_hour' => $siteSetting['eight_device_per_hour'],
                     'nine_device_per_hour' => $siteSetting['nine_device_per_hour'],
                     'ten_device_per_hour' => $siteSetting['ten_device_per_hour'],
+                    'igst'                => $siteSetting['igst'],
                 ]
             );
         } catch (\Throwable $e) {
@@ -48,4 +51,22 @@ class SiteSetting extends Model
         }
     }
 
+    public function getPricePerDevicePerHour(int $numberOfDevices): float
+    {
+        $priceField = match ($numberOfDevices) {
+            1 => 'one_device_per_hour',
+            2 => 'two_device_per_hour',
+            3 => 'three_device_per_hour',
+            4 => 'four_device_per_hour',
+            5 => 'five_device_per_hour',
+            6 => 'six_device_per_hour',
+            7 => 'seven_device_per_hour',
+            8 => 'eight_device_per_hour',
+            9 => 'nine_device_per_hour',
+            10 => 'ten_device_per_hour',
+            default => throw new \Exception('Price not defined for this number of devices'),
+        };
+
+        return (float) $this->$priceField;
+    }
 }

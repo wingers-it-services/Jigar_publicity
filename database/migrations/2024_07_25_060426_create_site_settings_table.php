@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('eight_device_per_hour');
             $table->integer('nine_device_per_hour');
             $table->integer('ten_device_per_hour');
+            $table->float('igst');
             $table->timestamps();
         });
     }
