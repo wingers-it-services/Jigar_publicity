@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                                                                                                            Content body start
-                                                                                                                                                                                                                                                                                                            ***********************************-->
+                                                                                                                                                                                                                                                                                                                Content body start
+                                                                                                                                                                                                                                                                                                                ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -193,8 +193,8 @@
                                             src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
                                             alt="">
                                     @else
-                                        <img class="img-fluid rounded"  style="margin-bottom: 15px;" src="{{ asset($horImage->advertisment_image) }}"
-                                            alt="">
+                                        <img class="img-fluid rounded" style="margin-bottom: 15px;"
+                                            src="{{ asset($horImage->advertisment_image) }}" alt="">
                                     @endif
                                 </div>
                             </div>
@@ -311,6 +311,7 @@
             var table = $('#industyList').DataTable({
                 initComplete: function() {
                     var api = this.api();
+                    var previousSearchValue = ''; // Track previous search value
 
                     // Add search input to each column header except the last one
                     api.columns().every(function(index) {
@@ -334,8 +335,9 @@
                     // Function to apply search value from URL
                     function applySearchFromUrl() {
                         var searchValue = getQueryParams('search');
-                        if (searchValue) {
+                        if (searchValue && searchValue !== previousSearchValue) {
                             api.search(searchValue).draw();
+                            previousSearchValue = searchValue; // Update previous search value
                         }
                     }
 
