@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                                                                                                Content body start
-                                                                                                                                                                                                                                                                                                ***********************************-->
+                                                                                                                                                                                                                                                                                                            Content body start
+                                                                                                                                                                                                                                                                                                            ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <div class=" col-xl-12">
+                <div class=" col-xl-10">
                     <div class="card">
                         <div class="card-header">
                             <h4 class="card-title">Industry List</h4>
@@ -179,25 +179,31 @@
                     </div>
                 </div>
 
-
                 <div class="col-lg-2">
                     <div class="card">
-                        <div class="card-body">
-                            @foreach ($verImages as $verImage)
-                                <div class="mb-12">
-                                    @if ($verImage == null)
-                                        <img class="img-fluid rounded"
+                        {{-- <div class="card-body"> --}}
+                        @foreach ($horImages as $horImage)
+                            {{-- <div class="col-xl-3 col-lg-6 col-md-6 col-xxl-6"> --}}
+                            <!-- Tab panes -->
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                    aria-labelledby="home-tab" tabindex="0">
+                                    @if ($horImage == null)
+                                        <img class="img-fluid rounded" style="margin-bottom: 15px;"
                                             src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
                                             alt="">
                                     @else
-                                        <img class="img-fluid rounded" src="{{ asset($verImage->advertisment_image) }}"
+                                        <img class="img-fluid rounded"  style="margin-bottom: 15px;" src="{{ asset($horImage->advertisment_image) }}"
                                             alt="">
                                     @endif
                                 </div>
-                            @endforeach
-                        </div>
+                            </div>
+                            {{-- </div> --}}
+                        @endforeach
+                        {{-- </div> --}}
                     </div>
                 </div>
+
             </div>
             <div id="industryDetailsContainer" class="row" style="display: none;">
                 <div class="col-lg-12">
