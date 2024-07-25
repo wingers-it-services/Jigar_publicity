@@ -40,7 +40,7 @@ class UserController extends Controller
         $horImages = $this->advertisment->where('image_type', 'horizontal')->inRandomOrder()->get();
         $chunks = $horImages->chunk(ceil($horImages->count() / 2));
         $horImages1 = $chunks->get(0);
-        $horImages2 = $chunks->get(1);
+        $horImages2 = $chunks->get(1)->values();
         $verImages = $this->advertisment->where('image_type', 'vertical')->inRandomOrder()->take(4)->get();
         return view('user.industry-list', compact('status', 'message', 'industries', 'horImages1', 'horImages2', 'verImages'));
     }
@@ -197,6 +197,7 @@ class UserController extends Controller
                 return response()->json(['message' => 'User not found.'], 404);
             }
         } catch (Exception $e) {
+            Log::error('[UserController] [updateUserAcoountStatus] error while updating user account status : ' . $e->getMessage());
             return response()->json(['message' => 'Unable to update' . $e->getMessage()], 500);
         }
     }

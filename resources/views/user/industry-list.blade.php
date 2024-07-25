@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Content body start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Content body start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -23,10 +23,10 @@
                 <div class="col-xl-6">
                     <div class="card">
                         <div class="card-body p-4">
-                            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                            <div id="carouselExampleIndicators1" class="carousel slide" data-bs-ride="carousel">
                                 <ol class="carousel-indicators">
                                     @foreach ($horImages1 as $index => $horImage)
-                                        <li data-bs-target="#carouselExampleIndicators"
+                                        <li data-bs-target="#carouselExampleIndicators1"
                                             data-bs-slide-to="{{ $index }}"
                                             class="{{ $index === 0 ? 'active' : '' }}"></li>
                                     @endforeach
@@ -53,9 +53,9 @@
                                 @endforeach
 
                             </div>
-                            <a class="carousel-control-prev" href="#carouselExampleIndicators" data-bs-slide="prev"><span
+                            <a class="carousel-control-prev" href="#carouselExampleIndicators1" data-bs-slide="prev"><span
                                     class="carousel-control-prev-icon"></span> <span class="sr-only">Previous</span> </a><a
-                                class="carousel-control-next" href="#carouselExampleIndicators" data-bs-slide="next"><span
+                                class="carousel-control-next" href="#carouselExampleIndicators1" data-bs-slide="next"><span
                                     class="carousel-control-next-icon"></span>
                                 <span class="sr-only">Next</span></a>
                         </div>
@@ -73,10 +73,10 @@
                                 @endforeach
                             </ol>
                             <div class="carousel-inner">
-                                {{ $imgCount2 = 0 }}
+                                {{ $imgCount = 0 }}
                                 @foreach ($horImages2 as $horImage)
-                                    {{ $imgCount2++ }}
-                                    @if ($imgCount2 == 1)
+                                    {{ $imgCount++ }}
+                                    @if ($imgCount == 1)
                                         <div class="carousel-item active">
                                         @else
                                             <div class="carousel-item">
@@ -192,8 +192,8 @@
             <div class="card">
                 @foreach ($verImages as $verImage)
                     <div class="tab-content" id="myTabContent">
-                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                            aria-labelledby="home-tab" tabindex="0">
+                        <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                            tabindex="0">
                             @if ($verImage == null)
                                 <img class="img-fluid rounded" style="margin-bottom: 15px;"
                                     src="https://www.jigarpublicity.com/assets/img/jigar-publicity-logo.png"
