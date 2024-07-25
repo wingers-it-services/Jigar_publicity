@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\AccountStatusEnum;
 use App\Models\User;
 use App\Models\UserLoginHistory;
 use Exception;
@@ -48,6 +49,10 @@ class AuthController extends Controller
     
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
+            }
+
+            if ($user->account_status !== AccountStatusEnum::APPROVED) {
+                return back()->with('status', 'error')->with('message', 'Your account is not approved.');
             }
     
             if ($this->checkAllowUserTologin($user)) {

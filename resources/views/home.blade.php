@@ -82,15 +82,22 @@
 				<div class="row align-items-center">
 					<div class="col-md-12 col-lg-4">
 						<div class="section-head title-box text-left m-b30" data-name="FORMS">
-							<h2>Ready to Use Awesome Plugins</h2>
-							<h6>Working Php Forms</h6>
+							<h2>Ready to Use Awesome</h2>
 							<div class="bg-primary dlab-separator"></div>
-							<p>Don't go by our Words, checkout awesome demos and verify yourself. Save 1000s of hours of designing and coding work as we already did that for you.</p>
+							<p>Magazine (74 Pages)  published on every month from Ankleshwar.  This magazine mainly circulated in Chemical Industries Estate Ankleashwar, Panoli, Jhagadia, Dahej, Vilayat, Nandesari, Padra, Savli, Lamdapura, Makarpura, Vadodara, Vatva, Odhav, Narol, Naroda, Sanannd, Chhatral, Ahmedabad, Sachin, Vapi, Sarigam, Mumbai etc.</p>
 						</div>	
 						<ul class="list-check primary">
-							<li>Ready to Use Your MailBox</li>
-							<li>Calender Pagers is Ready to Use</li>
-							<li>Chart.Js, Flot Charts</li>
+							<li>Various Industries Activity</li>
+							<li>Analysis On Latest Industries Issue.</li>
+							<li>New Coming Projects And Uploads On Existing Industries.</li>
+							<li>Incoming Environment Public Hearing In Gujarat.</li>
+							<li>Incoming Events On Industrial Seminar And Programs.</li>
+							<li>Requirement Manpower by Industries.</li>
+							<li>New Statutory Provision and Information.</li>
+							<li>Information on Various Industries Association Activity.</li>
+							<li>Information On Activities Of Industries Estate And Notified Areas.</li>
+							<!-- <li>Importance Information For Industrial Workers.</li> -->
+							<!-- <li>B2B Information.</li> -->
 						</ul>
 						<div class="testimonial-one-navigation owl-clienr-btn">
 							<span id="next-slide" class="btn prev"><i class="las la-long-arrow-alt-left"></i></span>
@@ -101,11 +108,11 @@
 						<div class="responsive-carousel owl-carousel owl-none m-b30">
 							<div class="item">
 								<div class="layout-type phone">
-									<a href="xhtml/email-compose.html" target="_bank">
+									<a href="#" target="_bank">
 										<div class="media">
 											<img src="welcome/images/inner-page/email-compose.jpg" alt=""/>
 										</div>
-										<div class="dz-title">Email Compose</div>
+										<div class="dz-title">Login</div>
 									</a>
 								</div>
 							</div>
@@ -115,18 +122,18 @@
 										<div class="media">
 											<img src="welcome/images/inner-page/email-compose-mobile.jpg" alt=""/>
 										</div>
-										<div class="dz-title">Email Compose</div>
+										<div class="dz-title">Login</div>
 									</a>
 								</div>
 							</div>
 							
 							<div class="item">
 								<div class="layout-type phone">
-									<a href="xhtml/app-calender.html" target="_bank">
+									<a href="" target="_bank">
 										<div class="media">
 											<img src="welcome/images/inner-page/app-calender.jpg" alt=""/>
 										</div>
-										<div class="dz-title">App Calender</div>
+										<div class="dz-title">Dashboard</div>
 									</a>
 								</div>
 							</div>
@@ -136,48 +143,48 @@
 										<div class="media">
 											<img src="welcome/images/inner-page/app-calender-mobile.jpg" alt=""/>
 										</div>
-										<div class="dz-title">App Calender</div>
+										<div class="dz-title">Dashboard</div>
 									</a>
 								</div>
 							</div>
 							
 							<div class="item">
 								<div class="layout-type phone">
-									<a href="xhtml/chart-chartjs.html" target="_bank">
+									<a href="" target="_bank">
 										<div class="media">
 											<img src="welcome/images/inner-page/chart-chartjs.jpg" alt=""/>
 										</div>
-										<div class="dz-title">Chart Js</div>
+										<div class="dz-title">Profile</div>
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="layout-type tab">
-									<a href="xhtml/chart-chartjs.html" target="_bank">
+									<a href="" target="_bank">
 										<div class="media">
 											<img src="welcome/images/inner-page/chart-chartjs-mobile.jpg" alt=""/>
 										</div>
-										<div class="dz-title">Chart Js</div>
+										<div class="dz-title">Profile</div>
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="layout-type phone">
-									<a href="xhtml/chart-sparkline.html" target="_bank">
+									<a href="" target="_bank">
 										<div class="media">
 											<img src="welcome/images/inner-page/chart-sparkline.jpg" alt=""/>
 										</div>
-										<div class="dz-title">Chart Sparkline</div>
+										<div class="dz-title">Advertisement</div>
 									</a>
 								</div>
 							</div>
 							<div class="item">
 								<div class="layout-type tab">
-									<a href="xhtml/chart-sparkline.html" target="_bank">
+									<a href="" target="_bank">
 										<div class="media">
 											<img src="welcome/images/inner-page/chart-sparkline-mobile.jpg" alt=""/>
 										</div>
-										<div class="dz-title">Chart Sparkline</div>
+										<div class="dz-title">Advertisement</div>
 									</a>
 								</div>
 							</div>
@@ -777,9 +784,8 @@
 		</div> -->
 		<div class="section-full content-inner bg-gray content-inner">
 			<div class="container-fluid">
-				<div class="section-head title-box text-center" data-name="REVIEWS">
-					<h2>Reviews</h2>
-					<h6>Theme Reviews</h6>
+				<div class="section-head title-box text-center" data-name="CATEGORIES">
+					<h2>Categories</h2>
 					<div class="bg-primary dlab-separator"></div>
 				</div>
 				<div class="testimonial-two-dots owl-theme owl-dots-primary-full owl-loaded owl-carousel owl-none">
@@ -1413,7 +1419,7 @@
         <div class="footer-bottom footer-line">
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-12 text-center "> <span>Copyright © 2023 DexignZone. all rights reserved.</span> </div>
+                    <div class="col-xl-12 text-center "> <span>Copyright © 2023 <a href="https://wingersitservices.co.in/"> WingersItServices</a>. all rights reserved.</span> </div>
                 </div>
             </div>
         </div>
