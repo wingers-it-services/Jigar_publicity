@@ -256,10 +256,10 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                    Already have Account?
+                                    <p> Already have Account?
                                         <a class="text-primary" href="/view-user-login">
-                                          <p>Login</p>
-                                        </a>
+                                          Login
+                                        </a></p>
                                     </div>
 
                                 </div>

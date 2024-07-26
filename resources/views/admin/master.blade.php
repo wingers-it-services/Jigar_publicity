@@ -1216,17 +1216,26 @@
         });
 
         $(document).ready(function() {
-            $.ajax({
-                url: '/fetch-profile',
-                method: 'GET',
-                success: function(data) {
-                    $('#user-image').attr('src', '../' + data.image);
-                },
-                error: function(xhr, status, error) {
-                    console.error('Error fetching user profile:', error);
-                }
-            });
-        });
+    $.ajax({
+        url: '/fetch-profile', // Endpoint to fetch profile image
+        method: 'GET',
+        success: function(data) {
+            // Check if the image URL is provided and not empty
+            if (data.image && data.image.trim() !== '') {
+                $('#user-image').attr('src', '../'+ data.image);
+            } else {
+                // Keep default image if URL is blank or invalid
+                $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
+            }
+        },
+        error: function(xhr, status, error) {
+            console.error('Error fetching user profile:', error);
+            // Ensure default image is shown in case of error
+            $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
+        }
+    });
+});
+
     </script>
 
 </body>

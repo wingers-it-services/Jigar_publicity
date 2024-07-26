@@ -54,7 +54,12 @@ class PhonePayPaymentServices
             $pricePerDevicePerHour = $siteSetting->getPricePerDevicePerHour($numberOfDevices);
 
             // Calculate the total amount
-            $totalPrice = $pricePerDevicePerHour * $numberOfDevices * $numberOfHours;
+            $totalPrice = $pricePerDevicePerHour * $numberOfHours;
+            $igstPercentage = $siteSetting->igst; // Assume igst_percentage is stored in site settings
+
+            // Calculate IGST
+            $igstAmount = ($totalPrice * $igstPercentage) / 100;
+            $totalPrice = $totalPrice + $igstAmount;
             $amount = $totalPrice * 100; // Convert to smallest currency unit (e.g., cents)
 
             // Return calculated amount
@@ -70,6 +75,8 @@ class PhonePayPaymentServices
         Log::info($data);
         $numberOfDevices = $data['no_of_device'];
         $numberOfHours = $data['number_of_hours'];
+
+
 
         $amount = $this->calculateAmount($numberOfDevices, $numberOfHours);
         $lastOrderId = $this->payment->latest('id')->value('id');

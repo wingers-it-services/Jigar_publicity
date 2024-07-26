@@ -65,7 +65,7 @@ class AuthController extends Controller
                     if ($user->payment_status === PaymentStatus::PAID) {
                         return redirect()->route('industry-list');
                     } else {
-                        return redirect()->route('payment');
+                        return redirect()->route('payment')->with('user', $user);
                     }
                 } else {
                     if (auth()->user()->is_admin == 1)
@@ -81,7 +81,7 @@ class AuthController extends Controller
                 if ($user->payment_status === PaymentStatus::PAID) {
                     return redirect()->route('industry-list');
                 } else {
-                    return redirect()->route('payment');
+                    return redirect()->route('payment')->with('user', $user);
                 }
             }
     

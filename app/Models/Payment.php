@@ -32,7 +32,13 @@ class Payment extends Model
             "email"      => $orderData['email'],
             "mobile"     => $orderData['mobile'],
             "no_of_device" => $orderData['no_of_device'],
-            "number_of_hours" => $orderData['number_of_hours']
+            "number_of_hours" => $orderData['number_of_hours'],
+            "amount"=>$orderData['amount']
         ]);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

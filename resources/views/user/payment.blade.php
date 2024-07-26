@@ -1031,35 +1031,19 @@
                                         <ul class="list-group mb-3">
                                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                                 <div>
-                                                    <h6 class="my-0">Product name</h6>
-                                                    <small class="text-muted">Brief description</small>
+                                                    <h6 class="my-0"><span id="devices">0</span> Device X <span id="hours">0</span> Hours:</h6>
                                                 </div>
-                                                <span class="text-muted">$12</span>
+                                                <span class="text-muted">&#x20AC;<span id="price">0</span></span>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                                 <div>
-                                                    <h6 class="my-0">Second product</h6>
-                                                    <small class="text-muted">Brief description</small>
+                                                    <h6 class="my-0">IGST:</h6>
                                                 </div>
-                                                <span class="text-muted">$8</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between lh-condensed">
-                                                <div>
-                                                    <h6 class="my-0">Third item</h6>
-                                                    <small class="text-muted">Brief description</small>
-                                                </div>
-                                                <span class="text-muted">$5</span>
-                                            </li>
-                                            <li class="list-group-item d-flex justify-content-between active">
-                                                <div class="text-white">
-                                                    <h6 class="my-0 text-white">Promo code</h6>
-                                                    <small>EXAMPLECODE</small>
-                                                </div>
-                                                <span class="text-white">-$5</span>
+                                                <span class="text-muted">&#x20AC;<span id="igst">0</span></span>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <span>Total Amount</span>
-                                                <strong>$20</strong>
+                                                <strong>&#x20AC;<span id="total-amount">0</span></strong>
                                             </li>
                                         </ul>
                                     </div>
@@ -1071,7 +1055,7 @@
                                             <div class="row">
                                                 <div class="col-md-12 mb-3">
                                                     <label for="firstName">Name</label>
-                                                    <input type="text" class="form-control" id="name" placeholder="" name="name" value="" required="">
+                                                    <input type="text" class="form-control" id="name" placeholder="" name="name" value="{{$user->name}}" required="">
                                                     <div class="invalid-feedback">
                                                         Valid name is required.
                                                     </div>
@@ -1079,23 +1063,23 @@
                                             </div>
 
                                             <div class="row">
-                                            <div class="col-md-6 mb-3">
+                                                <div class="col-md-6 mb-3">
                                                     <label for="lastName">Email</label>
-                                                    <input type="text" class="form-control" id="email" placeholder="" name="email" value="" required="">
+                                                    <input type="text" class="form-control" id="email" placeholder="" name="email" value="{{$user->email}}" required="">
                                                     <div class="invalid-feedback">
                                                         Valid email is required.
                                                     </div>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
+                                                </div>
+                                                <div class="col-md-6 mb-3">
                                                     <label for="firstName">Mobile no</label>
-                                                    <input type="text" class="form-control" id="mobile" placeholder="" name="mobile" value="" required="">
+                                                    <input type="text" class="form-control" id="mobile" placeholder="" name="mobile" value="{{$user->phone}}" required="">
                                                     <div class="invalid-feedback">
                                                         Valid mobile is required.
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                               
+
                                                 <div class="col-md-6 mb-3">
                                                     <label for="lastName">No of Device</label>
                                                     <select class="d-block default-select w-100" id="no_of_device" name="no_of_device" required="">
@@ -1115,6 +1099,9 @@
                                                         Please select no of device.
                                                     </div>
                                                 </div>
+
+
+                                                <input type="hidden" name="amount" id="total-amount-input" value="">
 
                                                 <div class="col-md-6 mb-3">
                                                     <label for="lastName">No of Hours</label>
@@ -1137,8 +1124,7 @@
                                                 </div>
                                             </div>
 
-                                            <button class="btn btn-primary btn-lg btn-block" id="checkout-button" type="button">Continue to
-                                                checkout</button>
+                                            <button class="btn btn-primary btn-lg btn-block" id="checkout-button" type="button">Continue to Pay</button>
                                         </form>
                                     </div>
                                 </div>
@@ -1177,11 +1163,13 @@
     <script src="{{asset('js/custom.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/deznav-init.js')}}" type="text/javascript"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
     $(document).ready(function() {
         $('#checkout-button').click(function() {
             // Retrieve form data
-            var totalprice = $('#totalprice').val();
+            var amount = $('#total-amount-input').val();
             var userId = $('#userId').val();
             var mobile = $('#mobile').val();
             var email = $('#email').val();
@@ -1194,8 +1182,8 @@
                 type: 'GET',
                 data: {
                     _token: $('input[name=_token]').val(),
-                    totalprice: totalprice,
-                    userId:userId,
+                    amount: amount,
+                    userId: userId,
                     mobile: mobile,
                     no_of_device: no_of_device,
                     number_of_hours: number_of_hours,
@@ -1212,6 +1200,68 @@
                 }
             });
         });
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        function updateValues() {
+            const devices = parseInt($('#no_of_device').val()) || 0;
+            const hours = parseInt($('#number_of_hours').val()) || 0;
+
+            $('#devices').text(devices);
+            $('#hours').text(hours);
+
+            if (devices > 0 && hours > 0) {
+                $.ajax({
+                    url: '{{ route("calculateAmount") }}',
+                    type: 'GET',
+                    data: {
+                        numberOfDevices: devices,
+                        numberOfHours: hours
+                    },
+                    success: function(data) {
+                        console.log('Response:', data);  // Log the response for debugging
+                        if (data.error) {
+                            console.error(data.error);
+                            $('#price').text('Error');
+                            $('#igst').text('Error');
+                            $('#total-amount').text('Error');
+                            $('#total-amount-input').val('Error');
+                        } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined') {
+                            const price = parseFloat(data.amount).toFixed(2);
+                            const igst = parseFloat(data.igst).toFixed(2);
+                            const total = (parseFloat(price) + parseFloat(igst)).toFixed(2);
+
+                            $('#price').text(price); // Display price
+                            $('#igst').text(igst); // Display IGST
+                            $('#total-amount').text(total); // Display total amount
+                            $('#total-amount-input').val(total); // Update input field with total amount
+                        } else {
+                            console.error('Amount or IGST is undefined in response');
+                            $('#price').text('Error');
+                            $('#igst').text('Error');
+                            $('#total-amount').text('Error');
+                            $('#total-amount-input').val('Error');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching price:', error);
+                        $('#price').text('Error');
+                        $('#igst').text('Error');
+                        $('#total-amount').text('Error');
+                        $('#total-amount-input').val('Error');
+                    }
+                });
+            } else {
+                $('#price').text('0');
+                $('#igst').text('0');
+                $('#total-amount').text('0');
+                $('#total-amount-input').val('0');
+            }
+        }
+
+        $('#no_of_device, #number_of_hours').change(updateValues);
     });
 </script>
 
