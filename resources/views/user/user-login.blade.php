@@ -83,8 +83,8 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <a class="text-primary" href="/admin/login">
-                                            <p>Admin Login
+                                    <p>  Don't have an account?  <a class="text-primary" href="/view-user-register">
+                                            Register
                                         </a></p>
                                     </div>
                                 </div>

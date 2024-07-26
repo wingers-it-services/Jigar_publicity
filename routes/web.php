@@ -73,8 +73,8 @@ Route::middleware('auth.users')->group(function () {
 
     Route::get('/fetch-profile', [UserController::class, 'fetchUserProfile']);
 });
-Route::get('/payment', function () {
-    return view('user.payment');
-});
+
+Route::get('/payment', [CheckoutController::class,'showPaymentPage'])->name('payment');
 Route::get('checkout', [CheckoutController::class, 'showCheckOutPage'])->name('checkout');
 Route::any('response', [CheckoutController::class, 'response'])->name('response');
+Route::get('/calculate-price', [CheckoutController::class, 'calculatePrice'])->name('calculateAmount');

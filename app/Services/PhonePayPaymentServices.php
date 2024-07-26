@@ -7,6 +7,7 @@ use Illuminate\Http\Client\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\SiteSetting;
 use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
@@ -33,41 +34,55 @@ class PhonePayPaymentServices
         $this->saltIndex = (int) Config::get('app.phonepay_index_key');
     }
 
+    public function calculateAmount($numberOfDevices, $numberOfHours)
+    {
+        // Validate request
+
+
+        // $numberOfDevices = $request->input('number_of_devices');
+        // $numberOfHours = $request->input('number_of_hours');
+
+        // Fetch site settings
+        $siteSetting = SiteSetting::first();
+        if (!$siteSetting) {
+            Log::error('Site settings not found.');
+            return response()->json(['error' => 'Site settings not found.'], 500);
+        }
+
+        try {
+            // Get the price per device per hour
+            $pricePerDevicePerHour = $siteSetting->getPricePerDevicePerHour($numberOfDevices);
+
+            // Calculate the total amount
+            $totalPrice = $pricePerDevicePerHour * $numberOfHours;
+            $igstPercentage = $siteSetting->igst; // Assume igst_percentage is stored in site settings
+
+            // Calculate IGST
+            $igstAmount = ($totalPrice * $igstPercentage) / 100;
+            $totalPrice = $totalPrice + $igstAmount;
+            $amount = $totalPrice * 100; // Convert to smallest currency unit (e.g., cents)
+
+            // Return calculated amount
+            return  $amount;
+        } catch (\Exception $e) {
+            Log::error('Error calculating amount: ' . $e->getMessage());
+            return response()->json(['error' => 'Error calculating amount'], 500);
+        }
+    }
+
     public function initialisePaymentWithTest(array $data)
     {
-        // dd($data);
         Log::info($data);
+        $numberOfDevices = $data['no_of_device'];
+        $numberOfHours = $data['number_of_hours'];
+
+
+
+        $amount = $this->calculateAmount($numberOfDevices, $numberOfHours);
         $lastOrderId = $this->payment->latest('id')->value('id');
         $newOrderId = ($lastOrderId == null) ? 'WITS1' :  'W1' . ($lastOrderId + 1);
-        $amount = $data['totalprice'] * 100;
-        // $paymentData = [
-        //     'merchantId'            =>  $this->merchant_id,
-        //     'merchantTransactionId' =>  $newOrderId,
-        //     'merchantUserId'        =>  'MUID123',
-        //     'amount'                =>  $amount,
-        //     'redirectUrl'           => route('response'),
-        //     'redirectMode'          => 'POST',
-        //     'callbackUrl'           => route('response'),
-        //     'mobileNumber'          => $data['mobile'],
-        //     'paymentInstrument'     =>
-        //     [
-        //         'type' => 'PAY_PAGE',
-        //     ],
-        // ];
-        // $paymentData = [
-        //     'merchantId'            =>  'PGTESTPAYUAT',
-        //     'merchantTransactionId' =>  $newOrderId,
-        //     'merchantUserId'        =>  'MUID123',
-        //     'amount'                =>  $amount,
-        //     'redirectUrl'           => route('response'),
-        //     'redirectMode'          => 'POST',
-        //     'callbackUrl'           => route('response'),
-        //     'mobileNumber'          => $data['mobile'],
-        //     'paymentInstrument'     =>
-        //     [
-        //         'type' => 'PAY_PAGE',
-        //     ],
-        // ];
+        // $amount = $data['totalprice'] * 100;
+
 
         $paymentData = [
             'merchantId'            =>  'PGTESTPAYUAT86',
@@ -90,7 +105,7 @@ class PhonePayPaymentServices
         // $string = $encode . '/pg/v1/pay' . $this->saltKey;
 
         // $saltKey = '099eb0cd-02cf-4e2a-8aca-3e6c6aff0399';
-        $saltKey='96434309-7796-489d-8924-ab56988a6076';
+        $saltKey = '96434309-7796-489d-8924-ab56988a6076';
         $string = $encode . '/pg/v1/pay' . $saltKey;
         $sha256 = hash('sha256', $string);
         // $finalXHeader = $sha256 . '###' . $this->saltIndex;
@@ -102,7 +117,7 @@ class PhonePayPaymentServices
             ->withHeader('X-VERIFY:' . $finalXHeader)
             ->withData(json_encode(['request' => $encode]))
             ->post();
-            // dd($response);
+        // dd($response);
 
         // $userId = $this->user->createGuestUser($data);
         $userId = $this->user->where('email', $data['email'])->first();

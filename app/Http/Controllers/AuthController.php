@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\AccountStatusEnum;
+use App\Enums\PaymentStatus;
 use App\Models\User;
 use App\Models\UserLoginHistory;
 use Exception;
@@ -61,7 +62,11 @@ class AuthController extends Controller
             if (auth()->check()) {
                 if (auth()->user()->id == $user->id) {
                     $this->logUserLoginDetails($request);
-                    return redirect()->route('industry-list');
+                    if ($user->payment_status === PaymentStatus::PAID) {
+                        return redirect()->route('industry-list');
+                    } else {
+                        return redirect()->route('payment')->with('user', $user);
+                    }
                 } else {
                     if (auth()->user()->is_admin == 1)
                         return back()->with('status', 'error')->with('message', 'This system is occupied by Admin Please login with Admin credentials');
@@ -73,7 +78,11 @@ class AuthController extends Controller
                 $user->save();
     
                 $this->logUserLoginDetails($request);
-                return redirect()->route('industry-list');
+                if ($user->payment_status === PaymentStatus::PAID) {
+                    return redirect()->route('industry-list');
+                } else {
+                    return redirect()->route('payment')->with('user', $user);
+                }
             }
     
             return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\PaymentStatus;
 use App\Enums\PaymentStatusCodeEnum;
 use App\Models\Payment;
+use App\Models\SiteSetting;
 use Illuminate\Support\Facades\Log;
 use App\Services\PhonePayPaymentServices;
 use Illuminate\Http\Request;
@@ -66,6 +68,12 @@ class CheckoutController extends Controller
                     'responseData'        => json_encode($responseData),
                     'invoice'             => $invoiceView,
                 ]);
+                $user = $order->user;
+                if ($user) {
+                    $user->payment_status = PaymentStatus::PAID;
+                    $user->save();
+                }
+    
                 return $invoiceView;
             } else if ($responseData['code'] == PaymentStatusCodeEnum::PAYMENT_ERROR) {
                 $invoiceView = view('emailTemplate.invoice-order-failed ', [
@@ -99,6 +107,41 @@ class CheckoutController extends Controller
         } catch (\Throwable $e) {
             Log::error('Payment not done.' . 'Request=' . $request . 'Throwable=' . $e->getMessage());
             return redirect()->back()->with('status', 'error')->with('message', 'Payment not done.');
+        }
+    }
+
+    public function showPaymentPage()
+    {
+        $user = auth()->user();
+        return view('user.payment', compact('user'));
+    }
+
+    public function calculatePrice(Request $request)
+    {
+        $numberOfDevices = $request->query('numberOfDevices');
+        $numberOfHours = $request->query('numberOfHours');
+
+        // Fetch site settings
+        $siteSetting = SiteSetting::first();
+        if (!$siteSetting) {
+            return response()->json(['error' => 'Site settings not found.'], 500);
+        }
+
+        try {
+            // Get the price per device per hour
+            $pricePerDevicePerHour = $siteSetting->getPricePerDevicePerHour($numberOfDevices);
+
+            // Calculate the total amount
+            $totalPrice = $pricePerDevicePerHour * $numberOfHours;
+
+            $igstPercentage = $siteSetting->igst; // Assume igst_percentage is stored in site settings
+
+            // Calculate IGST
+            $igstAmount = ($totalPrice * $igstPercentage) / 100;
+            // Return calculated amount
+            return response()->json(['amount' => $totalPrice, 'igst' => $igstAmount]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error calculating amount'], 500);
         }
     }
 }
