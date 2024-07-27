@@ -6,7 +6,6 @@ use App\Models\Area;
 use App\Models\ContactDetail;
 use App\Models\IndustriesCategorie;
 use App\Models\IndustryDetail;
-use App\Models\UserPurchase;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -20,19 +19,15 @@ class IndustryController extends Controller
     private $industryDetail;
     private $contactDetail;
     private $area;
-    private $purchase;
-
     public function __construct(
         IndustriesCategorie $industriesCategorie,
         IndustryDetail $industryDetail,
         ContactDetail $contactDetail,
-        UserPurchase $purchase,
         Area $area
     ) {
         $this->industriesCategorie = $industriesCategorie;
         $this->industryDetail = $industryDetail;
         $this->contactDetail = $contactDetail;
-        $this->purchase = $purchase;
         $this->area = $area;
     }
 
@@ -178,7 +173,7 @@ class IndustryController extends Controller
             return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
         } catch (Exception $th) {
             Log::error("[IndustryController][updateIndustry] error " . $th->getMessage());
-            return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('status', 'error')->with('message', $th->getMessage());
         }
     }
 

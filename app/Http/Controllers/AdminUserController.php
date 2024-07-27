@@ -6,7 +6,6 @@ use App\Enums\AccountStatusEnum;
 use App\Models\Gym;
 use App\Models\User;
 use App\Models\UserLoginHistory;
-use App\Models\UserPurchase;
 use Illuminate\Http\Request;
 use App\Traits\SessionTrait;
 use Illuminate\Support\Facades\Log;
@@ -15,16 +14,13 @@ class AdminUserController extends Controller
 {
     use SessionTrait;
     protected $user;
-    protected $userPurchase;
     protected $userHistory;
 
     public function __construct(
         User $user,
-        UserPurchase $userPurchase,
         UserLoginHistory $userHistory
     ) {
         $this->user = $user;
-        $this->userPurchase = $userPurchase;
         $this->userHistory = $userHistory;
     }
 
@@ -166,7 +162,7 @@ class AdminUserController extends Controller
     public function userPaymentList(Request $request)
     {
         $userPayments = $this->user->whereNot('is_admin', 1)->get();
-       
+
         return view('admin.user-payment', compact('userPayments'));
     }
 
@@ -174,7 +170,7 @@ class AdminUserController extends Controller
     {
         $users = $this->userHistory->with(['user' => function($query) {
             $query->where('is_admin', '!=', 1);
-        }])->get(); 
+        }])->get();
         $users = $users->filter(function ($history) {
             return $history->user !== null;
         });
@@ -185,12 +181,11 @@ class AdminUserController extends Controller
     {
         $users = $this->user->where('uuid', $uuid)->first();
         $userDetails = $this->user->where('uuid', $uuid)->get();
-        $userPurchases = $this->userPurchase->where('user_id', $uuid)->get();
         $userId = $users->id;
         $userLogins = $this->userHistory->where('user_id', $userId)->get();
 
 
-        return view('admin.user-details', compact('users', 'userDetails', 'userPurchases', 'userLogins'));
+        return view('admin.user-details', compact('users', 'userDetails', 'userLogins'));
     }
 
 
@@ -203,7 +198,6 @@ class AdminUserController extends Controller
             ]);
 
             $validateData = $request->all();
-            $this->userPurchase->userPurchase($validateData);
 
             return back()->with('status', 'success')->with('message', 'User Added Successfully');
         } catch (\Exception $e) {
