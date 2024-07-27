@@ -1082,18 +1082,11 @@
 
                                                 <div class="col-md-6 mb-3">
                                                     <label for="lastName">No of Device</label>
-                                                    <select class="d-block default-select w-100" id="no_of_device" name="no_of_device" required="">
+                                                    <select class="default-select wide form-control" id="no_of_device" name="no_of_device" required="">
                                                         <option data-display="Select">Please select</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
+                                                        @for ($i = 1; $i <= 10; $i++) 
+                                                        <option value="{{ $i }}" @if($i==$user->no_of_device) selected @endif>{{ $i }}</option>
+                                                        @endfor
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Please select no of device.
@@ -1108,18 +1101,11 @@
 
                                                 <div class="col-md-6 mb-3">
                                                     <label for="lastName">No of Hours</label>
-                                                    <select class="d-block default-select w-100" id="number_of_hours" name="number_of_hours" required="">
+                                                    <select class="default-select wide form-control" id="number_of_hours" name="number_of_hours" required="">
                                                         <option data-display="Select">Please select</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="6">6</option>
-                                                        <option value="7">7</option>
-                                                        <option value="8">8</option>
-                                                        <option value="9">9</option>
-                                                        <option value="10">10</option>
+                                                        @for ($i = 1; $i <= 10; $i++) 
+                                                        <option value="{{ $i }}" @if($i==$user->no_of_hour) selected @endif>{{ $i }}</option>
+                                                        @endfor
                                                     </select>
                                                     <div class="invalid-feedback">
                                                         Please select no of device.
@@ -1169,27 +1155,63 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
-    $(document).ready(function() {
-        // Function to update values
-        function updateValues() {
-            const devices = parseInt($('#no_of_device').val()) || 0;
-            const hours = parseInt($('#number_of_hours').val()) || 0;
+        $(document).ready(function() {
+            // Function to update values
+            function updateValues() {
+                const devices = parseInt($('#no_of_device').val()) || 0;
+                const hours = parseInt($('#number_of_hours').val()) || 0;
 
-            $('#devices').text(devices);
-            $('#hours').text(hours);
+                $('#devices').text(devices);
+                $('#hours').text(hours);
 
-            if (devices > 0 && hours > 0) {
-                $.ajax({
-                    url: '{{ route("calculateAmount") }}',
-                    type: 'GET',
-                    data: {
-                        numberOfDevices: devices,
-                        numberOfHours: hours
-                    },
-                    success: function(data) {
-                        console.log('Response:', data); // Log the response for debugging
-                        if (data.error) {
-                            console.error(data.error);
+                if (devices > 0 && hours > 0) {
+                    $.ajax({
+                        url: '{{ route("calculateAmount") }}',
+                        type: 'GET',
+                        data: {
+                            numberOfDevices: devices,
+                            numberOfHours: hours
+                        },
+                        success: function(data) {
+                            console.log('Response:', data); // Log the response for debugging
+                            if (data.error) {
+                                console.error(data.error);
+                                $('#price').text('Error');
+                                $('#igst').text('Error');
+                                $('#total-amount').text('Error');
+                                $('#total-amount-input').val('Error');
+                                $('#igst-input').val('Error');
+                                $('#price_per_hour').val('Error');
+                                $('#subtotal').val('Error');
+                                $('#price_per_hour_span').text('Error');
+                            } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined' && typeof data.price !== 'undefined') {
+                                const price = parseFloat(data.amount).toFixed(2);
+                                const igst = parseFloat(data.igst).toFixed(2);
+                                const pricePerHour = parseFloat(data.price).toFixed(2);
+                                const total = (parseFloat(price) + parseFloat(igst)).toFixed(2);
+
+                                $('#price').text(price); // Display price
+                                $('#igst').text(igst); // Display IGST
+                                $('#total-amount').text(total); // Display total amount
+                                $('#total-amount-input').val(total);
+                                $('#igst-input').val(igst);
+                                $('#price_per_hour').val(pricePerHour);
+                                $('#subtotal').val(price);
+                                $('#price_per_hour_span').text(pricePerHour);
+                            } else {
+                                console.error('Amount or IGST is undefined in response');
+                                $('#price').text('Error');
+                                $('#igst').text('Error');
+                                $('#total-amount').text('Error');
+                                $('#total-amount-input').val('Error');
+                                $('#igst-input').val('Error');
+                                $('#price_per_hour').val('Error');
+                                $('#subtotal').val('Error');
+                                $('#price_per_hour_span').text('Error')
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching price:', error);
                             $('#price').text('Error');
                             $('#igst').text('Error');
                             $('#total-amount').text('Error');
@@ -1198,101 +1220,68 @@
                             $('#price_per_hour').val('Error');
                             $('#subtotal').val('Error');
                             $('#price_per_hour_span').text('Error');
-                        } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined' && typeof data.price !== 'undefined') {
-                            const price = parseFloat(data.amount).toFixed(2);
-                            const igst = parseFloat(data.igst).toFixed(2);
-                            const pricePerHour = parseFloat(data.price).toFixed(2);
-                            const total = (parseFloat(price) + parseFloat(igst)).toFixed(2);
-
-                            $('#price').text(price); // Display price
-                            $('#igst').text(igst); // Display IGST
-                            $('#total-amount').text(total); // Display total amount
-                            $('#total-amount-input').val(total);
-                            $('#igst-input').val(igst);
-                            $('#price_per_hour').val(pricePerHour);
-                            $('#subtotal').val(price);
-                            $('#price_per_hour_span').text(pricePerHour);
-                        } else {
-                            console.error('Amount or IGST is undefined in response');
-                            $('#price').text('Error');
-                            $('#igst').text('Error');
-                            $('#total-amount').text('Error');
-                            $('#total-amount-input').val('Error');
-                            $('#igst-input').val('Error');
-                            $('#price_per_hour').val('Error');
-                            $('#subtotal').val('Error');
-                            $('#price_per_hour_span').text('Error')
                         }
+                    });
+                } else {
+                    $('#price').text('0');
+                    $('#igst').text('0');
+                    $('#total-amount').text('0');
+                    $('#total-amount-input').val('0');
+                    $('#igst-input').val('0');
+                    $('#price_per_hour').val('0');
+                    $('#subtotal').val('0');
+                    $('#price_per_hour_span').text('0');
+                }
+            }
+
+            // Attach event handler to input change
+            $('#number_of_hours, #no_of_device').change(updateValues);
+
+            // Call updateValues on page load
+            updateValues();
+
+            // Checkout button click handler
+            $('#checkout-button').click(function() {
+                // Retrieve form data
+                var amount = $('#total-amount-input').val();
+                var userId = $('#userId').val();
+                var mobile = $('#mobile').val();
+                var email = $('#email').val();
+                var no_of_device = $('#no_of_device').val();
+                var number_of_hours = $('#number_of_hours').val();
+                var name = $('#name').val();
+                var subtotal = $('#subtotal').val();
+                var igst = $('#igst-input').val();
+                var price_per_hour = $('#price_per_hour').val();
+
+                $.ajax({
+                    url: '{{ route('checkout') }}', // Use your actual route name
+                    type: 'GET',
+                    data: {
+                        _token: $('input[name=_token]').val(),
+                        amount: amount,
+                        userId: userId,
+                        subtotal: subtotal,
+                        igst: igst,
+                        price_per_hour: price_per_hour,
+                        mobile: mobile,
+                        no_of_device: no_of_device,
+                        number_of_hours: number_of_hours,
+                        email: email,
+                        name: name
                     },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching price:', error);
-                        $('#price').text('Error');
-                        $('#igst').text('Error');
-                        $('#total-amount').text('Error');
-                        $('#total-amount-input').val('Error');
-                        $('#igst-input').val('Error');
-                        $('#price_per_hour').val('Error');
-                        $('#subtotal').val('Error');
-                        $('#price_per_hour_span').text('Error');
+                    success: function(response) {
+                        console.log('Response:', response);
+                        window.location.replace(response); // Redirect to payment URL
+                    },
+                    error: function(xhr) {
+                        console.error('Error:', xhr.responseText);
+                        alert('An error occurred while processing your request.');
                     }
                 });
-            } else {
-                $('#price').text('0');
-                $('#igst').text('0');
-                $('#total-amount').text('0');
-                $('#total-amount-input').val('0');
-                $('#igst-input').val('0');
-                $('#price_per_hour').val('0');
-                $('#subtotal').val('0');
-                $('#price_per_hour_span').text('0');
-            }
-        }
-
-        // Attach event handler to input change
-        $('#number_of_hours, #no_of_device').change(updateValues);
-        
-        // Checkout button click handler
-        $('#checkout-button').click(function() {
-            // Retrieve form data
-            var amount = $('#total-amount-input').val();
-            var userId = $('#userId').val();
-            var mobile = $('#mobile').val();
-            var email = $('#email').val();
-            var no_of_device = $('#no_of_device').val();
-            var number_of_hours = $('#number_of_hours').val();
-            var name = $('#name').val();
-            var subtotal = $('#subtotal').val();
-            var igst = $('#igst-input').val();
-            var price_per_hour = $('#price_per_hour').val();
-
-            $.ajax({
-                url: '{{ route('checkout') }}', // Use your actual route name
-                type: 'GET',
-                data: {
-                    _token: $('input[name=_token]').val(),
-                    amount: amount,
-                    userId: userId,
-                    subtotal: subtotal,
-                    igst: igst,
-                    price_per_hour: price_per_hour,
-                    mobile: mobile,
-                    no_of_device: no_of_device,
-                    number_of_hours: number_of_hours,
-                    email: email,
-                    name: name
-                },
-                success: function(response) {
-                    console.log('Response:', response);
-                    window.location.replace(response); // Redirect to payment URL
-                },
-                error: function(xhr) {
-                    console.error('Error:', xhr.responseText);
-                    alert('An error occurred while processing your request.');
-                }
             });
         });
-    });
-</script>
+    </script>
 
 
 

@@ -71,6 +71,8 @@ class CheckoutController extends Controller
                 $user = $order->user;
                 if ($user) {
                     $user->payment_status = PaymentStatus::PAID;
+                    $user->no_of_device = $order->no_of_device;
+                    $user->no_of_hour = $order->number_of_hours;
                     $user->save();
                 }
     

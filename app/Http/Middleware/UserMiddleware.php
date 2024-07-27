@@ -17,9 +17,10 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->user()) {
-            return redirect('/');
+        if (Auth::check() && Auth::user()->is_admin == 0) {
+            return $next($request);
         }
+
 
         return $next($request);
     }

@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('company_address');
             $table->integer('no_of_device');
+            $table->integer('no_of_hour');
             $table->tinyInteger('account_status')->default(0);
             $table->timestamps();
         });
