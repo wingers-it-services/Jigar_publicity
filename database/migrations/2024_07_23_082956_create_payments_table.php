@@ -24,6 +24,9 @@ return new class extends Migration
             $table->float('amount')->default(0);
             $table->integer('no_of_device');
             $table->integer('no_of_hour');
+            $table->float('igst')->default(0);
+            $table->float('price_per_hour')->default(0);
+            $table->float('subtotal')->default(0);
             $table->string('providerReferenceId')->nullable();
             $table->timestamps();
         });

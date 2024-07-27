@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Ramsey\Uuid\Uuid;
 use Throwable;
 
@@ -36,6 +37,20 @@ class User extends Authenticatable
         static::creating(function ($model) {
             $model->uuid = Uuid::uuid4()->toString();
         });
+    }
+
+    public function getImageAttribute()
+    {
+        $imagePath = $this->attributes['image'];
+        $defaultImagePath = 'images/profile/17.jpg';
+        $fullImagePath = $imagePath;  // Adjusted path
+
+        // Check if the file exists in the public directory
+        if ($imagePath && file_exists(public_path($fullImagePath))) {
+            return asset($fullImagePath);
+        }
+
+        return asset($defaultImagePath);
     }
 
     public function addUser(array $validatedData, $imagePath)

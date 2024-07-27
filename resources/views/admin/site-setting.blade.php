@@ -174,6 +174,19 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-xl-6">
+                                        <div class="mb-3 row">
+                                            <label class="col-lg-4 col-form-label" for="validationCustom01">IGST in percentage
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="validationCustom01" name="igst" placeholder="Enter Charges.." value="{{ $setting ? $setting->igst : '' }}" required>
+                                                <div class="invalid-feedback">
+                                                    Please enter a name.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 <div class="card">
                             <div class="modal-content">
                                 <div class="modal-footer">

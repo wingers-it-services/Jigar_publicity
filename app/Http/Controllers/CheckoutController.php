@@ -139,7 +139,7 @@ class CheckoutController extends Controller
             // Calculate IGST
             $igstAmount = ($totalPrice * $igstPercentage) / 100;
             // Return calculated amount
-            return response()->json(['amount' => $totalPrice, 'igst' => $igstAmount]);
+            return response()->json(['amount' => $totalPrice, 'igst' => $igstAmount,'price'=>$pricePerDevicePerHour]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error calculating amount'], 500);
         }

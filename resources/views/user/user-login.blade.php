@@ -67,7 +67,7 @@
                                                 <i class="fa fa-eye"></i>
                                             </span>
                                         </div>
-                                        <div class="row d-flex justify-content-between mt-4 mb-2">
+                                        <!-- <div class="row d-flex justify-content-between mt-4 mb-2">
                                             <div class="form-group">
                                                 <div class="form-check custom-checkbox ms-1">
                                                     <input type="checkbox" class="form-check-input" id="basic_checkbox_1">
@@ -77,7 +77,7 @@
                                             <div class="form-group">
                                                 <a href="page-forgot-password.html">Forgot Password?</a>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="text-center">
                                             <a href='/user-dashboard'><button type="submit" class="btn btn-primary btn-block">Sign Me In</button></a>
                                         </div>

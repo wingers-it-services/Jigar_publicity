@@ -20,20 +20,28 @@ class Payment extends Model
         'transectionId',
         'providerReferenceId',
         'responseData',
-        'invoice'
+        'invoice',
+        'igst',
+        'number_of_hours',
+        'no_of_device',
+        'price_per_hour',
+        'subtotal'
     ];
 
     public function newOrder(array $orderData)
     {
         return $this->create([
-            "orderId"    => $orderData['orderId'],
-            "user_id"    => $orderData['userId'],
-            "name"       => $orderData['name'],
-            "email"      => $orderData['email'],
-            "mobile"     => $orderData['mobile'],
-            "no_of_device" => $orderData['no_of_device'],
+            "orderId"         => $orderData['orderId'],
+            "user_id"         => $orderData['userId'],
+            "name"            => $orderData['name'],
+            "email"           => $orderData['email'],
+            "mobile"          => $orderData['mobile'],
+            "no_of_device"    => $orderData['no_of_device'],
             "number_of_hours" => $orderData['number_of_hours'],
-            "amount"=>$orderData['amount']
+            "igst"            => $orderData['igst'],
+            "price_per_hour"  => $orderData['price_per_hour'],
+            "subtotal"        => $orderData['subtotal'],
+            "amount"          => $orderData['amount']
         ]);
     }
 

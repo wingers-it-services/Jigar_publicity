@@ -1027,8 +1027,11 @@
                     <div class="col-lg-12">
 
                         <div class="card">
-                            <div class="card-header"> Invoice <strong>01/01/01/2018</strong> <span class="float-end">
-                                    <strong>Status:</strong> Pending</span> </div>
+                            <div class="card-header"> Invoice <strong>{{ $order->created_at->format('F j, Y') }}</strong> <span class="float-end">
+                                    <strong>Status:</strong> <span class="{{ $order->user->payment_status == 1 ? 'text-success' : 'text-warning' }}">
+                                        {{ $order->user->payment_status == 1 ? 'Success' : 'Pending' }}
+                                    </span>
+                                </span> </div>
                             <div class="card-body">
                                 <div class="row mb-5">
                                     <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12">
@@ -1041,11 +1044,10 @@
                                     </div>
                                     <div class="mt-4 col-xl-3 col-lg-3 col-md-6 col-sm-12">
                                         <h6>To:</h6>
-                                        <div> <strong>Bob Mart</strong> </div>
-                                        <div>Attn: Daniel Marek</div>
-                                        <div>43-190 Mikolow, Poland</div>
-                                        <div>Email: <a href="https://fito.dexignzone.com/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f626e7d6a644f6b6e61666a63216c6062">[email&#160;protected]</a></div>
-                                        <div>Phone: +48 123 456 789</div>
+                                        <div> <strong>{{$order->user->company_name}}</strong> </div>
+                                        <div>{{$order->user->company_address}}</div>
+                                        <div>{{$order->user->email}}</div>
+                                        <div>Phone: {{$order->user->phone}}</div>
                                     </div>
                                     <div class="mt-4 col-xl-6 col-lg-6 col-md-12 col-sm-12 d-flex justify-content-lg-end justify-content-md-center justify-content-xs-start">
                                         <div class="row align-items-center">
@@ -1066,46 +1068,20 @@
                                     <table class="table table-striped">
                                         <thead>
                                             <tr>
-                                                <th class="center">#</th>
-                                                <th>Item</th>
-                                                <th>Description</th>
-                                                <th class="right">Unit Cost</th>
-                                                <th class="center">Qty</th>
-                                                <th class="right">Total</th>
+                                                <th class="center">Order Id</th>
+                                                <th>No Of Device</th>
+                                                <th class="right">Price Per Hour</th>
+                                                <th>No of Hours</th>
+                                                <th class="right">Subtotal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td class="center">1</td>
-                                                <td class="left strong">Origin License</td>
-                                                <td class="left">Extended License</td>
-                                                <td class="right">$999,00</td>
-                                                <td class="center">1</td>
-                                                <td class="right">$999,00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="center">2</td>
-                                                <td class="left">Custom Services</td>
-                                                <td class="left">Instalation and Customization (cost per hour)</td>
-                                                <td class="right">$150,00</td>
-                                                <td class="center">20</td>
-                                                <td class="right">$3.000,00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="center">3</td>
-                                                <td class="left">Hosting</td>
-                                                <td class="left">1 year subcription</td>
-                                                <td class="right">$499,00</td>
-                                                <td class="center">1</td>
-                                                <td class="right">$499,00</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="center">4</td>
-                                                <td class="left">Platinum Support</td>
-                                                <td class="left">1 year subcription 24/7</td>
-                                                <td class="right">$3.999,00</td>
-                                                <td class="center">1</td>
-                                                <td class="right">$3.999,00</td>
+                                                <td class="center">{{$order->orderId}}</td>
+                                                <td class="left strong">{{$order->no_of_device}}</td>
+                                                <td class="left">&#8377; {{$order->price_per_hour}}</td>
+                                                <td class="right">{{$order->number_of_hours}}</td>
+                                                <td class="right"> &#8377; {{$order->subtotal}}</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -1116,22 +1092,12 @@
                                         <table class="table table-clear">
                                             <tbody>
                                                 <tr>
-                                                    <td class="left"><strong class="text-black">Subtotal</strong></td>
-                                                    <td class="right">$8.497,00</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="left"><strong class="text-black">Discount (20%)</strong></td>
-                                                    <td class="right">$1,699,40</td>
-                                                </tr>
-                                                <tr>
-                                                    <td class="left"><strong class="text-black">VAT (10%)</strong></td>
-                                                    <td class="right">$679,76</td>
+                                                    <td class="left"><strong class="text-black">IGST</strong></td>
+                                                    <td class="right"> &#8377; {{$order->igst}}</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="left"><strong class="text-black">Total</strong></td>
-                                                    <td class="right"><strong class="text-black">$7.477,36</strong><br>
-                                                        <strong class="text-black">0.15050000 BTC</strong>
-                                                    </td>
+                                                    <td class="right"> &#8377; {{$order->amount}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>

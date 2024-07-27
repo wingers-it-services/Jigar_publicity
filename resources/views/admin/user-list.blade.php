@@ -117,8 +117,9 @@
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>
-                                            <img width="80" src="{{ asset($user->image) }}" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image">
-                                        </td>
+                                            <!-- <img width="80" src="{{ asset($user->image) }}" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image"> -->
+                                            <img width="80" src="{{ $user->image ? asset($user->image) : asset('images/profile/17.jpg') }}" loading="lazy" style="border-radius: 45px;width: 60px;height: 60px;" alt="Profile Image">
+                                            </td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->company_name }}</td>
                                         <td><a href="javascript:void(0);"><strong>{{ $user->phone }}</strong></a></td>

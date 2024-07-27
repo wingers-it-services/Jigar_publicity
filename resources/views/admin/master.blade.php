@@ -1089,7 +1089,7 @@
                     </a>
                 </div>
                 <div class="copyright">
-                    <p><strong>Wingers It Services </strong> © 2023 All Rights Reserved</p>
+                    <p><strong>Wingers It Services </strong> © 2024 All Rights Reserved</p>
                     <p>Made with <span class="heart"></span> by Wingers IT Services Pvt. Ltd</p>
                 </div>
             </div>
@@ -1222,7 +1222,7 @@
         success: function(data) {
             // Check if the image URL is provided and not empty
             if (data.image && data.image.trim() !== '') {
-                $('#user-image').attr('src', '../'+ data.image);
+                $('#user-image').attr('src', data.image);
             } else {
                 // Keep default image if URL is blank or invalid
                 $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');

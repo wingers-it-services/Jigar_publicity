@@ -1026,24 +1026,24 @@
                                     <div class="col-lg-4 order-lg-2 mb-4">
                                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                                             <span class="text-black">Amount Detail</span>
-                                            <span class="badge badge-primary badge-pill">3</span>
+                                            <span class="badge badge-primary badge-pill"></span>
                                         </h4>
                                         <ul class="list-group mb-3">
                                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                                 <div>
-                                                    <h6 class="my-0"><span id="devices">0</span> Device X <span id="hours">0</span> Hours:</h6>
+                                                    <h6 class="my-0"><span id=""></span>PER HOUR PRICE <span id="price_per_hour_span">0</span> X <span id="hours">0</span> Hours:</h6>
                                                 </div>
-                                                <span class="text-muted">&#x20AC;<span id="price">0</span></span>
+                                                <span class="text-muted">&#8377; <span id="price">0</span></span>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between lh-condensed">
                                                 <div>
                                                     <h6 class="my-0">IGST:</h6>
                                                 </div>
-                                                <span class="text-muted">&#x20AC;<span id="igst">0</span></span>
+                                                <span class="text-muted">&#8377; <span id="igst">0</span></span>
                                             </li>
                                             <li class="list-group-item d-flex justify-content-between">
                                                 <span>Total Amount</span>
-                                                <strong>&#x20AC;<span id="total-amount">0</span></strong>
+                                                <strong>&#8377; <span id="total-amount">0</span></strong>
                                             </li>
                                         </ul>
                                     </div>
@@ -1100,6 +1100,9 @@
                                                     </div>
                                                 </div>
 
+                                                <input type="hidden" name="igst" id="igst-input" value="">
+                                                <input type="hidden" name="price_per_hour" id="price_per_hour" value="">
+                                                <input type="hidden" name="subtotal" id="subtotal" value="">
 
                                                 <input type="hidden" name="amount" id="total-amount-input" value="">
 
@@ -1142,7 +1145,7 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="http://dexignzone.com/" target="_blank">DexignZone</a> 2023</p>
+                <p>Copyright © Designed &amp; Developed by <a href="https://wingersitservices.co.in/" target="_blank">WingersItServices</a> 2024</p>
             </div>
         </div> <!--**********************************
             Footer end
@@ -1167,6 +1170,88 @@
 
     <script>
     $(document).ready(function() {
+        // Function to update values
+        function updateValues() {
+            const devices = parseInt($('#no_of_device').val()) || 0;
+            const hours = parseInt($('#number_of_hours').val()) || 0;
+
+            $('#devices').text(devices);
+            $('#hours').text(hours);
+
+            if (devices > 0 && hours > 0) {
+                $.ajax({
+                    url: '{{ route("calculateAmount") }}',
+                    type: 'GET',
+                    data: {
+                        numberOfDevices: devices,
+                        numberOfHours: hours
+                    },
+                    success: function(data) {
+                        console.log('Response:', data); // Log the response for debugging
+                        if (data.error) {
+                            console.error(data.error);
+                            $('#price').text('Error');
+                            $('#igst').text('Error');
+                            $('#total-amount').text('Error');
+                            $('#total-amount-input').val('Error');
+                            $('#igst-input').val('Error');
+                            $('#price_per_hour').val('Error');
+                            $('#subtotal').val('Error');
+                            $('#price_per_hour_span').text('Error');
+                        } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined' && typeof data.price !== 'undefined') {
+                            const price = parseFloat(data.amount).toFixed(2);
+                            const igst = parseFloat(data.igst).toFixed(2);
+                            const pricePerHour = parseFloat(data.price).toFixed(2);
+                            const total = (parseFloat(price) + parseFloat(igst)).toFixed(2);
+
+                            $('#price').text(price); // Display price
+                            $('#igst').text(igst); // Display IGST
+                            $('#total-amount').text(total); // Display total amount
+                            $('#total-amount-input').val(total);
+                            $('#igst-input').val(igst);
+                            $('#price_per_hour').val(pricePerHour);
+                            $('#subtotal').val(price);
+                            $('#price_per_hour_span').text(pricePerHour);
+                        } else {
+                            console.error('Amount or IGST is undefined in response');
+                            $('#price').text('Error');
+                            $('#igst').text('Error');
+                            $('#total-amount').text('Error');
+                            $('#total-amount-input').val('Error');
+                            $('#igst-input').val('Error');
+                            $('#price_per_hour').val('Error');
+                            $('#subtotal').val('Error');
+                            $('#price_per_hour_span').text('Error')
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Error fetching price:', error);
+                        $('#price').text('Error');
+                        $('#igst').text('Error');
+                        $('#total-amount').text('Error');
+                        $('#total-amount-input').val('Error');
+                        $('#igst-input').val('Error');
+                        $('#price_per_hour').val('Error');
+                        $('#subtotal').val('Error');
+                        $('#price_per_hour_span').text('Error');
+                    }
+                });
+            } else {
+                $('#price').text('0');
+                $('#igst').text('0');
+                $('#total-amount').text('0');
+                $('#total-amount-input').val('0');
+                $('#igst-input').val('0');
+                $('#price_per_hour').val('0');
+                $('#subtotal').val('0');
+                $('#price_per_hour_span').text('0');
+            }
+        }
+
+        // Attach event handler to input change
+        $('#number_of_hours, #no_of_device').change(updateValues);
+        
+        // Checkout button click handler
         $('#checkout-button').click(function() {
             // Retrieve form data
             var amount = $('#total-amount-input').val();
@@ -1176,6 +1261,9 @@
             var no_of_device = $('#no_of_device').val();
             var number_of_hours = $('#number_of_hours').val();
             var name = $('#name').val();
+            var subtotal = $('#subtotal').val();
+            var igst = $('#igst-input').val();
+            var price_per_hour = $('#price_per_hour').val();
 
             $.ajax({
                 url: '{{ route('checkout') }}', // Use your actual route name
@@ -1184,6 +1272,9 @@
                     _token: $('input[name=_token]').val(),
                     amount: amount,
                     userId: userId,
+                    subtotal: subtotal,
+                    igst: igst,
+                    price_per_hour: price_per_hour,
                     mobile: mobile,
                     no_of_device: no_of_device,
                     number_of_hours: number_of_hours,
@@ -1203,67 +1294,7 @@
     });
 </script>
 
-<script>
-    $(document).ready(function() {
-        function updateValues() {
-            const devices = parseInt($('#no_of_device').val()) || 0;
-            const hours = parseInt($('#number_of_hours').val()) || 0;
 
-            $('#devices').text(devices);
-            $('#hours').text(hours);
-
-            if (devices > 0 && hours > 0) {
-                $.ajax({
-                    url: '{{ route("calculateAmount") }}',
-                    type: 'GET',
-                    data: {
-                        numberOfDevices: devices,
-                        numberOfHours: hours
-                    },
-                    success: function(data) {
-                        console.log('Response:', data);  // Log the response for debugging
-                        if (data.error) {
-                            console.error(data.error);
-                            $('#price').text('Error');
-                            $('#igst').text('Error');
-                            $('#total-amount').text('Error');
-                            $('#total-amount-input').val('Error');
-                        } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined') {
-                            const price = parseFloat(data.amount).toFixed(2);
-                            const igst = parseFloat(data.igst).toFixed(2);
-                            const total = (parseFloat(price) + parseFloat(igst)).toFixed(2);
-
-                            $('#price').text(price); // Display price
-                            $('#igst').text(igst); // Display IGST
-                            $('#total-amount').text(total); // Display total amount
-                            $('#total-amount-input').val(total); // Update input field with total amount
-                        } else {
-                            console.error('Amount or IGST is undefined in response');
-                            $('#price').text('Error');
-                            $('#igst').text('Error');
-                            $('#total-amount').text('Error');
-                            $('#total-amount-input').val('Error');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('Error fetching price:', error);
-                        $('#price').text('Error');
-                        $('#igst').text('Error');
-                        $('#total-amount').text('Error');
-                        $('#total-amount-input').val('Error');
-                    }
-                });
-            } else {
-                $('#price').text('0');
-                $('#igst').text('0');
-                $('#total-amount').text('0');
-                $('#total-amount-input').val('0');
-            }
-        }
-
-        $('#no_of_device, #number_of_hours').change(updateValues);
-    });
-</script>
 
 </body>
 

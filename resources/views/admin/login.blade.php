@@ -73,7 +73,7 @@
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Go to the User Login <a class="text-primary" href='/'>User Login</a></p>
+                                        <p>Go to the User Login <a class="text-primary" href='/view-user-login'>User Login</a></p>
                                     </div>
                                 </div>
                             </div>
