@@ -134,7 +134,6 @@
                                         @foreach ($users as $user)
                                             <tr>
                                                 <td>
-                                                    <!-- <img width="80" src="{{ asset($user->image) }}" style="border-radius: 45px;width: 60px;height: 60px;" loading="lazy" alt="image"> -->
                                                     <img width="80"
                                                         src="{{ $user->image ? asset($user->image) : asset('images/profile/17.jpg') }}"
                                                         loading="lazy"
@@ -149,24 +148,14 @@
                                                 <td>{{ $user->no_of_device }}</td>
                                                 <td>
                                                     <select class="form-select" id="account_status_{{ $user->id }}"
-                                                        onchange="confirmUpdateStatus({{ $user->id }})">
-                                                        <option value="{{ \App\Enums\AccountStatusEnum::APPROVED }}"
-                                                            {{ $user->account_status == \App\Enums\AccountStatusEnum::APPROVED ? 'selected' : '' }}>
-                                                            Approved</option>
-                                                        <option value="{{ \App\Enums\AccountStatusEnum::PENDING }}"
-                                                            {{ $user->account_status == \App\Enums\AccountStatusEnum::PENDING ? 'selected' : '' }}>
-                                                            Pending</option>
-                                                        <option value="{{ \App\Enums\AccountStatusEnum::BLOCKED }}"
-                                                            {{ $user->account_status == \App\Enums\AccountStatusEnum::BLOCKED ? 'selected' : '' }}>
-                                                            Blocked</option>
+                                                        onchange="confirmUpdateStatus({{ $user->id }})"
+                                                        onclick="expandDropdown({{ $user->id }})"
+                                                        onblur="collapseDropdown({{ $user->id }})">
+                                                        <option value={{ $user->account_status }}>
+                                                            {{ \App\Enums\AccountStatusEnum::getLabel($user->account_status) }}
+                                                        </option>
                                                     </select>
                                                 </td>
-
-                                                <!-- <td>
-                                                                                        <span class="badge light {{ $user->account_status == 1 ? 'badge-success' : 'badge-warning' }}">
-                                                                                            {{ $user->account_status == 1 ? 'Approved' : 'Pending' }}
-                                                                                        </span>
-                                                                                    </td> -->
                                                 <td>
                                                     <div class="d-flex">
                                                         <a href="/admin/user-details/{{ $user->uuid }}"
@@ -225,8 +214,47 @@
             });
         });
 
+        function expandDropdown(userId) {
+            let dropdown = document.getElementById('account_status_' + userId);
 
+            // Save the currently selected value
+            let selectedValue = dropdown.value;
 
+            // Clear existing options
+            dropdown.innerHTML = '';
+
+            // Define new options based on the enum values
+            window.accountStatusEnum = @json(\App\Enums\AccountStatusEnum::getValues());
+            let options = window.accountStatusEnum.map(status => {
+                return {
+                    value: status.value,
+                    text: status.label
+                };
+            });
+
+            // Add new options
+            options.forEach(option => {
+                let opt = document.createElement('option');
+                opt.value = option.value;
+                opt.text = option.text;
+                dropdown.add(opt);
+            });
+
+            // Set the dropdown to the previously selected value, if it exists
+            dropdown.value = selectedValue || options[0].value;
+
+            // Expand dropdown to show all options
+            dropdown.size = dropdown.options.length;
+        }
+
+        function collapseDropdown(userId) {
+            let dropdown = document.getElementById('account_status_' + userId);
+            setTimeout(function() {
+                dropdown.size = 1;
+            }, 200); // Delay to allow click to register
+        }
+    </script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             var editButtons = document.querySelectorAll('.edit-book-button');
 
@@ -428,7 +456,6 @@
         function confirmUpdateStatus(userId) {
             const selectElement = document.getElementById('account_status_' + userId);
             const selectedStatus = selectElement.value;
-
             Swal.fire({
                 title: 'Are you sure?',
                 text: "Do you want to update the account status?",
