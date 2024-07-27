@@ -111,7 +111,10 @@ class IndustryController extends Controller
             ];
 
             // Process product specification data
-            $this->contactDetail->addContactData($contactDetails);
+            $contactResult = $this->contactDetail->addContactData($contactDetails);
+            if ($contactResult['status'] === 'error') {
+                return redirect()->route('industries')->with('status', 'error')->with('message', $contactResult['message']);
+            }
 
             return back()->with('status', 'success')->with('message', 'Industries added Successfully');
             // Optionally, redirect or return a response
@@ -167,7 +170,10 @@ class IndustryController extends Controller
 
             if (count($contactData["contact_name"]) > 0) {
                 $this->contactDetail->where('industry_id', $industry->id)->delete();
-                $this->contactDetail->addContactData($contactData);
+                $contactResult = $this->contactDetail->addContactData($contactData);
+                if ($contactResult['status'] === 'error') {
+                    return redirect()->route('industries')->with('status', 'error')->with('message', $contactResult['message']);
+                }
             }
 
             return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
