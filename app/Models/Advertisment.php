@@ -17,13 +17,11 @@ class Advertisment extends Model
 
     public function getAdvertismentImageAttribute()
     {
-        $imagePath = $this->attributes['advertisment_image']; // Use the attributes array to access model properties
+        $imagePath = $this->attributes['advertisment_image']; 
         $defaultImagePath = 'images/advertisement.jpg';
 
-        // Construct the full image path
-        $fullImagePath = 'advertisment_images/' . $imagePath;  // Adjust path based on where images are stored
+        $fullImagePath =  $imagePath; 
 
-        // Check if the file exists in the public directory
         if ($imagePath && file_exists(public_path($fullImagePath))) {
             return asset($fullImagePath);
         }

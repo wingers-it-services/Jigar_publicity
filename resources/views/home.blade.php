@@ -80,24 +80,24 @@
         <div class="section-full content-inner">
 			<div class="container-fluid">
 				<div class="row align-items-center">
-					<div class="col-md-12 col-lg-4">
-						<div class="section-head title-box text-left m-b30" data-name="FORMS">
-							<h2>Ready to Use Awesome</h2>
-							<div class="bg-primary dlab-separator"></div>
+					<div class="col-md-12 col-lg-4" style="padding-top: 29px;">
+						<div class="section-head title-box text-left m-b30" data-name="ABOUT US">
+							<!-- <h2>Ready to Use Awesome</h2> -->
+							<!-- <div class="bg-primary dlab-separator"></div> -->
 							<p>Magazine (74 Pages)  published on every month from Ankleshwar.  This magazine mainly circulated in Chemical Industries Estate Ankleashwar, Panoli, Jhagadia, Dahej, Vilayat, Nandesari, Padra, Savli, Lamdapura, Makarpura, Vadodara, Vatva, Odhav, Narol, Naroda, Sanannd, Chhatral, Ahmedabad, Sachin, Vapi, Sarigam, Mumbai etc.</p>
 						</div>	
 						<ul class="list-check primary">
-							<li>Various Industries Activity</li>
-							<li>Analysis On Latest Industries Issue.</li>
-							<li>New Coming Projects And Uploads On Existing Industries.</li>
-							<li>Incoming Environment Public Hearing In Gujarat.</li>
-							<li>Incoming Events On Industrial Seminar And Programs.</li>
-							<li>Requirement Manpower by Industries.</li>
-							<li>New Statutory Provision and Information.</li>
-							<li>Information on Various Industries Association Activity.</li>
-							<li>Information On Activities Of Industries Estate And Notified Areas.</li>
-							<!-- <li>Importance Information For Industrial Workers.</li> -->
-							<!-- <li>B2B Information.</li> -->
+							<li style="font-size: 13px;">Various Industries Activity</li>
+							<li style="font-size: 13px;">Analysis On Latest Industries Issue.</li>
+							<li style="font-size: 13px;">New Coming Projects And Uploads On Existing Industries.</li>
+							<li style="font-size: 13px;">Incoming Environment Public Hearing In Gujarat.</li>
+							<li style="font-size: 13px;">Incoming Events On Industrial Seminar And Programs.</li>
+							<li style="font-size: 13px;">Requirement Manpower by Industries.</li>
+							<li style="font-size: 13px;">New Statutory Provision and Information.</li>
+							<li style="font-size: 13px;">Information on Various Industries Association Activity.</li>
+							<li style="font-size: 13px;">Information On Activities Of Industries Estate And Notified Areas.</li>
+							<li style="font-size: 13px;">Importance Information For Industrial Workers.</li>
+							<li style="font-size: 13px;">B2B Information.</li>
 						</ul>
 						<div class="testimonial-one-navigation owl-clienr-btn">
 							<span id="next-slide" class="btn prev"><i class="las la-long-arrow-alt-left"></i></span>
@@ -1210,11 +1210,11 @@
 				</div>
 			</div>
 		</div>
-        <div class="section-full content-inner-1">
+        <!-- <div class="section-full content-inner-1">
 			<div class="container-fluid">
 				<div class="section-head title-box text-center" data-name="ADVERTISEMENT">
 					<h2>Advertisement</h2>
-					<!-- <h6>Inner Pages</h6> -->
+					<h6>Inner Pages</h6>
 					<div class="bg-primary dlab-separator"></div>
 				</div>
 				<div class="inner-frame owl-carousel owl-btn-center-lr owl-btn-3 m-b30">
@@ -1343,7 +1343,7 @@
 					<a href="#SupportSection" class="need-any-help"><img src="welcome/images/support.png" alt=""/>Need Any Help Link</a>
 				</div>
 			</div>
-		</div>
+		</div> -->
     </div>
 	<!-- Footer -->
     <footer class="site-footer style1">
@@ -1388,7 +1388,7 @@
 						<span>Purchase</span>
 					</a> -->
 				</div>
-				<div class="row align-items-center">
+				<!-- <div class="row align-items-center">
 					<div class="col-12 col-lg-8 col-md-12 m-b30">
 						<div class="package-box">
 							<div class="footer-title">Include<br/>In<br/>Package:</div>
@@ -1411,9 +1411,44 @@
 							<img src="welcome/images/30day.png" alt=""/>
 						</div>
 					</div> 
-				</div>
-			</div>
+				</div> -->
+
+				<div class="row align-items-center">
+    <div class="col-lg-4 col-md-6 col-6 m-b30">
+        <div class="package-box">
+            <div class="package-list">
+                <ul class="col">
+                    <h1>Contact Us</h1>
+                    <li>birdviewofindustries@gmail.com</li>
+                    <li>jigarpublicity@gmail.com</li><br>
+                    <li>+91 9998980519</li><br>
+                    <li>+91 8160979957</li>
+                </ul>
+            </div>
         </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-6 m-b30">
+        <div class="package-box">
+            <div class="package-list">
+                <ul class="col">
+                    <h1>Address</h1>
+                    <li>Jigar Publicity</li>
+                    <li>TF-66, Omkar 2,NR Lords Plaza Hotel,</li>
+                    <li>Station Road, G.I.D.C.Ankleshwar,</li>
+                    <li>Dist: Bharuch, Gujarat, 393002.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-6 m-b30">
+        <div class="money-back">
+            <img src="welcome/images/30day.png" alt=""/>
+        </div>
+    </div>
+</div>
+
+        </div>
+		</div>
 		<!-- Footer Top End -->
         <!-- Footer Bottom -->
         <div class="footer-bottom footer-line">

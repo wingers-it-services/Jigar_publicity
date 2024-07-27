@@ -390,6 +390,72 @@
 
                     deviceDropdownContainer.appendChild(deviceSelectElement);
 
+                var hourDropdownContainer = document.querySelector('.hour-dropdown-container');
+                hourDropdownContainer.innerHTML = ''; // Clear any existing content
+
+                var hourSelectElement = document.createElement('select');
+                hourSelectElement.className = 'default-select wide form-control';
+                hourSelectElement.id = 'editHour';
+                hourSelectElement.name = 'no_of_hour';
+
+                var hourOptions = [{
+                        value: '',
+                        text: 'Please select'
+                    },
+                    {
+                        value: '1',
+                        text: '1'
+                    },
+                    {
+                        value: '2',
+                        text: '2'
+                    },
+                    {
+                        value: '3',
+                        text: '3'
+                    },
+                    {
+                        value: '4',
+                        text: '4'
+                    },
+                    {
+                        value: '5',
+                        text: '5'
+                    },
+                    {
+                        value: '6',
+                        text: '6'
+                    },
+                    {
+                        value: '7',
+                        text: '7'
+                    },
+                    {
+                        value: '8',
+                        text: '8'
+                    },
+                    {
+                        value: '9',
+                        text: '9'
+                    },
+                    {
+                        value: '10',
+                        text: '10'
+                    }
+                    // Add more options as needed
+                ];
+
+                devicesOptions.forEach(function(option) {
+                    var opt = document.createElement('option');
+                    opt.value = option.value;
+                    opt.text = option.text;
+                    if (user.no_of_hour.toString() === option.value) {
+                        opt.selected = true;
+                    }
+                    hourSelectElement.appendChild(opt);
+                });
+
+                hourDropdownContainer.appendChild(hourSelectElement);
 
                     // Clear existing options and set the status dropdown to the user's payment_status
                     var statusDropdownContainer = document.querySelector(
