@@ -27,13 +27,4 @@ enum AccountStatusEnum: int
             (object) ['value' => self::BLOCKED, 'label' => 'BLOCKED']
         ];
     }
-
-    public static function getOptions()
-    {
-        return [
-            self::APPROVED => 'APPROVED',
-            self::PENDING => 'PENDING',
-            self::BLOCKED => 'BLOCKED'
-        ];
-    }
 }
