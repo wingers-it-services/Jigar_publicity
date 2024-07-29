@@ -20,7 +20,7 @@ class AdvertismentController extends Controller
     {
         $status = null;
         $message = null;
-        $advertisments = $this->advertisment->all();
+        $advertisments = $this->advertisment->orderBy('updated_at', 'desc')->get();
 
         return view('admin.add-advertisment', compact('status', 'message', 'advertisments'));
     }
