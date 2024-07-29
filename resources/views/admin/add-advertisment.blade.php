@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                Content body start
-                                            ***********************************-->
+                                                                    Content body start
+                                                                ***********************************-->
     <!-- Bootstrap CSS -->
     {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
     <!-- jQuery and Bootstrap JS -->
@@ -89,12 +89,34 @@
                                                 <form class="needs-validation" action="{{ route('addAdvertisment') }}"
                                                     method="POST" enctype="multipart/form-data" novalidate>
                                                     @csrf
-                                                    <div id="imagePreview" class="mt-2 text-center"
-                                                        style="display: none; padding: 10px;">
-                                                        <img id="previewImage" src="#" alt="Image Preview"
-                                                            class="img-fluid" style="max-width: 50%; height: auto;">
+                                                    <div class="d-flex align-items-center">
+                                                        <!-- Hint Section -->
+                                                        <div class="d-flex flex-column align-items-center mt-3"
+                                                            style="flex: 0 0 200px;">
+                                                            <div class="text-center mb-3">
+                                                                <div class="border"
+                                                                    style="width: 150px; height: 80px; background-color: #f8f9fa;">
+                                                                </div>
+                                                                <small class="text-muted">Horizontal</small>
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <div class="border"
+                                                                    style="width: 100px; height: 130px; background-color: #f8f9fa;">
+                                                                </div>
+                                                                <small class="text-muted">Vertical</small>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Image Preview Section -->
+                                                        <div id="imagePreview" class="mt-2 text-center"
+                                                            style="display: none; padding: 10px; flex: 1;">
+                                                            <img id="previewImage" src="#" alt="Image Preview"
+                                                                class="img-fluid" style="max-width: 110%; height: auto;">
+                                                        </div>
                                                     </div>
-                                                    <div class="form-group">
+
+
+                                                    <div class="form-group mt-3">
                                                         <label for="industryImage">Image</label>
                                                         <input type="file" class="form-control" id="industryImage"
                                                             accept="image/*" name="advertisment_image" required>
@@ -111,25 +133,6 @@
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Save</button>
                                                 </form>
-                                                <!-- Hint Section -->
-                                                <div class="row mt-3">
-                                                    <div class="d-flex flex-column align-items-center">
-                                                        <div class="text-center mb-3">
-                                                            <div class="border"
-                                                                style="width: 150px; height: 80px; background-color: #f8f9fa;">
-                                                            </div>
-                                                            <small class="text-muted">Horizontal</small>
-                                                        </div>
-                                                        <div class="text-center">
-                                                            <div class="border"
-                                                                style="width: 100px; height: 130px; background-color: #f8f9fa;">
-                                                            </div>
-                                                            <small class="text-muted">Vertical</small>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- End of Hint Section -->
-
                                             </div>
                                         </div>
                                     </div>
@@ -166,8 +169,8 @@
         </div>
     </div>
     <!--**********************************
-                                                Content body end
-                                            ***********************************-->
+                                                                    Content body end
+                                                                ***********************************-->
 
     <!-- Data Table JS -->
     <script src="{{ asset('path/to/datatables.min.js') }}"></script>
