@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
@@ -30,8 +31,16 @@ class ContactDetail extends Model
                     'email_id'     => $contactDetails['email_id'][$key]
                 ]);
             }
-        } catch (\Throwable $e) {
+            return [
+                'status'  => 'success',
+                'message' => 'Contact detsils updated succesfully.'
+            ];
+        } catch (Exception $e) {
             Log::error('[ContactDetail1][addContacttData] Error creating contact detail: ' . $e->getMessage());
+            return [
+                'status'  => 'error',
+                'message' => $e->getMessage()
+            ];
         }
     }
 

@@ -6,9 +6,9 @@ use App\Models\Area;
 use App\Models\ContactDetail;
 use App\Models\IndustriesCategorie;
 use App\Models\IndustryDetail;
-use App\Models\UserPurchase;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 use function PHPUnit\Framework\isEmpty;
@@ -20,19 +20,15 @@ class IndustryController extends Controller
     private $industryDetail;
     private $contactDetail;
     private $area;
-    private $purchase;
-
     public function __construct(
         IndustriesCategorie $industriesCategorie,
         IndustryDetail $industryDetail,
         ContactDetail $contactDetail,
-        UserPurchase $purchase,
         Area $area
     ) {
         $this->industriesCategorie = $industriesCategorie;
         $this->industryDetail = $industryDetail;
         $this->contactDetail = $contactDetail;
-        $this->purchase = $purchase;
         $this->area = $area;
     }
 
@@ -80,18 +76,18 @@ class IndustryController extends Controller
 
             $validatedData = $request->validate([
                 'advertisment_image' => 'nullable',
-                'category_id' => 'required',
-                'area_id' => 'required',
-                'industry_name' => 'required',
-                'contact_no' => 'nullable',
-                'address' => 'required',
-                'email' => 'nullable',
-                'industry_type' => 'required',
-                'product' => 'nullable',
-                'by_product' => 'nullable',
-                'raw_material' => 'nullable',
-                'web_link' => 'nullable',
-                'office_address' => 'nullable'
+                'category_id'        => 'required',
+                'area_id'            => 'required',
+                'industry_name'      => 'required',
+                'contact_no'         => 'nullable',
+                'address'            => 'required',
+                'email'              => 'nullable',
+                'industry_type'      => 'required',
+                'product'            => 'nullable',
+                'by_product'         => 'nullable',
+                'raw_material'       => 'nullable',
+                'web_link'           => 'nullable',
+                'office_address'     => 'nullable'
 
             ]);
 
@@ -116,7 +112,10 @@ class IndustryController extends Controller
             ];
 
             // Process product specification data
-            $this->contactDetail->addContactData($contactDetails);
+            $contactResult = $this->contactDetail->addContactData($contactDetails);
+            if ($contactResult['status'] === 'error') {
+                return redirect()->route('industries')->with('status', 'error')->with('message', 'Error while creating contact details');
+            }
 
             return back()->with('status', 'success')->with('message', 'Industries added Successfully');
             // Optionally, redirect or return a response
@@ -130,6 +129,7 @@ class IndustryController extends Controller
     public function updateIndustry(Request $request, string $uuid)
     {
         try {
+            DB::beginTransaction();
             $industry = $this->industryDetail->where('uuid', $uuid)->first();
 
             $industryData = [
@@ -169,16 +169,20 @@ class IndustryController extends Controller
             $contactData = $request->only(['contact_name', 'designation', 'mobile', 'email_id']);
             $contactData['industry_id'] = $industry->id;
 
-
             if (count($contactData["contact_name"]) > 0) {
                 $this->contactDetail->where('industry_id', $industry->id)->delete();
-                $this->contactDetail->addContactData($contactData);
+                $contactResult = $this->contactDetail->addContactData($contactData);
+                if ($contactResult['status'] === 'error') {
+                    DB::rollBack();
+                    return redirect()->route('industries')->with('status', 'error')->with('message', 'Error while updating contact details');
+                }
             }
-
+            DB::commit();
             return redirect()->route('industries')->with('status', 'success')->with('message', 'Industry updated successfully.');
         } catch (Exception $th) {
+            DB::rollBack();
             Log::error("[IndustryController][updateIndustry] error " . $th->getMessage());
-            return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('status', 'error')->with('message', $th->getMessage());
         }
     }
 
