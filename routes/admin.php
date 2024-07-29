@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\AreaController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\IndustriesCategorieController;
 use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\SiteSettingController;
@@ -113,4 +114,5 @@ Route::middleware('auth.admin')->group(function () {
 
     Route::post('/admin-payment',[CheckoutController::class,'store'])->name('payment.store');
 
+    Route::get('export-industries', [ExportController::class, 'export'])->name('export.industries');
 });
