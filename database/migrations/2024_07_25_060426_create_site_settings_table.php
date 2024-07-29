@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('nine_device_per_hour');
             $table->integer('ten_device_per_hour');
             $table->float('igst');
+            $table->boolean('payment_gateway_allow')->default(1);
             $table->timestamps();
         });
     }

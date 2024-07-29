@@ -21,7 +21,8 @@ class SiteSetting extends Model
         'eight_device_per_hour',
         'nine_device_per_hour',
         'ten_device_per_hour',
-        'igst'
+        'igst',
+        'payment_gateway_allow'
     ];
 
     public function addOrUpdateSiteSetting(array $siteSetting)
@@ -42,6 +43,7 @@ class SiteSetting extends Model
                     'nine_device_per_hour' => $siteSetting['nine_device_per_hour'],
                     'ten_device_per_hour' => $siteSetting['ten_device_per_hour'],
                     'igst'                => $siteSetting['igst'],
+                    'payment_gateway_allow'=>$siteSetting['payment_gateway_allow']
                 ]
             );
         } catch (\Throwable $e) {
