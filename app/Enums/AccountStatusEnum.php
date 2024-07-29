@@ -3,19 +3,19 @@
 namespace App\Enums;
 
 
-enum AccountStatusEnum: int
+enum AccountStatusEnum
 {
-    case APPROVED = 1;
-    case PENDING = 0;
-    case BLOCKED = 2;
+    const APPROVED = 1;
+    const PENDING = 0;
+    const BLOCKED = 2;
 
     public static function getLabel(int $value): ?string
     {
         return match ($value) {
-            self::APPROVED->value => 'APPROVED',
-            self::PENDING->value => 'PENDING',
-            self::BLOCKED->value => 'BLOCKED',
-            default => 'PENDING',
+            self::APPROVED => 'APPROVED',
+            self::PENDING  => 'PENDING',
+            self::BLOCKED  => 'BLOCKED',
+            default        => 'PENDING',
         };
     }
 

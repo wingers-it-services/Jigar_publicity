@@ -536,9 +536,7 @@
 
     function updateAccountStatus(userId, status) {
         $.ajax({
-            url: /admin/update - account - status / $ {
-                userId
-            },
+            url: '/admin/update-account-status/' + userId,
             type: 'POST',
             headers: {
                 'Content-Type': 'application/json',
