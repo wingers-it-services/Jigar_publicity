@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                Content body start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Content body start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- Bootstrap CSS -->
@@ -427,6 +427,11 @@
 
                         // Show the industry details container
                         document.getElementById('industryDetailsContainer').style.display = 'block';
+
+                        // Scroll to the industry details container
+                        $('html, body').animate({
+                            scrollTop: $("#industryDetailsContainer").offset().top
+                        }, 500); // Adjust the duration as needed
                     } else {
                         console.error(
                             'Failed to fetch industry details: Invalid response structure or empty industries array'
