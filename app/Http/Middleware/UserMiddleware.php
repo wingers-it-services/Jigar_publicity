@@ -21,7 +21,6 @@ class UserMiddleware
             return $next($request);
         }
 
-
-        return $next($request);
+        return redirect('/')->with('status','error')->with('message', 'Not a valid user');
     }
 }

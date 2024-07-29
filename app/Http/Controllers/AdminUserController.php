@@ -100,7 +100,7 @@ class AdminUserController extends Controller
      * successful, it will redirect back with a success message "Subscription Updated Successfully". If
      * there is an error during the update process, it will redirect back with an error message "error
      * while updating profile". If an exception is caught during the process, it will log the error
-     * message and redirect back with the error message from the
+     * message and redirect back with the error message from theac
      */
     public function updateUser(Request $request)
     {
@@ -115,6 +115,7 @@ class AdminUserController extends Controller
                 "company_name"    => 'required',
                 "company_address" => 'required',
                 "no_of_device"    => 'required',
+                "no_of_hour"    => 'required',
                 "password"        => 'required',
                 "payment_status"   => 'required'
             ]);

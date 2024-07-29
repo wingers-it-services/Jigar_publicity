@@ -6,6 +6,7 @@ use App\Enums\PaymentStatus;
 use App\Enums\PaymentStatusCodeEnum;
 use App\Models\Payment;
 use App\Models\SiteSetting;
+use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use App\Services\PhonePayPaymentServices;
 use Illuminate\Http\Request;
@@ -21,6 +22,8 @@ class CheckoutController extends Controller
      * Model Order
      */
     private $payment;
+    private $user;
+    private $siteSetting;
 
     /**
      * Model User
@@ -28,10 +31,14 @@ class CheckoutController extends Controller
 
     public function __construct(
         PhonePayPaymentServices $phonePayPaymentServices,
-        Payment $payment
+        Payment $payment,
+        User $user,
+        SiteSetting $siteSetting
     ) {
         $this->phonePayPaymentServices =  $phonePayPaymentServices;
         $this->payment = $payment;
+        $this->user=$user;
+        $this->siteSetting=$siteSetting;
     }
 
     public function showCheckOutPage(Request $request)
@@ -75,7 +82,7 @@ class CheckoutController extends Controller
                     $user->no_of_hour = $order->number_of_hours;
                     $user->save();
                 }
-    
+
                 return $invoiceView;
             } else if ($responseData['code'] == PaymentStatusCodeEnum::PAYMENT_ERROR) {
                 $invoiceView = view('emailTemplate.invoice-order-failed ', [
@@ -124,7 +131,7 @@ class CheckoutController extends Controller
         $numberOfHours = $request->query('numberOfHours');
 
         // Fetch site settings
-        $siteSetting = SiteSetting::first();
+        $siteSetting = $this->siteSetting->first();
         if (!$siteSetting) {
             return response()->json(['error' => 'Site settings not found.'], 500);
         }
@@ -141,9 +148,18 @@ class CheckoutController extends Controller
             // Calculate IGST
             $igstAmount = ($totalPrice * $igstPercentage) / 100;
             // Return calculated amount
-            return response()->json(['amount' => $totalPrice, 'igst' => $igstAmount,'price'=>$pricePerDevicePerHour]);
+            return response()->json(['amount' => $totalPrice, 'igst' => $igstAmount, 'price' => $pricePerDevicePerHour]);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error calculating amount'], 500);
         }
+    }
+
+    public function getPaymentDetails($id)
+    {
+        $payment = $this->user->find($id);
+        if ($payment) {
+            return response()->json($payment);
+        }
+        return response()->json(['error' => 'Payment not found'], 404);
     }
 }
