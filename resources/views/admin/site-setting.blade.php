@@ -173,8 +173,11 @@
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
-                                <div class="col-xl-6">
+
+                                <div class="row">
+                                    <div class="col-xl-6">
                                         <div class="mb-3 row">
                                             <label class="col-lg-4 col-form-label" for="validationCustom01">IGST in percentage
                                                 <span class="text-danger">*</span>
@@ -187,13 +190,33 @@
                                             </div>
                                         </div>
                                     </div>
-                                <div class="card">
-                            <div class="modal-content">
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <div class="col-xl-6">
+                                        <div class="mb-3 row">
+                                            <label class="col-lg-4 col-form-label" for="validationCustom01">Payment Gateway Allow
+                                                <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="col-lg-6">
+                                                <select class="default-select wide form-control" id="validationCustom05" name="payment_gateway_allow">
+                                                    <option value="" disabled>Please select</option>
+                                                    <option value="1" {{ $setting && $setting->payment_gateway_allow == 1 ? 'selected' : '' }}>TRUE</option>
+                                                    <option value="0" {{ $setting && $setting->payment_gateway_allow == 0 ? 'selected' : '' }}>FALSE</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a one.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <div class="card">
+
+
+                                    <div class="modal-content">
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

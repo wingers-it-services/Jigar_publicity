@@ -126,9 +126,9 @@
                                         <td>{{ $user->no_of_device }}</td>
                                         <td>
                                             <select class="form-select" id="account_status_{{ $user->id }}" onchange="confirmUpdateStatus({{ $user->id }})">
-                                                <option value="{{\App\Enums\AccountStatusEnum::APPROVED}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::APPROVED ? 'selected' : '' }}>Approved</option>
-                                                <option value="{{\App\Enums\AccountStatusEnum::PENDING}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::PENDING ? 'selected' : '' }}>Pending</option>
-                                                <option value="{{\App\Enums\AccountStatusEnum::BLOCKED}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::BLOCKED ? 'selected' : '' }}>Blocked</option>
+                                                <option value="{{\App\Enums\AccountStatusEnum::APPROVED}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::APPROVED->value ? 'selected' : '' }}>Approved</option>
+                                                <option value="{{\App\Enums\AccountStatusEnum::PENDING}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::PENDING->value ? 'selected' : '' }}>Pending</option>
+                                                <option value="{{\App\Enums\AccountStatusEnum::BLOCKED}}" {{ $user->account_status == \App\Enums\AccountStatusEnum::BLOCKED->value ? 'selected' : '' }}>Blocked</option>
                                                 </select>
                                         </td>
 
