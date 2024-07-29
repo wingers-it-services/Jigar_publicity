@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminSubscriptionController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdvertismentController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\IndustriesCategorieController;
 use App\Http\Controllers\IndustryController;
 use App\Http\Controllers\SiteSettingController;
@@ -107,4 +108,7 @@ Route::middleware('auth.admin')->group(function () {
     Route::get('/view-site-setting', [SiteSettingController::class, 'viewSiteSetting'])->name('viewSiteSetting');
 
     Route::post('/site-setting', [SiteSettingController::class, 'updateSiteSetting'])->name('updateSiteSetting');
+
+    Route::get('/payment-details/{id}', [CheckoutController::class, 'getPaymentDetails']);
+
 });

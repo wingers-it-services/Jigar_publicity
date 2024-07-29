@@ -58,19 +58,19 @@ class User extends Authenticatable
     {
         try {
             return $this->create([
-                'name'           => $validatedData['name'],
-                'email'          => $validatedData['email'],
-                'password'       => Hash::make($validatedData['password']),
-                'gender'         => $validatedData['gender'],
-                'phone'          => $validatedData['phone'],
-                'website'        => $validatedData['website'],
-                'company_name'   => $validatedData['company_name'],
+                'name'            => $validatedData['name'],
+                'email'           => $validatedData['email'],
+                'password'        => Hash::make($validatedData['password']),
+                'gender'          => $validatedData['gender'],
+                'phone'           => $validatedData['phone'],
+                'website'         => $validatedData['website'],
+                'company_name'    => $validatedData['company_name'],
                 'company_address' => $validatedData['company_address'],
-                'no_of_device'   => $validatedData['no_of_device'],
-                'no_of_hour'   => $validatedData['no_of_hour'],
-                'image'          => $imagePath,
-                'payment_status' => $validatedData['payment_status'] ?? PaymentStatus::PENDING,
-                'account_status' => $validatedData['account_status'] ?? AccountStatusEnum::PENDING,
+                'no_of_device'    => $validatedData['no_of_device'],
+                'no_of_hour'      => $validatedData['no_of_hour'],
+                'image'           => $imagePath,
+                'payment_status'  => $validatedData['payment_status'] ?? PaymentStatus::PENDING,
+                'account_status'  => $validatedData['account_status'] ?? AccountStatusEnum::PENDING,
 
             ]);
         } catch (Throwable $e) {
@@ -94,7 +94,7 @@ class User extends Authenticatable
                 "company_name"   => $validatedData['company_name'],
                 "company_address" => $validatedData['company_address'],
                 "no_of_device"   => $validatedData['no_of_device'],
-                "no_of_hour"   => $validatedData['no_of_hour'],
+                "no_of_hour"     => $validatedData['no_of_hour'],
                 "payment_status" => $validatedData['payment_status'],
             ];
 

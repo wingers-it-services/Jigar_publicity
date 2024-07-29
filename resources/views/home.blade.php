@@ -591,7 +591,42 @@
 				</div>
 			</div>
 		</div> -->
-		
+		<div class="section-full content-inner-2">
+			<div class="container-fluid">
+				<div class="section-head title-box text-center" data-name="AWARDS">
+					<h2>Awards</h2>
+					<h6>Page Loader Images</h6>
+					<div class="bg-primary dlab-separator"></div>
+				</div>
+				<div class="awards-carousel owl-carousel owl-none">
+					<div class="item">
+						<div class="awards-box">
+							<img src="welcome/images/awards/pic1.png" alt=""/>
+						</div>
+					</div>
+					<div class="item">
+						<div class="awards-box">
+							<img src="welcome/images/awards/pic4.png" alt=""/>
+						</div>
+					</div>
+					<div class="item">
+						<div class="awards-box">
+							<img src="welcome/images/awards/pic2.png" alt=""/>
+						</div>
+					</div>
+					<div class="item">
+						<div class="awards-box">
+							<img src="welcome/images/awards/pic3.png" alt=""/>
+						</div>
+					</div>
+					<div class="item">
+						<div class="awards-box">
+							<img src="welcome/images/awards/pic5.png" alt=""/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="section-full bg-gray content-inner choose-us" id="features">
 			<div class="container-fluid">
 				<div class="section-head title-box text-center" data-name="Fito">
@@ -1174,43 +1209,8 @@
 				</div>
 			</div>
 		</div> -->
-		<div class="section-full content-inner-2">
-			<div class="container-fluid">
-				<div class="section-head title-box text-center" data-name="AWARDS">
-					<h2>Awards</h2>
-					<h6>Page Loader Images</h6>
-					<div class="bg-primary dlab-separator"></div>
-				</div>
-				<div class="awards-carousel owl-carousel owl-none">
-					<div class="item">
-						<div class="awards-box">
-							<img src="welcome/images/awards/pic1.png" alt=""/>
-						</div>
-					</div>
-					<div class="item">
-						<div class="awards-box">
-							<img src="welcome/images/awards/pic4.png" alt=""/>
-						</div>
-					</div>
-					<div class="item">
-						<div class="awards-box">
-							<img src="welcome/images/awards/pic2.png" alt=""/>
-						</div>
-					</div>
-					<div class="item">
-						<div class="awards-box">
-							<img src="welcome/images/awards/pic3.png" alt=""/>
-						</div>
-					</div>
-					<div class="item">
-						<div class="awards-box">
-							<img src="welcome/images/awards/pic5.png" alt=""/>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-        <!-- <div class="section-full content-inner-1">
+		
+        <div class="section-full content-inner-1">
 			<div class="container-fluid">
 				<div class="section-head title-box text-center" data-name="ADVERTISEMENT">
 					<h2>Advertisement</h2>
@@ -1343,7 +1343,7 @@
 					<a href="#SupportSection" class="need-any-help"><img src="welcome/images/support.png" alt=""/>Need Any Help Link</a>
 				</div>
 			</div>
-		</div> -->
+		</div>
     </div>
 	<!-- Footer -->
     <footer class="site-footer style1">
@@ -1380,7 +1380,9 @@
 			<div class="container">
 				<div class="footer-buynow">
 					<div class="footer-head">
-						<div class="m-b10">Purchase now</div>
+						<a href="/admin/login">
+						<div class="m-b10">Admin Login</div>
+						</a>
 						<h4 class="footer-title">Get your theme right now<br>and create your awesome site.</h4>
 					</div>
 					<!-- <a class="site-button buy-now" href="../www.ojrq.net/p/indexfb69.html" target="blank">

@@ -52,7 +52,7 @@ class AuthController extends Controller
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
             }
 
-            if ($user->account_status !== AccountStatusEnum::APPROVED) {
+            if ($user->account_status !== 1) {
                 return back()->with('status', 'error')->with('message', 'Your account is not approved.');
             }
     
