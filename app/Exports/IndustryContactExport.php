@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exports;
 
 use App\Models\IndustryDetail;
@@ -16,9 +17,34 @@ class IndustryContactExport implements FromCollection, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'Industry Name',
-            'Industry Number',
-            'Contact Name'
+            'id',
+            'uuid',
+            'advertisment_image',
+            'area_id',
+            'category_id',
+            'industry_name',
+            'contact_no',
+            'address',
+            'email',
+            'product',
+            'by_product',
+            'raw_material',
+            'industry_type',
+            'web_link',
+            'office_address',
+            'created_at',
+            'deleted_at',
+            'updated_at',
+            '',
+            'id',
+            'uuid',
+            'industry_id',
+            'contact_name',
+            'designation',
+            'mobile',
+            'email_id',
+            'created_at',
+            'updated_at'
         ];
     }
 
@@ -27,31 +53,74 @@ class IndustryContactExport implements FromCollection, WithHeadings, WithMapping
         $rows = [];
         $firstRow = true;
 
+        //   Assuming $industries is an array of industry objects
         foreach ($industry->contacts as $contact) {
             if ($firstRow) {
                 $rows[] = [
+                    $industry->id,
+                    $industry->uuid,
+                    $industry->advertisment_image,
+                    $industry->area_id,
+                    $industry->category_id,
                     $industry->industry_name,
                     $industry->contact_no,
-                    $contact->contact_name
+                    $industry->address,
+                    $industry->email,
+                    $industry->product,
+                    $industry->by_product,
+                    $industry->raw_material,
+                    $industry->industry_type,
+                    $industry->web_link,
+                    $industry->office_address,
+                    $industry->created_at,
+                    $industry->deleted_at,
+                    $industry->updated_at,
+                    '  ', // Add contact information here
+                    $contact->id,
+                    $contact->uuid,
+                    $contact->industry_id,
+                    $contact->contact_name,
+                    $contact->designation,
+                    $contact->mobile,
+                    $contact->email_id,
+                    $contact->created_at,
+                    $contact->updated_at
                 ];
                 $firstRow = false;
             } else {
                 $rows[] = [
                     '--',
                     '--',
-                    $contact->contact_name
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '--',
+                    '  ', // Add contact information here
+                    $contact->id,
+                    $contact->uuid,
+                    $contact->industry_id,
+                    $contact->contact_name,
+                    $contact->designation,
+                    $contact->mobile,
+                    $contact->email_id,
+                    $contact->created_at,
+                    $contact->updated_at
                 ];
             }
         }
-
-        // Add an empty row for industries with no contacts to keep the structure consistent
-        if (empty($rows)) {
-            $rows[] = [
-                $industry->industry_name,
-                $industry->contact_no,
-                ''
-            ];
-        }
+        $firstRow = true; // Reset for the next industry
 
         return $rows;
     }
