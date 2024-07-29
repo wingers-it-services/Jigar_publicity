@@ -10,6 +10,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use App\Services\PhonePayPaymentServices;
 use Illuminate\Http\Request;
+use Throwable;
 
 class CheckoutController extends Controller
 {
@@ -37,8 +38,8 @@ class CheckoutController extends Controller
     ) {
         $this->phonePayPaymentServices =  $phonePayPaymentServices;
         $this->payment = $payment;
-        $this->user=$user;
-        $this->siteSetting=$siteSetting;
+        $this->user = $user;
+        $this->siteSetting = $siteSetting;
     }
 
     public function showCheckOutPage(Request $request)
@@ -161,5 +162,61 @@ class CheckoutController extends Controller
             return response()->json($payment);
         }
         return response()->json(['error' => 'Payment not found'], 404);
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            // Validate the request
+            $request->validate([
+                'userId' => 'required|exists:users,id',
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'mobile' => 'required|string|max:15',
+                'no_of_device' => 'required|integer',
+                'number_of_hours' => 'required|integer',
+                'igst' => 'required|numeric',
+                'price_per_hour' => 'required|numeric',
+                'subtotal' => 'required|numeric',
+                'amount' => 'required|numeric',
+            ]);
+
+            // Find the user and update their data
+            $user = User::find($request->userId);
+            if ($user) {
+                $user->no_of_device = $request->no_of_device;
+                $user->no_of_hour = $request->number_of_hours;
+                $user->payment_status = PaymentStatus::PAID;
+                $user->save();
+            }
+
+
+            $lastOrderId = $this->payment->latest('id')->value('id');
+            $newOrderId = ($lastOrderId == null) ? 'WITS1' :  'W1' . ($lastOrderId + 1);
+
+            // Create a new order record using the newOrder method
+            $orderData = [
+                'orderId' => $newOrderId, // Ensure this method generates a unique ID
+                'userId' => $request->userId,
+                'name' => $request->name,
+                'email' => $request->email,
+                'mobile' => $request->mobile,
+                'no_of_device' => $request->no_of_device,
+                'number_of_hours' => $request->number_of_hours,
+                'igst' => $request->igst,
+                'price_per_hour' => $request->price_per_hour,
+                'subtotal' => $request->subtotal,
+                'amount' => $request->amount
+            ];
+
+            $payment = new Payment(); // Assuming Payment is the model that handles payments
+            $payment->newOrder($orderData);
+
+            // Redirect or return a response
+            return redirect()->back()->with('status', 'success')->with('message', 'Payment details saved successfully.');
+        } catch (Throwable $e) {
+            Log::error('[CheckoutController][store]Payment details not saved.'.$e->getMessage());
+            return redirect()->back()->with('status', 'error')->with('message', 'Payment details not saved.');
+        }
     }
 }
