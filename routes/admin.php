@@ -111,4 +111,6 @@ Route::middleware('auth.admin')->group(function () {
 
     Route::get('/payment-details/{id}', [CheckoutController::class, 'getPaymentDetails']);
 
+    Route::post('/admin-payment',[CheckoutController::class,'store'])->name('payment.store');
+
 });

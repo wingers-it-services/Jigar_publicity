@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\AccountStatusEnum;
 use App\Enums\PaymentStatus;
+use App\Models\SiteSetting;
 use App\Models\User;
 use App\Models\UserLoginHistory;
 use Exception;
@@ -51,38 +52,49 @@ class AuthController extends Controller
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
             }
-
-            if ($user->account_status !== 1) {
+    
+            if ($user->account_status !== AccountStatusEnum::APPROVED) {
                 return back()->with('status', 'error')->with('message', 'Your account is not approved.');
             }
     
             if ($this->checkAllowUserTologin($user)) {
                 return back()->with('status', 'error')->with('message', 'You reached max allowed device limit.');
             }
+    
+            // Fetch site settings for payment gateway allowance
+            $settings = SiteSetting::first(); // Adjust according to how you retrieve settings
+            $isAllowed = $settings && $settings->payment_gateway_allow;
+    
             if (auth()->check()) {
                 if (auth()->user()->id == $user->id) {
                     $this->logUserLoginDetails($request);
-                    if ($user->payment_status === PaymentStatus::PAID) {
-                        return redirect()->route('industry-list');
-                    } else {
-                        return redirect()->route('payment')->with('user', $user);
+    
+                    if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
+                        return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
                     }
+    
+                    $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
+                    return redirect()->route($route)->with('user', $user);
                 } else {
-                    if (auth()->user()->is_admin == 1)
-                        return back()->with('status', 'error')->with('message', 'This system is occupied by Admin Please login with Admin credentials');
-                    else
-                        return back()->with('status', 'error')->with('message', 'This system is occupied by user ' . auth()->user()->name . ' Please login with ' . auth()->user()->name);
+                    $message = auth()->user()->is_admin 
+                        ? 'This system is occupied by Admin. Please login with Admin credentials.' 
+                        : 'This system is occupied by user ' . auth()->user()->name . '. Please login with ' . auth()->user()->name;
+                    return back()->with('status', 'error')->with('message', $message);
                 }
-            } elseif (Auth::attempt($credentials)) {
+            }
+    
+            // Attempt login if not authenticated
+            if (Auth::attempt($credentials)) {
                 $user->active_device += 1;
                 $user->save();
-    
                 $this->logUserLoginDetails($request);
-                if ($user->payment_status === PaymentStatus::PAID) {
-                    return redirect()->route('industry-list');
-                } else {
-                    return redirect()->route('payment')->with('user', $user);
+    
+                if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
+                    return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
                 }
+    
+                $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
+                return redirect()->route($route)->with('user', $user);
             }
     
             return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
@@ -91,6 +103,8 @@ class AuthController extends Controller
             return back()->with('status', 'error')->with('message', 'An error occurred while trying to log in. Please try again later.');
         }
     }
+    
+    
 
     /**
      * The function logUserLoginDetails logs user login details including device type, IP address,
