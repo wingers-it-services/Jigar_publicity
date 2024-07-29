@@ -117,7 +117,7 @@ class IndustryController extends Controller
                 return redirect()->route('industries')->with('status', 'error')->with('message', 'Error while creating contact details');
             }
 
-            return back()->with('status', 'success')->with('message', 'Industries added Successfully');
+            return redirect()->route("industries")->with('status', 'success')->with('message', 'Industries added Successfully');
             // Optionally, redirect or return a response
             // return redirect()->route("industries")->with('success', 'Industries added successfully');
         } catch (Exception $th) {

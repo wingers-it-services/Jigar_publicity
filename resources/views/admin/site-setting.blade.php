@@ -43,7 +43,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="one_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->one_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="two_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->two_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -71,7 +71,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="three_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->three_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -84,7 +84,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="four_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->four_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="five_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->five_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="six_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->six_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -127,7 +127,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="seven_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->seven_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +140,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="eight_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->eight_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -155,7 +155,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="nine_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->nine_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -168,7 +168,7 @@
                                             <div class="col-lg-6">
                                                 <input type="text" class="form-control" id="validationCustom01" name="ten_device_per_hour" placeholder="Enter Charges.." value="{{ $setting ? $setting->ten_device_per_hour : '' }}" required>
                                                 <div class="invalid-feedback">
-                                                    Please enter a name.
+                                                    Please enter a charges.
                                                 </div>
                                             </div>
                                         </div>
@@ -226,53 +226,31 @@
     </div>
 </div>
 <script>
-    function previewImage(event) {
-        const imagePreview = document.getElementById('imagePreview');
-        const file = event.target.files[0];
-
-        // Check if a file is selected
-        if (file) {
-            const reader = new FileReader();
-
-            // FileReader onload event
-            reader.onload = function() {
-                // Create an image element
-                const imgElement = document.createElement('img');
-                imgElement.src = reader.result;
-                imgElement.classList.add('max-w-full', 'h-auto');
-
-                // Clear previous image preview, if any
-                imagePreview.innerHTML = '';
-
-                // Append the image preview to the imagePreview div
-                imagePreview.appendChild(imgElement);
-
-                // Show the image preview div
-                imagePreview.classList.remove('hidden');
-            }
-
-            // Read the image file as a data URL
-            reader.readAsDataURL(file);
-        } else {
-            // Hide the image preview if no file is selected
-            imagePreview.innerHTML = '';
-            imagePreview.classList.add('hidden');
-        }
-    }
-
     (function() {
         'use strict'
 
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
         var forms = document.querySelectorAll('.needs-validation')
 
-        // Loop over them and prevent submission
         Array.prototype.slice.call(forms)
             .forEach(function(form) {
                 form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
+                    var isValid = form.checkValidity();
+
+                    // Custom numeric validation
+                    var inputs = form.querySelectorAll('input[type="text"]');
+                    inputs.forEach(function(input) {
+                        if (input.value.trim() !== '' && isNaN(input.value)) {
+                            isValid = false;
+                            input.classList.add('is-invalid');
+                            input.nextElementSibling.textContent = 'Please enter a valid number.';
+                        } else {
+                            input.classList.remove('is-invalid');
+                        }
+                    });
+
+                    if (!isValid) {
+                        event.preventDefault();
+                        event.stopPropagation();
                     }
 
                     form.classList.add('was-validated')
