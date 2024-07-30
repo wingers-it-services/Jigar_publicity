@@ -6,122 +6,98 @@ use App\Models\IndustryDetail;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
 
-class IndustryContactExport implements FromCollection, WithHeadings, WithMapping
+class IndustryContactExport implements FromCollection, WithHeadings, WithMapping, WithStyles
 {
+    protected $industryFields = [
+        'advertisment_image',
+        'area_id',
+        'category_id',
+        'industry_name',
+        'contact_no',
+        'address',
+        'email',
+        'product',
+        'by_product',
+        'raw_material',
+        'industry_type',
+        'web_link',
+        'office_address'
+    ];
+
+    protected $contactFields = [
+        'contact_name',
+        'designation',
+        'mobile',
+        'email_id'
+    ];
+
     public function collection()
     {
-        return IndustryDetail::with('contacts')->get();
+        return IndustryDetail::with(['contacts', 'areas', 'categories'])->get();
     }
 
     public function headings(): array
     {
-        return [
-            'id',
-            'uuid',
-            'advertisment_image',
-            'area_id',
-            'category_id',
-            'industry_name',
-            'contact_no',
-            'address',
-            'email',
-            'product',
-            'by_product',
-            'raw_material',
-            'industry_type',
-            'web_link',
-            'office_address',
-            'created_at',
-            'deleted_at',
-            'updated_at',
-            '',
-            'id',
-            'uuid',
-            'industry_id',
-            'contact_name',
-            'designation',
-            'mobile',
-            'email_id',
-            'created_at',
-            'updated_at'
-        ];
+        $industryHeadings = $this->updateHeadings();
+        return array_merge($industryHeadings, [''], $this->contactFields);
     }
 
     public function map($industry): array
     {
         $rows = [];
-        $firstRow = true;
+        $industryData = $this->getIndustryData($industry);
 
-        //   Assuming $industries is an array of industry objects
-        foreach ($industry->contacts as $contact) {
-            if ($firstRow) {
-                $rows[] = [
-                    $industry->id,
-                    $industry->uuid,
-                    $industry->advertisment_image,
-                    $industry->area_id,
-                    $industry->category_id,
-                    $industry->industry_name,
-                    $industry->contact_no,
-                    $industry->address,
-                    $industry->email,
-                    $industry->product,
-                    $industry->by_product,
-                    $industry->raw_material,
-                    $industry->industry_type,
-                    $industry->web_link,
-                    $industry->office_address,
-                    $industry->created_at,
-                    $industry->deleted_at,
-                    $industry->updated_at,
-                    '  ', // Add contact information here
-                    $contact->id,
-                    $contact->uuid,
-                    $contact->industry_id,
-                    $contact->contact_name,
-                    $contact->designation,
-                    $contact->mobile,
-                    $contact->email_id,
-                    $contact->created_at,
-                    $contact->updated_at
-                ];
-                $firstRow = false;
-            } else {
-                $rows[] = [
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '--',
-                    '  ', // Add contact information here
-                    $contact->id,
-                    $contact->uuid,
-                    $contact->industry_id,
-                    $contact->contact_name,
-                    $contact->designation,
-                    $contact->mobile,
-                    $contact->email_id,
-                    $contact->created_at,
-                    $contact->updated_at
-                ];
+        if ($industry->contacts->isNotEmpty()) {
+            foreach ($industry->contacts as $contact) {
+                $rows[] = array_merge($industryData, $this->getContactData($contact));
             }
+        } else {
+            $rows[] = array_merge($industryData, array_fill(0, count($this->contactFields), '--'));
         }
-        $firstRow = true; // Reset for the next industry
 
         return $rows;
+    }
+
+    private function updateHeadings(): array
+    {
+        $headings = $this->industryFields;
+        $headings[array_search('area_id', $headings)] = 'area';
+        $headings[array_search('category_id', $headings)] = 'category';
+        return $headings;
+    }
+
+    private function getIndustryData($industry): array
+    {
+        return array_map(function ($field) use ($industry) {
+            if ($field === 'area_id') {
+                return $industry->areas->area_name ?? '--';
+            }
+            if ($field === 'category_id') {
+                return $industry->categories->category_name ?? '--';
+            }
+            return $industry->$field;
+        }, $this->industryFields) + [''];
+    }
+
+    private function getContactData($contact): array
+    {
+        return array_map(function ($field) use ($contact) {
+            return $contact->$field;
+        }, $this->contactFields);
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        // Bold the header row
+        $sheet->getStyle('1:1')->getFont()->setBold(true);
+
+        // Freeze the header row
+        $sheet->freezePane('A2');
     }
 }
