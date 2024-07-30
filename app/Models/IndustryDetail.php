@@ -12,7 +12,7 @@ use Throwable;
 class IndustryDetail extends Model
 {
     use SoftDeletes;
-    
+
     protected $fillable = [
         'advertisment_image',
         'category_id',
@@ -42,12 +42,12 @@ class IndustryDetail extends Model
         return $this->hasMany(ContactDetail::class, 'industry_id');
     }
 
-    public function category()
+    public function categories()
     {
         return $this->belongsTo(IndustriesCategorie::class, 'category_id');
     }
 
-    public function area()
+    public function areas()
     {
         return $this->belongsTo(Area::class, 'area_id');
     }
@@ -59,18 +59,18 @@ class IndustryDetail extends Model
             // Create the product
             return IndustryDetail::create([
                 'advertisment_image' => $imagePath,
-                'category_id' => $addindustry['category_id'],
-                'area_id' => $addindustry['area_id'],
-                'industry_name' => $addindustry['industry_name'],
-                'contact_no' => $addindustry['contact_no'],
-                'industry_type' => $addindustry['industry_type'],
-                'address' => $addindustry['address'],
-                'email' => $addindustry['email'],
-                'product' => $addindustry['product'],
-                'by_product' => $addindustry['by_product'],
-                'raw_material' => $addindustry['raw_material'],
-                'web_link' => $addindustry['web_link'],
-                'office_address' => $addindustry['office_address']
+                'category_id'        => $addindustry['category_id'],
+                'area_id'            => $addindustry['area_id'],
+                'industry_name'      => $addindustry['industry_name'],
+                'contact_no'         => $addindustry['contact_no'],
+                'industry_type'      => $addindustry['industry_type'],
+                'address'            => $addindustry['address'],
+                'email'              => $addindustry['email'],
+                'product'            => $addindustry['product'],
+                'by_product'         => $addindustry['by_product'],
+                'raw_material'       => $addindustry['raw_material'],
+                'web_link'           => $addindustry['web_link'],
+                'office_address'     => $addindustry['office_address']
 
             ]);
         } catch (\Throwable $e) {
@@ -78,5 +78,4 @@ class IndustryDetail extends Model
             throw $e; // Re-throw the exception to see the full stack trace
         }
     }
-
 }
