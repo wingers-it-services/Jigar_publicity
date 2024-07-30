@@ -73,7 +73,6 @@ class IndustryController extends Controller
     public function addIndustry(Request $request)
     {
         try {
-
             $validatedData = $request->validate([
                 'advertisment_image' => 'nullable',
                 'category_id'        => 'required',
@@ -103,18 +102,15 @@ class IndustryController extends Controller
             $industry = $this->industryDetail->addIndustryDetail($validatedData, $imagePath);
 
             // Prepare product specification data
-            $contactDetails = [
-                'industry_id'  => $industry->id,
-                'contact_name' => $request->input('contact_name'),
-                'designation'  => $request->input('designation'),
-                'mobile'       => $request->input('mobile'),
-                'email_id'     => $request->input('email_id')
-            ];
+            $contactData = $request->only(['contact_name', 'designation', 'mobile', 'email_id']);
+            $contactData['industry_id'] = $industry->id;
 
-            // Process product specification data
-            $contactResult = $this->contactDetail->addContactData($contactDetails);
-            if ($contactResult['status'] === 'error') {
-                return redirect()->route('industries')->with('status', 'error')->with('message', 'Error while creating contact details');
+            if (isset($contactData['contact_name']) && count($contactData['contact_name']) > 0) {
+                // Process product specification data
+                $contactResult = $this->contactDetail->addContactData($contactData);
+                if ($contactResult['status'] === 'error') {
+                    return redirect()->route('industries')->with('status', 'error')->with('message', 'Error while creating contact details');
+                }
             }
 
             return redirect()->route("industries")->with('status', 'success')->with('message', 'Industries added Successfully');
@@ -169,7 +165,7 @@ class IndustryController extends Controller
             $contactData = $request->only(['contact_name', 'designation', 'mobile', 'email_id']);
             $contactData['industry_id'] = $industry->id;
 
-            if (count($contactData["contact_name"]) > 0) {
+            if (isset($contactData['contact_name']) && count($contactData['contact_name']) > 0) {
                 $this->contactDetail->where('industry_id', $industry->id)->delete();
                 $contactResult = $this->contactDetail->addContactData($contactData);
                 if ($contactResult['status'] === 'error') {

@@ -36,7 +36,7 @@ class ContactDetail extends Model
                 'message' => 'Contact detsils updated succesfully.'
             ];
         } catch (Exception $e) {
-            Log::error('[ContactDetail1][addContacttData] Error creating contact detail: ' . $e->getMessage());
+            Log::error('[ContactDetail][addContacttData] Error creating contact detail: ' . $e->getMessage());
             return [
                 'status'  => 'error',
                 'message' => $e->getMessage()
