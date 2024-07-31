@@ -52,17 +52,27 @@ class IndustryContactExport implements FromCollection, WithHeadings, WithMapping
     {
         $rows = [];
         $industryData = $this->getIndustryData($industry);
+        $blankColumn = [''];
+        $firstContact = true;
 
         if ($industry->contacts->isNotEmpty()) {
             foreach ($industry->contacts as $contact) {
-                $rows[] = array_merge($industryData, $this->getContactData($contact));
+                $contactData = $this->getContactData($contact);
+                if ($firstContact) {
+                    $rows[] = array_merge($industryData, $blankColumn, $contactData);
+                    $firstContact = false;
+                } else {
+                    $rows[] = array_merge(array_fill(0, count($this->industryFields), '--'), $blankColumn, $contactData);
+                }
             }
         } else {
-            $rows[] = array_merge($industryData, array_fill(0, count($this->contactFields), '--'));
+            $rows[] = array_merge($industryData, $blankColumn, array_fill(0, count($this->contactFields), '--'));
         }
 
         return $rows;
     }
+
+
 
     private function updateHeadings(): array
     {

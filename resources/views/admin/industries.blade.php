@@ -78,11 +78,8 @@
                                                             </table>
                                                         </div>
                                                         <div class="d-flex justify-content-end">
-                                                            <a href="" class="me-3">
-                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Import data</button>
-                                                            </a>
                                                             <a href={{route('export.industries')}} class="me-3">
-                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Export data</button>
+                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Download data</button>
                                                             </a>
                                                         </div>
                                                     </div>
