@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $status = null;
         $message = null;
-        $industries = $this->industrydetail->with('contacts')->get();
+        $industries = $this->industrydetail->with(['contacts','categories','areas'])->get();
         $imageType = $this->advertisment->image_type;
         $horImages = $this->advertisment->where('image_type', 'horizontal')->inRandomOrder()->get();
         $chunks = $horImages->chunk(ceil($horImages->count() / 2));
