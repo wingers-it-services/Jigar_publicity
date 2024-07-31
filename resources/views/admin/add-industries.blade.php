@@ -217,6 +217,24 @@
 </div>
 
 <script>
+
+     // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
     function previewImage(event) {
         const imagePreview = document.getElementById('imagePreview');
         const file = event.target.files[0];
@@ -327,47 +345,45 @@
         button.closest('.card').remove();
     }
 
+    //Validation for the contact details section
     function applyValidation() {
-        const mobileInput = document.getElementById(`mobile`);
-        const emailInput = document.getElementById(`email_id`);
+        const contactInputs = document.querySelectorAll('input[name="mobile[]"]');
+        const emailInputs = document.querySelectorAll('input[name="email_id[]"]');
 
-        mobileInput.addEventListener('input', function() {
-            const mobilePattern = /^\d{10}$/;
-            if (!mobilePattern.test(mobileInput.value)) {
-                mobileInput.classList.add('is-invalid');
-            } else {
-                mobileInput.classList.remove('is-invalid');
-            }
+        contactInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const contactPattern = /^\d{10}$/;
+                if (contactPattern.test(input.value)) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    input.nextElementSibling.style.display = 'none';
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    input.nextElementSibling.style.display = 'block';
+                }
+            });
         });
 
-        emailInput.addEventListener('input', function() {
-            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailPattern.test(emailInput.value)) {
-                emailInput.classList.add('is-invalid');
-            } else {
-                emailInput.classList.remove('is-invalid');
-            }
+        emailInputs.forEach(input => {
+            input.addEventListener('input', function() {
+                const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (emailPattern.test(input.value)) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    input.nextElementSibling.style.display = 'none';
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    input.nextElementSibling.style.display = 'block';
+                }
+            });
         });
     }
 
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function() {
-        'use strict';
-        window.addEventListener('load', function() {
-            var forms = document.getElementsByClassName('needs-validation');
-            Array.prototype.filter.call(forms, function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-
     document.addEventListener('DOMContentLoaded', function() {
+
+        //validation for first section of the form (Industries details)
         const emailInput = document.getElementById('email');
         const webLinkInput = document.getElementById('web_link');
         const contactNumberInput = document.getElementById('contact_no');
@@ -404,7 +420,7 @@
         });
 
 
-
+        //Validation for the manufacturing info section
         const manufacturingRadio = document.getElementById('validationCustom12');
         const nonManufacturingRadio = document.getElementById('validationCustom13');
         const conditionalCard = document.getElementById('conditionalCard');
@@ -441,6 +457,7 @@
         // Initial check on page load
         toggleConditionalCard();
     });
+    
 </script>
 
 @include('CustomSweetAlert');

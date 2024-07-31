@@ -2,6 +2,15 @@
 @section('title', 'Dashboard')
 @section('content')
 
+<style>
+    .form-text {
+        display: none;
+    }
+
+    .form-text.visible {
+        display: block;
+    }
+</style>
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -9,7 +18,7 @@
                 <h5 class="modal-title">Update User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <form id="editUserForm" action="{{ route('updateUser') }}" method="POST" enctype="multipart/form-data">
+            <form class="needs-validation" id="editUserForm" action="{{ route('updateUser') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -18,12 +27,27 @@
                             <div class="form-group">
                                 <label class="text-label">Email<span class="required">*</span></label>
                                 <input type="text" class="form-control" id="editEmail" name="email" placeholder="Enter an email.." required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid Email.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-2">
-                            <div class="form-group">
+                            <div class="form-group position-relative">
                                 <label class="text-label">Password<span class="required">*</span></label>
-                                <input type="text" class="form-control" id="editPassword" name="password" placeholder="Enter a password.." required>
+                                <input type="text" class="form-control" id="editPassword" name="password" placeholder="Enter a password..">
+                                <span class="show-pass eye" onclick="togglePasswordVisibility()">
+                                    <i class="fa fa-eye-slash"></i>
+                                    <i class="fa fa-eye"></i>
+                                </span>
+                                <div class="invalid-feedback">
+                                    Please enter a valid password.
+                                </div>
+                                <div id="passwordHelp" class="form-text">
+                                    Password must be at least 8 characters long and contain at least one
+                                    uppercase letter, one lowercase letter, one number, and one special
+                                    character.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-2">
@@ -36,6 +60,9 @@
                             <div class="form-group">
                                 <label class="text-label">Phone Number<span class="required">*</span></label>
                                 <input type="text" class="form-control" id="editPhone" name="phone" placeholder="Enter a phone.." required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number.
+                                </div>
                             </div>
                         </div>
                         <div class="col-lg-6 mb-2">
@@ -48,6 +75,9 @@
                             <div class="form-group">
                                 <label class="text-label">Website<span class="required">*</span></label>
                                 <input type="text" class="form-control" id="editWebsite" name="website" placeholder="http://example.com" required>
+                                <div class="invalid-feedback">
+                                    Please enter a valid url.
+                                </div>    
                             </div>
                         </div>
                         <div class="col-lg-6 mb-2">
@@ -252,8 +282,7 @@
 
                 document.getElementById('editUserId').value = user.uuid;
                 document.getElementById('editName').value = user.name;
-                document.getElementById('editPassword').value =
-                    "{{ \App\Enums\DummyPasswordEnum::PAASWORD }}";
+                document.getElementById('editPassword').value = "{{ \App\Enums\DummyPasswordEnum::PAASWORD }}";
                 document.getElementById('editEmail').value = user.email;
                 document.getElementById('editPhone').value = user.phone;
                 document.getElementById('editWebsite').value = user.website;
@@ -381,14 +410,14 @@
 
                 var hourDropdownContainer = document.querySelector(
                     '.hour-dropdown-container');
-                    hourDropdownContainer.innerHTML =
+                hourDropdownContainer.innerHTML =
                     ''; // Clear any existing content
 
                 var hourSelectElement = document.createElement('select');
                 hourSelectElement.className =
                     'default-select wide form-control';
-                    hourSelectElement.id = 'editHour';
-                    hourSelectElement.name = 'no_of_hour';
+                hourSelectElement.id = 'editHour';
+                hourSelectElement.name = 'no_of_hour';
 
                 var hoursOptions = [{
                         value: '',
@@ -564,5 +593,160 @@
         });
     });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const passwordInput = document.getElementById('editPassword');
+    const passwordHelp = document.getElementById('passwordHelp');
+
+    passwordInput.addEventListener('focus', function() {
+        passwordHelp.classList.add('visible');
+    });
+
+    passwordInput.addEventListener('blur', function() {
+        passwordHelp.classList.remove('visible');
+    });
+});
+
+function togglePasswordVisibility() {
+    var passwordField = document.getElementById("editPassword");
+    var toggleIcon = document.querySelector(".show-pass i");
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+    } else {
+        passwordField.type = "password";
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+    }
+}
+
+(function() {
+    'use strict';
+
+    var forms = document.querySelectorAll('.needs-validation');
+
+    function validatePassword(password) {
+        var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return passwordRegex.test(password);
+    }
+
+    function validatePhone(phone) {
+        var phoneRegex = /^\d{10}$/;
+        return phoneRegex.test(phone);
+    }
+
+    function validateWebsite(website) {
+        var websiteRegex = /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+        return websiteRegex.test(website);
+    }
+
+    function validateEmail(email) {
+        var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email);
+    }
+
+    function handleInput(event, validateFunction) {
+        var input = event.target;
+        var value = input.value;
+        var feedback = input.nextElementSibling;
+
+        if (validateFunction(value)) {
+            feedback.style.display = 'none';
+            input.classList.remove('is-invalid');
+        } else {
+            feedback.style.display = 'block';
+            input.classList.add('is-invalid');
+        }
+    }
+
+    Array.prototype.slice.call(forms).forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+            var passwordInput = form.querySelector('#editPassword');
+            var password = passwordInput.value;
+            var phoneInput = form.querySelector('#editPhone');
+            var phone = phoneInput.value;
+            var websiteInput = form.querySelector('#editWebsite');
+            var website = websiteInput.value;
+            var emailInput = form.querySelector('#editEmail');
+            var email = emailInput.value;
+
+            if (password !== '{{ \App\Enums\DummyPasswordEnum::PAASWORD }}' && !validatePassword(password)) {
+            event.preventDefault();
+            event.stopPropagation();
+            passwordInput.classList.add('is-invalid');
+            passwordInput.nextElementSibling.style.display = 'block';
+            } else {
+                passwordInput.classList.remove('is-invalid');
+            }
+
+            if (!validatePhone(phone)) {
+                event.preventDefault();
+                event.stopPropagation();
+                phoneInput.classList.add('is-invalid');
+                phoneInput.nextElementSibling.style.display = 'block';
+            } else {
+                phoneInput.classList.remove('is-invalid');
+            }
+
+            if (!validateWebsite(website)) {
+                event.preventDefault();
+                event.stopPropagation();
+                websiteInput.classList.add('is-invalid');
+                websiteInput.nextElementSibling.style.display = 'block';
+            } else {
+                websiteInput.classList.remove('is-invalid');
+            }
+
+            if (!validateEmail(email)) {
+                event.preventDefault();
+                event.stopPropagation();
+                emailInput.classList.add('is-invalid');
+                emailInput.nextElementSibling.style.display = 'block';
+            } else {
+                emailInput.classList.remove('is-invalid');
+            }
+
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            form.classList.add('was-validated');
+        }, false);
+
+        var passwordInput = form.querySelector('#editPassword');
+        if (passwordInput) {
+            passwordInput.addEventListener('input', function(event) {
+                handleInput(event, validatePassword);
+            });
+        }
+
+        var phoneInput = form.querySelector('#editPhone');
+        if (phoneInput) {
+            phoneInput.addEventListener('input', function(event) {
+                handleInput(event, validatePhone);
+            });
+        }
+
+        var websiteInput = form.querySelector('#editWebsite');
+        if (websiteInput) {
+            websiteInput.addEventListener('input', function(event) {
+                handleInput(event, validateWebsite);
+            });
+        }
+
+        var emailInput = form.querySelector('#editEmail');
+        if (emailInput) {
+            emailInput.addEventListener('input', function(event) {
+                handleInput(event, validateEmail);
+            });
+        }
+    });
+})();
+</script>
+
 @include('CustomSweetAlert')
 @endsection
