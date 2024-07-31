@@ -34,10 +34,9 @@ class IndustryController extends Controller
 
     public function industries()
     {
-        $industryDetails = $this->industryDetail->all();
+        $industryDetails = $this->industryDetail->with(['categories', 'areas'])->get();
         $categorys = $this->industriesCategorie->all();
         $areas = $this->area->all();
-
         return view('admin.industries', compact('industryDetails', 'categorys', 'areas'));
     }
 

@@ -50,9 +50,9 @@
                                                                     @foreach ($industryDetails as $industry)
                                                                         <tr>
                                                                             <td>{{ $industry->industry_name }}</td>
-                                                                            <td>{{ $industry->category ? $industry->category->category_name : 'Not Defined' }}
+                                                                            <td>{{ $industry->categories ? $industry->categories->category_name : 'Not Defined' }}
                                                                             </td>
-                                                                            <td>{{ $industry->area ? $industry->area->area_name : 'Not Defined' }}
+                                                                            <td>{{ $industry->areas ? $industry->areas->area_name : 'Not Defined' }}
                                                                             </td>
                                                                             <td class="text-end">
                                                                                 <span>
