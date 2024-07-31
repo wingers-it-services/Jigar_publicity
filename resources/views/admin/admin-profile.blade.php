@@ -52,7 +52,7 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Account Setting</h4>
-                                                <form method="post" action="{{route('updateUserDetails')}}" enctype="multipart/form-data">
+                                                <form method="post" action="{{route('updateAdminDetails')}}" enctype="multipart/form-data">
                                                     @csrf
                                                     <input type="text" name="uuid" value="{{$userDetail->uuid}}" hidden>
                                                     <div class="row">
