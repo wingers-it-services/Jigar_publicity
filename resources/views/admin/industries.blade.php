@@ -78,9 +78,10 @@
                                                             </table>
                                                         </div>
                                                         <div class="d-flex justify-content-end">
-                                                            <a href={{route('export.industries')}} class="me-3">
-                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Download data</button>
-                                                            </a>
+                                                            <form action="{{ route('export.industries') }}" method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Download data</button>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
