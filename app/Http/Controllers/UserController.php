@@ -36,14 +36,25 @@ class UserController extends Controller
         $status = null;
         $message = null;
         $industries = $this->industrydetail->with(['contacts','categories','areas'])->get();
+    
+        // Check if there are any industries
+        if ($industries->isEmpty()) {
+            $industries = collect(); // Create an empty collection
+        }
+    
         $imageType = $this->advertisment->image_type;
+    
         $horImages = $this->advertisment->where('image_type', 'horizontal')->inRandomOrder()->get();
         $chunks = $horImages->chunk(ceil($horImages->count() / 2));
-        $horImages1 = $chunks->get(0);
-        $horImages2 = $chunks->get(1)->values();
+    
+        $horImages1 = $chunks->get(0) ?: collect(); // Default to an empty collection if null
+        $horImages2 = $chunks->get(1) ? $chunks->get(1)->values() : collect(); // Default to an empty collection if null
+    
         $verImages = $this->advertisment->where('image_type', 'vertical')->inRandomOrder()->take(4)->get();
+    
         return view('user.industry-list', compact('status', 'message', 'industries', 'horImages1', 'horImages2', 'verImages'));
     }
+    
 
     public function fetchIndustryDetailsById(Request $request, $uuid)
     {

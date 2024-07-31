@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('advertisments', function (Blueprint $table) {
             $table->id();
             $table->string('advertisment_image');
+            $table->string('image_type');
             $table->timestamps();
         });
     }
