@@ -18,7 +18,7 @@
     <meta property="og:description" content="Laravel | Page Login">
     <meta property="og:image" content="../social-image.png">
     <meta name="format-detection" content="telephone=no">
-    <title>Laravel | Page Login </title>
+    <title> Page Login </title>
 
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1">

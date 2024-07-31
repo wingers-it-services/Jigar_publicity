@@ -18,7 +18,7 @@
     <meta property="og:description" content="Laravel | Page Login">
     <meta property="og:image" content="../social-image.png">
     <meta name="format-detection" content="telephone=no">
-    <title>Laravel | Page Login </title>
+    <title>Page Login </title>
 
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -185,6 +185,60 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="mb-3 row">
+                                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device Allowed
+
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-6">
+                                                                    <select class="default-select wide form-control" id="no_of_device" name="no_of_device" required>
+                                                                        <option data-display="Select">Please select</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                        <option value="10">10</option>
+                                                                    </select>
+                                                                    <div class="invalid-feedback">
+                                                                        Please select a one.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="mb-3 row">
+
+                                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Hour
+
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <div class="col-lg-6">
+                                                                    <select class="default-select wide form-control" id="number_of_hours" name="no_of_hour" required>
+                                                                        <option data-display="Select">Please select</option>
+                                                                        <option value="1">1</option>
+                                                                        <option value="2">2</option>
+                                                                        <option value="3">3</option>
+                                                                        <option value="4">4</option>
+                                                                        <option value="5">5</option>
+                                                                        <option value="6">6</option>
+                                                                        <option value="7">7</option>
+                                                                        <option value="8">8</option>
+                                                                        <option value="9">9</option>
+                                                                        <option value="10">10</option>
+                                                                    </select>
+                                                                    <div class="invalid-feedback">
+                                                                        Please select a one.
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+
+
                                                         </div>
                                                         <div class="col-xl-6">
                                                             <div class="mb-3 row">
@@ -213,51 +267,34 @@
                                                                     </div>
 
                                                                 </div>
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device Allowed </label>
-                                                                <div class="col-lg-6">
-                                                                    <select class="default-select wide form-control" id="validationCustom05" name="no_of_device" required>
-                                                                        <option data-display="Select">Please select</option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                    </select>
-                                                                    <div class="invalid-feedback">
-                                                                        Please select a one.
-                                                                    </div>
-
-                                                                </div>
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Hour </label>
-                                                                <div class="col-lg-6">
-                                                                    <select class="default-select wide form-control" id="validationCustom05" name="no_of_hour" required>
-                                                                        <option data-display="Select">Please select</option>
-                                                                        <option value="1">1</option>
-                                                                        <option value="2">2</option>
-                                                                        <option value="3">3</option>
-                                                                        <option value="4">4</option>
-                                                                        <option value="5">5</option>
-                                                                        <option value="6">6</option>
-                                                                        <option value="7">7</option>
-                                                                        <option value="8">8</option>
-                                                                        <option value="9">9</option>
-                                                                        <option value="10">10</option>
-                                                                    </select>
-                                                                    <div class="invalid-feedback">
-                                                                        Please select a one.
-                                                                    </div>
-
-                                                                </div>
                                                             </div>
 
+                                                           
 
-
-
+                                                            <div class="mb-3 row">
+                                                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                                                    <span class="text-black">Amount Detail</span>
+                                                                    <span class="badge badge-primary badge-pill"></span>
+                                                                </h4>
+                                                                <ul class="list-group mb-3">
+                                                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                                        <div>
+                                                                            <h6 class="my-0"><span id=""></span>PER HOUR PRICE <span id="price_per_hour_span">0</span> X <span id="hours">0</span> Hours:</h6>
+                                                                        </div>
+                                                                        <span class="text-muted">&#8377; <span id="price">0</span></span>
+                                                                    </li>
+                                                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                                        <div>
+                                                                            <h6 class="my-0">IGST:</h6>
+                                                                        </div>
+                                                                        <span class="text-muted">&#8377; <span id="igst">0</span></span>
+                                                                    </li>
+                                                                    <li class="list-group-item d-flex justify-content-between">
+                                                                        <span>Total Amount</span>
+                                                                        <strong>&#8377; <span id="total-amount">0</span></strong>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
 
                                                             <div class="mb-3 row">
                                                                 <label class="col-lg-4 col-form-label"><a href="javascript:void(0);">Terms
@@ -271,8 +308,8 @@
                                                                         </label>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-
+                                                            </div> 
+                                                           
                                                         </div>
                                                         <div class="col-xl-12">
                                                             <div class="col-lg-12 ms-auto">
@@ -311,6 +348,7 @@
     <script src="{{asset('js/custom.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('js/deznav-init.js')}}" type="text/javascript"></script>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
         function previewImage(event) {
@@ -533,7 +571,109 @@
             }
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            // Function to update values
+            function updateValues() {
+                const devices = parseInt($('#no_of_device').val()) || 0;
+                const hours = parseInt($('#number_of_hours').val()) || 0;
 
+                $('#devices').text(devices);
+                $('#hours').text(hours);
+
+                if (devices > 0 && hours > 0) {
+                    $.ajax({
+                        url: '{{ route("calculateAmount") }}',
+                        type: 'GET',
+                        data: {
+                            numberOfDevices: devices,
+                            numberOfHours: hours
+                        },
+                        success: function(data) {
+                            console.log('Response:', data); // Log the response for debugging
+                            if (data.error) {
+                                console.error(data.error);
+                                $('#price').text('Error');
+                                $('#igst').text('Error');
+                                $('#total-amount').text('Error');
+                                $('#total-amount-input').val('Error');
+                                $('#igst-input').val('Error');
+                                $('#price_per_hour').val('Error');
+                                $('#subtotal').val('Error');
+                                $('#price_per_hour_span').text('Error');
+                            } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined' && typeof data.price !== 'undefined') {
+                                const price = parseFloat(data.amount).toFixed(2);
+                                const igst = parseFloat(data.igst).toFixed(2);
+                                const pricePerHour = parseFloat(data.price).toFixed(2);
+                                const total = (parseFloat(price) + parseFloat(igst)).toFixed(2);
+
+                                $('#price').text(price); // Display price
+                                $('#igst').text(igst); // Display IGST
+                                $('#total-amount').text(total); // Display total amount
+                                $('#total-amount-input').val(total);
+                                $('#igst-input').val(igst);
+                                $('#price_per_hour').val(pricePerHour);
+                                $('#subtotal').val(price);
+                                $('#price_per_hour_span').text(pricePerHour);
+                            } else {
+                                console.error('Amount or IGST is undefined in response');
+                                $('#price').text('Error');
+                                $('#igst').text('Error');
+                                $('#total-amount').text('Error');
+                                $('#total-amount-input').val('Error');
+                                $('#igst-input').val('Error');
+                                $('#price_per_hour').val('Error');
+                                $('#subtotal').val('Error');
+                                $('#price_per_hour_span').text('Error')
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('Error fetching price:', error);
+                            $('#price').text('Error');
+                            $('#igst').text('Error');
+                            $('#total-amount').text('Error');
+                            $('#total-amount-input').val('Error');
+                            $('#igst-input').val('Error');
+                            $('#price_per_hour').val('Error');
+                            $('#subtotal').val('Error');
+                            $('#price_per_hour_span').text('Error');
+                        }
+                    });
+                } else {
+                    $('#price').text('0');
+                    $('#igst').text('0');
+                    $('#total-amount').text('0');
+                    $('#total-amount-input').val('0');
+                    $('#igst-input').val('0');
+                    $('#price_per_hour').val('0');
+                    $('#subtotal').val('0');
+                    $('#price_per_hour_span').text('0');
+                }
+            }
+
+            // Attach event handler to input change
+            $('#number_of_hours, #no_of_device').change(updateValues);
+
+            // Call updateValues on page load
+            updateValues();
+
+            // Checkout button click handler
+            $('#checkout-button').click(function() {
+                // Retrieve form data
+                var amount = $('#total-amount-input').val();
+                var userId = $('#userId').val();
+                var mobile = $('#mobile').val();
+                var email = $('#email').val();
+                var no_of_device = $('#no_of_device').val();
+                var number_of_hours = $('#number_of_hours').val();
+                var name = $('#name').val();
+                var subtotal = $('#subtotal').val();
+                var igst = $('#igst-input').val();
+                var price_per_hour = $('#price_per_hour').val();
+
+            });
+        });
+    </script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/global/global.min.js" type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/deznav/deznav.min.js" type="text/javascript"></script>

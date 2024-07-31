@@ -116,4 +116,49 @@ class AdminController extends Controller
             return response()->json(['error' => 'Error fetching payment status'], 500);
         }
     }
+    
+    public function updateAdminDetails(Request $request)
+    {
+        try {
+            $request->validate([
+                "name"            => 'required',
+                "phone"           => 'required',
+                "gender"          => 'required',
+                "website"         => 'required',
+                "company_name"    => 'required',
+                "company_address" => 'required',
+            ]);
+
+
+            $user = $this->user->where('uuid', $request->uuid)->first();
+
+            if ($request->hasFile('image')) {
+                if ($user->image) {
+                    $existingImagePath = public_path($user->image);
+                    if (file_exists($existingImagePath)) {
+                        unlink($existingImagePath);
+                    }
+                }
+                $imagefile = $request->file('image');
+                $filename = time() . '_' . $imagefile->getClientOriginalName();
+                $imagePath = 'user_images/' . $filename;
+                $imagefile->move(public_path('user_images/'), $filename);
+
+                $user->update(['image' => $imagePath]);
+            }
+
+            $updateUser = $this->user->updateUserDetail($request->all());
+
+            if ($updateUser) {
+                return redirect()->back()->with("status", "success")->with("message", "User UpDated Succesfully");
+            } else {
+
+                return redirect()->back()->with('error', 'error while updating profile');
+            }
+        } catch (\Exception $th) {
+            Log::error("[UserController][updateUserDetails] error " . $th->getMessage());
+            // return redirect()->back()->with('error', $th->getMessage());
+            return redirect()->back()->with('error', 'error while updating profile');
+        }
+    }
 }

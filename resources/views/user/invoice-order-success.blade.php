@@ -20,7 +20,7 @@
     <meta property="og:image" content="../social-image.png">
     <meta name="format-detection" content="telephone=no">
 
-    <title>Laravel | Invoice </title>
+    <title> Invoice </title>
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
