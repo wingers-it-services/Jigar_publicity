@@ -697,18 +697,18 @@
         <div class="deznav">
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
+
+                <li>
+                        <a href="/industry-list" aria-expanded="false">
+                            <i class="fa fa-list" aria-hidden="true"></i>
+                            <span class="nav-text">Industry List</span>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="/user-advertisement" aria-expanded="false">
                             <i class="fa fa-ad" aria-hidden="true"></i>
                             <span class="nav-text">Advertisements</span>
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="/industry-list" aria-expanded="false">
-                            <i class="fa fa-list" aria-hidden="true"></i>
-                            <span class="nav-text">Industry List</span>
                         </a>
                     </li>
 

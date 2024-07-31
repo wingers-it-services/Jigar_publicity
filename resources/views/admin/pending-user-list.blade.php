@@ -362,6 +362,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     updateAccountStatus(userId, selectedStatus);
+                    location.reload();
                 } else {
                     // Reset the select value if the user cancels the update
                     selectElement.value = selectElement.getAttribute('data-current-status');
