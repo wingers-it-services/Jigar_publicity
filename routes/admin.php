@@ -112,10 +112,9 @@ Route::middleware('auth.admin')->group(function () {
 
     Route::get('/payment-details/{id}', [CheckoutController::class, 'getPaymentDetails']);
 
-    Route::post('/admin-payment',[CheckoutController::class,'store'])->name('payment.store');
+    Route::post('/admin-payment', [CheckoutController::class, 'store'])->name('payment.store');
 
-    Route::get('export-industries', [ExportController::class, 'export'])->name('export.industries');
+    Route::post('export-industries', [ExportController::class, 'export'])->name('export.industries');
 
     Route::post('/admin-profile-update', [AdminController::class, 'updateAdminDetails'])->name('updateAdminDetails');
-
 });
