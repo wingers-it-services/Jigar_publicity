@@ -132,9 +132,9 @@
                                         @foreach ($industries as $industry)
                                         <tr onclick="fetchIndustryDetailsByUuid('{{ $industry->uuid }}')">
                                             <td>{{ $industry->industry_name }}</td>
-                                            <td>{{ $industry->category->category_name ?? '' }}</td>
+                                            <td>{{ $industry->categories ? $industry->categories->category_name : 'Not Defined' }}</td>
                                             <td>{{ $industry->product ?? '' }}</td>
-                                            <td>{{ $industry->area->area_name ?? '' }}</td>
+                                            <td>{{ $industry->areas ? $industry->areas->area_name : 'Not Defined' }}</td>
                                             <td>
                                                 <div class="d-flex">
                                                     @if (!empty(trim($industry->advertisment_image)))
