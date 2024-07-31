@@ -40,10 +40,6 @@
                         <div class="profile-tab">
                             <div class="custom-tab-1">
                                 <ul class="nav nav-tabs">
-                                    {{-- <li class="nav-item"><a href="#my-posts" data-bs-toggle="tab" class="nav-link active show">Posts</a>
-                        </li>
-                        <li class="nav-item"><a href="#about-me" data-bs-toggle="tab" class="nav-link">About Me</a>
-                        </li> --}}
                                     <li class="nav-item"><a href="#profile-settings" data-bs-toggle="tab" class="nav-link active show">Setting</a>
                                     </li>
                                 </ul>
@@ -52,7 +48,7 @@
                                         <div class="pt-3">
                                             <div class="settings-form">
                                                 <h4 class="text-primary">Account Setting</h4>
-                                                <form method="post" action="{{route('updateAdminDetails')}}" enctype="multipart/form-data">
+                                                <form class="needs-validation" method="post" action="{{route('updateAdminDetails')}}" enctype="multipart/form-data" novalidate>
                                                     @csrf
                                                     <input type="text" name="uuid" value="{{$userDetail->uuid}}" hidden>
                                                     <div class="row">
@@ -68,40 +64,59 @@
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
                                                             <label>Name</label>
-                                                            <input type="text" placeholder="Enter full name" name="name" value="{{$userDetail->name}}" class="form-control">
+                                                            <input type="text" placeholder="Enter full name" name="name" value="{{$userDetail->name}}" class="form-control" required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter a name.
+                                                            </div>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Phone No.</label>
-                                                            <input type="text" placeholder="Phone no." name="phone" value="{{$userDetail->phone}}" class="form-control">
+                                                            <input type="text" placeholder="Phone no." id="contact_no" name="phone" value="{{$userDetail->phone}}" class="form-control" required>
+                                                            <div class="invalid-feedback contact-feedback">
+                                                                Please enter a valid phone number.
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
                                                             <label>Gender</label>
-                                                            <select name="gender" class="form-control">
+                                                            <select name="gender" class="form-control" required>
                                                                 <option value="male" {{ $userDetail->gender == 'male' ? 'selected' : '' }}>Male</option>
                                                                 <option value="female" {{ $userDetail->gender == 'female' ? 'selected' : '' }}>Female</option>
                                                                 <option value="other" {{ $userDetail->gender == 'other' ? 'selected' : '' }}>Other</option>
                                                             </select>
+                                                            <div class="invalid-feedback">
+                                                                Please select a gender.
+                                                            </div>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Website</label>
-                                                            <input type="text" placeholder="Website" name="website" value="{{$userDetail->website}}" class="form-control">
+                                                            <input type="text" placeholder="Website" id="web_link" name="website" value="{{$userDetail->website}}" class="form-control" required>
+                                                            <div class="invalid-feedback web-feedback">
+                                                                Please enter a valid website.
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="form-group col-md-6">
                                                             <label>Company Name</label>
-                                                            <input type="text" placeholder="Company Name" class="form-control" name="company_name" value="{{$userDetail->company_name}}">
+                                                            <input type="text" placeholder="Company Name" class="form-control" name="company_name" value="{{$userDetail->company_name}}" required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter a company name.
+                                                            </div>
                                                         </div>
                                                         <div class="form-group col-md-6">
                                                             <label>Company Address</label>
-                                                            <input type="text" placeholder="Company address" name="company_address" value="{{$userDetail->company_address}}" class="form-control">
+                                                            <input type="text" placeholder="Company address" name="company_address" value="{{$userDetail->company_address}}" class="form-control" required>
+                                                            <div class="invalid-feedback">
+                                                                Please enter a company address.
+                                                            </div>
                                                         </div>
                                                     </div>
 
                                                     <button class="btn btn-primary" type="submit">Update</button>
                                                 </form>
+
                                             </div>
                                         </div>
                                     </div>
@@ -135,6 +150,52 @@
     </div>
 </div>
 
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            var forms = document.getElementsByClassName('needs-validation');
+            Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const webLinkInput = document.getElementById('web_link');
+        const contactNumberInput = document.getElementById('contact_no');
+
+        const webLinkFeedback = document.querySelector('.web-feedback');
+        const contactFeedback = document.querySelector('.contact-feedback');
+
+        webLinkInput.addEventListener('input', function() {
+            const webLinkPattern = /^(http:\/\/|https:\/\/)?[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,6}(\/[a-zA-Z0-9#]+\/?)*$/;
+            if (webLinkPattern.test(webLinkInput.value)) {
+                webLinkFeedback.style.display = 'none';
+            } else {
+                webLinkFeedback.style.display = 'block';
+            }
+        });
+
+        contactNumberInput.addEventListener('input', function() {
+            const contactPattern = /^\d{10}$/;
+            if (contactPattern.test(contactNumberInput.value)) {
+                contactFeedback.style.display = 'none';
+            } else {
+                contactFeedback.style.display = 'block';
+            }
+        });
+    });
+</script>
 
 
 @endsection

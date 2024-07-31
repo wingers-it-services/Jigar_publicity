@@ -14,10 +14,10 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader1">
                         <h5 class="card-title">How can I add, update Industrial Categories?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody1" style="display: none;">
                         <p class="card-text">
                             Adding an Industrial Category:
                         <ol>
@@ -39,12 +39,12 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader2">
                         <h5 class="card-title">How can I add, update Industrial Areas?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody2" style="display: none;">
                         <p class="card-text">
-                        Adding an Industrial Areas:
+                            Adding an Industrial Areas:
                         <ol>
                             <li>1. Click on the "Add New Area" button at the upper right side of the table.</li>
                             <li>2. A pop-up input box will appear for adding the Area.</li>
@@ -64,10 +64,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader3">
                         <h5 class="card-title">How can I add Industries?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody3" style="display: none;">
                         <p class="card-text">
                             To add industries:
                         <ol>
@@ -85,10 +85,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader4">
                         <h5 class="card-title">How can I add User?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody4" style="display: none;">
                         <p class="card-text">
                             To Add Users:
                         <ol>
@@ -108,10 +108,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader5">
                         <h5 class="card-title">How can I minimize my navbar?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody5" style="display: none;">
                         <p class="card-text">
                             To minimize your navbar:
                         <ol>
@@ -125,10 +125,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader6">
                         <h5 class="card-title">How can I change the dark theme mode of the web page.</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody6" style="display: none;">
                         <p class="card-text">
                             To change the theme mode of the web page:
                         <ol>
@@ -143,10 +143,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader7">
                         <h5 class="card-title">How can I view the payment details of all users?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody7" style="display: none;">
                         <p class="card-text">
                             To view the payment details of all users:
                         <ol>
@@ -160,10 +160,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader8">
                         <h5 class="card-title">How can I add the Advertisments?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody8" style="display: none;">
                         <p class="card-text">
                             To add advertisements:
                         <ol>
@@ -180,10 +180,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader9">
                         <h5 class="card-title">How can I view all users login history?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody9" style="display: none;">
                         <p class="card-text">
                             To view login history of all users:
                         <ol>
@@ -197,10 +197,10 @@
 
             <div class="col-xl-12">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header" id="cardHeader10">
                         <h5 class="card-title">How can I view and update my profile?</h5>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" id="cardBody10" style="display: none;">
                         <p class="card-text">
                             To view and update your profile:
                         <ol>
@@ -220,6 +220,56 @@
     </div>
 </div>
 
+<script>
+    function toggleCardBody(cardBodyId) {
+        const cardBody = document.getElementById(cardBodyId);
+        if (cardBody.style.display === 'none' || cardBody.style.display === '') {
+            cardBody.style.display = 'block';
+        } else {
+            cardBody.style.display = 'none';
+        }
+    }
+
+    document.getElementById('cardHeader1').addEventListener('click', function() {
+        toggleCardBody('cardBody1');
+    });
+
+    document.getElementById('cardHeader2').addEventListener('click', function() {
+        toggleCardBody('cardBody2');
+    });
+
+    document.getElementById('cardHeader3').addEventListener('click', function() {
+        toggleCardBody('cardBody3');
+    });
+
+    document.getElementById('cardHeader4').addEventListener('click', function() {
+        toggleCardBody('cardBody4');
+    });
+
+    document.getElementById('cardHeader5').addEventListener('click', function() {
+        toggleCardBody('cardBody5');
+    });
+
+    document.getElementById('cardHeader6').addEventListener('click', function() {
+        toggleCardBody('cardBody6');
+    });
+
+    document.getElementById('cardHeader7').addEventListener('click', function() {
+        toggleCardBody('cardBody7');
+    });
+
+    document.getElementById('cardHeader8').addEventListener('click', function() {
+        toggleCardBody('cardBody7');
+    });
+
+    document.getElementById('cardHeader9').addEventListener('click', function() {
+        toggleCardBody('cardBody7');
+    });
+
+    document.getElementById('cardHeader10').addEventListener('click', function() {
+        toggleCardBody('cardBody7');
+    });
+</script>
 
 
 
