@@ -85,6 +85,9 @@ class IndustryContactExport implements FromCollection, WithHeadings, WithMapping
     private function getIndustryData($industry): array
     {
         return array_map(function ($field) use ($industry) {
+            if ($field === 'advertisment_image') {
+                return url($industry->advertisment_image);
+            }
             if ($field === 'area_id') {
                 return $industry->areas->area_name ?? '--';
             }
