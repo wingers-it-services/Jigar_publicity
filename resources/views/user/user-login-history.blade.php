@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('title','Dashboard')
+@section('title','Login History')
 @section('content')
 
 <!--************

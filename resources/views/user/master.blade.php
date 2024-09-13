@@ -698,7 +698,7 @@
             <div class="deznav-scroll">
                 <ul class="metismenu" id="menu">
 
-                <li>
+                    <li>
                         <a href="/industry-list" aria-expanded="false">
                             <i class="fa fa-list" aria-hidden="true"></i>
                             <span class="nav-text">Industry List</span>
@@ -832,28 +832,28 @@
     </script>
 
     <script>
-      $(document).ready(function() {
-    $.ajax({
-        url: '/fetch-profile', // Endpoint to fetch profile image
-        method: 'GET',
-        success: function(data) {
-            // Check if the image URL is provided and not empty
-            if (data.image && data.image.trim() !== '') {
-                $('#user-image').attr('src', data.image);
-            } else {
-                // Keep default image if URL is blank or invalid
-                $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching user profile:', error);
-            // Ensure default image is shown in case of error
-            $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
-        }
-    });
-});
-
+        $(document).ready(function() {
+            $.ajax({
+                url: '/fetch-profile', // Endpoint to fetch profile image
+                method: 'GET',
+                success: function(data) {
+                    // Check if the image URL is provided and not empty
+                    if (data.image && data.image.trim() !== '') {
+                        $('#user-image').attr('src', data.image);
+                    } else {
+                        // Keep default image if URL is blank or invalid
+                        $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching user profile:', error);
+                    // Ensure default image is shown in case of error
+                    $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
+                }
+            });
+        });
     </script>
+
     <script>
         function featuredmenus() {
 
@@ -925,6 +925,60 @@
             }, 1000);
         });
     </script>
+
+    {{-- SCRIPT TO CALCULATE TIME SPENT ON WEBSITE --}}
+    <script>
+        // Check if a session start time exists in sessionStorage; if not, set it when the user first loads the site
+        if (!sessionStorage.getItem('sessionStartTime')) {
+            sessionStorage.setItem('sessionStartTime', Date.now()); // Store the start time
+        }
+
+        // Function to calculate total session time in seconds
+        function getSessionTime() {
+            let startTime = sessionStorage.getItem('sessionStartTime');
+            let endTime = Date.now();
+            return Math.floor((endTime - startTime) / 1000); // Calculate time in seconds
+        }
+
+        // Function to clear session start time
+        function clearSessionStartTime() {
+            sessionStorage.removeItem('sessionStartTime');
+        }
+
+        // Event to detect when the user is navigating away from the entire site (not just an inner page)
+        window.addEventListener('beforeunload', function(event) {
+            // If the page is being completely unloaded (tab close or navigation away from site)
+
+            let sessionTime = getSessionTime(); // Calculate the session time
+            console.log("Total session time: " + sessionTime);
+
+            // Send session time to the server using the Beacon API
+            if (sessionTime > 5) {
+                $.ajax({
+                    url: '{{ route('storeSessionTime') }}', // The route name for storeSessionTime
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}', // CSRF token for security
+                        current_session_time: sessionTime,
+                        page_name: document.title,
+                    },
+                    success: function(response) {
+                        console.log('Session time stored successfully');
+                        // Handle the response as needed
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('An error occurred:', error);
+                        // Handle the error as needed
+                    }
+                });
+            } else console.log("current page time is less then 5 sec");
+
+            // Clear session storage after sending the data to reset the timer for the next visit
+            clearSessionStartTime();
+
+        });
+    </script>
+
 
 </body>
 

@@ -70,10 +70,11 @@ Route::middleware('auth.users')->group(function () {
 
     Route::post('/user-profile-update', [UserController::class, 'updateUserDetails'])->name('updateUserDetails');
 
+    Route::post('/store-session-time', [UserLoginHistoryController::class, 'storeSessionTime'])->name('storeSessionTime');
 });
 
 Route::get('/fetch-profile', [UserController::class, 'fetchUserProfile']);
-Route::get('/payment', [CheckoutController::class,'showPaymentPage'])->name('payment');
+Route::get('/payment', [CheckoutController::class, 'showPaymentPage'])->name('payment');
 Route::get('checkout', [CheckoutController::class, 'showCheckOutPage'])->name('checkout');
 Route::any('response', [CheckoutController::class, 'response'])->name('response');
 Route::get('/calculate-price', [CheckoutController::class, 'calculatePrice'])->name('calculateAmount');

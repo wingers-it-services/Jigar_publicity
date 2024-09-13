@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
+use PhpOffice\PhpSpreadsheet\Calculation\Logical\Boolean;
 
 class AuthController extends Controller
 {
@@ -45,66 +46,69 @@ class AuthController extends Controller
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
-    
+
             $credentials = $request->only('email', 'password');
             $user = $this->user->where('email', $request->email)->whereNot('is_admin', 1)->first();
-    
+
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
             }
-    
+
             if ($user->account_status !== AccountStatusEnum::APPROVED) {
                 return back()->with('status', 'error')->with('message', 'Your account is not approved.');
             }
-    
+
             if ($this->checkAllowUserTologin($user)) {
                 return back()->with('status', 'error')->with('message', 'You reached max allowed device limit.');
             }
-    
+            if ($this->isSubscriptionTimeExpired($user)) {
+                return back()->with('status', 'error')->with('message', 'Your subscription time is expired.');
+            }
+
             // Fetch site settings for payment gateway allowance
             $settings = SiteSetting::first(); // Adjust according to how you retrieve settings
             $isAllowed = $settings && $settings->payment_gateway_allow;
-    
+
             if (auth()->check()) {
                 if (auth()->user()->id == $user->id) {
                     $this->logUserLoginDetails($request);
-    
+
                     if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
                         return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
                     }
-    
+
                     $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
                     return redirect()->route($route)->with('user', $user);
                 } else {
-                    $message = auth()->user()->is_admin 
-                        ? 'This system is occupied by Admin. Please login with Admin credentials.' 
+                    $message = auth()->user()->is_admin
+                        ? 'This system is occupied by Admin. Please login with Admin credentials.'
                         : 'This system is occupied by user ' . auth()->user()->name . '. Please login with ' . auth()->user()->name;
                     return back()->with('status', 'error')->with('message', $message);
                 }
             }
-    
+
             // Attempt login if not authenticated
             if (Auth::attempt($credentials)) {
                 $user->active_device += 1;
                 $user->save();
                 $this->logUserLoginDetails($request);
-    
+
                 if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
                     return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
                 }
-    
+
                 $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
                 return redirect()->route($route)->with('user', $user);
             }
-    
+
             return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
         } catch (Exception $e) {
             Log::error('[AuthController][userLogin] Login error: ' . $e->getMessage());
             return back()->with('status', 'error')->with('message', 'An error occurred while trying to log in. Please try again later.');
         }
     }
-    
-    
+
+
 
     /**
      * The function logUserLoginDetails logs user login details including device type, IP address,
@@ -186,5 +190,11 @@ class AuthController extends Controller
         else
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
+    }
+
+    private function isSubscriptionTimeExpired(User $user): bool
+    {
+        $userSubscriptionTime = $user->no_of_hour * 60 * 60;  // seconds = hour * minutes * secs
+        return $user->total_time > $userSubscriptionTime;
     }
 }
