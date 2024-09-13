@@ -26,6 +26,7 @@ return new class extends Migration
             $table->integer('no_of_device');
             $table->integer('no_of_hour');
             $table->tinyInteger('account_status')->default(0);
+            $table->bigInteger('total_time')->default(0);
             $table->timestamps();
         });
     }
