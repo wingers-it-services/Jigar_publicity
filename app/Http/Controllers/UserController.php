@@ -188,7 +188,7 @@ class UserController extends Controller
             return back()->with('status', 'success')->with('message', 'User Registered Successfully');
         } catch (\Exception $e) {
             Log::error('[UserController][registerUser] Error adding user: ' . $e->getMessage());
-            return back()->with('status', 'error')->with('message', 'User Not Registered');
+            return back()->with('status', 'error')->with('message', 'User Not Registered'.$e->getMessage());
         }
     }
 
