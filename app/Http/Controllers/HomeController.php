@@ -17,8 +17,18 @@ class HomeController extends Controller
 
     public function viewHome()
     {
+        // Check if user is authenticated
+        if (auth()->check()) {
+            // Redirect based on user type using ternary operator
+            return auth()->user()->is_admin == 1
+                ? redirect()->route('admin-dashboard')
+                : redirect()->route('industry-list');
+        }
+    
+        // Fetch industry categories and pass them to the view if user is not authenticated
         $industryCategories = $this->industriesCategorie->get();
-        // dd($industryCategories);
+        
         return view('home', compact('industryCategories'));
     }
+    
 }

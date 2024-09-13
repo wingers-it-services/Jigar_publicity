@@ -25,7 +25,6 @@ Route::get('/view-user-register', [UserController::class, 'viewUserRegister'])->
 
 Route::post('/user-register', [UserController::class, 'registerUser'])->name('registerUser');
 
-
 Route::post('/user-login', [AuthController::class, 'userLogin'])->name('userLogin');
 
 Route::middleware('auth.users')->group(function () {

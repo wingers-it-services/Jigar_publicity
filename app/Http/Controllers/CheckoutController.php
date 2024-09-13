@@ -84,7 +84,8 @@ class CheckoutController extends Controller
                     $user->save();
                 }
 
-                return $invoiceView;
+                // return $invoiceView;
+                return redirect()->back()->with('status', 'success')->with('message', 'Payment Done now login.');
             } else if ($responseData['code'] == PaymentStatusCodeEnum::PAYMENT_ERROR) {
                 $invoiceView = view('emailTemplate.invoice-order-failed ', [
                     'order'               => $order,
