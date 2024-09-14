@@ -37,13 +37,18 @@ class UserLoginHistoryController extends Controller
             $user = auth()->user();
             $userAgent = $request->header('User-Agent');
             $loginHistory = $this->userLoginHistory
-                ->where('user_agent', $userAgent)
+                ->where('user_id', $user->id)
                 ->orderBy('created_at', 'desc')
                 ->get();
 
-            if (!$loginHistory->isEmpty()) {
-                $currentLogin = $loginHistory->first();
-                $currentLogin->increment('current_session_time', $request->input('current_session_time'));
+            // Filter by user agent using `filter()`
+            $currentAgentHistory = $loginHistory->filter(function ($item) use ($userAgent) {
+                return $item->user_agent === $userAgent;
+            });
+
+            if (!$currentAgentHistory->isEmpty()) {
+                $currentAgentHistory = $loginHistory->first();
+                $currentAgentHistory->increment('current_session_time', $request->input('current_session_time'));
 
                 $totalTime = $this->calculateTotalTime($loginHistory);
                 $this->user->where('id',   $user->id)->update(['total_time' => $totalTime]);
