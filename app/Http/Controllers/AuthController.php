@@ -89,15 +89,15 @@ class AuthController extends Controller
 
             // Attempt login if not authenticated
             if (Auth::attempt($credentials)) {
-                $user->active_device += 1;
-                $user->save();
                 $this->logUserLoginDetails($request);
-
                 if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
                     return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
                 }
 
                 $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
+                $user->active_device += 1;
+                $user->save();
+
                 return redirect()->route($route)->with('user', $user);
             }
 
