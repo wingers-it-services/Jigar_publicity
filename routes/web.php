@@ -69,8 +69,6 @@ Route::middleware('auth.users')->group(function () {
     Route::post('/admin-login', [AdminController::class, 'adminLogin'])->name('user-login');
 
     Route::post('/user-profile-update', [UserController::class, 'updateUserDetails'])->name('updateUserDetails');
-
-    Route::post('/store-session-time', [UserLoginHistoryController::class, 'storeSessionTime'])->name('storeSessionTime');
 });
 
 Route::get('/fetch-profile', [UserController::class, 'fetchUserProfile']);

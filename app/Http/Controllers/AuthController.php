@@ -61,9 +61,6 @@ class AuthController extends Controller
             if ($this->checkAllowUserTologin($user)) {
                 return back()->with('status', 'error')->with('message', 'You reached max allowed device limit.');
             }
-            if ($this->isSubscriptionTimeExpired($user)) {
-                return back()->with('status', 'error')->with('message', 'Your subscription time is expired.');
-            }
 
             // Fetch site settings for payment gateway allowance
             $settings = SiteSetting::first(); // Adjust according to how you retrieve settings
@@ -190,11 +187,5 @@ class AuthController extends Controller
         else
             $ipaddress = 'UNKNOWN';
         return $ipaddress;
-    }
-
-    private function isSubscriptionTimeExpired(User $user): bool
-    {
-        $userSubscriptionTime = $user->no_of_hour * 60 * 60;  // seconds = hour * minutes * secs
-        return $user->total_time > $userSubscriptionTime;
     }
 }
