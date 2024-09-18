@@ -29,14 +29,14 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         $exceptions
-            ->report(function (ErrorException $e) {
+            ->report(function (Exception $e) {
                 Log::error('[app.php][withExceptions] message  : ' . $e->getMessage() . '\n\n' . $e);
 
                 return redirect('/')->send();
             })
             ->stop();
 
-        $exceptions->report(function (ErrorException $e) {
+        $exceptions->report(function (Exception $e) {
             return false;
         });
     })
