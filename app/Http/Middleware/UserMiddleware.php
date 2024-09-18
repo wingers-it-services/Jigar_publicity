@@ -46,15 +46,15 @@ class UserMiddleware
             // Check if the 'session_time' cookie exists
             if (!$request->cookie('session_time')) {
                 $cookie = cookie('session_time', now(), 5);
+
+                // Reduce remaining_time by the specified number of seconds
+                $user->remaining_time -= 300;
+
+                // Save the updated value to the database
+                $user->save();
                 // Create the cookie and return the response
                 return $next($request)->withCookie($cookie);
             }
-
-            // Reduce remaining_time by the specified number of seconds
-            $user->remaining_time -= 300;
-
-            // Save the updated value to the database
-            $user->save();
         }
 
         return $next($request); // Proceed if no user is logged in or cookie already exists
