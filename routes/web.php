@@ -27,6 +27,10 @@ Route::post('/user-register', [UserController::class, 'registerUser'])->name('re
 
 Route::post('/user-login', [AuthController::class, 'userLogin'])->name('userLogin');
 
+Route::fallback(function () {
+    return view('admin.page-error-404');
+});
+
 Route::middleware('auth.users')->group(function () {
     Route::get('/industry-list', [UserController::class, 'industryList'])->name('industry-list');
 

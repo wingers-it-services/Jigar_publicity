@@ -20,6 +20,11 @@ Route::get('/login', function () {
 })->name('admin-login');
 
 Route::post('/login', [AdminController::class, 'adminLogin']);
+
+Route::fallback(function () {
+    return view('admin.page-error-404');
+});
+
 // Route::get('/admin-enquiry', function () {
 //     return view('admin.admin-enquiry');
 // });
@@ -30,10 +35,6 @@ Route::post('/login', [AdminController::class, 'adminLogin']);
 Route::middleware('auth.admin')->group(function () {
     Route::get('/admin-faq', function () {
         return view('admin.admin-faq');
-    });
-
-    Route::fallback(function () {
-        return view('admin.page-error-404');
     });
 
 
