@@ -38,7 +38,7 @@
                             found!</h4>
                         <p>You may have mistyped the address or the page may have moved.</p>
                         <div>
-                            <a class="btn btn-primary" href="https://fito.dexignzone.com/laravel/demo/index">Back to
+                            <a class="btn btn-primary" href="{{ route('login') }}">Back to
                                 Home</a>
                         </div>
                     </div>
@@ -46,19 +46,6 @@
             </div>
         </div>
     </div>
-    <!--**********************************
-    Scripts
-***********************************-->
-    <!-- Required vendors -->
-
-    <script src="https://fito.dexignzone.com/laravel/demo/vendor/global/global.min.js" type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
-        type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script>
-
-
-
 </body>
 
 </html>
