@@ -24,14 +24,14 @@
 	<!-- FAVICONS ICON -->
 	<link rel="icon" href="welcome/images/favicon.ico" type="image/x-icon" />
 	<link rel="shortcut icon" type="image/x-icon" href="welcome/images/favicon.png" />
-	
-	
-	
+
+
+
 	<!--[if lt IE 9]>
 	<script src="js/html5shiv.min.js"></script>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-	
+
 	<!-- STYLESHEETS -->
 	<link rel="stylesheet" type="text/css" href="welcome/css/plugins.min.css">
 	<link rel="stylesheet" type="text/css" href="welcome/plugins/fontawesome/css/font-awesome.min.css">
@@ -70,7 +70,7 @@
 					</div> -->
 					<div class="wl-bynw">
 						<a href="/view-user-register" target="blank" class="site-button shadow radius-xl">Register</a>
-					
+
 						<a href="/view-user-login" target="blank" class="site-button shadow radius-xl">Login</a>
 					</div>
 				</div>
@@ -85,7 +85,7 @@
 							<!-- <h2>Ready to Use Awesome</h2> -->
 							<!-- <div class="bg-primary dlab-separator"></div> -->
 							<p>Magazine (74 Pages)  published on every month from Ankleshwar.  This magazine mainly circulated in Chemical Industries Estate Ankleashwar, Panoli, Jhagadia, Dahej, Vilayat, Nandesari, Padra, Savli, Lamdapura, Makarpura, Vadodara, Vatva, Odhav, Narol, Naroda, Sanannd, Chhatral, Ahmedabad, Sachin, Vapi, Sarigam, Mumbai etc.</p>
-						</div>	
+						</div>
 						<ul class="list-check primary">
 							<li style="font-size: 13px;">Various Industries Activity</li>
 							<li style="font-size: 13px;">Analysis On Latest Industries Issue.</li>
@@ -126,7 +126,7 @@
 									</a>
 								</div>
 							</div>
-							
+
 							<div class="item">
 								<div class="layout-type phone">
 									<a href="" target="_bank">
@@ -147,7 +147,7 @@
 									</a>
 								</div>
 							</div>
-							
+
 							<div class="item">
 								<div class="layout-type phone">
 									<a href="" target="_bank">
@@ -212,7 +212,7 @@
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 409.6 409.6">
 											<path d="M0,0l34.135,375.465L204.8,409.6l170.665-34.135L409.6,0H0z M343.788,346.998L204.8,374.784L65.812,346.998L37.361,34.135
 												h334.848L343.788,346.998z" fill="#fff"></path>
-											<polygon points="334.833,68.265 74.752,68.265 88.714,221.865 286.602,221.865 280.402,290.063 204.8,305.167 129.183,290.063 
+											<polygon points="334.833,68.265 74.752,68.265 88.714,221.865 286.602,221.865 280.402,290.063 204.8,305.167 129.183,290.063
 												126.085,256 91.817,256 97.5,318.536 204.8,339.963 312.1,318.536 323.983,187.735 119.885,187.735 112.133,102.4 331.735,102.4" fill="#fff"></polygon>
 										</svg>
 										HTML</a>
@@ -254,16 +254,16 @@
 									</li>
 									<li><a target="_blank" class="tech-laravel" href="laravel/demo/index.html">
 										<svg fill="#fff" viewBox="0 0 512 512" xmlns="../www.w3.org/2000/svg.html">	<path d="M505.57,234.62c-3.28-3.53-26.82-32.29-39.51-47.79-6.75-8.24-12.08-14.75-14.32-17.45l-.18-.22-.2-.21c-5.22-5.83-12.64-12.51-23.78-12.51a39.78,39.78,0,0,0-5.41.44c-.37.05-.75.11-1.15.15-2.45.27-10.06,1.5-28.14,4.48-14,2.29-35.11,5.77-38.31,6.07l-.71.06-.69.13c-10,1.78-16.62,6.22-19.56,13.19-1.55,3.68-3.22,11.15,2.94,19.86,1.53,2.22,6.83,9.56,15.94,22.17,6.06,8.4,12.87,17.82,18.75,26L259.9,275,150.66,96.05l-.2-.34-.23-.33-.44-.65C145.32,88.17,139.76,80,123.7,80h0c-1.13,0-2.31,0-3.63.11-4.6.25-21.42,1.57-40.89,3.11-21.49,1.69-50.9,4-54.72,4.1h-.73l-.79.08c-9.14.89-15.77,4.6-19.7,11-6.55,10.69-1.42,22.69.26,26.63C6.87,133,37.56,197.7,64.63,254.81c18,37.94,36.58,77.17,38.1,80.65a34.85,34.85,0,0,0,32.94,21.59,46.62,46.62,0,0,0,9.86-1.1l.21,0,.2-.05c13.86-3.38,57.83-14.54,89.2-22.59,1.9,3.32,3.9,6.83,6,10.44,21.93,38.5,37.9,66.35,43.16,73.46C287,421,295,432,310.06,432c5.46,0,10.46-1.4,15.74-2.89l1.53-.43.06,0h.06c10.53-3,150.69-52.16,157.87-55.35l.22-.1c5.44-2.41,13.66-6.05,16.18-15.4,1.65-6.12.18-12.33-4.38-18.46l-.07-.09-.07-.09c-.85-1.1-4-5.21-8.27-10.9-9.13-12.07-23.88-31.57-36.84-48.54,17.37-4.5,38.8-10.11,43.38-11.55,11.47-3.43,14.94-10.69,16-14.73C512.26,250.32,513.29,242.27,505.57,234.62Zm-320,58.19c-17.81,4.17-30.22,7.08-37.89,8.9-6.67-13.34-19.74-39.65-32.5-65.33C85.44,176.46,70.08,145.61,62,129.48l8.15-.7c13.34-1.15,31.61-2.72,41.78-3.57,16.76,28.26,74.32,125.3,96.3,162.3ZM427.58,172h0ZM310.06,416.4h0Zm53.67-56.95c-24.21,8-37.33,12.37-44.42,14.74-6.3-10.34-20.16-33.52-32.47-54.19l115.7-29.48c5,6.81,14.57,19.72,33.46,44.93C417.93,341.49,387.8,351.47,363.73,359.45ZM419.6,237.82l-23.76-31.53c13.67-2.39,21.54-3.77,26.15-4.6l12,14.88,11.94,14.82C437.73,233.38,428.19,235.71,419.6,237.82Z"></path></svg>
-									Laravel</a></li>	
-									
-									
+									Laravel</a></li>
+
+
 									<li><a class="tech-angular disabled" href="javascript:void(0);">
 										<?xml version="1.0" encoding="iso-8859-1"?>
 										<svg  viewBox="0 0 512 512" xmlns="../www.w3.org/2000/svg.html">
 											<path d="M46.5672 185.987L32.4422 63.5375L125 30.5308L217.558 63.5375L203.433 185.987L125 229.428L46.5672 185.987Z" stroke="black"/>
 											<path d="M100.2 152.9H99.8617L99.7359 153.214L88.1617 182.1H67.5704L124.999 53.3293L182.231 182.1H161.638L150.064 153.214L149.938 152.9H149.6H100.2ZM142 135.9H142.749L142.462 135.208L125.462 94.3081L125 93.1973L124.538 94.3081L107.538 135.208L107.251 135.9H108H142Z" fill="white" stroke="black"/>
 											</svg>
-											
+
 										Angular</a></li>
 									<li><a  class="tech-dj disabled" href="javascript:void(0);">
 									<svg  viewBox="0 0 512 512" xmlns="../www.w3.org/2000/svg.html"><g fill="#fff"><path d="M114.784 0h53.278v244.191c-27.29 5.162-47.38 7.193-69.117 7.193C33.873 251.316 0 222.245 0 166.412c0-53.795 35.93-88.708 91.608-88.708 8.64 0 15.222.68 23.176 2.717V0zm1.867 124.427c-6.24-2.038-11.382-2.717-17.965-2.717-26.947 0-42.512 16.437-42.512 45.243 0 28.046 14.88 43.532 42.17 43.532 5.896 0 10.696-.332 18.307-1.351v-84.707z"/><path d="M255.187 84.26v122.263c0 42.105-3.154 62.353-12.411 79.81-8.64 16.783-20.022 27.366-43.541 39.055l-49.438-23.297c23.519-10.93 34.901-20.588 42.17-35.327 7.61-15.072 10.01-32.529 10.01-78.445V84.261h53.21zM196.608 0h53.278v54.135h-53.278V0z"/></g></svg>
@@ -289,7 +289,7 @@
 										  <path d="M24.306 4.019h-4.806l-3.5 5.537-3-5.537h-11l14 23.981 14-23.981zM5.481 6.019h3.363l7.156 12.387 7.15-12.387h3.363l-10.512 18.012z"></path>
 										</svg>
 									Vue Js</a></li>
-									
+
 								</ul>
 							</div>
 							<div class="demo-area">
@@ -310,12 +310,12 @@
 										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 409.6 409.6">
 											<path d="M0,0l34.135,375.465L204.8,409.6l170.665-34.135L409.6,0H0z M343.788,346.998L204.8,374.784L65.812,346.998L37.361,34.135
 												h334.848L343.788,346.998z" fill="#fff"></path>
-											<polygon points="334.833,68.265 74.752,68.265 88.714,221.865 286.602,221.865 280.402,290.063 204.8,305.167 129.183,290.063 
+											<polygon points="334.833,68.265 74.752,68.265 88.714,221.865 286.602,221.865 280.402,290.063 204.8,305.167 129.183,290.063
 												126.085,256 91.817,256 97.5,318.536 204.8,339.963 312.1,318.536 323.983,187.735 119.885,187.735 112.133,102.4 331.735,102.4" fill="#fff"></polygon>
 										</svg>
 										HTML</a>
 									</li>
-									
+
 									<li><a target="_blank" class="tech-laravel" href="laravel/demo/index-2.html">
 										<svg fill="#fff" viewBox="0 0 512 512" xmlns="../www.w3.org/2000/svg.html">	<path d="M505.57,234.62c-3.28-3.53-26.82-32.29-39.51-47.79-6.75-8.24-12.08-14.75-14.32-17.45l-.18-.22-.2-.21c-5.22-5.83-12.64-12.51-23.78-12.51a39.78,39.78,0,0,0-5.41.44c-.37.05-.75.11-1.15.15-2.45.27-10.06,1.5-28.14,4.48-14,2.29-35.11,5.77-38.31,6.07l-.71.06-.69.13c-10,1.78-16.62,6.22-19.56,13.19-1.55,3.68-3.22,11.15,2.94,19.86,1.53,2.22,6.83,9.56,15.94,22.17,6.06,8.4,12.87,17.82,18.75,26L259.9,275,150.66,96.05l-.2-.34-.23-.33-.44-.65C145.32,88.17,139.76,80,123.7,80h0c-1.13,0-2.31,0-3.63.11-4.6.25-21.42,1.57-40.89,3.11-21.49,1.69-50.9,4-54.72,4.1h-.73l-.79.08c-9.14.89-15.77,4.6-19.7,11-6.55,10.69-1.42,22.69.26,26.63C6.87,133,37.56,197.7,64.63,254.81c18,37.94,36.58,77.17,38.1,80.65a34.85,34.85,0,0,0,32.94,21.59,46.62,46.62,0,0,0,9.86-1.1l.21,0,.2-.05c13.86-3.38,57.83-14.54,89.2-22.59,1.9,3.32,3.9,6.83,6,10.44,21.93,38.5,37.9,66.35,43.16,73.46C287,421,295,432,310.06,432c5.46,0,10.46-1.4,15.74-2.89l1.53-.43.06,0h.06c10.53-3,150.69-52.16,157.87-55.35l.22-.1c5.44-2.41,13.66-6.05,16.18-15.4,1.65-6.12.18-12.33-4.38-18.46l-.07-.09-.07-.09c-.85-1.1-4-5.21-8.27-10.9-9.13-12.07-23.88-31.57-36.84-48.54,17.37-4.5,38.8-10.11,43.38-11.55,11.47-3.43,14.94-10.69,16-14.73C512.26,250.32,513.29,242.27,505.57,234.62Zm-320,58.19c-17.81,4.17-30.22,7.08-37.89,8.9-6.67-13.34-19.74-39.65-32.5-65.33C85.44,176.46,70.08,145.61,62,129.48l8.15-.7c13.34-1.15,31.61-2.72,41.78-3.57,16.76,28.26,74.32,125.3,96.3,162.3ZM427.58,172h0ZM310.06,416.4h0Zm53.67-56.95c-24.21,8-37.33,12.37-44.42,14.74-6.3-10.34-20.16-33.52-32.47-54.19l115.7-29.48c5,6.81,14.57,19.72,33.46,44.93C417.93,341.49,387.8,351.47,363.73,359.45ZM419.6,237.82l-23.76-31.53c13.67-2.39,21.54-3.77,26.15-4.6l12,14.88,11.94,14.82C437.73,233.38,428.19,235.71,419.6,237.82Z"></path></svg>
 									Laravel</a></li>
@@ -353,16 +353,16 @@
 											<circle cx="24.372" cy="24.606" r="3.882" fill="#fff"></circle>
 										</svg>
 										React</a>
-									</li>									
-									
-									
+									</li>
+
+
 									<li><a class="tech-angular disabled" href="javascript:void(0);">
 										<?xml version="1.0" encoding="iso-8859-1"?>
 										<svg  viewBox="0 0 512 512" xmlns="../www.w3.org/2000/svg.html">
 											<path d="M46.5672 185.987L32.4422 63.5375L125 30.5308L217.558 63.5375L203.433 185.987L125 229.428L46.5672 185.987Z" stroke="black"/>
 											<path d="M100.2 152.9H99.8617L99.7359 153.214L88.1617 182.1H67.5704L124.999 53.3293L182.231 182.1H161.638L150.064 153.214L149.938 152.9H149.6H100.2ZM142 135.9H142.749L142.462 135.208L125.462 94.3081L125 93.1973L124.538 94.3081L107.538 135.208L107.251 135.9H108H142Z" fill="white" stroke="black"/>
 											</svg>
-											
+
 										Angular</a></li>
 									<li><a  class="tech-dj disabled" href="javascript:void(0);">
 									<svg  viewBox="0 0 512 512" xmlns="../www.w3.org/2000/svg.html"><g fill="#fff"><path d="M114.784 0h53.278v244.191c-27.29 5.162-47.38 7.193-69.117 7.193C33.873 251.316 0 222.245 0 166.412c0-53.795 35.93-88.708 91.608-88.708 8.64 0 15.222.68 23.176 2.717V0zm1.867 124.427c-6.24-2.038-11.382-2.717-17.965-2.717-26.947 0-42.512 16.437-42.512 45.243 0 28.046 14.88 43.532 42.17 43.532 5.896 0 10.696-.332 18.307-1.351v-84.707z"/><path d="M255.187 84.26v122.263c0 42.105-3.154 62.353-12.411 79.81-8.64 16.783-20.022 27.366-43.541 39.055l-49.438-23.297c23.519-10.93 34.901-20.588 42.17-35.327 7.61-15.072 10.01-32.529 10.01-78.445V84.261h53.21zM196.608 0h53.278v54.135h-53.278V0z"/></g></svg>
@@ -388,7 +388,7 @@
 										  <path d="M24.306 4.019h-4.806l-3.5 5.537-3-5.537h-11l14 23.981 14-23.981zM5.481 6.019h3.363l7.156 12.387 7.15-12.387h3.363l-10.512 18.012z"></path>
 										</svg>
 									Vue Js</a></li>
-									
+
 								</ul>
 							</div>
 							<div class="demo-area new">
@@ -585,7 +585,7 @@
 				<div class="bg-primary dlab-separator"></div>
 			</div>
 			<img src="welcome/images/rv.png" alt=""/>
-			<div class="container-fluid">	
+			<div class="container-fluid">
 				<div class="text-right">
 					<a href="#SupportSection" class="need-any-help"><img src="welcome/images/support.png" alt=""/>Need Any Help Link</a>
 				</div>
@@ -846,7 +846,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">vgnocchi</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -873,7 +873,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">ary-themes</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -900,7 +900,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">wilson765</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -925,7 +925,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">martincamellia</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -950,7 +950,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">brokerc3</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -975,7 +975,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">2goodtech</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -1001,7 +1001,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">g4ever81</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div>
@@ -1026,7 +1026,7 @@
 							</div>
 							<div class="name-box">
 								<strong class="testimonial-name">diegommagno</strong>
-								<span class="testimonial-position">Customer</span> 
+								<span class="testimonial-position">Customer</span>
 							</div>
 						</div>
 					</div> -->
@@ -1045,7 +1045,7 @@
 							<h6>Working Php Forms</h6>
 							<div class="bg-primary dlab-separator"></div>
 							<p>Don't go by our Words, checkout awesome demos and verify yourself. Save 1000s of hours of designing and coding work as we already did that for you.</p>
-						</div>	
+						</div>
 						<ul class="list-check primary">
 							<li>Ready to Use Your MailBox</li>
 							<li>Calender Pagers is Ready to Use</li>
@@ -1078,7 +1078,7 @@
 									</a>
 								</div>
 							</div>
-							
+
 							<div class="item">
 								<div class="layout-type phone">
 									<a href="xhtml/app-calender.html" target="_bank">
@@ -1099,7 +1099,7 @@
 									</a>
 								</div>
 							</div>
-							
+
 							<div class="item">
 								<div class="layout-type phone">
 									<a href="xhtml/chart-chartjs.html" target="_bank">
@@ -1183,7 +1183,7 @@
 						</div>
 					</div>
 				</div>
-			</div>	
+			</div>
 		</div> -->
 		<!-- <div class="section-full theme-footer text-white" style="background-image:url(welcome/images/footer-bg.png); background-position:top;">
 			<div class="container-fluid text-center">
@@ -1198,7 +1198,7 @@
 								<input name="dzEmail" required="required"  class="form-control" placeholder="" type="email"/>
 								<span class="input-group-btn">
 									<button name="submit" value="Submit" type="submit" class="site-button radius-xl">Subscribe</button>
-								</span> 
+								</span>
 							</div>
 						</form>
 					</div>
@@ -1209,7 +1209,7 @@
 				</div>
 			</div>
 		</div> -->
-		
+
         <div class="section-full content-inner-1">
 			<div class="container-fluid">
 				<div class="section-head title-box text-center" data-name="ADVERTISEMENT">
@@ -1412,7 +1412,7 @@
 						<div class="money-back">
 							<img src="welcome/images/30day.png" alt=""/>
 						</div>
-					</div> 
+					</div>
 				</div> -->
 
 				<div class="row align-items-center">
@@ -1467,6 +1467,7 @@
     <button class="scroltop fa fa-chevron-up" ></button>
 </div>
 <!-- JAVASCRIPT FILES ========================================= -->
+@include('CustomSweetAlert');
 <script src="welcome/js/combining.js"></script><!-- JQUERY.MIN JS -->
 <script src="welcome/js/dz.ajax.js"></script><!-- CONTACT JS  -->
 <script>
@@ -1492,11 +1493,11 @@ jQuery('.inner-carousel').owlCarousel({
 			margin:20,
 			center: true
 		},
-		
+
 		700:{
 			items:2
-		},			
-		
+		},
+
 		991:{
 			items:3
 		},
@@ -1523,11 +1524,11 @@ jQuery('.testimonial-two-dots').owlCarousel({
 		0:{
 			items:1
 		},
-		
+
 		700:{
 			items:2
-		},			
-		
+		},
+
 		991:{
 			items:2
 		},
@@ -1557,8 +1558,8 @@ jQuery('.showcase-carousel').owlCarousel({
 		},
 		480:{
 			items:1
-		},			
-		
+		},
+
 		991:{
 			items:2
 		},
@@ -1586,8 +1587,8 @@ jQuery('.awards-carousel').owlCarousel({
 		},
 		480:{
 			items:4
-		},			
-		
+		},
+
 		991:{
 			items:5
 		},
@@ -1615,8 +1616,8 @@ jQuery('.inner-frame').owlCarousel({
 		},
 		480:{
 			items:2
-		},			
-		
+		},
+
 		991:{
 			items:2
 		},
@@ -1644,8 +1645,8 @@ jQuery('.responsive-carousel').owlCarousel({
 		},
 		480:{
 			items:2
-		},			
-		
+		},
+
 		991:{
 			items:2
 		},
