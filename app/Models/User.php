@@ -28,6 +28,7 @@ class User extends Authenticatable
         'company_address',
         'no_of_device',
         'no_of_hour',
+        'remaining_time',
         'payment_status',
         'account_status'
     ];
@@ -68,6 +69,7 @@ class User extends Authenticatable
                 'company_address' => $validatedData['company_address'],
                 'no_of_device'    => $validatedData['no_of_device'],
                 'no_of_hour'      => $validatedData['no_of_hour'],
+                'remaining_time'  => ($validatedData['no_of_hour'] ?? 0) * 3600,
                 'image'           => $imagePath,
                 'payment_status'  => $validatedData['payment_status'] ?? PaymentStatus::PENDING,
                 'account_status'  => $validatedData['account_status'] ?? AccountStatusEnum::PENDING,

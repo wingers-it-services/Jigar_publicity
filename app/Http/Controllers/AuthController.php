@@ -43,7 +43,7 @@ class AuthController extends Controller
     {
         try {
             $request->validate([
-                'email' => 'required|email',
+                'email'    => 'required|email',
                 'password' => 'required',
             ]);
 
@@ -91,9 +91,13 @@ class AuthController extends Controller
                     return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
                 }
 
-                $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
-                $user->active_device += 1;
-                $user->save();
+                if ($user->payment_status === PaymentStatus::PAID) {
+                    $user->active_device += 1;
+                    $user->save();
+                    $route = 'industry-list';
+                } else {
+                    $route = 'payment';
+                }
 
                 return redirect()->route($route)->with('user', $user);
             }
@@ -116,21 +120,21 @@ class AuthController extends Controller
      */
     private function logUserLoginDetails(Request $request)
     {
-        $deviceType = $this->lockedUserDeviceDetails();
-        $ipaddress = $this->getUserIp();
+        $deviceType  = $this->lockedUserDeviceDetails();
+        $ipaddress   = $this->getUserIp();
         $userBrowser = $request->header('User-Agent');
-        $geo = $json = file_get_contents("http://ipinfo.io/150.129.113.19/geo");
-        $json = json_decode($json, true);
+        $geo         = $json = file_get_contents("http://ipinfo.io/150.129.113.19/geo");
+        $json        = json_decode($json, true);
 
         $this->userLoginHistory->create([
-            'user_id' => auth()->user()->id,
+            'user_id'     => auth()->user()->id,
             'device_type' => $deviceType,
-            'ip_address' => $ipaddress,
-            'user_agent' => $userBrowser,
-            'json'     =>  $geo,
-            'country'  => $json['country'],
-            'region'   => $json['region'],
-            'city'     => $json['city'],
+            'ip_address'  => $ipaddress,
+            'user_agent'  => $userBrowser,
+            'json'        => $geo,
+            'country'     => $json['country'],
+            'region'      => $json['region'],
+            'city'        => $json['city']
         ]);
     }
 
