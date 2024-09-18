@@ -2,11 +2,14 @@
 
 namespace App\Http\Middleware;
 
+use App\Enums\PaymentStatus;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
+
+use function PHPUnit\Framework\returnValue;
 
 class UserMiddleware
 {
@@ -22,7 +25,11 @@ class UserMiddleware
             // Call the function to check and create the session_time cookie if needed
             $response = $this->checkAndCreateCookie($request, $next);
 
-            return $response;
+            if ($this->isPaymentDone()) {
+                return $response;
+            }
+
+            return redirect()->route('login')->with('status', 'error')->with('message', 'Please complete the payment process before going ahead.');
         }
 
         return redirect('/')->with('status', 'error')->with('message', 'Not a valid user');
@@ -58,5 +65,10 @@ class UserMiddleware
         }
 
         return $next($request); // Proceed if no user is logged in or cookie already exists
+    }
+
+    private function isPaymentDone(): bool
+    {
+        return Auth::user()->payment_status === PaymentStatus::PAID;
     }
 }
