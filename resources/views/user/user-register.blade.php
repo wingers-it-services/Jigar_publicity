@@ -11,7 +11,8 @@
     <meta name="csrf-token" content="ZY4pR8wIEdrTLWxVivLo4lvqoE0UPbxm6RtBU20w">
     <meta name="author" content="DexignZone">
     <meta name="robots" content="">
-    <meta name="keywords" content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
+    <meta name="keywords"
+        content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
     <meta name="description" content="Some description for the page">
 
     <meta property="og:title" content="Fito - A Comprehensive Fitness Solution for a Healthier Lifestyle | DexignZone">
@@ -24,9 +25,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}">
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
-    <link href="{{ asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet"
+        type="text/css" />
     <style>
         .existing-image,
         #imagePreview img {
@@ -54,18 +56,22 @@
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <div class="mailclinet" id="mailclinet">
-                                                    <img id="selected_image" src="{{asset('images/logo.png')}}" class="img-fluid">
+                                                    <img id="selected_image" src="{{ asset('images/logo.png') }}"
+                                                        class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" role="progressbar">
+                                        <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="0"
+                                            aria-valuemin="0" aria-valuemax="100" role="progressbar">
                                         </div>
                                     </div>
 
-                                    <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">User account</h4>
-                                    <form class="needs-validation" action="{{route('registerUser')}}" method="POST" enctype="multipart/form-data" novalidate>
+                                    <h4 class="text-center mb-4"
+                                        style=" margin: revert; -webkit-text-stroke-width: thin; ">User account</h4>
+                                    <form class="needs-validation" action="{{ route('registerUser') }}" method="POST"
+                                        enctype="multipart/form-data" novalidate>
                                         @csrf
 
                                         <div class="card">
@@ -77,51 +83,64 @@
                                                     <div class="row">
                                                         <div class="col-xl-9">
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom01">Profile
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom01">Profile
                                                                     Image
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-8">
-                                                                    <input type="file" class="form-control" id="validationCustom01" placeholder="Enter a username.." accept="image/*" name="image" onchange="previewImage(event)" required>
+                                                                    <input type="file" class="form-control"
+                                                                        id="validationCustom01"
+                                                                        placeholder="Enter a username.."
+                                                                        accept="image/*" name="image"
+                                                                        onchange="previewImage(event)" required>
                                                                     <div class="invalid-feedback">
                                                                         Please enter a username.
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom02">Email
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom02">Email
                                                                     (unique)<span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-8">
-                                                                    <input type="text" class="form-control" id="validationCustom02" name="email" placeholder="Your valid email.." required>
+                                                                    <input type="text" class="form-control"
+                                                                        id="validationCustom02" name="email"
+                                                                        placeholder="Your valid email.." required>
                                                                     <div class="invalid-feedback">
                                                                         Please enter a Email.
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom03">Password
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom03">Password
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="form-group col-lg-8 position-relative">
-                                                                    <input type="password" class="form-control" id="validationCustom03" name="password" placeholder="Choose a safe one.." required>
-                                                                    <span class="show-pass eye" onclick="togglePasswordVisibility()">
+                                                                    <input type="password" class="form-control"
+                                                                        id="validationCustom03" name="password"
+                                                                        placeholder="Choose a safe one.." required>
+                                                                    <span class="show-pass eye"
+                                                                        onclick="togglePasswordVisibility()">
                                                                         <i class="fa fa-eye-slash"></i>
                                                                         <i class="fa fa-eye"></i>
                                                                     </span>
                                                                     <div class="invalid-feedback">
                                                                         Please enter a valid password.
                                                                     </div>
-                                                                    <div id="passwordHelp" class="form-text">
-                                                                        Password must be at least 8 characters long and contain at least one
-                                                                        uppercase letter, one lowercase letter, one number, and one special
-                                                                        character.
+                                                                    <div id="passwordHelp" class="form-text" style="display: none;">
+                                                                        Password must be at least 6 characters long.
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-xl-3" id="imagePreview">
-                                                            <img width="80" src="https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6557420216a456cfaef685c0_6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1-p-1080.jpg" style="border-radius: 45px;width: -webkit-fill-available;" loading="lazy" alt="image">
+                                                            <img width="80"
+                                                                src="https://cdn.prod.website-files.com/62d84e447b4f9e7263d31e94/6557420216a456cfaef685c0_6399a4d27711a5ad2c9bf5cd_ben-sweet-2LowviVHZ-E-unsplash-1-p-1080.jpg"
+                                                                style="border-radius: 45px;width: -webkit-fill-available;"
+                                                                loading="lazy" alt="image">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -137,23 +156,30 @@
                                                     <div class="row">
                                                         <div class="col-xl-6">
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom01">Name
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom01">Name
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-6">
-                                                                    <input type="text" class="form-control" id="validationCustom01" name="name" placeholder="Enter a name.." required>
+                                                                    <input type="text" class="form-control"
+                                                                        id="validationCustom01" name="name"
+                                                                        placeholder="Enter a name.." required>
                                                                     <div class="invalid-feedback">
                                                                         Please enter a name.
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom03">Gender
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom03">Gender
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-6">
-                                                                    <select class="default-select wide form-control" id="validationCustom05" name="gender" required>
-                                                                        <option data-display="Select">Please select</option>
+                                                                    <select class="default-select wide form-control"
+                                                                        id="validationCustom05" name="gender"
+                                                                        required>
+                                                                        <option data-display="Select">Please select
+                                                                        </option>
                                                                         <option value="Male">Male</option>
                                                                         <option value="Female">Female</option>
                                                                         <option value="Other">Other</option>
@@ -164,22 +190,28 @@
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom08">Phone
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom08">Phone
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-6">
-                                                                    <input type="text" class="form-control" id="validationCustom08" name="phone" placeholder="2129990000" required>
+                                                                    <input type="text" class="form-control"
+                                                                        id="validationCustom08" name="phone"
+                                                                        placeholder="2129990000" required>
                                                                     <div class="invalid-feedback">
                                                                         Please enter a phone no.
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom07">Website
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom07">Website
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-6">
-                                                                    <input type="text" class="form-control" id="validationCustom07" name="website" placeholder="http://example.com" required>
+                                                                    <input type="text" class="form-control"
+                                                                        id="validationCustom07" name="website"
+                                                                        placeholder="http://example.com" required>
                                                                     <div class="invalid-feedback">
                                                                         Please enter a url.
                                                                     </div>
@@ -187,13 +219,17 @@
                                                             </div>
 
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Device Allowed
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom05">No of Device Allowed
 
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-6">
-                                                                    <select class="default-select wide form-control" id="no_of_device" name="no_of_device" required>
-                                                                        <option data-display="Select">Please select</option>
+                                                                    <select class="default-select wide form-control"
+                                                                        id="no_of_device" name="no_of_device"
+                                                                        required>
+                                                                        <option data-display="Select">Please select
+                                                                        </option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
                                                                         <option value="3">3</option>
@@ -213,13 +249,17 @@
 
                                                             <div class="mb-3 row">
 
-                                                                <label class="col-lg-4 col-form-label" for="validationCustom05">No of Hour
+                                                                <label class="col-lg-4 col-form-label"
+                                                                    for="validationCustom05">No of Hour
 
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-6">
-                                                                    <select class="default-select wide form-control" id="number_of_hours" name="no_of_hour" required>
-                                                                        <option data-display="Select">Please select</option>
+                                                                    <select class="default-select wide form-control"
+                                                                        id="number_of_hours" name="no_of_hour"
+                                                                        required>
+                                                                        <option data-display="Select">Please select
+                                                                        </option>
                                                                         <option value="1">1</option>
                                                                         <option value="2">2</option>
                                                                         <option value="3">3</option>
@@ -244,11 +284,16 @@
                                                             <div class="mb-3 row">
 
                                                                 <div class="mb-3 row">
-                                                                    <label class="col-lg-4 col-form-label" for="validationCustom01">Company Name
+                                                                    <label class="col-lg-4 col-form-label"
+                                                                        for="validationCustom01">Company Name
                                                                         <span class="text-danger">*</span>
                                                                     </label>
                                                                     <div class="col-lg-6">
-                                                                        <input type="text" class="form-control" id="validationCustom01" name="company_name" placeholder="Enter a Company Name.." required>
+                                                                        <input type="text" class="form-control"
+                                                                            id="validationCustom01"
+                                                                            name="company_name"
+                                                                            placeholder="Enter a Company Name.."
+                                                                            required>
                                                                         <div class="invalid-feedback">
                                                                             Please enter a username.
                                                                         </div>
@@ -256,11 +301,16 @@
 
                                                                 </div>
                                                                 <div class="mb-3 row">
-                                                                    <label class="col-lg-4 col-form-label" for="validationCustom01">Company Address
+                                                                    <label class="col-lg-4 col-form-label"
+                                                                        for="validationCustom01">Company Address
                                                                         <span class="text-danger">*</span>
                                                                     </label>
                                                                     <div class="col-lg-6">
-                                                                        <input type="text" class="form-control" id="validationCustom01" name="company_address" placeholder="Enter a Company Address.." required>
+                                                                        <input type="text" class="form-control"
+                                                                            id="validationCustom01"
+                                                                            name="company_address"
+                                                                            placeholder="Enter a Company Address.."
+                                                                            required>
                                                                         <div class="invalid-feedback">
                                                                             Please enter a username.
                                                                         </div>
@@ -269,51 +319,71 @@
                                                                 </div>
                                                             </div>
 
-                                                           
+
 
                                                             <div class="mb-3 row">
-                                                                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                                                <h4
+                                                                    class="d-flex justify-content-between align-items-center mb-3">
                                                                     <span class="text-black">Amount Detail</span>
-                                                                    <span class="badge badge-primary badge-pill"></span>
+                                                                    <span
+                                                                        class="badge badge-primary badge-pill"></span>
                                                                 </h4>
                                                                 <ul class="list-group mb-3">
-                                                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                                    <li
+                                                                        class="list-group-item d-flex justify-content-between lh-condensed">
                                                                         <div>
-                                                                            <h6 class="my-0"><span id=""></span>PER HOUR PRICE <span id="price_per_hour_span">0</span> X <span id="hours">0</span> Hours:</h6>
+                                                                            <h6 class="my-0"><span
+                                                                                    id=""></span>PER HOUR
+                                                                                PRICE <span
+                                                                                    id="price_per_hour_span">0</span> X
+                                                                                <span id="hours">0</span> Hours:
+                                                                            </h6>
                                                                         </div>
-                                                                        <span class="text-muted">&#8377; <span id="price">0</span></span>
+                                                                        <span class="text-muted">&#8377; <span
+                                                                                id="price">0</span></span>
                                                                     </li>
-                                                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                                                    <li
+                                                                        class="list-group-item d-flex justify-content-between lh-condensed">
                                                                         <div>
                                                                             <h6 class="my-0">IGST:</h6>
                                                                         </div>
-                                                                        <span class="text-muted">&#8377; <span id="igst">0</span></span>
+                                                                        <span class="text-muted">&#8377; <span
+                                                                                id="igst">0</span></span>
                                                                     </li>
-                                                                    <li class="list-group-item d-flex justify-content-between">
+                                                                    <li
+                                                                        class="list-group-item d-flex justify-content-between">
                                                                         <span>Total Amount</span>
-                                                                        <strong>&#8377; <span id="total-amount">0</span></strong>
+                                                                        <strong>&#8377; <span
+                                                                                id="total-amount">0</span></strong>
                                                                     </li>
                                                                 </ul>
                                                             </div>
 
                                                             <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label"><a href="javascript:void(0);">Terms
-                                                                        &amp; Conditions</a> <span class="text-danger">*</span>
+                                                                <label class="col-lg-4 col-form-label"><a
+                                                                        href="javascript:void(0);">Terms
+                                                                        &amp; Conditions</a> <span
+                                                                        class="text-danger">*</span>
                                                                 </label>
                                                                 <div class="col-lg-8">
                                                                     <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" value="" id="validationCustom12" required>
-                                                                        <label class="form-check-label" for="validationCustom12">
+                                                                        <input class="form-check-input"
+                                                                            type="checkbox" value=""
+                                                                            id="validationCustom12" required>
+                                                                        <label class="form-check-label"
+                                                                            for="validationCustom12">
                                                                             Agree to terms and conditions
                                                                         </label>
                                                                     </div>
                                                                 </div>
-                                                            </div> 
-                                                           
+                                                            </div>
+
                                                         </div>
                                                         <div class="col-xl-12">
                                                             <div class="col-lg-12 ms-auto">
-                                                                <button type="submit" style=" width: -webkit-fill-available; " class=" btn btn-primary">Register</button>
+                                                                <button type="submit"
+                                                                    style=" width: -webkit-fill-available; "
+                                                                    class=" btn btn-primary">Register</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -343,10 +413,10 @@
     <!-- Required vendors -->
     {{-- Custom sweetAlert --}}
     @include('CustomSweetAlert');
-    <!-- <script src="{{asset('vendor/global/global.min.js')}}" type="text/javascript"></script> -->
-    <script src="{{asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/custom.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/deznav-init.js')}}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script> -->
+    <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/deznav-init.js') }}" type="text/javascript"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -420,8 +490,7 @@
         var forms = document.querySelectorAll('.needs-validation');
 
         function validatePassword(password) {
-            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-            return passwordRegex.test(password);
+            return password.length >= 6;
         }
 
         function validatePhone(phone) {
@@ -583,7 +652,7 @@
 
                 if (devices > 0 && hours > 0) {
                     $.ajax({
-                        url: '{{ route("calculateAmount") }}',
+                        url: '{{ route('calculateAmount') }}',
                         type: 'GET',
                         data: {
                             numberOfDevices: devices,
@@ -601,7 +670,8 @@
                                 $('#price_per_hour').val('Error');
                                 $('#subtotal').val('Error');
                                 $('#price_per_hour_span').text('Error');
-                            } else if (typeof data.amount !== 'undefined' && typeof data.igst !== 'undefined' && typeof data.price !== 'undefined') {
+                            } else if (typeof data.amount !== 'undefined' && typeof data.igst !==
+                                'undefined' && typeof data.price !== 'undefined') {
                                 const price = parseFloat(data.amount).toFixed(2);
                                 const igst = parseFloat(data.igst).toFixed(2);
                                 const pricePerHour = parseFloat(data.price).toFixed(2);
@@ -675,7 +745,8 @@
         });
     </script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/global/global.min.js" type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
+        type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/deznav/deznav.min.js" type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script>

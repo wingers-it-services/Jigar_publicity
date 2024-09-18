@@ -81,9 +81,7 @@
                                                         Please enter a valid password.
                                                     </div>
                                                     <div id="passwordHelp" class="form-text">
-                                                        Password must be at least 8 characters long and contain at least one
-                                                        uppercase letter, one lowercase letter, one number, and one special
-                                                        character.
+                                                        Password must be at least 6 characters long.
                                                     </div>
                                                 </div>
                                             </div>
@@ -310,7 +308,7 @@
                 passwordHelp.classList.remove('visible');
             });
         });
-        
+
         function togglePasswordVisibility() {
             var passwordField = document.getElementById("validationCustom03");
             var toggleIcon = document.getElementById("togglePassword");
@@ -366,8 +364,7 @@
             var forms = document.querySelectorAll('.needs-validation');
 
             function validatePassword(password) {
-                var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-                return passwordRegex.test(password);
+                return password.length >= 6;
             }
 
             function validatePhone(phone) {
