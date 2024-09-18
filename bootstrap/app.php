@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Middleware\EnsureGymTokenIsValid;
+use Illuminate\Http\Request;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\UserMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -14,16 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__ . '/../routes/console.php',
         health: '/up',
         using: function () {
-            Route::middleware('web')
-                ->prefix('admin')
-                ->group(base_path('routes/admin.php'));
+            Route::middleware('web')->prefix('admin')->group(base_path('routes/admin.php'));
 
-            // Route::middleware('api')
-            //     ->prefix('api')
-            //     ->group(base_path('routes/api.php'));
-
-            Route::middleware('web')
-                ->group(base_path('routes/web.php'));
+            Route::middleware('web')->group(base_path('routes/web.php'));
         },
     )
     ->withMiddleware(function (Middleware $middleware) {
@@ -31,8 +26,18 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias(['auth.admin' => IsAdmin::class]);
-    
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
+        $exceptions
+            ->report(function (ErrorException $e) {
+                Log::error('[app.php][withExceptions] message  : ' . $e->getMessage() . '\n\n' . $e);
+
+                return redirect('/')->send();
+            })
+            ->stop();
+
+        $exceptions->report(function (ErrorException $e) {
+            return false;
+        });
+    })
+    ->create();
