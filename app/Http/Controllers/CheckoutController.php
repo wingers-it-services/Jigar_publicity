@@ -81,6 +81,7 @@ class CheckoutController extends Controller
                     $user->payment_status = PaymentStatus::PAID;
                     $user->no_of_device = $order->no_of_device;
                     $user->no_of_hour = $order->number_of_hours;
+                    $user->remaining_time = $order->number_of_hours * 3600;
                     $user->save();
                 }
 
@@ -216,7 +217,7 @@ class CheckoutController extends Controller
             // Redirect or return a response
             return redirect()->back()->with('status', 'success')->with('message', 'Payment details saved successfully.');
         } catch (Throwable $e) {
-            Log::error('[CheckoutController][store]Payment details not saved.'.$e->getMessage());
+            Log::error('[CheckoutController][store]Payment details not saved.' . $e->getMessage());
             return redirect()->back()->with('status', 'error')->with('message', 'Payment details not saved.');
         }
     }
