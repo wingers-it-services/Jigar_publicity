@@ -82,59 +82,42 @@
                                                 <div class="form-validation">
                                                     <div class="row">
                                                         <div class="col-xl-9">
-                                                            <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label"
-                                                                    for="validationCustom01">Profile
-                                                                    Image
+                                                            <div class="form-group position-relative">
+                                                                <label class="col-lg-4 col-form-label" for="validationCustom01"><strong>
+                                                                        Image</strong>
                                                                     <span class="text-danger">*</span>
                                                                 </label>
-                                                                <div class="col-lg-8">
-                                                                    <input type="file" class="form-control"
-                                                                        id="validationCustom01"
-                                                                        placeholder="Enter a username.."
-                                                                        accept="image/*" name="image"
-                                                                        onchange="previewImage(event)" required>
-                                                                    <div class="invalid-feedback">
-                                                                        Please enter a username.
-                                                                    </div>
+                                                                <input type="file" class="form-control" id="validationCustom01" placeholder="Enter a username.." accept="image/*" name="image" onchange="previewImage(event)" required>
+                                                                <div class="invalid-feedback">
+                                                                    Please Select Image.
                                                                 </div>
                                                             </div>
-                                                            <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label"
-                                                                    for="validationCustom02">Email
-                                                                    (unique)<span class="text-danger">*</span>
+
+                                                            <div class="form-group position-relative">
+                                                                <label class="col-lg-4 col-form-label" for="validationCustom02"><strong>Email
+                                                                        (unique)</strong><span class="text-danger">*</span>
                                                                 </label>
-                                                                <div class="col-lg-8">
-                                                                    <input type="text" class="form-control"
-                                                                        id="validationCustom02" name="email"
-                                                                        placeholder="Your valid email.." required>
-                                                                    <div class="invalid-feedback">
-                                                                        Please enter a Email.
-                                                                    </div>
+                                                                <input type="text" class="form-control" id="validationCustom02" name="email" placeholder="Your valid email.." required>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter a Email.
                                                                 </div>
                                                             </div>
-                                                            <div class="mb-3 row">
-                                                                <label class="col-lg-4 col-form-label"
-                                                                    for="validationCustom03">Password
-                                                                    <span class="text-danger">*</span>
-                                                                </label>
-                                                                <div class="form-group col-lg-8 position-relative">
-                                                                    <input type="password" class="form-control"
-                                                                        id="validationCustom03" name="password"
-                                                                        placeholder="Choose a safe one.." required>
-                                                                    <span class="show-pass eye"
-                                                                        onclick="togglePasswordVisibility()">
-                                                                        <i class="fa fa-eye-slash"></i>
-                                                                        <i class="fa fa-eye"></i>
-                                                                    </span>
-                                                                    <div class="invalid-feedback">
-                                                                        Please enter a valid password.
-                                                                    </div>
-                                                                    <div id="passwordHelp" class="form-text" style="display: none;">
+
+                                                            <div class="form-group position-relative">
+                                                                <label class="mb-1"><strong>Password</strong></label>
+                                                                <input type="password" class="form-control" id="validationCustom03" name="password" placeholder="Password" required>
+                                                                <span class="show-pass eye" onclick="togglePasswordVisibility()">
+                                                                    <i class="fa fa-eye-slash"></i>
+                                                                    <i class="fa fa-eye"></i>
+                                                                </span>
+                                                                <div class="invalid-feedback">
+                                                                    Please enter a valid password.
+                                                                </div>
+                                                                <div id="passwordHelp" class="form-text" style="display: none;">
                                                                         Password must be at least 6 characters long.
                                                                     </div>
-                                                                </div>
                                                             </div>
+
                                                         </div>
                                                         <div class="col-xl-3" id="imagePreview">
                                                             <img width="80"
