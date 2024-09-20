@@ -44,11 +44,13 @@ class AuthController extends Controller
         try {
             $request->validate([
                 'email'    => 'required|email',
-                'password' => 'required',
+                'password' => 'required'
             ]);
 
             $credentials = $request->only('email', 'password');
-            $user = $this->user->where('email', $request->email)->whereNot('is_admin', 1)->first();
+            $user = $this->user->where('email', $request->email)
+                ->whereNot('is_admin', 1)
+                ->first();
 
             if (!$user || !Hash::check($request->password, $user->password)) {
                 return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
@@ -62,34 +64,18 @@ class AuthController extends Controller
                 return back()->with('status', 'error')->with('message', 'You reached max allowed device limit.');
             }
 
-            // Fetch site settings for payment gateway allowance
-            $settings = SiteSetting::first(); // Adjust according to how you retrieve settings
-            $isAllowed = $settings && $settings->payment_gateway_allow;
-
+            // Handle authenticated session
             if (auth()->check()) {
-                if (auth()->user()->id == $user->id) {
-                    $this->logUserLoginDetails($request);
+                $currentUser = auth()->user();
 
-                    if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
-                        return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
-                    }
-
-                    $route = $user->payment_status === PaymentStatus::PAID ? 'industry-list' : 'payment';
-                    return redirect()->route($route)->with('user', $user);
-                } else {
-                    $message = auth()->user()->is_admin
-                        ? 'This system is occupied by Admin. Please login with Admin credentials.'
-                        : 'This system is occupied by user ' . auth()->user()->name . '. Please login with ' . auth()->user()->name;
-                    return back()->with('status', 'error')->with('message', $message);
-                }
+                $message = $currentUser->is_admin
+                    ? 'This system is occupied by Admin. Please login with Admin credentials.'
+                    : 'This system is occupied by user ' . $currentUser->name . '. Please login with ' . $currentUser->name;
             }
 
             // Attempt login if not authenticated
             if (Auth::attempt($credentials)) {
                 $this->logUserLoginDetails($request);
-                if ($user->payment_status === PaymentStatus::PENDING && !$isAllowed) {
-                    return back()->with('status', 'error')->with('message', 'Please pay your amount first before logging in.');
-                }
 
                 if ($user->payment_status === PaymentStatus::PAID) {
                     $user->active_device += 1;
@@ -98,16 +84,14 @@ class AuthController extends Controller
                 } else {
                     $route = 'payment';
                 }
-
-                return redirect()->route($route)->with('user', $user);
             }
-
-            return back()->with('status', 'error')->with('message', 'The provided credentials do not match our records.');
+            return redirect()->route($route)->with('user', $user);
         } catch (Exception $e) {
             Log::error('[AuthController][userLogin] Login error: ' . $e->getMessage());
             return back()->with('status', 'error')->with('message', 'An error occurred while trying to log in. Please try again later.');
         }
     }
+
 
 
 
@@ -156,7 +140,7 @@ class AuthController extends Controller
     {
         $agent = new Agent();
         if ($agent->isDesktop()) {
-            return 'desktop';
+            return 'computer';
         } elseif ($agent->isTablet()) {
             return 'tablet';
         } elseif ($agent->isMobile()) {

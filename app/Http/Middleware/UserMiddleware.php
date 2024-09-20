@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Enums\PaymentStatus;
+use App\Models\SiteSetting;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,18 +22,20 @@ class UserMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check() && Auth::user()->is_admin == 0) {
-
-            // Call the function to check and create the session_time cookie if needed
-            $response = $this->checkAndCreateCookie($request, $next);
-
-            if ($this->isPaymentDone()) {
-                return $response;
+            if (!$this->isPaymentDone()) {
+                $settings = SiteSetting::first();
+                if ($settings && $settings->payment_gateway_allow) {
+                    Auth::logout();
+                    return redirect()->route('login')->with('status', 'error')->with('message', 'Please complete the payment process before going ahead.');
+                } else {
+                    return redirect()->route('login')->with('status', 'error')->with('message', 'Payment not done.\nContact admin for payment');
+                }
             }
-
-            return redirect()->route('login')->with('status', 'error')->with('message', 'Please complete the payment process before going ahead.');
+            $response = $this->checkAndCreateCookie($request, $next);
+            return $response;
         }
 
-        return redirect('/')->with('status', 'error')->with('message', 'Not a valid user');
+        return redirect()->back()->with('status', 'error')->with('message', 'Not a valid user');
     }
 
     private function checkAndCreateCookie(Request $request, Closure $next): Response
