@@ -5,8 +5,8 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
-    
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +33,7 @@
 
     <!-- Chartist CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    
+
     <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css" />
 
     <link href="{{ asset('vendor/chartist/css/chartist.min.css') }}" rel="stylesheet" type="text/css" />
@@ -921,11 +921,15 @@
                             </li> -->
                             <li class="nav-item dropdown header-profile">
                                 <a class="nav-link" href="#" role="button" data-bs-toggle="dropdown">
-                                    <img id="user-image" src="{{ asset('images/profile/17.jpg') }}" width="20" alt="">
+                                    <img id="user-image" src="{{ asset('images/profile/17.jpg') }}" width="20"
+                                        alt="">
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <a href="{{route('viewAdminProfile')}}" class="dropdown-item ai-icon">
-                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <a href="{{ route('viewAdminProfile') }}" class="dropdown-item ai-icon">
+                                        <svg id="icon-user1" xmlns="http://www.w3.org/2000/svg" class="text-primary"
+                                            width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
                                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                             <circle cx="12" cy="7" r="4"></circle>
                                         </svg>
@@ -1110,7 +1114,8 @@
         ***********************************-->
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="https://wingersitservices.co.in/" target="_blank">Wingers IT
+                <p>Copyright © Designed &amp; Developed by <a href="https://wingersitservices.co.in/"
+                        target="_blank">Wingers IT
                         Services Pvt. Ltd</a> 2024</p>
             </div>
         </div> <!--**********************************
@@ -1126,7 +1131,7 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-     
+
     <script src="asset('js/chartist-plugin-tooltip.min.js')" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
@@ -1151,7 +1156,9 @@
     <script src="{{ asset('js/plugins-init/jquery-steps-init.js') }}" type="text/javascript"></script>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
         integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
@@ -1216,26 +1223,25 @@
         });
 
         $(document).ready(function() {
-    $.ajax({
-        url: '/fetch-profile', // Endpoint to fetch profile image
-        method: 'GET',
-        success: function(data) {
-            // Check if the image URL is provided and not empty
-            if (data.image && data.image.trim() !== '') {
-                $('#user-image').attr('src', data.image);
-            } else {
-                // Keep default image if URL is blank or invalid
-                $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error fetching user profile:', error);
-            // Ensure default image is shown in case of error
-            $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
-        }
-    });
-});
-
+            $.ajax({
+                url: '/fetch-profile', // Endpoint to fetch profile image
+                method: 'GET',
+                success: function(data) {
+                    // Check if the image URL is provided and not empty
+                    if (data.image && data.image.trim() !== '') {
+                        $('#user-image').attr('src', data.image);
+                    } else {
+                        // Keep default image if URL is blank or invalid
+                        $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error fetching user profile:', error);
+                    // Ensure default image is shown in case of error
+                    $('#user-image').attr('src', '{{ asset('images/profile/17.jpg') }}');
+                }
+            });
+        });
     </script>
 
 </body>

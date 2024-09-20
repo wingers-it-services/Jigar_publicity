@@ -167,16 +167,14 @@ class AdminUserController extends Controller
         return view('admin.user-payment', compact('userPayments'));
     }
 
-    public function userLoginHistory(Request $request)
+    public function userLoginHistory()
     {
-        $users = $this->userHistory->with(['user' => function ($query) {
+        $users = $this->userHistory->whereHas('user', function ($query) {
             $query->where('is_admin', '!=', 1);
-        }])->get();
-        $users = $users->filter(function ($history) {
-            return $history->user !== null;
-        });
+        })->get();
         return view('admin.login-history', compact('users'));
     }
+
 
     public function userDetails(string $uuid)
     {

@@ -16,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/login', function () {
+    // Check if user is authenticated
+    if (auth()->check()) {
+        // Redirect based on user type using ternary operator
+        return auth()->user()->is_admin == 1
+            ? redirect()->route('admin-dashboard')
+            : redirect()->route('industry-list');
+    }
     return view('admin.login');
 })->name('admin-login');
 
