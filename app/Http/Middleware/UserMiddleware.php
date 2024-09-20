@@ -4,9 +4,14 @@ namespace App\Http\Middleware;
 
 use App\Enums\PaymentStatus;
 use App\Models\SiteSetting;
+use App\Models\User;
+use App\Models\UserLoginHistory;
 use Closure;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -56,12 +61,9 @@ class UserMiddleware
             // Check if the 'session_time' cookie exists
             if (!$request->cookie('session_time')) {
                 $cookie = cookie('session_time', now(), 5);
-
-                // Reduce remaining_time by the specified number of seconds
                 $user->remaining_time -= 300;
-
-                // Save the updated value to the database
                 $user->save();
+                $this->increaseLoginTime($user, 5);
                 // Create the cookie and return the response
                 return $next($request)->withCookie($cookie);
             }
@@ -73,5 +75,21 @@ class UserMiddleware
     private function isPaymentDone(): bool
     {
         return Auth::user()->payment_status === PaymentStatus::PAID;
+    }
+
+    public function increaseLoginTime(User $user, $minutes)
+    {
+        try {
+            $loginHistory = UserLoginHistory::where('user_id', $user->id)
+                ->orderBy('created_at', 'desc')
+                ->first();
+
+            if ($loginHistory) {
+                $loginHistory->current_session_time += $minutes;
+                $loginHistory->save();
+            }
+        } catch (Exception $e) {
+            Log::error('[UserMiddleware][increaseLoginTime] error while increasing current session time : ' . $e->getMessage());
+        }
     }
 }

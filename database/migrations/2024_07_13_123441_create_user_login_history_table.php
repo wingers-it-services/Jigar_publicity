@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('country');
             $table->string('region');
             $table->string('city');
+            $table->bigInteger('current_session_time')->default(0);
             $table->timestamps();
         });
     }
