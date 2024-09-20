@@ -75,9 +75,9 @@ class AuthController extends Controller
 
             // Attempt login if not authenticated
             if (Auth::attempt($credentials)) {
-                $this->logUserLoginDetails($request);
-
                 if ($user->payment_status === PaymentStatus::PAID) {
+                    $this->logUserLoginDetails($request);
+
                     $user->active_device += 1;
                     $user->save();
                     $route = 'industry-list';
