@@ -124,6 +124,11 @@ class CheckoutController extends Controller
 
     public function showPaymentPage()
     {
+        $settings = SiteSetting::first();
+        if ($settings && !$settings->payment_gateway_allow) {
+            return redirect()->back()->with('status', 'error')->with('message', 'Payment not done.\nContact admin for payment');
+        }
+
         $user = auth()->user();
         return view('user.payment', compact('user'));
     }

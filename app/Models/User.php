@@ -83,26 +83,32 @@ class User extends Authenticatable
     public function updateUser(array $validatedData, $uuid)
     {
         $userDetail = User::where('uuid', $uuid)->first();
+
         if (!$userDetail) {
             return redirect()->back()->with('error', 'user not found');
         }
         try {
             $updateData = [
-                "name"           => $validatedData['name'],
-                "email"          => $validatedData['email'],
-                "phone"          => $validatedData['phone'],
-                "gender"         => $validatedData['gender'],
-                "website"        => $validatedData['website'],
-                "company_name"   => $validatedData['company_name'],
+                "name"            => $validatedData['name'],
+                "email"           => $validatedData['email'],
+                "phone"           => $validatedData['phone'],
+                "gender"          => $validatedData['gender'],
+                "website"         => $validatedData['website'],
+                "company_name"    => $validatedData['company_name'],
                 "company_address" => $validatedData['company_address'],
-                "no_of_device"   => $validatedData['no_of_device'],
-                "no_of_hour"     => $validatedData['no_of_hour'],
-                "payment_status" => $validatedData['payment_status'],
+                "no_of_device"    => $validatedData['no_of_device'],
+                "no_of_hour"      => $validatedData['no_of_hour'],
+                "payment_status"  => $validatedData['payment_status'],
             ];
 
             // Only update the password if it is not "**********"
             if ($validatedData['password'] !== DummyPasswordEnum::PAASWORD) {
                 $updateData["password"] = Hash::make($validatedData['password']);
+            }
+
+            // Only update remaining time if new hour option is selected
+            if ($validatedData['no_of_hour'] != $userDetail->no_of_hour) {
+                $updateData["remaining_time"] = ($validatedData['no_of_hour'] ?? 0) * 3600;
             }
 
             $userDetail->update($updateData);

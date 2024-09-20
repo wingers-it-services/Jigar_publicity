@@ -21,10 +21,6 @@ Route::get('/login', function () {
 
 Route::post('/login', [AdminController::class, 'adminLogin']);
 
-Route::fallback(function () {
-    return view('admin.page-error-404');
-});
-
 // Route::get('/admin-enquiry', function () {
 //     return view('admin.admin-enquiry');
 // });

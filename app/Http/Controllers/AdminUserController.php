@@ -106,17 +106,17 @@ class AdminUserController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                "uuid"            => 'required',
-                "name"            => 'required',
-                "email"           => 'required',
-                "phone"           => 'required',
-                "gender"          => 'required',
-                "website"         => 'required',
-                "company_name"    => 'required',
-                "company_address" => 'required',
-                "no_of_device"    => 'required',
-                "no_of_hour"    => 'required',
-                "password"        => 'required',
+                "uuid"             => 'required',
+                "name"             => 'required',
+                "email"            => 'required',
+                "phone"            => 'required',
+                "gender"           => 'required',
+                "website"          => 'required',
+                "company_name"     => 'required',
+                "company_address"  => 'required',
+                "no_of_device"     => 'required',
+                "no_of_hour"       => 'required',
+                "password"         => 'required',
                 "payment_status"   => 'required'
             ]);
 
@@ -169,7 +169,7 @@ class AdminUserController extends Controller
 
     public function userLoginHistory(Request $request)
     {
-        $users = $this->userHistory->with(['user' => function($query) {
+        $users = $this->userHistory->with(['user' => function ($query) {
             $query->where('is_admin', '!=', 1);
         }])->get();
         $users = $users->filter(function ($history) {
@@ -209,7 +209,7 @@ class AdminUserController extends Controller
 
     public function pendingUserList()
     {
-        $users = $this->user->where('account_status',AccountStatusEnum::PENDING)->whereNot('is_admin', 1)->get();
+        $users = $this->user->where('account_status', AccountStatusEnum::PENDING)->whereNot('is_admin', 1)->get();
         return view('admin.pending-user-list', compact('users'));
     }
 }
