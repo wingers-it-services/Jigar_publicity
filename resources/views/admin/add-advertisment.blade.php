@@ -3,14 +3,17 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                Content body start
-                                                                                                            ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                Content body start
+                                                                                                                                                                                                                                                                                                                                            ***********************************-->
     <!-- Bootstrap CSS -->
     {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
     <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="https://unpkg.com/cropperjs/dist/cropper.css" rel="stylesheet">
+    <script src="https://unpkg.com/cropperjs"></script>
 
     <div class="content-body">
         <!-- row -->
@@ -86,16 +89,17 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form class="needs-validation" action="{{ route('addAdvertisment') }}"
-                                                    method="POST" enctype="multipart/form-data" novalidate>
+                                                <form class="needs-validation" id="advertisementForm"
+                                                    action="{{ route('addAdvertisment') }}" method="POST"
+                                                    enctype="multipart/form-data" novalidate>
                                                     @csrf
                                                     <div class="d-flex align-items-center">
                                                         <!-- Image Preview Section -->
                                                         <div id="imagePreview" class="mt-2 text-center"
-                                                            style="display: none; padding: 10px; flex: 1;">
+                                                            style="padding: 10px; flex: 1;">
                                                             <img id="previewImage" src="#" alt="Image Preview"
                                                                 class="img-fluid"
-                                                                style="max-width: 100%; max-height: 300px; width: auto; height: auto;">
+                                                                style="max-width: 100%; max-height: 300px; width: auto; height: auto; display: none;">
                                                         </div>
                                                     </div>
 
@@ -120,7 +124,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- End of Modal -->
+
 
                                 <!-- JavaScript to handle image preview -->
                                 <script>
@@ -149,10 +153,78 @@
         </div>
     </div>
     <!--**********************************
-                                                                                                                Content body end
-                                                                                                            ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                Content body end
+                                                                                                                                                                                                                                                                                                                                            ***********************************-->
 
     <!-- Data Table JS -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cropper;
+            const industryImageInput = document.getElementById('industryImage');
+            const previewImage = document.getElementById('previewImage');
+            const form = document.getElementById('advertisementForm');
+            const imageTypeSelect = document.getElementById('image_type');
+
+            industryImageInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+
+                        if (cropper) {
+                            cropper.destroy(); // Destroy the previous cropper instance
+                        }
+
+                        cropper = new Cropper(previewImage, {
+                            aspectRatio: getAspectRatio(), // Initial aspect ratio
+                            viewMode: 1,
+                            responsive: true,
+                            autoCropArea: 1,
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            imageTypeSelect.addEventListener('change', function() {
+                if (cropper) {
+                    cropper.setAspectRatio(getAspectRatio()); // Update aspect ratio on type change
+                }
+            });
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                if (cropper) {
+                    cropper.getCroppedCanvas().toBlob(function(blob) {
+                        const formData = new FormData(form);
+                        formData.append('advertisment_image', blob, 'cropped_image.jpg');
+
+                        // Submit the form using fetch API or traditional form submission
+                        fetch(form.action, {
+                            method: 'POST',
+                            body: formData,
+                        }).then(response => {
+                            if (response.ok) {
+                                location.reload();
+                            }
+                        }).catch(error => {
+                            console.error('Error uploading image:', error);
+                        });
+                    });
+                }
+            });
+
+            function getAspectRatio() {
+                const imageType = imageTypeSelect.value;
+                return imageType === 'vertical' ? 2 / 3 : 3 / 2;
+            }
+        });
+    </script>
+
     <script src="{{ asset('path/to/datatables.min.js') }}"></script>
     <script>
         $(document).ready(function() {
@@ -192,6 +264,4 @@
             }, false);
         })();
     </script>
-
-    @include('CustomSweetAlert')
 @endsection
