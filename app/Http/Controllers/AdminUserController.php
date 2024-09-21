@@ -169,10 +169,10 @@ class AdminUserController extends Controller
 
     public function userLoginHistory()
     {
-        $users = $this->userHistory->whereHas('user', function ($query) {
+        $loginHistories = $this->userHistory->with('user:id,name,email,no_of_hour')->whereHas('user', function ($query) {
             $query->where('is_admin', '!=', 1);
         })->get();
-        return view('admin.login-history', compact('users'));
+        return view('admin.login-history', compact('loginHistories'));
     }
 
 

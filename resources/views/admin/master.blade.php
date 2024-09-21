@@ -1050,7 +1050,7 @@
                     </li> -->
 
                     <li>
-                        <a href="/admin/user-login-history">
+                        <a href={{ route('userLoginHistory') }}>
                             <i class="fa fa-bell" aria-hidden="true"></i>
                             <span class="nav-text">User Login History</span></a>
                     </li>
@@ -1132,6 +1132,7 @@
     ***********************************-->
     <!-- Required vendors -->
 
+    @include('CustomSweetAlert')
     <script src="asset('js/chartist-plugin-tooltip.min.js')" type="text/javascript"></script>
     <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>

@@ -794,6 +794,7 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
+    @include('CustomSweetAlert')
     <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('vendor/chart-js/chart.bundle.min.js') }}" type="text/javascript"></script>

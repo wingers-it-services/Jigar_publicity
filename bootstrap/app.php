@@ -32,7 +32,7 @@ return Application::configure(basePath: dirname(__DIR__))
             ->report(function (Exception $e) {
                 Log::error('[app.php][withExceptions] message  : ' . $e->getMessage() . '\n\n' . $e);
 
-                return redirect('/')->send();
+                return redirect()->back()->with('status', 'error')->with('message', 'An error occured.')->send();
             })
             ->stop();
 

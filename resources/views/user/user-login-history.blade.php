@@ -3,8 +3,8 @@
 @section('content')
 
     <!--************
-                                                                                                                                                                                                                                                                                                            Content body start
-                                                                                                                                                                                                                                                                                                        *************-->
+                                                                                                                                                                                                                                                                                                                                Content body start
+                                                                                                                                                                                                                                                                                                                            *************-->
     <!-- Content body start -->
 
     <div class="content-body">
@@ -19,7 +19,7 @@
                                         <tr>
                                             <th>Device Type</th>
                                             <th>Subscription Duration</th>
-                                            <th>Session Duration</th>
+                                            <th>Current Duration</th>
                                             <th>IP Address</th>
                                             <th>System Info</th>
                                             <th>City</th>
@@ -56,8 +56,8 @@
     </div>
 
     <!--************
-                                                                                                                                                                                                                                                                                                            Content body end
-                                                                                                                                                                                                                                                                                                        *************-->
+                                                                                                                                                                                                                                                                                                                                Content body end
+                                                                                                                                                                                                                                                                                                                            *************-->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var editButtons = document.querySelectorAll('.edit-book-button');
