@@ -107,19 +107,22 @@ class AuthController extends Controller
         $deviceType  = $this->lockedUserDeviceDetails();
         $ipaddress   = $this->getUserIp();
         $userBrowser = $request->header('User-Agent');
-        $geo         = $json = file_get_contents("http://ipinfo.io/150.129.113.19/geo");
-        $json        = json_decode($json, true);
+        $geo         = $this->getGeoInfo($ipaddress);
 
-        $this->userLoginHistory->create([
-            'user_id'     => auth()->user()->id,
-            'device_type' => $deviceType,
-            'ip_address'  => $ipaddress,
-            'user_agent'  => $userBrowser,
-            'json'        => $geo,
-            'country'     => $json['country'],
-            'region'      => $json['region'],
-            'city'        => $json['city']
-        ]);
+        if ($geo) {
+            $this->userLoginHistory->create([
+                'user_id'     => auth()->user()->id,
+                'device_type' => $deviceType,
+                'ip_address'  => $ipaddress,
+                'user_agent'  => $userBrowser,
+                'json'        => json_encode($geo),
+                'country'     => $geo['country'] ?? 'Unknown',
+                'region'      => $geo['region'] ?? 'Unknown',
+                'city'        => $geo['city'] ?? 'Unknown'
+            ]);
+        } else {
+            Log::error('Geo information is not available for IP ' . $ipaddress);
+        }
     }
 
     private function checkAllowUserTologin(User $user)
@@ -159,21 +162,32 @@ class AuthController extends Controller
      */
     public function getUserIp()
     {
-        $ipaddress = '';
-        if (isset($_SERVER['HTTP_CLIENT_IP']))
-            $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-        else if (isset($_SERVER['HTTP_X_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        else if (isset($_SERVER['HTTP_X_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
-        else if (isset($_SERVER['HTTP_FORWARDED_FOR']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
-        else if (isset($_SERVER['HTTP_FORWARDED']))
-            $ipaddress = $_SERVER['HTTP_FORWARDED'];
-        else if (isset($_SERVER['REMOTE_ADDR']))
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-        else
-            $ipaddress = 'UNKNOWN';
+        try {
+            $ipaddress = request()->ip();
+        } catch (Exception $e) {
+            Log::error('Error fetching IP address: ' . $e->getMessage());
+            $ipaddress = '127.0.0.1';
+        }
+
         return $ipaddress;
+    }
+
+    public function getGeoInfo($ipaddress)
+    {
+        $geo = null;
+
+        $json = @file_get_contents("http://ipinfo.io/$ipaddress/geo");
+
+        if ($json) {
+            $geo = json_decode($json, true);
+
+            if (!$geo) {
+                Log::error('Failed to decode geo info for IP ' . $ipaddress);
+            }
+        } else {
+            Log::error('Error fetching geo info for IP ' . $ipaddress);
+        }
+
+        return $geo;
     }
 }
