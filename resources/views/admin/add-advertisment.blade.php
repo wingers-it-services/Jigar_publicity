@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        Content body start
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Content body start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                ***********************************-->
     <!-- Bootstrap CSS -->
     {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
     <!-- jQuery and Bootstrap JS -->
@@ -153,8 +153,8 @@
         </div>
     </div>
     <!--**********************************
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        Content body end
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    Content body end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                ***********************************-->
 
     <!-- Data Table JS -->
 
@@ -179,11 +179,14 @@
                         }
 
                         cropper = new Cropper(previewImage, {
-                            aspectRatio: getAspectRatio(), // Initial aspect ratio
+                            aspectRatio: getAspectRatio(),
                             viewMode: 1,
                             responsive: true,
                             autoCropArea: 1,
+                            zoomable: false,
+                            movable: false,
                         });
+
                     };
                     reader.readAsDataURL(file);
                 }
