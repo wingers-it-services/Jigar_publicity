@@ -40,7 +40,7 @@ class UserMiddleware
             return $response;
         }
 
-        return redirect()->back()->with('status', 'error')->with('message', 'Not a valid user');
+        return redirect()->back()->with('status', 'error')->with('message', 'You are not authorized user.\nLogin with your credentials');
     }
 
     private function checkAndCreateCookie(Request $request, Closure $next): Response
@@ -61,7 +61,7 @@ class UserMiddleware
             // Check if the 'session_time' cookie exists
             if (!$request->cookie('session_time')) {
                 $cookie = cookie('session_time', now(), 5);
-                $user->remaining_time -= 300;
+                $user->remaining_time -= 5;
                 $user->save();
                 $this->increaseLoginTime($user, 5);
                 // Create the cookie and return the response
