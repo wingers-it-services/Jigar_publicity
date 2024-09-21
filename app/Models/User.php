@@ -69,7 +69,7 @@ class User extends Authenticatable
                 'company_address' => $validatedData['company_address'],
                 'no_of_device'    => $validatedData['no_of_device'],
                 'no_of_hour'      => $validatedData['no_of_hour'],
-                'remaining_time'  => ($validatedData['no_of_hour'] ?? 0) * 3600,
+                'remaining_time'  => ($validatedData['no_of_hour'] ?? 0) * 60,
                 'image'           => $imagePath,
                 'payment_status'  => $validatedData['payment_status'] ?? PaymentStatus::PENDING,
                 'account_status'  => $validatedData['account_status'] ?? AccountStatusEnum::PENDING,
@@ -108,7 +108,7 @@ class User extends Authenticatable
 
             // Only update remaining time if new hour option is selected
             if ($validatedData['no_of_hour'] != $userDetail->no_of_hour) {
-                $updateData["remaining_time"] = ($validatedData['no_of_hour'] ?? 0) * 3600;
+                $updateData["remaining_time"] = ($validatedData['no_of_hour'] ?? 0) * 60;
             }
 
             $userDetail->update($updateData);
