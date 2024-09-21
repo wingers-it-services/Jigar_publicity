@@ -3,8 +3,8 @@
 @section('content')
 
     <!--**********************************
-                                                                                                                                                                                                                                                                                                                                                Content body start
-                                                                                                                                                                                                                                                                                                                                            ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        Content body start
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    ***********************************-->
     <!-- Bootstrap CSS -->
     {{-- <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"> --}}
     <!-- jQuery and Bootstrap JS -->
@@ -153,8 +153,8 @@
         </div>
     </div>
     <!--**********************************
-                                                                                                                                                                                                                                                                                                                                                Content body end
-                                                                                                                                                                                                                                                                                                                                            ***********************************-->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        Content body end
+                                                                                                                                                                                                                                                                                                                                                                                                                                                    ***********************************-->
 
     <!-- Data Table JS -->
 
@@ -195,25 +195,38 @@
                 }
             });
 
-            form.addEventListener('submit', function(event) {
+            form.addEventListener('submit', async function(event) {
                 event.preventDefault();
 
                 if (cropper) {
-                    cropper.getCroppedCanvas().toBlob(function(blob) {
+                    cropper.getCroppedCanvas().toBlob(async function(blob) {
                         const formData = new FormData(form);
                         formData.append('advertisment_image', blob, 'cropped_image.jpg');
 
-                        // Submit the form using fetch API or traditional form submission
-                        fetch(form.action, {
-                            method: 'POST',
-                            body: formData,
-                        }).then(response => {
-                            if (response.ok) {
+                        try {
+                            const response = await fetch(form.action, {
+                                method: 'POST',
+                                body: formData,
+                            });
+
+                            const message = response.ok ? {
+                                icon: 'success',
+                                title: 'Success',
+                                text: 'Advertisement image added successfully!'
+                            } : {
+                                icon: 'error',
+                                title: 'Error',
+                                text: 'Error while adding advertisement image!'
+                            };
+
+                            const result = await Swal.fire(message);
+
+                            if (result.isConfirmed) {
                                 location.reload();
                             }
-                        }).catch(error => {
+                        } catch (error) {
                             console.error('Error uploading image:', error);
-                        });
+                        }
                     });
                 }
             });
