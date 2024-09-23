@@ -32,4 +32,33 @@ class UserLoginHistoryController extends Controller
             ->get();
         return view('user.user-login-history', compact('userLoginHistorys'));
     }
+
+    public function storeLocation(Request $request)
+    {
+        try {
+            $request->validate([
+                // 'history_id' => 'required|exists:user_login_history,id',
+                'latitude'   => 'required|max:20',
+                'longitude'  => 'required|max:20',
+            ]);
+
+            Log::info($request->all());
+            return response()->json(
+                [
+                    'status'  => 200,
+                    'message' => 'Location added successfully',
+                ],
+                200,
+            );
+        } catch (Exception $e) {
+            Log::error('[UserLoginHistoryController][storeLocation] error while strong user location : ' . $e->getMessage());
+            return response()->json(
+                [
+                    'status'  => 500,
+                    'message' => 'Error while getting location : ' . $e->getMessage()
+                ],
+                500,
+            );
+        }
+    }
 }

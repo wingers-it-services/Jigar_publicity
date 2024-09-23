@@ -38,9 +38,8 @@ class UserMiddleware
             }
             $response = $this->checkAndCreateCookie($request, $next);
             return $response;
-        }
-
-        return redirect()->back()->with('status', 'error')->with('message', 'You are not authorized user.\nLogin with your credentials');
+        } else
+            return redirect()->back()->with('status', 'error')->with('message', 'You are not authorized user.\nLogin with your credentials');
     }
 
     private function checkAndCreateCookie(Request $request, Closure $next): Response
