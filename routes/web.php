@@ -34,6 +34,8 @@ Route::post('/user-register', [UserController::class, 'registerUser'])->name('re
 
 Route::post('/user-login', [AuthController::class, 'userLogin'])->name('userLogin');
 
+Route::post('/store-location', [UserLoginHistoryController::class, 'storeLocation'])->name('store-location');
+
 Route::fallback(function () {
     return view('admin.page-error-404');
 });
