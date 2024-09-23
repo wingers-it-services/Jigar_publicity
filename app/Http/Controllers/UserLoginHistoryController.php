@@ -45,8 +45,9 @@ class UserLoginHistoryController extends Controller
             Log::info($request->all());
             return response()->json(
                 [
-                    'status'  => 200,
-                    'message' => 'Location added successfully',
+                    'status'   => 200,
+                    'message'  => 'Location added successfully',
+                    'response' => $request->all()
                 ],
                 200,
             );
