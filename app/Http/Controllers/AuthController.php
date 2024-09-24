@@ -77,12 +77,7 @@ class AuthController extends Controller
             // Attempt login if not authenticated
             if (Auth::attempt($credentials)) {
                 if ($user->payment_status === PaymentStatus::PAID) {
-                    // Store latitude and longitude in the user model
-                    $user->latitude = $request->latitude;
-                    $user->longitude = $request->longitude;
-                    $user->save();
                     $this->logUserLoginDetails($request);
-
                     // increasing user active device user is being logged in
                     $user->active_device += 1;
                     $user->save();

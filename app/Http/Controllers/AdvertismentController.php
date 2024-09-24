@@ -29,7 +29,7 @@ class AdvertismentController extends Controller
     {
         try {
             $validatedData = $request->validate([
-                'advertisment_image' => 'required|mimes:jpeg,png,jpg,gif|max:5120', // 5 MB max
+                'advertisment_image' => 'required|mimes:jpeg,png,jpg,gif|max:3072', // 3 MB max size
                 'image_type'         => 'required|in:horizontal,vertical'
             ]);
 
