@@ -11,6 +11,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Jenssegers\Agent\Agent;
 use PhpOffice\PhpSpreadsheet\Calculation\Logical\Boolean;
@@ -77,7 +78,7 @@ class AuthController extends Controller
             if (Auth::attempt($credentials)) {
                 if ($user->payment_status === PaymentStatus::PAID) {
                     $this->logUserLoginDetails($request);
-
+                    // increasing user active device user is being logged in
                     $user->active_device += 1;
                     $user->save();
                     $route = 'industry-list';
@@ -107,7 +108,9 @@ class AuthController extends Controller
         $deviceType  = $this->lockedUserDeviceDetails();
         $ipaddress   = $this->getUserIp();
         $userBrowser = $request->header('User-Agent');
-        $geo         = $this->getGeoInfo($ipaddress);
+
+        // Get geo information from latitude and longitude instead of IP
+        $geo = $this->getGeoInfoFromLatLng($request->latitude, $request->longitude);
 
         if ($geo) {
             $this->userLoginHistory->create([
@@ -118,12 +121,78 @@ class AuthController extends Controller
                 'json'        => json_encode($geo),
                 'country'     => $geo['country'] ?? 'Unknown',
                 'region'      => $geo['region'] ?? 'Unknown',
-                'city'        => $geo['city'] ?? 'Unknown'
+                'city'        => $geo['city'] ?? 'Unknown',
+                'address'     => $geo['address'] ?? 'Unknown',
             ]);
         } else {
-            Log::error('Geo information is not available for IP ' . $ipaddress);
+            Log::error('Geo information is not available for the provided latitude and longitude.');
         }
     }
+
+    public function getUserIp()
+    {
+        try {
+            $ipaddress = request()->ip();
+        } catch (Exception $e) {
+            Log::error('Error fetching IP address: ' . $e->getMessage());
+            $ipaddress = '127.0.0.1';
+        }
+
+        return $ipaddress;
+    }
+
+    // Method to get geo info from latitude and longitude using an external geocoding service
+    private function getGeoInfoFromLatLng($latitude, $longitude)
+    {
+        try {
+            // Nominatim API URL for reverse geocoding
+            $url = 'https://nominatim.openstreetmap.org/reverse';
+
+            // Make an API request using Laravel's Http client
+            $response = Http::get($url, [
+                'lat'    => $latitude,
+                'lon'    => $longitude,
+                'format' => 'json'
+            ]);
+            // Check if the request was successful
+            if ($response->successful()) {
+                $geoData = $response->json();
+
+
+                if (!empty($geoData)) {
+                    // Extract the relevant information from the response
+                    $geoInfo = [
+                        'city'     => $geoData['address']['state_district'] ?? 'Unknown',
+                        'country'  => $geoData['address']['country'] ?? 'Unknown',
+                        'region'   => $geoData['address']['state'] ?? 'Unknown',
+                        'address'  => $geoData['display_name'] ?? 'Unknown',
+                    ];
+                    return $geoInfo;
+                }
+            } else {
+                Log::error('Error fetching geo info from lat/lng: HTTP request failed with status ' . $response->status());
+            }
+        } catch (Exception $e) {
+            Log::error('Error fetching geo info from lat/lng: ' . $e->getMessage());
+        }
+
+        return null;
+    }
+
+
+
+
+    // Helper function to extract specific address components
+    private function getAddressComponent($components, $type)
+    {
+        foreach ($components as $component) {
+            if (in_array($type, $component['types'])) {
+                return $component['long_name'];
+            }
+        }
+        return null;
+    }
+
 
     private function checkAllowUserTologin(User $user)
     {
@@ -150,44 +219,5 @@ class AuthController extends Controller
             return 'mobile';
         }
         return 'unknown';
-    }
-
-    /**
-     * The function getUserIp in PHP retrieves the user's IP address from various server variables.
-     *
-     * @return The function getUserIp() returns the IP address of the user. It checks various server
-     * variables like HTTP_CLIENT_IP, HTTP_X_FORWARDED_FOR, HTTP_X_FORWARDED,
-     * HTTP_FORWARDED_FOR, HTTP_FORWARDED, and REMOTE_ADDR to determine the user's IP address. If
-     * none of these variables are set, it returns 'UNKNOWN'.
-     */
-    public function getUserIp()
-    {
-        try {
-            $ipaddress = request()->ip();
-        } catch (Exception $e) {
-            Log::error('Error fetching IP address: ' . $e->getMessage());
-            $ipaddress = '127.0.0.1';
-        }
-
-        return $ipaddress;
-    }
-
-    public function getGeoInfo($ipaddress)
-    {
-        $geo = null;
-
-        $json = @file_get_contents("http://ipinfo.io/$ipaddress/geo");
-
-        if ($json) {
-            $geo = json_decode($json, true);
-
-            if (!$geo) {
-                Log::error('Failed to decode geo info for IP ' . $ipaddress);
-            }
-        } else {
-            Log::error('Error fetching geo info for IP ' . $ipaddress);
-        }
-
-        return $geo;
     }
 }

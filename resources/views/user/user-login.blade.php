@@ -85,10 +85,11 @@
                                             </div>
                                         </div> -->
                                         <div class="text-center">
-                                            <a><button type="submit" onclick="getLocation()"
-                                                    class="btn btn-primary btn-block">Sign Me
-                                                    In</button></a>
+                                            <button type="submit" class="btn btn-primary btn-block"
+                                                onclick="getLocation(event)">Sign Me In</button>
                                         </div>
+                                        <input type="hidden" id="latitude" name="latitude">
+                                        <input type="hidden" id="longitude" name="longitude">
                                     </form>
                                     <div class="new-account mt-3">
                                         <p> Don't have an account? <a class="text-primary" href="/view-user-register">
