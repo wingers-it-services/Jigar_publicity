@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('country');
             $table->string('region');
             $table->string('city');
-            $table->string('latitude', 20)->nullable();
-            $table->string('longitude', 20)->nullable();
             $table->bigInteger('current_session_time')->default(0);
             $table->timestamps();
         });

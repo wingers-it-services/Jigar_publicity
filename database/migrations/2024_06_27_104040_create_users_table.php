@@ -27,6 +27,8 @@ return new class extends Migration
             $table->integer('no_of_hour');
             $table->tinyInteger('account_status')->default(0);
             $table->bigInteger('remaining_time')->default(0);
+            $table->string('latitude', 20)->nullable();
+            $table->string('longitude', 20)->nullable();
             $table->timestamps();
         });
     }
