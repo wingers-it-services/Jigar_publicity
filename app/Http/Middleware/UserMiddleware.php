@@ -31,16 +31,22 @@ class UserMiddleware
                 $settings = SiteSetting::first();
                 if ($settings && $settings->payment_gateway_allow) {
                     Auth::logout();
-                    return redirect()->route('login')->with('status', 'error')->with('message', 'Please complete the payment process before going ahead.');
+                    return redirect()->route('login')->with('status', 'error')->with('message', 'Please complete the payment process before proceeding.');
                 } else {
-                    return redirect()->route('login')->with('status', 'error')->with('message', 'Payment not done.\nContact admin for payment');
+                    return redirect()->route('login')->with('status', 'error')->with('message', 'Payment not completed. Contact admin for payment.');
                 }
             }
-            $response = $this->checkAndCreateCookie($request, $next);
-            return $response;
+
+            // Ensure that the request is not redirected back to itself
+            if ($request->route()->getName() !== 'login') {
+                $response = $this->checkAndCreateCookie($request, $next);
+                return $response;
+            }
         } else
-            return redirect()->back()->with('status', 'error')->with('message', 'You are not authorized user.\nLogin with your credentials');
+
+            return redirect()->route('login')->with('status', 'error')->with('message', 'You are not authorized. Login with your credentials.');
     }
+
 
     private function checkAndCreateCookie(Request $request, Closure $next): Response
     {

@@ -18,8 +18,8 @@ class IsAdmin
     {
         if (Auth::check() && Auth::user()->is_admin == 1) {
             return $next($request);
-        }
+        } else
 
-        return redirect('/')->with('status','error')->with('message', 'Not a valid user');
+            return redirect('/')->with('status', 'error')->with('message', 'Not a valid user');
     }
 }
