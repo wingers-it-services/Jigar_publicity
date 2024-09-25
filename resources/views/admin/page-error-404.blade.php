@@ -16,7 +16,7 @@
     <meta property="og:description" content="Laravel | Page Error 404">
     <meta property="og:image" content="https://fito.dexignzone.com/laravel/social-image.png">
     <meta name="format-detection" content="telephone=no">
-    <title>Page Error 404 </title>
+    <title>404 Not Found</title>
 
     <!-- Mobile Specific -->
     <meta name="viewport" content="width=device-width, initial-scale=1">

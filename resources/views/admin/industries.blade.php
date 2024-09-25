@@ -1,10 +1,10 @@
 @extends('admin.master')
-@section('title', 'Dashboard')
+@section('title', 'Industries')
 @section('content')
 
     <!--**********************************
-                                        Content body start
-                            ***********************************-->
+                                                            Content body start
+                                                ***********************************-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -80,7 +80,10 @@
                                                         <div class="d-flex justify-content-end">
                                                             <form action="{{ route('export.industries') }}" method="POST">
                                                                 @csrf
-                                                                <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target=".bd-example-modal-lg">Download data</button>
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target=".bd-example-modal-lg">Download
+                                                                    data</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -101,8 +104,8 @@
 
 
         <!--**********************************
-                                        Content body end
-                            ***********************************-->
+                                                            Content body end
+                                                ***********************************-->
         <script src="{{ asset('js/plugins-init/staff-attendance-overview-chart.js') }}" type="text/javascript"></script>
         <script>
             function addIndustryField() {
