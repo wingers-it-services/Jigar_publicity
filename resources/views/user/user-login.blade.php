@@ -111,7 +111,7 @@
     {{-- Custom sweetAlert --}}
     @include('CustomSweetAlert');
     <!-- <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script> -->
-    <script src="{{ asset('js/location.js') }}"></script>
+    <script src="{{ asset('js/location.js') }}" defer></script>
     <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/deznav-init.js') }}" type="text/javascript"></script>
