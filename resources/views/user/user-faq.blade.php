@@ -1,5 +1,5 @@
 @extends('user.master')
-@section('title', 'Dashboard')
+@section('title', 'FAQs')
 @section('content')
 
     <div class="content-body ">
@@ -24,12 +24,12 @@
                                 details of the selected </br> industry will then be displayed below the table.</p>
                         </div>
                         <!-- <div class="card-footer d-sm-flex justify-content-between align-items-center">
-                                                                                            <div class="card-footer-link mb-4 mb-sm-0">
-                                                                                                <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
-                                                                                            </div>
+                                                                                                                <div class="card-footer-link mb-4 mb-sm-0">
+                                                                                                                    <p class="card-text text-dark d-inline">Last updated 3 mins ago</p>
+                                                                                                                </div>
 
-                                                                                            <a href="javascript:void()" class="btn btn-primary">Go somewhere</a>
-                                                                                        </div> -->
+                                                                                                                <a href="javascript:void()" class="btn btn-primary">Go somewhere</a>
+                                                                                                            </div> -->
                     </div>
                 </div>
 
