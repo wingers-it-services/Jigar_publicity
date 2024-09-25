@@ -138,7 +138,6 @@
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
         type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/deznav/deznav.min.js" type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script>
 </body>
 

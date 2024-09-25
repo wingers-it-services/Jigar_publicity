@@ -11,7 +11,8 @@
     <meta name="csrf-token" content="ZY4pR8wIEdrTLWxVivLo4lvqoE0UPbxm6RtBU20w">
     <meta name="author" content="DexignZone">
     <meta name="robots" content="">
-    <meta name="keywords" content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
+    <meta name="keywords"
+        content="Fitness solution, Healthier lifestyle, Fito, Personalized programs,  Exercise, Nutrition, Motivation, Fitness journey, DexignZone">
     <meta name="description" content="Some description for the page">
 
     <meta property="og:title" content="Fito - A Comprehensive Fitness Solution for a Healthier Lifestyle | DexignZone">
@@ -24,8 +25,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" href="{{asset('images/favicon.png')}}">
-    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -42,38 +43,43 @@
                                         <div class="col-lg-12 col-sm-12 col-12">
                                             <div class="form-group">
                                                 <div class="mailclinet" id="mailclinet">
-                                                    <img id="selected_image" src="{{asset('images/logo.png')}}" >
+                                                    <img id="selected_image" src="{{ asset('images/logo.png') }}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="progress">
-                                        <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"  role="progressbar">
+                                        <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="0"
+                                            aria-valuemin="0" aria-valuemax="100" role="progressbar">
                                         </div>
                                     </div>
 
-                                    <h4 class="text-center mb-4" style=" margin: revert; -webkit-text-stroke-width: thin; ">Admin account</h4>
+                                    <h4 class="text-center mb-4"
+                                        style=" margin: revert; -webkit-text-stroke-width: thin; ">Admin account</h4>
                                     <form class="form" id="log_in" method="POST" action="/admin/login">
                                         @csrf
                                         <div class="form-group">
                                             <label class="mb-1"><strong>Email</strong></label>
-                                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                            <input type="email" class="form-control" name="email"
+                                                placeholder="Email" required>
                                         </div>
                                         <div class="form-group position-relative">
                                             <label class="mb-1"><strong>Password</strong></label>
-                                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                                            <input type="password" class="form-control" id="password" name="password"
+                                                placeholder="Password" required>
                                             <span class="show-pass eye" onclick="togglePasswordVisibility()">
                                                 <i class="fa fa-eye-slash"></i>
                                                 <i class="fa fa-eye"></i>
                                             </span>
                                         </div>
-                                        
+
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary btn-block">Sign Me In</button>
                                         </div>
                                     </form>
                                     <div class="new-account mt-3">
-                                        <p>Go to the User Login <a class="text-primary" href='/view-user-login'>User Login</a></p>
+                                        <p>Go to the User Login <a class="text-primary" href='/view-user-login'>User
+                                                Login</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -89,10 +95,10 @@
     <!-- Required vendors -->
     {{-- Custom sweetAlert --}}
     @include('CustomSweetAlert');
-    <!-- <script src="{{asset('vendor/global/global.min.js')}}" type="text/javascript"></script> -->
-    <script src="{{asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/custom.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('js/deznav-init.js')}}" type="text/javascript"></script>
+    <!-- <script src="{{ asset('vendor/global/global.min.js') }}" type="text/javascript"></script> -->
+    <script src="{{ asset('vendor/bootstrap-select/dist/js/bootstrap-select.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/custom.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/deznav-init.js') }}" type="text/javascript"></script>
     <script>
         function togglePasswordVisibility() {
             var passwordField = document.getElementById("password");
@@ -111,9 +117,9 @@
     </script>
 
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/global/global.min.js" type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="https://fito.dexignzone.com/laravel/demo/vendor/bootstrap-select/dist/js/bootstrap-select.min.js"
+        type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/vendor/deznav/deznav.min.js" type="text/javascript"></script>
-    <script src="https://fito.dexignzone.com/laravel/demo/js/custom.min.js" type="text/javascript"></script>
     <script src="https://fito.dexignzone.com/laravel/demo/js/deznav-init.js" type="text/javascript"></script>
 
 
