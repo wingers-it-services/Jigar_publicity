@@ -44,8 +44,10 @@ class AuthController extends Controller
     {
         try {
             $request->validate([
-                'email'    => 'required|email',
-                'password' => 'required'
+                'email'     => 'required|email',
+                'password'  => 'required',
+                'latitude'  => 'nullable',
+                'longitude' => 'nullable'
             ]);
 
             $credentials = $request->only('email', 'password');
@@ -109,8 +111,15 @@ class AuthController extends Controller
         $ipaddress   = $this->getUserIp();
         $userBrowser = $request->header('User-Agent');
 
+        // Get the input values, use defaults if not provided
+        $latitude = $request->input('latitude') ?? 21.6223393;
+        $longitude = $request->input('longitude') ?? 73.0031426;
+        Log::info('latitude  : ' . $latitude);
+        Log::info('longitude : ' . $longitude);
+        Log::info('Request data : ', $request->all());
+
         // Get geo information from latitude and longitude instead of IP
-        $geo = $this->getGeoInfoFromLatLng($request->latitude, $request->longitude);
+        $geo = $this->getGeoInfoFromLatLng($latitude, $longitude);
 
         if ($geo) {
             $this->userLoginHistory->create([
