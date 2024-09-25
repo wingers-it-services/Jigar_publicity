@@ -114,9 +114,6 @@ class AuthController extends Controller
         // Get the input values, use defaults if not provided
         $latitude = $request->input('latitude') ?? 21.6223393;
         $longitude = $request->input('longitude') ?? 73.0031426;
-        Log::info('latitude  : ' . $latitude);
-        Log::info('longitude : ' . $longitude);
-        Log::info('Request data : ', $request->all());
 
         // Get geo information from latitude and longitude instead of IP
         $geo = $this->getGeoInfoFromLatLng($latitude, $longitude);
